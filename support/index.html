@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BloomDay · Support</title>
+<link rel="canonical" href="https://bloomdayapp.com/support/">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#F5F1EA;--linen:#EDE8DF;--walnut:#3D2B1F;--stone:#8A7E72;--sage:#6B8F71;--brass:#B8862A;--hairline:#DDD8D0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--walnut);}
+  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(245,241,234,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--hairline);}
+  .nav-brand{font-family:"Cormorant Garamond",serif;font-size:19px;font-style:italic;font-weight:500;color:var(--walnut);text-decoration:none;}
+  .nav-back{font-size:13px;color:var(--stone);text-decoration:none;}
+  .nav-back:hover{color:var(--walnut);}
+  .hero{padding:72px 24px 56px;text-align:center;border-bottom:1px solid var(--hairline);}
+  .hero-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:14px;display:block;}
+  .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,6vw,64px);font-weight:400;line-height:1.1;letter-spacing:-2px;}
+  .hero h1 em{font-style:italic;color:var(--sage);}
+  .hero p{font-size:15px;color:var(--stone);font-weight:300;margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .content{max-width:720px;margin:0 auto;padding:64px 24px 100px;}
+  .faq-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:32px;display:block;}
+  .faq-item{border-bottom:1px solid var(--hairline);}
+  .faq-q{width:100%;background:none;border:none;text-align:left;padding:20px 0;font-family:"DM Sans",sans-serif;font-size:15px;font-weight:500;color:var(--walnut);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .faq-q:hover{color:var(--sage);}
+  .faq-arrow{font-size:18px;color:var(--stone);transition:transform 0.3s;flex-shrink:0;}
+  .faq-a{font-size:14px;color:var(--stone);font-weight:300;line-height:1.75;padding-bottom:20px;display:none;}
+  .faq-item.open .faq-arrow{transform:rotate(180deg);}
+  .faq-item.open .faq-a{display:block;}
+  .contact-card{margin-top:64px;background:var(--walnut);border-radius:20px;padding:48px 40px;text-align:center;}
+  .contact-card h2{font-family:"Cormorant Garamond",serif;font-size:36px;font-weight:400;color:white;font-style:italic;margin-bottom:12px;}
+  .contact-card p{font-size:15px;color:rgba(255,255,255,0.55);font-weight:300;margin-bottom:28px;}
+  .contact-btn{display:inline-block;background:var(--brass);color:white;padding:13px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;}
+  .contact-btn:hover{opacity:0.9;}
+  footer{background:var(--walnut);color:rgba(255,255,255,0.45);padding:40px 24px;text-align:center;}
+  footer .foot-brand{font-family:"Cormorant Garamond",serif;font-size:20px;font-style:italic;color:white;margin-bottom:14px;}
+  footer p{font-size:13px;margin-bottom:10px;}
+  footer a{color:rgba(255,255,255,0.45);text-decoration:none;}
+  footer a:hover{color:white;}
+  @media(max-width:600px){nav{padding:14px 20px;}.contact-card{padding:32px 24px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-brand">BloomDay</a>
+  <a href="/" class="nav-back">← Back to home</a>
+</nav>
+<div class="hero">
+  <span class="hero-label">Support</span>
+  <h1>We're here to help your<br>garden <em>thrive.</em></h1>
+  <p>Have a question about BloomDay? Browse our FAQ or reach out directly — we'd love to hear from you.</p>
+</div>
+<div class="content">
+  <span class="faq-label">Frequently Asked Questions</span>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q">How do I earn seeds? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">Complete tasks to earn seeds. Each completed task gives you 2 seeds, with bonus seeds if you finish during your scheduled time window or during a Focus session. You can earn up to 20 seeds per day from tasks — daily challenges and streak bonuses are uncapped.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do streaks work? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">Complete at least one task every day to maintain your streak. If you miss a day, your streak resets — but if you have a resilience token, you can recover it. Earn tokens by reaching streak milestones like 7, 14, 30, and 100 days.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do I set a task reminder? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">When creating a task, set a start time. Then tap the 🔔 bell icon next to the task — you'll receive a notification 5 minutes before it begins. Make sure notifications are enabled for BloomDay in your phone settings.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do plants grow? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">Plants grow when you water them each day. Tasks earn seeds to buy new plants — watering is what drives growth. Water daily and stay consistent to help them bloom. When a plant fully blooms, you earn bonus seeds and a resilience token.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can I recover a deleted task? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">Unfortunately, deleted tasks cannot be recovered. We recommend using the postpone feature (📅) instead of deleting tasks you might want to return to later.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do I cancel my subscription? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">You can manage or cancel your subscription anytime through the App Store. Go to Settings → Apple Account → Subscriptions → BloomDay, then tap Cancel Subscription. Your access continues until the end of the billing period.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">I lost my data after logging out. What happened? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">Your data is tied to your BloomDay account and syncs automatically. If you log back in with the same account, your garden, tasks, and streak should be restored. If something is missing, please contact us and we'll look into it.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What is Focus Mode? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">Focus Mode is a timed work session (25, 45, 60, or 90 minutes). During a session, only one task is shown at a time and task-adding is locked. Every task completed earns +1 bonus seed. It's designed to help you do deep work without distraction.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What is the Time Capsule? <span class="faq-arrow">↓</span></button>
+      <div class="faq-a">Time Capsule lets you write a letter to your future self and seal it to a plant. The letter unlocks the day that plant reaches full bloom. It's a personal milestone feature — part productivity, part reflection.</div>
+    </div>
+  </div>
+  <div class="contact-card">
+    <h2>Still need help?</h2>
+    <p>We read every message and typically respond within 24 hours.<br>No question is too small.</p>
+    <a href="mailto:bloomday.app@icloud.com" class="contact-btn">📧 Send us a message</a>
+  </div>
+</div>
+<footer>
+  <div class="foot-brand">BloomDay</div>
+  <p>Complete tasks. Grow plants. Build something beautiful.</p>
+  <p><a href="/">Home</a> &nbsp;·&nbsp; <a href="/guide/">How It Works</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy Policy</a></p>
+</footer>
+<script>
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
