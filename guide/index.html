@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BloomDay · How It Works</title>
+<link rel="canonical" href="https://bloomdayapp.com/guide/">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#F5F1EA;--linen:#EDE8DF;--walnut:#3D2B1F;--stone:#8A7E72;--sage:#6B8F71;--brass:#B8862A;--hairline:#DDD8D0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--walnut);}
+  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(245,241,234,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--hairline);}
+  .nav-brand{font-family:"Cormorant Garamond",serif;font-size:19px;font-style:italic;font-weight:500;color:var(--walnut);text-decoration:none;}
+  .nav-back{font-size:13px;color:var(--stone);text-decoration:none;}
+  .nav-back:hover{color:var(--walnut);}
+  .hero{padding:72px 24px 56px;text-align:center;border-bottom:1px solid var(--hairline);}
+  .hero-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:14px;display:block;}
+  .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,6vw,64px);font-weight:400;line-height:1.1;letter-spacing:-2px;}
+  .hero h1 em{font-style:italic;color:var(--sage);}
+  .hero p{font-size:15px;color:var(--stone);font-weight:300;margin-top:14px;}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:24px;border-bottom:1px solid var(--hairline);}
+  .toc a{font-size:12px;color:var(--stone);text-decoration:none;background:white;border:1px solid var(--hairline);border-radius:20px;padding:5px 14px;transition:all 0.2s;}
+  .toc a:hover{background:var(--walnut);color:white;border-color:var(--walnut);}
+  .content{max-width:720px;margin:0 auto;padding:64px 24px 100px;}
+  .section{margin-bottom:72px;padding-bottom:72px;border-bottom:1px solid var(--hairline);}
+  .section:last-child{border-bottom:none;}
+  .sec-num{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:10px;display:block;}
+  .section h2{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,4vw,38px);font-weight:400;line-height:1.15;letter-spacing:-1px;margin-bottom:20px;}
+  .section h2 em{font-style:italic;}
+  .section h3{font-size:14px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--stone);margin:28px 0 10px;}
+  .section p{font-size:15px;color:var(--stone);font-weight:300;line-height:1.8;margin-bottom:14px;}
+  .section p strong{color:var(--walnut);font-weight:500;}
+  .steps{counter-reset:step;margin:20px 0;}
+  .step{display:flex;gap:16px;margin-bottom:20px;align-items:start;}
+  .step-num{width:28px;height:28px;border-radius:50%;background:var(--walnut);color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;}
+  .step-body h4{font-size:14px;font-weight:500;margin-bottom:4px;}
+  .step-body p{font-size:14px;color:var(--stone);font-weight:300;line-height:1.7;margin:0;}
+  table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px;}
+  th{background:var(--walnut);color:white;padding:10px 14px;text-align:left;font-weight:500;font-size:11px;letter-spacing:0.5px;}
+  td{padding:10px 14px;border-bottom:1px solid var(--hairline);color:var(--stone);font-weight:300;}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:rgba(245,241,234,0.5);}
+  td strong{color:var(--walnut);font-weight:500;}
+  .tip{background:rgba(107,143,113,0.08);border:1px solid rgba(107,143,113,0.2);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:14px;color:var(--stone);font-weight:300;line-height:1.7;}
+  footer{background:var(--walnut);color:rgba(255,255,255,0.45);padding:40px 24px;text-align:center;}
+  footer .foot-brand{font-family:"Cormorant Garamond",serif;font-size:20px;font-style:italic;color:white;margin-bottom:14px;}
+  footer p{font-size:13px;margin-bottom:10px;}
+  footer a{color:rgba(255,255,255,0.45);text-decoration:none;}
+  footer a:hover{color:white;}
+  @media(max-width:600px){nav{padding:14px 20px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-brand">BloomDay</a>
+  <a href="/" class="nav-back">← Back to home</a>
+</nav>
+<div class="hero">
+  <span class="hero-label">Guide</span>
+  <h1>BloomDay <em>grows with you</em></h1>
+  <p>Complete tasks. Earn seeds. Tend your garden.<br>A guide to every system in the app.</p>
+</div>
+<div class="toc">
+  <a href="#tasks">Tasks</a><a href="#seeds">Seeds</a><a href="#plants">Plants</a>
+  <a href="#focus">Focus</a><a href="#tokens">Tokens</a><a href="#weather">Weather</a>
+  <a href="#garden">Garden</a><a href="#weekly">Weekly</a><a href="#tips">Tips</a>
+</div>
+<div class="content">
+
+  <div class="section" id="tasks">
+    <span class="sec-num">01 — Tasks</span>
+    <h2>The root of <em>everything</em></h2>
+    <p>Every seed you earn, every plant that grows, every streak you build — it all starts with completing a task.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Add a task</h4><p>Tap the input bar, type your task, and press ADD. Assign a category: Work, Health, Home, Learn, Social, or Self.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Set a time window (optional)</h4><p>Tap Time to assign a start time and duration. Tasks completed during their window earn +1 bonus seed.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Set a reminder</h4><p>Tap the 🔔 icon on any task to get a notification 5 minutes before it begins.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Complete it — earn seeds</h4><p>Tap the circle to complete. You earn 2 seeds per task. One reward per task per day.</p></div></div>
+    </div>
+  </div>
+
+  <div class="section" id="seeds">
+    <span class="sec-num">02 — Seeds</span>
+    <h2>The <em>currency</em> of your garden</h2>
+    <p>Seeds are earned through consistent work and spent on plants. They are designed to feel valuable — not abundant.</p>
+    <table>
+      <tr><th>Action</th><th>Seeds</th><th>Notes</th></tr>
+      <tr><td>Complete a task</td><td><strong>+2</strong></td><td>Base rate. Once per task per day.</td></tr>
+      <tr><td>Complete within time window</td><td><strong>+1</strong></td><td>Bonus on top of base 2.</td></tr>
+      <tr><td>Focus Mode active</td><td><strong>+1</strong></td><td>Stacks with time-window bonus.</td></tr>
+      <tr><td>Spring season</td><td><strong>×2</strong></td><td>All earnings doubled Mar–May.</td></tr>
+      <tr><td>Daily Challenge</td><td><strong>+10–25</strong></td><td>One per day. Uncapped.</td></tr>
+      <tr><td>Plant reaches full bloom</td><td><strong>+20</strong></td><td>One-time reward per species.</td></tr>
+      <tr><td>Daily cap (tasks only)</td><td><strong>20 max</strong></td><td>Challenges & streak bonuses uncapped.</td></tr>
+    </table>
+    <div class="tip">Seeds do not expire. They accumulate across days. Some rare plants take 3–5 days of consistent work to afford — that tension is intentional.</div>
+  </div>
+
+  <div class="section" id="plants">
+    <span class="sec-num">03 — Plants</span>
+    <h2>Species, growth <em>& full bloom</em></h2>
+    <h3>How plants grow</h3>
+    <p>Plants grow through watering alone. Tasks earn seeds to buy plants — not to grow them. Water your plant once every 20 hours. Sunny weather adds +1 bonus growth on your next water.</p>
+    <h3>Watering moods</h3>
+    <p>Watered today → <strong>Thriving</strong> · 1 day missed → Happy · 2 days → Thirsty · 3 days → Wilting · 4+ days → <strong>Critical</strong></p>
+    <h3>Full bloom</h3>
+    <p>When a plant reaches 100% growth, a bloom moment appears with a reward: <strong>+20 seeds and +1 Resilience Token</strong>. This happens only once per species.</p>
+  </div>
+
+  <div class="section" id="focus">
+    <span class="sec-num">04 — Focus Mode</span>
+    <h2>A <em>commitment contract</em></h2>
+    <p>Select a duration (25, 45, 60, or 90 min) and tap FOCUS. During the session:</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">✓</div><div class="step-body"><h4>+1 bonus seed per task</h4><p>Every task earns 3 seeds instead of 2 during Focus.</p></div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body"><h4>One task visible at a time</h4><p>Removes visual noise and forces sequential attention.</p></div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body"><h4>Task input locked</h4><p>You cannot add new tasks during a Focus session.</p></div></div>
+    </div>
+  </div>
+
+  <div class="section" id="tokens">
+    <span class="sec-num">05 — Resilience Tokens</span>
+    <h2>Earned, never <em>bought</em></h2>
+    <p>Tokens cannot be purchased. They are earned only through genuine milestones.</p>
+    <table>
+      <tr><th>Milestone</th><th>Tokens</th></tr>
+      <tr><td>7-day streak</td><td><strong>+1</strong></td></tr>
+      <tr><td>14-day streak</td><td><strong>+1</strong></td></tr>
+      <tr><td>30-day streak</td><td><strong>+1</strong></td></tr>
+      <tr><td>100-day streak</td><td><strong>+1</strong></td></tr>
+      <tr><td>100 lifetime tasks</td><td><strong>+1</strong></td></tr>
+      <tr><td>Plant reaches full bloom (first time)</td><td><strong>+1</strong></td></tr>
+    </table>
+    <p>Use tokens to restore a broken streak or revive a critical plant (4+ days unwatered).</p>
+  </div>
+
+  <div class="section" id="weather">
+    <span class="sec-num">06 — Weather</span>
+    <h2>Real conditions, <em>real effects</em></h2>
+    <p>BloomDay reads your local weather once per day. Weather has mechanical effects — not just decoration.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">🌧</div><div class="step-body"><h4>Rain or Storm</h4><p>Garden and allotment plants are automatically watered for free.</p></div></div>
+      <div class="step"><div class="step-num">☀️</div><div class="step-body"><h4>Hot days (&gt;28°C)</h4><p>Outdoor plants wilt faster if not watered.</p></div></div>
+    </div>
+  </div>
+
+  <div class="section" id="garden">
+    <span class="sec-num">07 — Garden</span>
+    <h2>Arrange, tend, <em>share</em></h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Switch environments</h4><p>Interior (houseplants), Garden (outdoor), Allotment (vegetables). Each has its own species.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Choose a theme</h4><p>Scroll the theme bar — Cosy Cottage, Zen Studio, Nordic Loft and more. Some require a paid plan.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Arrange your space</h4><p>Tap ARRANGE to drag plants and décor. Long-press to remove an item.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Share your garden</h4><p>Tap SHARE GARDEN to capture a screenshot with your stats and BloomDay watermark.</p></div></div>
+    </div>
+  </div>
+
+  <div class="section" id="weekly">
+    <span class="sec-num">08 — Weekly Report</span>
+    <h2>Seven days, <em>clearly seen</em></h2>
+    <p>Every week BloomDay shows: tasks done, streak, days watered, challenge wins, completion rate, daily bar chart, and category breakdown. The mood headline changes based on your actual completion rate.</p>
+  </div>
+
+  <div class="section" id="tips">
+    <span class="sec-num">09 — Tips</span>
+    <h2>Getting the most <em>from your garden</em></h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">🌿</div><div class="step-body"><h4>Water every day</h4><p>Growth comes only from watering. Open the app, water your plant, and let the streak build.</p></div></div>
+      <div class="step"><div class="step-num">⏱</div><div class="step-body"><h4>Use Focus Mode for deep work</h4><p>Every task in Focus earns +1 bonus seed. Use it for your hardest tasks.</p></div></div>
+      <div class="step"><div class="step-num">💰</div><div class="step-body"><h4>Save for rare plants</h4><p>Forest-tier plants cost 200–280 seeds. Saving for them should feel earned.</p></div></div>
+      <div class="step"><div class="step-num">🔥</div><div class="step-body"><h4>Guard your streak</h4><p>A streak only requires one task per day. On slow days, complete your smallest task.</p></div></div>
+    </div>
+    <div class="tip">The app is designed around one principle: every reward should be a consequence of real work, not a shortcut around it.</div>
+  </div>
+
+</div>
+<footer>
+  <div class="foot-brand">BloomDay</div>
+  <p>Complete tasks. Grow plants. Build something beautiful.</p>
+  <p><a href="/">Home</a> &nbsp;·&nbsp; <a href="/support/">Support</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy Policy</a></p>
+</footer>
+</body>
+</html>
