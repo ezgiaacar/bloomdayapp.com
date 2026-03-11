@@ -254,25 +254,6 @@
   .foot-links a { font-size:13px; color:rgba(255,255,255,0.4); text-decoration:none; transition:color 0.2s; }
   .foot-links a:hover { color:white; }
   .foot-copy { font-size:12px; color:rgba(255,255,255,0.2); font-weight:300; }
-
-  /* ── Email capture ── */
-  .email-section { margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(61,43,31,0.1); }
-  .email-section p { font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:18px; color:#6B5B4E; text-align:center; margin-bottom:20px; }
-  .email-form { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; max-width:440px; margin:0 auto; }
-  .email-form input[type="email"] {
-    flex:1; min-width:200px; padding:12px 16px;
-    border:1px solid #C8C0B8; border-radius:8px;
-    background:#FAF8F5; font-family:'Jost',sans-serif;
-    font-size:14px; color:#3D2B1F; outline:none;
-  }
-  .email-form input[type="email"]:focus { border-color:var(--sage); }
-  .email-form button {
-    padding:12px 22px; background:var(--walnut); color:#F5F1EA;
-    border:none; border-radius:8px; font-family:'Jost',sans-serif;
-    font-size:13px; letter-spacing:0.5px; cursor:pointer; white-space:nowrap;
-  }
-  .email-form button:hover { background:var(--sage); }
-  .email-success { display:none; font-family:'Jost',sans-serif; font-size:14px; color:var(--sage); text-align:center; margin-top:12px; }
 </style>
 </head>
 <body>
@@ -545,39 +526,6 @@
       <a href="#" class="btn-light">🤖 Download for Android</a>
     </div>
   </div>
-
-    <div class="email-section">
-      <p>Get plant care tips &amp; app updates 🌿</p>
-      <form
-        name="updates"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        class="email-form"
-        onsubmit="handleEmailSubmit(event)"
-      >
-        <input type="hidden" name="form-name" value="updates" />
-        <input type="hidden" name="bot-field" />
-        <input type="email" name="email" placeholder="your@email.com" required />
-        <button type="submit">Notify me →</button>
-      </form>
-      <p class="email-success" id="email-success">✓ You're in! We'll be in touch.</p>
-    </div>
-
-    <script>
-    function handleEmailSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
-      }).then(() => {
-        form.style.display = 'none';
-        document.getElementById('email-success').style.display = 'block';
-      }).catch(() => form.submit());
-    }
-    </script>
 </div>
 
 <!-- FOOTER -->
