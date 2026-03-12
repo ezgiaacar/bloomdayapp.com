@@ -43,7 +43,7 @@
 
   /* HERO */
   .hero {
-    min-height:100vh; padding:110px 24px 0;
+    min-height:100vh; padding:150px 24px 0;
     display:flex; flex-direction:column; align-items:center;
     text-align:center; position:relative; overflow:hidden;
     background: linear-gradient(180deg, var(--cream) 60%, var(--linen) 100%);
@@ -254,6 +254,25 @@
   .foot-links a { font-size:13px; color:rgba(255,255,255,0.4); text-decoration:none; transition:color 0.2s; }
   .foot-links a:hover { color:white; }
   .foot-copy { font-size:12px; color:rgba(255,255,255,0.2); font-weight:300; }
+
+  /* INSTAGRAM BAR */
+  .ig-bar {
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    position:fixed; top:62px; left:0; right:0; z-index:99;
+    background:var(--linen); border-bottom:1px solid var(--hairline);
+    padding:9px 24px; text-decoration:none;
+    color:var(--walnut); font-size:13px; font-weight:400;
+    transition:background 0.2s;
+  }
+  .ig-bar:hover { background:#ede8df; }
+  .ig-bar svg { color:var(--sage); flex-shrink:0; }
+  .ig-handle { font-weight:600; color:var(--sage); }
+  .ig-arrow { color:var(--stone); font-size:14px; margin-left:2px; transition:transform 0.2s; }
+  .ig-bar:hover .ig-arrow { transform:translateX(3px); }
+  @media(max-width:768px) {
+    .ig-bar { top:57px; }
+    .ig-bar span:first-of-type { display:none; }
+  }
 </style>
 </head>
 <body>
@@ -271,6 +290,18 @@
     <li><a href="#download" class="nav-cta">Download Free</a></li>
   </ul>
 </nav>
+
+<!-- INSTAGRAM BAR -->
+<a href="https://instagram.com/bloomday.app" target="_blank" rel="noopener" class="ig-bar">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+  </svg>
+  <span>Follow our journey on Instagram</span>
+  <span class="ig-handle">@bloomday.app</span>
+  <span class="ig-arrow">→</span>
+</a>
 
 <!-- HERO -->
 <div class="hero">
