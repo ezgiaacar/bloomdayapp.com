@@ -162,6 +162,33 @@ footer .inner{grid-template-columns:1fr}
 .phones{flex-wrap:wrap}
 .phone-frame{width:160px}
 }
+
+/* ── Waitlist Section ── */
+.bloomday-waitlist{position:relative;padding:100px 24px;background:var(--green-900);overflow:hidden}
+.bloomday-waitlist::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 400px at 15% 20%,rgba(91,166,91,.1) 0%,transparent 70%),radial-gradient(ellipse 500px 500px at 85% 80%,rgba(91,166,91,.08) 0%,transparent 70%);pointer-events:none}
+.waitlist-inner{position:relative;max-width:640px;margin:0 auto;text-align:center}
+.waitlist-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--green-300);margin-bottom:32px}
+.waitlist-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--green-400);animation:waitlist-pulse 2s ease-in-out infinite}
+@keyframes waitlist-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.waitlist-heading{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:400;line-height:1.2;color:#fff;margin-bottom:16px}
+.waitlist-heading em{font-style:italic;color:var(--green-300)}
+.waitlist-sub{font-size:1rem;line-height:1.7;color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 40px}
+.waitlist-form{display:flex;gap:10px;max-width:480px;margin:0 auto}
+.waitlist-input{flex:1;padding:16px 20px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;outline:none;transition:border-color .2s,box-shadow .2s}
+.waitlist-input::placeholder{color:rgba(255,255,255,.3)}
+.waitlist-input:focus{border-color:var(--green-400);box-shadow:0 0 0 3px rgba(91,166,91,.2)}
+.waitlist-btn{padding:16px 28px;border-radius:12px;border:none;background:var(--green-400);color:var(--green-900);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s,transform .1s}
+.waitlist-btn:hover{background:var(--green-300)}
+.waitlist-btn:active{transform:scale(.97)}
+.waitlist-btn:disabled{opacity:.6;cursor:not-allowed}
+.waitlist-msg{margin-top:16px;font-size:14px;min-height:20px}
+.waitlist-msg.success{color:var(--green-300)}
+.waitlist-msg.error{color:#e07a5f}
+.waitlist-privacy{margin-top:24px;font-size:12px;color:rgba(255,255,255,.3)}
+.waitlist-success-icon{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:rgba(91,166,91,.15);margin-bottom:16px;animation:waitlist-pop .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes waitlist-pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+.waitlist-success-icon svg{width:28px;height:28px;stroke:var(--green-300);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:520px){.waitlist-form{flex-direction:column}.waitlist-btn{width:100%}.bloomday-waitlist{padding:72px 20px}}
 </style>
 </head>
 <body>
@@ -186,6 +213,27 @@ footer .inner{grid-template-columns:1fr}
 <a href="#download" class="primary">Download Free</a>
 <a href="#how" class="secondary">How It Works</a>
 </div>
+</div>
+</section>
+
+<!-- ── Waitlist Section ── -->
+<section class="bloomday-waitlist" id="waitlist">
+<div class="waitlist-inner">
+<div class="waitlist-badge">Waitlist Open</div>
+<h2 class="waitlist-heading">Be the first to know<br>when <em>BloomDay</em> launches.</h2>
+<p class="waitlist-sub">Join the waitlist and get early access when we go live, plus exclusive updates on new features and plant species — straight to your inbox.</p>
+<div id="waitlist-form-wrap">
+<form class="waitlist-form" id="waitlist-form" onsubmit="return false;">
+<input type="email" class="waitlist-input" id="waitlist-email" placeholder="your@email.com" required autocomplete="email"/>
+<button type="submit" class="waitlist-btn" id="waitlist-submit">Join Waitlist</button>
+</form>
+<div class="waitlist-msg" id="waitlist-msg"></div>
+</div>
+<div id="waitlist-success" style="display:none;">
+<div class="waitlist-success-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+<div class="waitlist-msg success">You're in! We'll keep you posted. 🌱</div>
+</div>
+<p class="waitlist-privacy">No spam, ever. Unsubscribe anytime.</p>
 </div>
 </section>
 
@@ -387,11 +435,41 @@ footer .inner{grid-template-columns:1fr}
 <div class="bottom">&copy; 2026 BloomDay. All rights reserved.</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
-}, {threshold: 0.15});
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
 document.querySelectorAll('.garden-card').forEach(c => observer.observe(c));
+</script>
+
+<script>
+(function(){
+const WAITLIST_ID='cmmsygmvc00qy01pnllrftk7g';
+const API_URL='https://api.freewaitlists.com/waitlists/'+WAITLIST_ID;
+const form=document.getElementById('waitlist-form');
+const emailInput=document.getElementById('waitlist-email');
+const submitBtn=document.getElementById('waitlist-submit');
+const msgEl=document.getElementById('waitlist-msg');
+const formWrap=document.getElementById('waitlist-form-wrap');
+const successEl=document.getElementById('waitlist-success');
+form.addEventListener('submit',async function(e){
+e.preventDefault();
+var email=emailInput.value.trim();
+if(!email)return;
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showMsg('Please enter a valid email address.','error');return}
+submitBtn.disabled=true;submitBtn.textContent='Joining...';msgEl.textContent='';msgEl.className='waitlist-msg';
+try{
+var r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,meta:{source:'bloomdayapp.com'}})});
+var data=await r.json();
+if(r.ok){formWrap.style.display='none';successEl.style.display='block'}
+else{var err=data.message||data.error||'Something went wrong. Please try again.';
+if(err.toLowerCase().includes('already')||err.toLowerCase().includes('exist')){showMsg("You're already on the list! We'll be in touch soon. 🌱",'success')}
+else{showMsg(err,'error')}resetBtn()}
+}catch(ex){showMsg('Connection error. Please try again.','error');resetBtn()}
+});
+function showMsg(t,c){msgEl.textContent=t;msgEl.className='waitlist-msg '+c}
+function resetBtn(){submitBtn.disabled=false;submitBtn.textContent='Join Waitlist'}
+})();
 </script>
 </body>
 </html>
