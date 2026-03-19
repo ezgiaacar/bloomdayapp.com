@@ -360,29 +360,29 @@ footer .inner{grid-template-columns:1fr}
 <h2>Start free, grow when ready</h2>
 </div>
 <p class="sub">No pressure. Upgrade when you're ready for the full garden.</p>
-<div class="toggle">
-<button class="active" onclick="this.classList.add('active');this.nextElementSibling.classList.remove('active')">Monthly</button>
-<button onclick="this.classList.add('active');this.previousElementSibling.classList.remove('active')">Annual -40%</button>
+<div class="toggle" id="billing-toggle">
+<button class="active" onclick="switchBilling('monthly')">Monthly</button>
+<button onclick="switchBilling('annual')">Annual <span style="color:var(--green-600)">Save ~37%</span></button>
 </div>
 <div class="plans">
 <div class="plan">
 <h4>Bloom</h4>
-<div class="price">$2.99<span> /mo</span></div>
-<div class="billing">Billed monthly</div>
+<div class="price" data-monthly="$1.99" data-annual="$14.99" data-mo-label=" /mo" data-yr-label=" /yr">$1.99<span> /mo</span></div>
+<div class="billing" data-monthly="Billed monthly" data-annual="$14.99 billed annually">Billed monthly</div>
 <ul><li>30+ premium cultivars</li><li>Ad-free experience</li><li>Indoor garden theme</li><li>Focus mode</li></ul>
 <a href="#" class="plan-btn">Start Bloom Plan</a>
 </div>
 <div class="plan featured">
 <h4>Forest</h4>
-<div class="price">$4.99<span> /mo</span></div>
-<div class="billing">Billed monthly</div>
+<div class="price" data-monthly="$3.99" data-annual="$29.99" data-mo-label=" /mo" data-yr-label=" /yr">$3.99<span> /mo</span></div>
+<div class="billing" data-monthly="Billed monthly" data-annual="$29.99 billed annually">Billed monthly</div>
 <ul><li>Everything in Bloom</li><li>Rare plant specimens</li><li>Unlimited water</li><li>All garden themes</li></ul>
 <a href="#" class="plan-btn">Start Forest Plan</a>
 </div>
 <div class="plan">
 <h4>Eden</h4>
-<div class="price">$9.99<span> /mo</span></div>
-<div class="billing">Billed monthly</div>
+<div class="price" data-monthly="$6.99" data-annual="$49.99" data-mo-label=" /mo" data-yr-label=" /yr">$6.99<span> /mo</span></div>
+<div class="billing" data-monthly="Billed monthly" data-annual="$49.99 billed annually">Billed monthly</div>
 <ul><li>Complete collection</li><li>Ad-free forever</li><li>Priority features</li><li>Time capsule letters</li></ul>
 <a href="#" class="plan-btn">Start Eden Plan</a>
 </div>
@@ -472,6 +472,21 @@ else{showMsg(err,'error')}resetBtn()}
 function showMsg(t,c){msgEl.textContent=t;msgEl.className='waitlist-msg '+c}
 function resetBtn(){submitBtn.disabled=false;submitBtn.textContent='Join Waitlist'}
 })();
+</script>
+<script>
+function switchBilling(mode){
+var btns=document.querySelectorAll('#billing-toggle button');
+btns[0].classList.toggle('active',mode==='monthly');
+btns[1].classList.toggle('active',mode==='annual');
+document.querySelectorAll('.plan .price').forEach(function(el){
+var price=el.getAttribute('data-'+mode);
+var label=mode==='monthly'?el.getAttribute('data-mo-label'):el.getAttribute('data-yr-label');
+el.innerHTML=price+'<span>'+label+'</span>';
+});
+document.querySelectorAll('.plan .billing').forEach(function(el){
+el.textContent=el.getAttribute('data-'+mode);
+});
+}
 </script>
 </body>
 </html>
