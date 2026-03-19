@@ -295,6 +295,45 @@
       color: var(--cream-muted);
     }
 
+    /* ── Logo preview grid ── */
+    .logo-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .logo-preview-wide .logo-preview-card {
+      aspect-ratio: auto;
+      padding: 24px 20px 36px;
+    }
+    .logo-preview-card {
+      border-radius: 14px;
+      border: 1px solid var(--dark-card-border);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      aspect-ratio: 1;
+    }
+    .logo-preview-card img {
+      max-width: 70%;
+      max-height: 70%;
+      object-fit: contain;
+    }
+    .logo-preview-wide .logo-preview-card img {
+      max-width: 85%;
+      max-height: 60px;
+    }
+    .logo-preview-card span {
+      position: absolute;
+      bottom: 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--cream-faint);
+      letter-spacing: 0.02em;
+    }
+
     /* ── Boilerplate ── */
     .boilerplate {
       background: var(--dark-card);
@@ -364,6 +403,7 @@
       .assets-grid { grid-template-columns: 1fr; }
       .founder-card { flex-direction: column; padding: 28px; }
       .scene-grid { grid-template-columns: 1fr; }
+      .logo-preview-grid { grid-template-columns: 1fr 1fr; }
       .plant-float { display: none; }
     }
 
@@ -423,7 +463,7 @@
   <h1 class="press-title">Finish your tasks.<br>Grow <em>real</em> gardens.</h1>
   <p class="press-subtitle">BloomDay is a task planner that turns productivity into play. Complete your daily tasks and watch a virtual garden come to life — with 131 hand-designed plant species, three garden themes, and no guilt trips.</p>
   <div class="press-contact-bar">
-    <a href="/cdn-cgi/l/email-protection#51333d3e3e3c3530287f3021211138323d3e24357f323e3c" class="btn-primary">Contact for Press</a>
+    <a href="/cdn-cgi/l/email-protection#b1d3dddededcd5d0c89fd0c1c1f1d8d2dddec4d59fd2dedc" class="btn-primary">Contact for Press</a>
     <a href="bloomday-press-kit.zip" class="btn-secondary" download>Download Press Kit</a>
   </div>
 </header>
@@ -437,7 +477,7 @@
   <div class="about-grid">
     <div class="about-text">
       <p><strong>BloomDay</strong> is a mobile task planner that rewards you for getting things done — not by gamifying stress, but by growing something beautiful. Every completed task waters your garden. Plants sprout, bloom, and fill your personal landscape over time.</p>
-      <p>Built entirely by one person with no coding background, BloomDay started as a personal project during a career transition and became a fully functional app with 131 hand-designed plant species, three garden themes (cozy interior, English garden, and allotment), focus mode, streaks, time capsule letters, and a home screen widget.</p>
+      <p>Built entirely by one person using AI tools, BloomDay started as a personal project during a career transition and became a fully functional app with 131 hand-designed plant species, three garden themes (cozy interior, English garden, and allotment), focus mode, streaks, time capsule letters, and a home screen widget.</p>
       <p>The app is built with React Native (Expo), Supabase for authentication and sync, RevenueCat for subscriptions, and Resend for transactional emails. Every plant, every scene, and every pixel was designed by the founder.</p>
     </div>
     <div>
@@ -448,7 +488,7 @@
         <li><span class="fact-label">Platforms</span><span class="fact-value">iOS & Android</span></li>
         <li><span class="fact-label">Price</span><span class="fact-value">Free (Premium optional)</span></li>
         <li><span class="fact-label">Plant Species</span><span class="fact-value">131</span></li>
-        <li><span class="fact-label">Garden Themes</span><span class="fact-value">12</span></li>
+        <li><span class="fact-label">Garden Themes</span><span class="fact-value">3</span></li>
         <li><span class="fact-label">Founder</span><span class="fact-value">Ezgi Acar</span></li>
         <li><span class="fact-label">Team Size</span><span class="fact-value">1 (solo developer)</span></li>
         <li><span class="fact-label">Website</span><span class="fact-value"><a href="https://bloomdayapp.com">bloomdayapp.com</a></span></li>
@@ -514,7 +554,7 @@
         <p>Her humanitarian background — figuring out what people need, working with limited resources, staying composed when things break — turned out to be surprisingly transferable to product development.</p>
       </div>
       <div class="founder-links">
-        <a href="https://www.linkedin.com/in/ezgi-acar-a27a46167" target="_blank">LinkedIn →</a>
+        <a href="https://www.linkedin.com/in/ezgi-acar-a27a46167">LinkedIn →</a>
       </div>
     </div>
   </div>
@@ -547,16 +587,20 @@
         <div class="font-preview-body">DM Sans — The quick brown fox jumps over the lazy dog.</div>
       </div>
     </div>
-    <div class="asset-card">
-      <h3>App Icon & Logo</h3>
-      <p>The BloomDay icon and wordmark are available in SVG and PNG formats for light and dark backgrounds. Please do not modify the colors or proportions.</p>
-      <!-- TODO: Add download links when assets are hosted -->
-      <a href="bloomday-press-kit.zip" download class="btn-secondary" style="display:inline-block; margin-top: 8px; font-size: 13px; padding: 8px 16px;">Download Press Kit</a>
-    </div>
-    <div class="asset-card">
-      <h3>Screenshots</h3>
-      <p>High-resolution app screenshots, garden scenes, and plant collection previews available on request.</p>
-      <a href="bloomday-press-kit.zip" download class="btn-secondary" style="display:inline-block; margin-top: 8px; font-size: 13px; padding: 8px 16px;">Download Press Kit</a>
+  </div>
+
+  <div style="margin-top: 32px;">
+    <div class="assets-grid">
+      <div class="asset-card">
+        <h3>Download All Assets</h3>
+        <p>The press kit includes app icons (dark, light, adaptive), full wordmark logos (light bg, dark bg, transparent), 1024px master icon, favicons, and adaptive icon layers.</p>
+        <a href="bloomday-press-kit.zip" download class="btn-secondary" style="display:inline-block; margin-top: 8px; font-size: 13px; padding: 8px 16px;">Download Press Kit (.zip)</a>
+      </div>
+      <div class="asset-card">
+        <h3>Screenshots</h3>
+        <p>High-resolution app screenshots, garden scenes, and plant collection previews available on request.</p>
+        <a href="mailto:bloomday.app@icloud.com" class="btn-secondary" style="display:inline-block; margin-top: 8px; font-size: 13px; padding: 8px 16px;">Request Screenshots</a>
+      </div>
     </div>
   </div>
 </section>
@@ -580,7 +624,7 @@
     <button class="copy-btn" onclick="copyText('bp-medium')">Copy</button>
     <div class="section-label" style="margin-bottom: 8px; font-size: 11px;">Medium (1 paragraph)</div>
     <div class="boilerplate-text" id="bp-medium">
-      <p>BloomDay is a mobile task planner that rewards productivity with something beautiful. Complete your daily tasks and watch a virtual garden come to life — with 131 hand-designed plant species, three garden themes, focus mode with ambient sound, streaks, time capsule letters, and weekly growth reports. Built entirely by one person with no technical background, BloomDay takes a gentler approach to productivity — no guilt trips, no hustle culture, just a garden that grows with you. Available on iOS and Android.</p>
+      <p>BloomDay is a mobile task planner that rewards productivity with something beautiful. Complete your daily tasks and watch a virtual garden come to life — with 131 hand-designed plant species, three garden themes, focus mode with ambient sound, streaks, time capsule letters, and weekly growth reports. Built entirely by one person using AI tools and sheer determination, BloomDay takes a gentler approach to productivity — no guilt trips, no hustle culture, just a garden that grows with you. Available on iOS and Android.</p>
     </div>
   </div>
 
@@ -590,7 +634,7 @@
     <div class="boilerplate-text" id="bp-long">
       <p>BloomDay is a mobile task planner that turns everyday productivity into a living garden. Instead of streaks that shame you or points that feel hollow, BloomDay rewards every completed task by growing a real plant in your virtual landscape. Over time, your garden fills with the results of your daily effort — a visual, personal record of consistency.</p>
       <p>The app features 131 individually hand-designed plant species across three garden themes: a cozy interior room, an English garden, and a countryside allotment. Additional features include a built-in focus mode timer with ambient sound, daily streaks, weekly growth reports, shareable garden snapshots, time capsule letters to your future self, and a home screen widget.</p>
-      <p>BloomDay was built entirely by Ezgi Acar, a former humanitarian protection worker with eight years of experience at UNHCR, IOM, and refugee-focused NGOs. With no coding background, she taught herself React Native and designed every plant, every screen, and every pixel from scratch. The project started during a period of unemployment and career transition — proof that the skills learned from working in crisis environments transfer remarkably well to building products.</p>
+      <p>BloomDay was built entirely by Ezgi Acar, a former humanitarian protection worker with eight years of experience at UNHCR, IOM, and refugee-focused NGOs. With no coding background, she built BloomDay from scratch using AI tools — designing every plant, directing every feature, and building the website and marketing entirely on her own. The project started during a period of unemployment and career transition — proof that the skills learned from working in crisis environments transfer remarkably well to building products.</p>
       <p>BloomDay is available on iOS and Android. The app is free to download with an optional premium subscription.</p>
     </div>
   </div>
@@ -604,6 +648,15 @@
   <h2 class="section-heading">Get in touch</h2>
   <p>For press inquiries, interviews, review copies, or brand assets:</p>
   <div class="press-contact-bar">
-    <a href="mailto:bloomday.app@icloud.com" class="btn-primary"><span class="__cf_email__" data-cfemail="7416181b1b1910150d5a150404341d17181b01105a171b19">[Send Email]</span></a>
+    <a href="mailto:bloomday.app@icloud.com" class="btn-primary"><span class="__cf_email__" data-cfemail="adcfc1c2c2c0c9ccd483ccddddedc4cec1c2d8c983cec2c0">[email&#160;protected]</span></a>
     <a href="https://bloomdayapp.com" class="btn-secondary">bloomdayapp.com</a>
-  </
+  </div>
+  <p class="press-footer-note">© 2026 BloomDay. All rights reserved.</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function copyText(id) {
+  var el = document.getElementById(id);
+  var text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text.trim()).then(function() {
+    var btn = el.closest('.boilerplate').querySel
