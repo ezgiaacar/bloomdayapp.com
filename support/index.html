@@ -5,103 +5,287 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BloomDay · Support</title>
 <link rel="canonical" href="https://bloomdayapp.com/support/">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--cream:#F5F1EA;--linen:#EDE8DF;--walnut:#3D2B1F;--stone:#8A7E72;--sage:#6B8F71;--brass:#B8862A;--hairline:#DDD8D0;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--walnut);}
-  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(245,241,234,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--hairline);}
-  .nav-brand{font-family:"Cormorant Garamond",serif;font-size:19px;font-style:italic;font-weight:500;color:var(--walnut);text-decoration:none;}
-  .nav-back{font-size:13px;color:var(--stone);text-decoration:none;}
-  .nav-back:hover{color:var(--walnut);}
-  .hero{padding:72px 24px 56px;text-align:center;border-bottom:1px solid var(--hairline);}
-  .hero-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:14px;display:block;}
-  .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,6vw,64px);font-weight:400;line-height:1.1;letter-spacing:-2px;}
-  .hero h1 em{font-style:italic;color:var(--sage);}
-  .hero p{font-size:15px;color:var(--stone);font-weight:300;margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto;}
-  .content{max-width:720px;margin:0 auto;padding:64px 24px 100px;}
-  .faq-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:32px;display:block;}
-  .faq-item{border-bottom:1px solid var(--hairline);}
-  .faq-q{width:100%;background:none;border:none;text-align:left;padding:20px 0;font-family:"DM Sans",sans-serif;font-size:15px;font-weight:500;color:var(--walnut);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;}
-  .faq-q:hover{color:var(--sage);}
-  .faq-arrow{font-size:18px;color:var(--stone);transition:transform 0.3s;flex-shrink:0;}
-  .faq-a{font-size:14px;color:var(--stone);font-weight:300;line-height:1.75;padding-bottom:20px;display:none;}
-  .faq-item.open .faq-arrow{transform:rotate(180deg);}
-  .faq-item.open .faq-a{display:block;}
-  .contact-card{margin-top:64px;background:var(--walnut);border-radius:20px;padding:48px 40px;text-align:center;}
-  .contact-card h2{font-family:"Cormorant Garamond",serif;font-size:36px;font-weight:400;color:white;font-style:italic;margin-bottom:12px;}
-  .contact-card p{font-size:15px;color:rgba(255,255,255,0.55);font-weight:300;margin-bottom:28px;}
-  .contact-btn{display:inline-block;background:var(--brass);color:white;padding:13px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;}
-  .contact-btn:hover{opacity:0.9;}
-  footer{background:var(--walnut);color:rgba(255,255,255,0.45);padding:40px 24px;text-align:center;}
-  footer .foot-brand{font-family:"Cormorant Garamond",serif;font-size:20px;font-style:italic;color:white;margin-bottom:14px;}
-  footer p{font-size:13px;margin-bottom:10px;}
-  footer a{color:rgba(255,255,255,0.45);text-decoration:none;}
-  footer a:hover{color:white;}
-  @media(max-width:600px){nav{padding:14px 20px;}.contact-card{padding:32px 24px;}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--green-900:#1a2e1a;--green-800:#2d4a2d;--green-700:#3d6b3d;--green-600:#4a8c4a;
+--green-500:#5ba65b;--green-400:#7bc47b;--green-300:#a3d9a3;--green-200:#c8eac8;
+--green-100:#e8f5e8;--green-50:#f4faf4;
+--sand-100:#faf7f2;--sand-200:#f0ebe2;--sand-300:#e5ddd0;
+--text-primary:#1a2e1a;--text-secondary:#4a5e4a;--text-muted:#7a8e7a;
+--radius:16px;--radius-lg:24px;--radius-xl:32px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--sand-100);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'DM Serif Display',serif;font-weight:400}
+a{text-decoration:none;color:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(250,247,242,.85);border-bottom:1px solid rgba(0,0,0,.06)}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+nav .logo{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--green-800)}
+nav .nav-links{display:flex;gap:32px;align-items:center}
+nav .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-secondary);transition:.2s}
+nav .nav-links a:hover{color:var(--green-600)}
+nav .back-btn{font-size:.85rem;font-weight:600;color:var(--green-800);background:var(--green-50);border:1px solid var(--green-200);padding:8px 20px;border-radius:100px;transition:.2s}
+nav .back-btn:hover{background:var(--green-100);border-color:var(--green-400)}
+
+.hero{padding:140px 0 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,var(--green-100) 0%,transparent 70%);pointer-events:none}
+.hero .badge{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:6px 16px;border-radius:100px;margin-bottom:20px;position:relative}
+.hero h1{font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.1;color:var(--green-900);max-width:800px;margin:0 auto 24px;position:relative}
+.hero h1 em{font-style:normal;color:var(--green-600)}
+.hero p{font-size:1.1rem;color:var(--text-secondary);max-width:500px;margin:0 auto;line-height:1.7;position:relative}
+
+.content{max-width:800px;margin:0 auto;padding:72px 24px 120px}
+
+.faq-section{margin-bottom:72px}
+.faq-label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:5px 14px;border-radius:100px;margin-bottom:28px}
+
+.faq-group{margin-bottom:48px}
+.faq-group-title{font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;padding-left:4px}
+
+.faq-item{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;transition:.3s}
+.faq-item:hover{box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.faq-item.open{box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:18px 24px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;color:var(--text-primary);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s}
+.faq-q:hover{color:var(--green-700)}
+.faq-arrow{width:28px;height:28px;border-radius:50%;background:var(--green-50);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s;font-size:.75rem;color:var(--green-700)}
+.faq-item.open .faq-arrow{transform:rotate(180deg);background:var(--green-100)}
+.faq-a{font-size:.9rem;color:var(--text-secondary);line-height:1.75;padding:0 24px 20px;display:none}
+.faq-item.open .faq-a{display:block}
+
+.quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:72px}
+.quick-link{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:24px;text-align:center;transition:.3s;cursor:pointer;text-decoration:none;color:inherit}
+.quick-link:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.06)}
+.quick-link .ql-icon{width:44px;height:44px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.1rem;color:var(--green-700)}
+.quick-link h4{font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;margin-bottom:4px}
+.quick-link p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
+
+.contact-card{background:var(--green-900);border-radius:var(--radius-xl);padding:64px 48px;text-align:center;position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(91,166,91,.12),transparent 60%);pointer-events:none}
+.contact-card h2{font-size:clamp(1.8rem,3vw,2.5rem);color:#fff;margin-bottom:12px;position:relative}
+.contact-card p{font-size:1rem;color:rgba(255,255,255,.55);max-width:420px;margin:0 auto 36px;line-height:1.7;position:relative}
+.contact-btn{display:inline-block;background:var(--green-400);color:var(--green-900);padding:16px 36px;border-radius:100px;font-weight:600;font-size:1rem;transition:.2s;position:relative}
+.contact-btn:hover{background:var(--green-300);transform:translateY(-2px)}
+.contact-sub{margin-top:20px;font-size:.8rem;color:rgba(255,255,255,.35);position:relative}
+
+footer{border-top:1px solid rgba(0,0,0,.06);padding:64px 0 40px;color:var(--text-secondary)}
+footer .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+footer h5{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text-primary);margin-bottom:8px}
+footer p{font-size:.85rem;line-height:1.6;max-width:280px}
+footer .col h6{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:16px}
+footer .col a{display:block;font-size:.9rem;padding:4px 0;transition:.2s}
+footer .col a:hover{color:var(--green-600)}
+footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-top:1px solid rgba(0,0,0,.06);font-size:.8rem;color:var(--text-muted);text-align:center}
+
+@media(max-width:900px){
+  .quick-links{grid-template-columns:1fr}
+  footer .inner{grid-template-columns:1fr 1fr}
+  nav .nav-links{display:none}
+}
+@media(max-width:600px){
+  .content{padding:56px 16px 80px}
+  footer .inner{grid-template-columns:1fr}
+  .contact-card{padding:40px 24px}
+}
 </style>
 </head>
 <body>
+
 <nav>
-  <a href="/" class="nav-brand">BloomDay</a>
-  <a href="/" class="nav-back">← Back to home</a>
-</nav>
-<div class="hero">
-  <span class="hero-label">Support</span>
-  <h1>We're here to help your<br>garden <em>thrive.</em></h1>
-  <p>Have a question about BloomDay? Browse our FAQ or reach out directly — we'd love to hear from you.</p>
-</div>
-<div class="content">
-  <span class="faq-label">Frequently Asked Questions</span>
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-q">How do I earn seeds? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">Complete tasks to earn seeds. Each completed task gives you 2 seeds, with bonus seeds if you finish during your scheduled time window or during a Focus session. You can earn up to 20 seeds per day from tasks — daily challenges and streak bonuses are uncapped.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">How do streaks work? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">Complete at least one task every day to maintain your streak. If you miss a day, your streak resets — but if you have a resilience token, you can recover it. Earn tokens by reaching streak milestones like 7, 14, 30, and 100 days.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">How do I set a task reminder? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">When creating a task, set a start time. Then tap the 🔔 bell icon next to the task — you'll receive a notification 5 minutes before it begins. Make sure notifications are enabled for BloomDay in your phone settings.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">How do plants grow? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">Plants grow when you water them each day. Tasks earn seeds to buy new plants — watering is what drives growth. Water daily and stay consistent to help them bloom. When a plant fully blooms, you earn bonus seeds and a resilience token.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">Can I recover a deleted task? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">Unfortunately, deleted tasks cannot be recovered. We recommend using the postpone feature (📅) instead of deleting tasks you might want to return to later.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">How do I cancel my subscription? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">You can manage or cancel your subscription anytime through the App Store. Go to Settings → Apple Account → Subscriptions → BloomDay, then tap Cancel Subscription. Your access continues until the end of the billing period.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">I lost my data after logging out. What happened? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">Your data is tied to your BloomDay account and syncs automatically. If you log back in with the same account, your garden, tasks, and streak should be restored. If something is missing, please contact us and we'll look into it.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">What is Focus Mode? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">Focus Mode is a timed work session (25, 45, 60, or 90 minutes). During a session, only one task is shown at a time and task-adding is locked. Every task completed earns +1 bonus seed. It's designed to help you do deep work without distraction.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">What is the Time Capsule? <span class="faq-arrow">↓</span></button>
-      <div class="faq-a">Time Capsule lets you write a letter to your future self and seal it to a plant. The letter unlocks the day that plant reaches full bloom. It's a personal milestone feature — part productivity, part reflection.</div>
+  <div class="inner">
+    <a href="/" class="logo">BloomDay</a>
+    <div class="nav-links">
+      <a href="/guide/">User Guide</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/" class="back-btn">Back to home</a>
     </div>
   </div>
+</nav>
+
+<div class="hero">
+  <span class="badge">Support</span>
+  <h1>We're here to help your garden <em>thrive</em></h1>
+  <p>Browse common questions below or reach out directly. We read every message.</p>
+</div>
+
+<div class="content">
+
+  <!-- Quick links -->
+  <div class="quick-links">
+    <a href="/guide/" class="quick-link">
+      <div class="ql-icon">&#9752;</div>
+      <h4>User Guide</h4>
+      <p>Full walkthrough of every feature and system.</p>
+    </a>
+    <a href="/privacy/" class="quick-link">
+      <div class="ql-icon">&#9919;</div>
+      <h4>Privacy Policy</h4>
+      <p>What we collect, why, and how it is protected.</p>
+    </a>
+    <a href="mailto:bloomday.app@icloud.com" class="quick-link">
+      <div class="ql-icon">&#9993;</div>
+      <h4>Email Us</h4>
+      <p>We typically respond within 24 hours.</p>
+    </a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <span class="faq-label">Frequently asked questions</span>
+
+    <!-- Tasks & Seeds -->
+    <div class="faq-group">
+      <div class="faq-group-title">Tasks & Seeds</div>
+
+      <div class="faq-item">
+        <button class="faq-q">How do I earn seeds? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Complete tasks to earn seeds. Each completed task gives you 2 seeds, with +1 bonus if you finish during your scheduled time window, and another +1 during Focus Mode. Completing a focus session awards +3 seeds. Daily challenges give +5 to +25 seeds. Unlocking achievements gives +5 seeds each.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How do streaks work? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Complete at least one task every day to maintain your streak. If you miss a day, your streak resets. If you have a Resilience Token, BloomDay will offer to restore it. Tokens are earned at streak milestones: 7, 14, 30, and 100 days.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What are daily challenges? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Each day a challenge appears at the top of your task list. It might ask you to complete 2 tasks, complete 5 tasks, water a plant, or complete all tasks for the day. When the condition is met, the card turns green and you receive bonus seeds instantly.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I set recurring tasks? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Yes. When adding a task, choose Daily or Weekly. Daily tasks appear every day automatically. Weekly tasks appear on the same weekday you created them. Each instance tracks completion independently. Swipe left on a recurring task and tap Stop to convert it back to a one-time task.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I recover a deleted task? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Deleted tasks cannot be recovered. Use the postpone feature instead of deleting tasks you might want to return to later. Swipe left on a task and tap Later to push it to a future date.</div>
+      </div>
+    </div>
+
+    <!-- Plants & Garden -->
+    <div class="faq-group">
+      <div class="faq-group-title">Plants & Garden</div>
+
+      <div class="faq-item">
+        <button class="faq-q">How do plants grow? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Plants grow exclusively through watering. Tasks earn seeds to buy plants, but only water makes them grow. Each species has its own growth rate. Water daily and stay consistent to reach full bloom. When a plant fully blooms, you earn +20 seeds and +1 Resilience Token.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What are the plant moods? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Your plant shows its mood based on watering consistency. Thriving (watered today), Happy (1 day missed), Thirsty (2 days), Wilting (3 days), Critical (4+ days). Moods are visual cues to help you stay on track.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How many plants are there? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Over 100 hand-illustrated botanical species across three environments: Interior (houseplants), Garden (flowers and trees), and Allotment (vegetables and herbs). Free users have access to starter species. Premium plans unlock cultivars, rare specimens, dwarf fruit trees, and exotic varieties.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Does weather affect my garden? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Yes. BloomDay reads your local weather once per day. Rain automatically waters your outdoor and allotment plants for free. Spring (March through May) doubles all seed earnings from tasks. Weather effects are mechanical, not just decorative.</div>
+      </div>
+    </div>
+
+    <!-- Focus & Features -->
+    <div class="faq-group">
+      <div class="faq-group-title">Focus & Features</div>
+
+      <div class="faq-item">
+        <button class="faq-q">What is Focus Mode? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Focus Mode is a full-screen timed session. Choose 25, 45, 60, or 90 minutes. A breathing plant animation and optional ambient sound keep you grounded. Completing a session awards +3 seeds. If you try to end early, BloomDay asks for confirmation.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What are Time Capsules? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Time Capsules let you write a letter to your future self and seal it to a plant. The letter stays locked until the plant reaches 100% growth. When it blooms, the capsule opens automatically with a special reveal animation. Free users can create up to 3 capsules; premium users get unlimited.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What are achievements? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">BloomDay tracks over 35 achievements across tasks, streaks, garden, watering, economy, and special categories. When you hit a milestone, a celebration alert appears with a +5 seed reward. Achievements are detected automatically in real-time. View your full progress in Settings.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What are Resilience Tokens? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Resilience Tokens are the rarest currency in BloomDay. They cannot be purchased with money. You earn them through milestones: 7-day streak, 14-day streak, 30-day streak, 100-day streak, 100 lifetime tasks, and the first time a plant reaches full bloom. Use them to restore a broken streak or revive a critical plant.</div>
+      </div>
+    </div>
+
+    <!-- Account & Billing -->
+    <div class="faq-group">
+      <div class="faq-group-title">Account & Billing</div>
+
+      <div class="faq-item">
+        <button class="faq-q">How do I cancel my subscription? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">You can manage or cancel your subscription through the App Store. Go to Settings, tap your Apple Account, then Subscriptions, find BloomDay, and tap Cancel Subscription. Your premium access continues until the end of the current billing period.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What happens if I delete the app? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">All your data is stored locally on your device. If you delete the app, your garden, tasks, streaks, and progress are permanently lost and cannot be recovered. Your account email remains in our authentication system unless you delete your account first via Settings.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How do I delete my account? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">Go to Settings and scroll to the bottom. Tap Delete Account and confirm. This removes your email from our authentication system and erases all local data. This action is irreversible.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Is my data synced across devices? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">No. All garden, task, and progress data is stored locally on your device. It does not sync across devices or to the cloud. If you switch phones, your data will not transfer. We recommend exporting your data (Settings, Export Data) before switching devices.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What languages does BloomDay support? <span class="faq-arrow">&#8595;</span></button>
+        <div class="faq-a">BloomDay is fully localized in English, Turkish, and Spanish. This includes all interface text, plant names, botanical trivia, achievements, and notifications. You can switch languages anytime from Settings.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact card -->
   <div class="contact-card">
     <h2>Still need help?</h2>
-    <p>We read every message and typically respond within 24 hours.<br>No question is too small.</p>
-    <a href="mailto:bloomday.app@icloud.com" class="contact-btn">📧 Send us a message</a>
+    <p>We read every message and typically respond within 24 hours. No question is too small.</p>
+    <a href="mailto:bloomday.app@icloud.com" class="contact-btn">Send us a message</a>
+    <div class="contact-sub">bloomday.app@icloud.com</div>
+  </div>
+
+</div>
+
+<footer>
+<div class="inner">
+  <div>
+    <h5>BloomDay</h5>
+    <p>Productivity that grows with you. Turn every completed task into a living plant.</p>
+  </div>
+  <div class="col">
+    <h6>Product</h6>
+    <a href="/#features">Features</a>
+    <a href="#">Plants</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/#download">Download</a>
+  </div>
+  <div class="col">
+    <h6>Resources</h6>
+    <a href="/guide/">User Guide</a>
+    <a href="/support/">Support</a>
+    <a href="/press/">Press</a>
+    <a href="/privacy/">Privacy Policy</a>
+  </div>
+  <div class="col">
+    <h6>Connect</h6>
+    <a href="https://instagram.com/bloomday.app" target="_blank">Instagram</a>
+    <a href="mailto:bloomday.app@icloud.com">Contact Us</a>
   </div>
 </div>
-<footer>
-  <div class="foot-brand">BloomDay</div>
-  <p>Complete tasks. Grow plants. Build something beautiful.</p>
-  <p><a href="/">Home</a> &nbsp;·&nbsp; <a href="/guide/">How It Works</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy Policy</a></p>
+<div class="bottom">&copy; 2026 BloomDay. All rights reserved.</div>
 </footer>
+
 <script>
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
