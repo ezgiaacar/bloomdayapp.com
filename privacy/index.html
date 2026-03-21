@@ -5,138 +5,370 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BloomDay · Privacy Policy</title>
 <link rel="canonical" href="https://bloomdayapp.com/privacy/">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--cream:#F5F1EA;--linen:#EDE8DF;--walnut:#3D2B1F;--stone:#8A7E72;--sage:#6B8F71;--brass:#B8862A;--hairline:#DDD8D0;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--walnut);padding:0;}
-  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(245,241,234,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--hairline);}
-  .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:19px;font-style:italic;font-weight:500;color:var(--walnut);}
-  .nav-back{font-size:13px;color:var(--stone);text-decoration:none;display:flex;align-items:center;gap:6px;}
-  .nav-back:hover{color:var(--walnut);}
-  .hero{padding:72px 24px 48px;text-align:center;border-bottom:1px solid var(--hairline);}
-  .hero-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:14px;display:block;}
-  .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,6vw,64px);font-weight:400;line-height:1.1;letter-spacing:-2px;}
-  .hero h1 em{font-style:italic;color:var(--sage);}
-  .hero p{font-size:15px;color:var(--stone);font-weight:300;margin-top:14px;}
-  .toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:28px 24px;border-bottom:1px solid var(--hairline);max-width:800px;margin:0 auto;}
-  .toc a{font-size:12px;color:var(--stone);text-decoration:none;background:white;border:1px solid var(--hairline);border-radius:20px;padding:5px 14px;transition:all 0.2s;}
-  .toc a:hover{background:var(--walnut);color:white;border-color:var(--walnut);}
-  .content{max-width:720px;margin:0 auto;padding:64px 24px 100px;}
-  .section{margin-bottom:72px;}
-  .sec-num{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:10px;display:block;}
-  .section h2{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,4vw,38px);font-weight:400;line-height:1.15;letter-spacing:-1px;margin-bottom:20px;}
-  .section h2 em{font-style:italic;}
-  .section h3{font-size:15px;font-weight:500;margin:28px 0 10px;}
-  .section p{font-size:15px;color:var(--stone);font-weight:300;line-height:1.8;margin-bottom:14px;}
-  .section p strong{color:var(--walnut);font-weight:500;}
-  .section ul{list-style:none;margin:14px 0;}
-  .section ul li{font-size:15px;color:var(--stone);font-weight:300;line-height:1.7;padding:6px 0 6px 20px;border-bottom:1px solid var(--hairline);position:relative;}
-  .section ul li:last-child{border-bottom:none;}
-  .section ul li::before{content:"·";position:absolute;left:0;color:var(--sage);font-weight:700;}
-  .divider{text-align:center;color:var(--hairline);font-size:20px;margin:32px 0;letter-spacing:8px;}
-  footer{background:var(--walnut);color:rgba(255,255,255,0.45);padding:40px 24px;text-align:center;}
-  footer .foot-brand{font-family:"Cormorant Garamond",serif;font-size:20px;font-style:italic;color:white;margin-bottom:14px;}
-  footer p{font-size:13px;margin-bottom:10px;}
-  footer a{color:rgba(255,255,255,0.45);text-decoration:none;}
-  footer a:hover{color:white;}
-  @media(max-width:600px){nav{padding:14px 20px;}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--green-900:#1a2e1a;--green-800:#2d4a2d;--green-700:#3d6b3d;--green-600:#4a8c4a;
+--green-500:#5ba65b;--green-400:#7bc47b;--green-300:#a3d9a3;--green-200:#c8eac8;
+--green-100:#e8f5e8;--green-50:#f4faf4;
+--sand-100:#faf7f2;--sand-200:#f0ebe2;--sand-300:#e5ddd0;
+--text-primary:#1a2e1a;--text-secondary:#4a5e4a;--text-muted:#7a8e7a;
+--radius:16px;--radius-lg:24px;--radius-xl:32px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--sand-100);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'DM Serif Display',serif;font-weight:400}
+a{text-decoration:none;color:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(250,247,242,.85);border-bottom:1px solid rgba(0,0,0,.06)}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+nav .logo{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--green-800)}
+nav .nav-links{display:flex;gap:32px;align-items:center}
+nav .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-secondary);transition:.2s}
+nav .nav-links a:hover{color:var(--green-600)}
+nav .back-btn{font-size:.85rem;font-weight:600;color:var(--green-800);background:var(--green-50);border:1px solid var(--green-200);padding:8px 20px;border-radius:100px;transition:.2s}
+nav .back-btn:hover{background:var(--green-100);border-color:var(--green-400)}
+
+.hero{padding:140px 0 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,var(--green-100) 0%,transparent 70%);pointer-events:none}
+.hero .badge{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:6px 16px;border-radius:100px;margin-bottom:20px;position:relative}
+.hero h1{font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.1;color:var(--green-900);max-width:800px;margin:0 auto 24px;position:relative}
+.hero h1 em{font-style:normal;color:var(--green-600)}
+.hero p{font-size:1.05rem;color:var(--text-secondary);max-width:560px;margin:0 auto;line-height:1.7;position:relative}
+.hero .updated{display:inline-block;margin-top:16px;font-size:.8rem;font-weight:600;color:var(--text-muted);letter-spacing:.04em}
+
+.toc{padding:32px 0;border-top:1px solid rgba(0,0,0,.05);border-bottom:1px solid rgba(0,0,0,.05);background:var(--green-50)}
+.toc .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.toc a{font-size:.8rem;font-weight:600;color:var(--text-muted);background:#fff;border:1px solid rgba(0,0,0,.06);padding:8px 18px;border-radius:100px;transition:.2s;letter-spacing:.02em}
+.toc a:hover{background:var(--green-800);color:#fff;border-color:var(--green-800);transform:translateY(-1px)}
+
+.content{max-width:800px;margin:0 auto;padding:80px 24px 120px}
+
+.section{margin-bottom:80px;opacity:0;transform:translateY(24px);transition:.7s ease}
+.section.visible{opacity:1;transform:none}
+.sec-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:5px 14px;border-radius:100px;margin-bottom:14px}
+.section h2{font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.15;margin-bottom:14px}
+.section h2 em{font-style:normal;color:var(--green-600)}
+.section > p{font-size:1rem;color:var(--text-secondary);line-height:1.75;margin-bottom:16px}
+.section h3{font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;margin:28px 0 10px;color:var(--text-primary)}
+
+.card{background:#fff;border-radius:var(--radius-lg);border:1px solid rgba(0,0,0,.06);padding:28px 32px;margin-bottom:14px;transition:.3s}
+.card:hover{box-shadow:0 12px 40px rgba(0,0,0,.05);transform:translateY(-2px)}
+.card h4{font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:700;color:var(--text-primary);margin-bottom:6px}
+.card p{font-size:.9rem;color:var(--text-secondary);line-height:1.7;margin:0}
+
+.list-cards{display:flex;flex-direction:column;gap:12px;margin:16px 0}
+.list-card{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:20px 24px;transition:.3s}
+.list-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.05);transform:translateY(-2px)}
+.list-icon{width:32px;height:32px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem;color:var(--green-700);font-weight:700}
+.list-body h4{font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;margin-bottom:4px}
+.list-body p{font-size:.9rem;color:var(--text-secondary);line-height:1.7;margin:0}
+
+.highlight{background:var(--green-50);border:1px solid var(--green-200);border-radius:var(--radius);padding:20px 24px;margin:24px 0;font-size:.9rem;color:var(--text-secondary);line-height:1.75;position:relative;padding-left:48px}
+.highlight::before{content:'\2726';position:absolute;left:20px;top:20px;color:var(--green-500);font-size:1rem}
+
+.dark-card{background:var(--green-900);border-radius:var(--radius-lg);padding:40px 36px;color:#fff;margin:32px 0;position:relative;overflow:hidden}
+.dark-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(91,166,91,.12),transparent 60%);pointer-events:none}
+.dark-card p{color:rgba(255,255,255,.65);line-height:1.75;font-size:.95rem;position:relative}
+.dark-card strong{color:#fff;font-weight:600}
+
+.third-party-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0}
+.tp-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:20px;transition:.3s}
+.tp-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.05)}
+.tp-card h4{font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:700;margin-bottom:6px;color:var(--text-primary)}
+.tp-card p{font-size:.82rem;color:var(--text-secondary);line-height:1.6;margin:0}
+.tp-card .tp-tag{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:3px 10px;border-radius:100px;margin-top:8px}
+
+.contact-box{background:#fff;border:2px solid var(--green-200);border-radius:var(--radius-lg);padding:36px;text-align:center;margin:24px 0}
+.contact-box p{font-size:.95rem;color:var(--text-secondary);margin-bottom:16px}
+.contact-box a{display:inline-block;font-size:1rem;font-weight:600;color:var(--green-800);background:var(--green-50);border:1px solid var(--green-200);padding:12px 32px;border-radius:100px;transition:.2s}
+.contact-box a:hover{background:var(--green-100);border-color:var(--green-400);transform:translateY(-1px)}
+
+footer{border-top:1px solid rgba(0,0,0,.06);padding:64px 0 40px;color:var(--text-secondary)}
+footer .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+footer h5{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text-primary);margin-bottom:8px}
+footer p{font-size:.85rem;line-height:1.6;max-width:280px}
+footer .col h6{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:16px}
+footer .col a{display:block;font-size:.9rem;padding:4px 0;transition:.2s}
+footer .col a:hover{color:var(--green-600)}
+footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-top:1px solid rgba(0,0,0,.06);font-size:.8rem;color:var(--text-muted);text-align:center}
+
+@media(max-width:900px){
+  .third-party-grid{grid-template-columns:1fr}
+  footer .inner{grid-template-columns:1fr 1fr}
+  nav .nav-links{display:none}
+}
+@media(max-width:600px){
+  .content{padding:56px 16px 80px}
+  footer .inner{grid-template-columns:1fr}
+  .dark-card{padding:28px 20px}
+  .contact-box{padding:28px 20px}
+}
 </style>
 </head>
 <body>
+
 <nav>
-  <a href="/" class="nav-brand">BloomDay</a>
-  <a href="/" class="nav-back">← Back to home</a>
+  <div class="inner">
+    <a href="/" class="logo">BloomDay</a>
+    <div class="nav-links">
+      <a href="/guide/">User Guide</a>
+      <a href="/support/">Support</a>
+      <a href="/" class="back-btn">Back to home</a>
+    </div>
+  </div>
 </nav>
+
 <div class="hero">
-  <span class="hero-label">Legal</span>
+  <span class="badge">Legal</span>
   <h1>Privacy <em>Policy</em></h1>
-  <p>Your data belongs to you. Here is exactly what we collect, why, and how it is protected.<br>Last updated: March 2026</p>
+  <p>Your data belongs to you. Here is exactly what we collect, why, and how it is protected.</p>
+  <span class="updated">Last updated: March 2026</span>
 </div>
+
 <div class="toc">
-  <a href="#overview">Overview</a><a href="#collect">Data We Collect</a><a href="#use">How We Use It</a>
-  <a href="#ads">Ads</a><a href="#sharing">Third Parties</a><a href="#storage">Storage</a>
-  <a href="#rights">Your Rights</a><a href="#children">Children</a><a href="#contact">Contact</a>
+  <div class="inner">
+    <a href="#overview">Overview</a><a href="#collect">Data We Collect</a><a href="#use">How We Use It</a>
+    <a href="#ads">Advertising</a><a href="#sharing">Third Parties</a><a href="#storage">Storage</a>
+    <a href="#rights">Your Rights</a><a href="#children">Children</a><a href="#contact">Contact</a>
+  </div>
 </div>
+
 <div class="content">
+
+  <!-- ═══ OVERVIEW ═══ -->
   <div class="section" id="overview">
-    <span class="sec-num">01 — Overview</span>
+    <span class="sec-badge">01 &mdash; Overview</span>
     <h2>Simple by <em>design</em></h2>
-    <p>BloomDay is a task tracker and virtual garden app. We collect only what is necessary to run the app. We do not sell data, build profiles, or share your information with advertisers.</p>
-    <p><em>We believe privacy should be the default, not a setting you have to find.</em> This policy is written to be read, not to obscure. If anything is unclear, write to us.</p>
+    <p>BloomDay is a task planner and virtual garden app. We collect only what is necessary to run the app. We do not sell data, build profiles, or share your information with advertisers.</p>
+    <div class="dark-card">
+      <p><strong>We believe privacy should be the default, not a setting you have to find.</strong> This policy is written to be read, not to obscure. If anything is unclear, write to us.</p>
+    </div>
   </div>
+
+  <!-- ═══ DATA WE COLLECT ═══ -->
   <div class="section" id="collect">
-    <span class="sec-num">02 — Data We Collect</span>
+    <span class="sec-badge">02 &mdash; Data We Collect</span>
     <h2>What we <em>know about you</em></h2>
-    <h3>Account information</h3>
-    <p>When you create an account, we collect your <strong>email address</strong> and a securely hashed password. This is used solely to authenticate your identity. We do not collect your name, phone number, or any other personal identifier.</p>
-    <h3>App data</h3>
-    <p>Your tasks, garden progress, plant inventory, streak history, and preferences are stored to provide a seamless experience across sessions and devices.</p>
-    <h3>Weather data</h3>
-    <p>The app fetches your local weather once per day to apply real-world conditions to your garden. No location data is stored on our servers — it is used in the moment and discarded.</p>
-    <div class="divider">· · ·</div>
-    <p>We do not collect device identifiers, IP addresses, usage statistics, crash telemetry, or any other form of analytics.</p>
+
+    <div class="list-cards">
+      <div class="list-card">
+        <div class="list-icon">@</div>
+        <div class="list-body">
+          <h4>Account information</h4>
+          <p>When you create an account, we collect your email address and a securely hashed password. This is used solely to authenticate your identity. We do not collect your name, phone number, or any other personal identifier.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">&#9752;</div>
+        <div class="list-body">
+          <h4>App data (local only)</h4>
+          <p>Your tasks, garden progress, plant inventory, streak history, achievements, journal entries, time capsules, and preferences are stored locally on your device using on-device storage. None of this data is sent to or stored on our servers.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">&#9729;</div>
+        <div class="list-body">
+          <h4>Weather data</h4>
+          <p>The app fetches your local weather once per day to apply real-world conditions to your garden. No location data is stored on our servers. It is used in the moment and discarded.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight">We do not collect device identifiers, IP addresses, usage statistics, crash telemetry, or any other form of analytics. Zero tracking. Zero fingerprinting.</div>
   </div>
+
+  <!-- ═══ HOW WE USE IT ═══ -->
   <div class="section" id="use">
-    <span class="sec-num">03 — How We Use It</span>
+    <span class="sec-badge">03 &mdash; How We Use It</span>
     <h2>Only what <em>runs the app</em></h2>
-    <ul>
-      <li><strong>Authentication.</strong> Your email and credentials are used to create and protect your account via Supabase.</li>
-      <li><strong>Sync.</strong> Your tasks, plants, and progress are saved so your garden persists across sessions and devices.</li>
-      <li><strong>Notifications.</strong> If you enable task reminders, the app schedules local notifications on your device — not through a server.</li>
-      <li><strong>Account communications.</strong> We may use your email for critical account events (password reset, deletion). We do not send marketing emails.</li>
-    </ul>
+
+    <div class="list-cards">
+      <div class="list-card">
+        <div class="list-icon">&#9919;</div>
+        <div class="list-body">
+          <h4>Authentication</h4>
+          <p>Your email and credentials are used to create and protect your account via Supabase. We support email/password and Apple Sign In.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">&#8635;</div>
+        <div class="list-body">
+          <h4>Local persistence</h4>
+          <p>Your tasks, plants, achievements, and progress are saved to your device's local storage so your garden persists between sessions. Data does not sync across devices or to the cloud.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">&#9881;</div>
+        <div class="list-body">
+          <h4>Notifications</h4>
+          <p>If you enable task reminders, the app schedules local notifications on your device. Notifications are never routed through a server. Daily and weekly recurring reminders fire locally.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">&#9993;</div>
+        <div class="list-body">
+          <h4>Account communications</h4>
+          <p>We may use your email for critical account events only: password reset and account deletion confirmation. We do not send marketing emails, newsletters, or promotional content.</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- ═══ ADVERTISING ═══ -->
   <div class="section" id="ads">
-    <span class="sec-num">04 — Advertising</span>
+    <span class="sec-badge">04 &mdash; Advertising</span>
     <h2>Ads on the <em>free plan</em></h2>
-    <p>The free plan includes occasional ads served by <strong>Google AdMob</strong>. Ads appear at most once per day on launch and are never shown during Focus Mode.</p>
-    <p>BloomDay requests <strong>non-personalised ads only</strong>. Google AdMob does not build a behavioural profile on you through this app. Upgrading to any paid plan removes all ads permanently.</p>
+    <p>The free plan includes occasional ads served by Google AdMob. Ads appear at most once per day on launch and are never shown during Focus Mode or while you are actively using the garden.</p>
+    <div class="card">
+      <h4>Non-personalised ads only</h4>
+      <p>BloomDay requests non-personalised ads from Google AdMob. No behavioural profile is built on you through this app. Google receives no personal data from BloomDay.</p>
+    </div>
+    <p>Upgrading to any paid plan (Bloom, Forest, or Eden) removes all ads permanently.</p>
   </div>
+
+  <!-- ═══ THIRD PARTIES ═══ -->
   <div class="section" id="sharing">
-    <span class="sec-num">05 — Third Parties</span>
+    <span class="sec-badge">05 &mdash; Third Parties</span>
     <h2>Who else <em>touches your data</em></h2>
-    <ul>
-      <li><strong>Supabase.</strong> Account authentication and database storage. GDPR compliant, SOC 2 Type II certified. Data stored in EU (Frankfurt).</li>
-      <li><strong>RevenueCat.</strong> Subscription management via Apple App Store. Receives a transaction token only — no payment data passes our servers.</li>
-      <li><strong>Google AdMob.</strong> Non-personalised ads on the free plan only.</li>
-    </ul>
-    <p>No other third parties have access to your data. We do not use Facebook, Amplitude, Mixpanel, Firebase Analytics, Sentry, or any analytics service.</p>
+
+    <div class="third-party-grid">
+      <div class="tp-card">
+        <h4>Supabase</h4>
+        <p>Account authentication only. Stores your email and hashed password. No garden or task data is sent to Supabase.</p>
+        <span class="tp-tag">GDPR compliant &middot; SOC 2</span>
+      </div>
+      <div class="tp-card">
+        <h4>RevenueCat</h4>
+        <p>Subscription management via Apple App Store and Google Play. Receives a transaction token only.</p>
+        <span class="tp-tag">No payment data shared</span>
+      </div>
+      <div class="tp-card">
+        <h4>Google AdMob</h4>
+        <p>Non-personalised ads on the free plan only. No tracking data shared.</p>
+        <span class="tp-tag">Free plan only</span>
+      </div>
+    </div>
+
+    <div class="highlight">No other third parties have access to your data. We do not use Facebook SDK, Amplitude, Mixpanel, Firebase Analytics, Sentry, or any analytics or tracking service.</div>
   </div>
+
+  <!-- ═══ STORAGE ═══ -->
   <div class="section" id="storage">
-    <span class="sec-num">06 — Storage & Retention</span>
+    <span class="sec-badge">06 &mdash; Storage & Retention</span>
     <h2>Where your data <em>lives</em></h2>
-    <ul>
-      <li><strong>Active accounts.</strong> All data retained while your account exists. Nothing auto-deleted.</li>
-      <li><strong>Deleting the app.</strong> Removing the app does not delete your account. But your saved data will be lost.</li>
-      <li><strong>Account deletion.</strong> Settings → Delete Account permanently removes all data. Deletion is irreversible.</li>
-    </ul>
+
+    <div class="list-cards">
+      <div class="list-card">
+        <div class="list-icon">&#9679;</div>
+        <div class="list-body">
+          <h4>Local storage</h4>
+          <p>Your tasks, plants, streaks, achievements, journal entries, and all garden data are stored locally on your device. We do not store this data on our servers. Your email address is the only personal data we hold.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">&#9679;</div>
+        <div class="list-body">
+          <h4>Deleting the app</h4>
+          <p>Removing the app from your device deletes all local data permanently, including your garden, tasks, and progress. This cannot be recovered.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">&#9679;</div>
+        <div class="list-body">
+          <h4>Account deletion</h4>
+          <p>Settings &rarr; Delete Account removes your email from our authentication system and erases all local data. After deletion, we retain nothing.</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- ═══ YOUR RIGHTS ═══ -->
   <div class="section" id="rights">
-    <span class="sec-num">07 — Your Rights</span>
+    <span class="sec-badge">07 &mdash; Your Rights</span>
     <h2>What you can <em>ask of us</em></h2>
-    <ul>
-      <li><strong>Correction.</strong> Request correction of any inaccurate information.</li>
-      <li><strong>Deletion.</strong> Delete your account in-app or by contacting us.</li>
-      <li><strong>Portability.</strong> Export your task data anytime from Settings → Export My Data.</li>
-    </ul>
+
+    <div class="list-cards">
+      <div class="list-card">
+        <div class="list-icon">1</div>
+        <div class="list-body">
+          <h4>Access</h4>
+          <p>Request confirmation of what personal data we hold. The only personal data on our servers is your email address.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">2</div>
+        <div class="list-body">
+          <h4>Deletion</h4>
+          <p>Delete your account in-app (Settings &rarr; Delete Account) or by emailing us. This removes your email from our authentication system. All garden and task data is stored locally on your device and is deleted when you remove the app.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">3</div>
+        <div class="list-body">
+          <h4>Export</h4>
+          <p>Export your task data anytime from Settings &rarr; Export Data. Downloads as a CSV file directly to your device. Since all data is local, you always have full control.</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- ═══ CHILDREN ═══ -->
   <div class="section" id="children">
-    <span class="sec-num">08 — Children</span>
-    <h2>Not for <em>children under 13</em></h2>
-    <p>BloomDay is not directed at children under 13. We do not knowingly collect personal information from anyone under 13. Contact us to report any concerns.</p>
+    <span class="sec-badge">08 &mdash; Children</span>
+    <h2>Not for children <em>under 13</em></h2>
+    <p>BloomDay is not directed at children under 13. We do not knowingly collect personal information from anyone under 13. If you believe a child under 13 has created an account, please contact us and we will delete it promptly.</p>
   </div>
+
+  <!-- ═══ CONTACT ═══ -->
   <div class="section" id="contact">
-    <span class="sec-num">09 — Contact</span>
+    <span class="sec-badge">09 &mdash; Contact</span>
     <h2>Questions or <em>requests</em></h2>
     <p>We respond to all privacy enquiries within 5 business days.</p>
-    <p><a href="mailto:bloomday.app@icloud.com" style="color:var(--sage);font-weight:500">bloomday.app@icloud.com</a></p>
+    <div class="contact-box">
+      <p>Reach us for any data request, question, or concern.</p>
+      <a href="mailto:bloomday.app@icloud.com">bloomday.app@icloud.com</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+<div class="inner">
+  <div>
+    <h5>BloomDay</h5>
+    <p>Productivity that grows with you. Turn every completed task into a living plant.</p>
+  </div>
+  <div class="col">
+    <h6>Product</h6>
+    <a href="/#features">Features</a>
+    <a href="#">Plants</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/#download">Download</a>
+  </div>
+  <div class="col">
+    <h6>Resources</h6>
+    <a href="/guide/">User Guide</a>
+    <a href="/support/">Support</a>
+    <a href="/press/">Press</a>
+    <a href="/privacy/">Privacy Policy</a>
+  </div>
+  <div class="col">
+    <h6>Connect</h6>
+    <a href="https://instagram.com/bloomday.app" target="_blank">Instagram</a>
+    <a href="mailto:bloomday.app@icloud.com">Contact Us</a>
   </div>
 </div>
-<footer>
-  <div class="foot-brand">BloomDay</div>
-  <p>Complete tasks. Grow plants. Build something beautiful.</p>
-  <p><a href="/">Home</a> &nbsp;·&nbsp; <a href="/guide/">How It Works</a> &nbsp;·&nbsp; <a href="/support/">Support</a></p>
+<div class="bottom">&copy; 2026 BloomDay. All rights reserved.</div>
 </footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08});
+document.querySelectorAll('.section').forEach(s => obs.observe(s));
+</script>
 </body>
 </html>
