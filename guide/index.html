@@ -5,292 +5,478 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BloomDay · How It Works</title>
 <link rel="canonical" href="https://bloomdayapp.com/guide/">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--cream:#F5F1EA;--linen:#EDE8DF;--walnut:#3D2B1F;--oak:#6B4E2A;--stone:#8A7E72;--mist:#B5A89A;--sage:#6B8F71;--moss:#4A6B4A;--brass:#B8862A;--terra:#B05040;--sky:#8AAEC0;--hairline:#DDD8D0;--surface:#FDFAF6;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--walnut);-webkit-font-smoothing:antialiased;}
-  body::after{content:'';position:fixed;inset:0;pointer-events:none;opacity:0.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;z-index:9999;}
-  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(245,241,234,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--hairline);}
-  .nav-brand{font-family:"Cormorant Garamond",serif;font-size:19px;font-style:italic;font-weight:500;color:var(--walnut);text-decoration:none;}
-  .nav-back{font-size:13px;color:var(--stone);text-decoration:none;transition:color 0.2s;}
-  .nav-back:hover{color:var(--walnut);}
-  .hero{padding:72px 24px 56px;text-align:center;border-bottom:1px solid var(--hairline);position:relative;overflow:hidden;}
-  .hero::before{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(107,143,113,0.06) 0%,transparent 70%);pointer-events:none;}
-  .hero-icon{margin:0 auto 20px;opacity:0.7;}
-  .hero-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:14px;display:block;}
-  .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,6vw,64px);font-weight:400;line-height:1.1;letter-spacing:-2px;position:relative;}
-  .hero h1 em{font-style:italic;color:var(--sage);}
-  .hero p{font-size:15px;color:var(--stone);font-weight:300;margin-top:14px;}
-  .toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:24px;border-bottom:1px solid var(--hairline);}
-  .toc a{font-size:12px;color:var(--stone);text-decoration:none;background:white;border:1px solid var(--hairline);border-radius:20px;padding:5px 14px;transition:all 0.2s;}
-  .toc a:hover{background:var(--walnut);color:white;border-color:var(--walnut);}
-  .content{max-width:720px;margin:0 auto;padding:64px 24px 100px;}
-  .section{margin-bottom:72px;padding-bottom:72px;border-bottom:1px solid var(--hairline);animation:fadeUp 0.5s ease both;}
-  .section:last-child{border-bottom:none;}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-  .sec-num{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:10px;display:block;}
-  .section h2{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,4vw,38px);font-weight:400;line-height:1.15;letter-spacing:-1px;margin-bottom:20px;}
-  .section h2 em{font-style:italic;}
-  .section h3{font-size:14px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--stone);margin:28px 0 10px;}
-  .section p{font-size:15px;color:var(--stone);font-weight:300;line-height:1.8;margin-bottom:14px;}
-  .section p strong{color:var(--walnut);font-weight:500;}
-  .steps{counter-reset:step;margin:20px 0;}
-  .step{display:flex;gap:16px;margin-bottom:20px;align-items:start;}
-  .step-icon{width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px;}
-  .step-icon.num{background:var(--walnut);color:white;font-size:11px;font-weight:600;}
-  .step-icon.sage-bg{background:rgba(107,143,113,0.12);}
-  .step-icon.brass-bg{background:rgba(184,134,42,0.12);}
-  .step-icon.sky-bg{background:rgba(138,174,192,0.15);}
-  .step-icon.terra-bg{background:rgba(176,80,64,0.1);}
-  .step-icon.walnut-bg{background:rgba(61,43,31,0.08);}
-  .step-body h4{font-size:14px;font-weight:500;margin-bottom:4px;}
-  .step-body p{font-size:14px;color:var(--stone);font-weight:300;line-height:1.7;margin:0;}
-  table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px;}
-  th{background:var(--walnut);color:white;padding:10px 14px;text-align:left;font-weight:500;font-size:11px;letter-spacing:0.5px;}
-  td{padding:10px 14px;border-bottom:1px solid var(--hairline);color:var(--stone);font-weight:300;}
-  tr:last-child td{border-bottom:none;}
-  tr:nth-child(even) td{background:rgba(245,241,234,0.5);}
-  td strong{color:var(--walnut);font-weight:500;}
-  .tip{background:rgba(107,143,113,0.08);border:1px solid rgba(107,143,113,0.2);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:14px;color:var(--stone);font-weight:300;line-height:1.7;}
-  .mood-row{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 20px;}
-  .mood-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:var(--surface);border:1px solid var(--hairline);font-size:12px;font-weight:400;color:var(--oak);}
-  .mood-dot{width:7px;height:7px;border-radius:50%;}
-  .info-card{background:var(--surface);border:1px solid var(--hairline);border-radius:12px;padding:18px 20px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;transition:transform 0.2s,box-shadow 0.2s;}
-  .info-card:hover{transform:translateY(-1px);box-shadow:0 3px 16px rgba(61,43,31,0.05);}
-  .info-card .ic-icon{width:38px;height:38px;min-width:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-  .info-card .ic-title{font-size:14px;font-weight:500;color:var(--walnut);margin-bottom:3px;}
-  .info-card .ic-desc{font-size:13px;color:var(--stone);font-weight:300;line-height:1.6;}
-  .tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
-  .tip-card{background:var(--surface);border:1px solid var(--hairline);border-radius:12px;padding:20px;transition:transform 0.2s;}
-  .tip-card:hover{transform:translateY(-2px);}
-  .tip-card .tc-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
-  .tip-card h4{font-size:13px;font-weight:500;margin-bottom:4px;}
-  .tip-card p{font-size:12px;color:var(--stone);font-weight:300;line-height:1.55;margin:0;}
-  .tip-card.wide{grid-column:1/-1;}
-  @media(max-width:560px){.tips-grid{grid-template-columns:1fr;}.tip-card.wide{grid-column:auto;}}
-  footer{background:var(--walnut);color:rgba(255,255,255,0.45);padding:40px 24px;text-align:center;}
-  footer .foot-brand{font-family:"Cormorant Garamond",serif;font-size:20px;font-style:italic;color:white;margin-bottom:14px;}
-  footer p{font-size:13px;margin-bottom:10px;}
-  footer a{color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;}
-  footer a:hover{color:white;}
-  @media(max-width:600px){nav{padding:14px 20px;}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--green-900:#1a2e1a;--green-800:#2d4a2d;--green-700:#3d6b3d;--green-600:#4a8c4a;
+--green-500:#5ba65b;--green-400:#7bc47b;--green-300:#a3d9a3;--green-200:#c8eac8;
+--green-100:#e8f5e8;--green-50:#f4faf4;
+--sand-100:#faf7f2;--sand-200:#f0ebe2;--sand-300:#e5ddd0;
+--text-primary:#1a2e1a;--text-secondary:#4a5e4a;--text-muted:#7a8e7a;
+--radius:16px;--radius-lg:24px;--radius-xl:32px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--sand-100);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'DM Serif Display',serif;font-weight:400}
+a{text-decoration:none;color:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(250,247,242,.85);border-bottom:1px solid rgba(0,0,0,.06)}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+nav .logo{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--green-800)}
+nav .nav-links{display:flex;gap:32px;align-items:center}
+nav .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-secondary);transition:.2s}
+nav .nav-links a:hover{color:var(--green-600)}
+nav .back-btn{font-size:.85rem;font-weight:600;color:var(--green-800);background:var(--green-50);border:1px solid var(--green-200);padding:8px 20px;border-radius:100px;transition:.2s}
+nav .back-btn:hover{background:var(--green-100);border-color:var(--green-400)}
+
+.hero{padding:140px 0 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,var(--green-100) 0%,transparent 70%);pointer-events:none}
+.hero .badge{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:6px 16px;border-radius:100px;margin-bottom:20px;position:relative}
+.hero h1{font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.1;color:var(--green-900);max-width:800px;margin:0 auto 24px;position:relative}
+.hero h1 em{font-style:normal;color:var(--green-600)}
+.hero p{font-size:1.15rem;color:var(--text-secondary);max-width:540px;margin:0 auto;line-height:1.7;position:relative}
+
+.toc{padding:32px 0;border-top:1px solid rgba(0,0,0,.05);border-bottom:1px solid rgba(0,0,0,.05);background:var(--green-50)}
+.toc .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.toc a{font-size:.8rem;font-weight:600;color:var(--text-muted);background:#fff;border:1px solid rgba(0,0,0,.06);padding:8px 18px;border-radius:100px;transition:.2s;letter-spacing:.02em}
+.toc a:hover{background:var(--green-800);color:#fff;border-color:var(--green-800);transform:translateY(-1px)}
+
+.content{max-width:800px;margin:0 auto;padding:80px 24px 120px}
+
+.section{margin-bottom:96px;opacity:0;transform:translateY(24px);transition:.7s ease}
+.section.visible{opacity:1;transform:none}
+.sec-head{margin-bottom:36px}
+.sec-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:5px 14px;border-radius:100px;margin-bottom:14px}
+.section h2{font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.15;margin-bottom:14px}
+.section h2 em{font-style:normal;color:var(--green-600)}
+.section > p, .sec-head > p{font-size:1rem;color:var(--text-secondary);line-height:1.75;margin-bottom:16px}
+.section h3{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin:36px 0 16px}
+
+.card{background:#fff;border-radius:var(--radius-lg);border:1px solid rgba(0,0,0,.06);padding:32px;margin-bottom:16px;transition:.3s}
+.card:hover{box-shadow:0 12px 40px rgba(0,0,0,.05);transform:translateY(-2px)}
+
+.steps{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:20px 24px;transition:.3s}
+.step:hover{box-shadow:0 8px 30px rgba(0,0,0,.05);transform:translateY(-2px)}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--green-800);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0}
+.step-num.icon{background:var(--green-100);font-size:1rem;color:var(--green-700)}
+.step-body h4{font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:4px}
+.step-body p{font-size:.9rem;color:var(--text-secondary);line-height:1.7;margin:0}
+
+.data-table{width:100%;border-collapse:separate;border-spacing:0;margin:20px 0;font-size:.9rem;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(0,0,0,.06)}
+.data-table thead{background:var(--green-800)}
+.data-table th{color:#fff;padding:14px 18px;text-align:left;font-weight:600;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.data-table td{padding:14px 18px;border-bottom:1px solid rgba(0,0,0,.04);color:var(--text-secondary)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:nth-child(even) td{background:var(--green-50)}
+.data-table td strong{color:var(--green-800);font-weight:700}
+
+.tip{background:var(--green-50);border:1px solid var(--green-200);border-radius:var(--radius);padding:20px 24px;margin:24px 0;font-size:.9rem;color:var(--text-secondary);line-height:1.75;position:relative;padding-left:48px}
+.tip::before{content:'\2726';position:absolute;left:20px;top:20px;color:var(--green-500);font-size:1rem}
+
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.tag{background:var(--green-50);border:1px solid var(--green-200);padding:6px 16px;border-radius:100px;font-size:.8rem;font-weight:600;color:var(--green-700)}
+
+.mood-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0}
+.mood-item{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:14px 16px;text-align:center}
+.mood-item .mood-label{font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.mood-item .mood-desc{font-size:.8rem;color:var(--text-secondary)}
+.mood-item.thriving .mood-label{color:var(--green-600)}
+.mood-item.happy .mood-label{color:#6b8f6b}
+.mood-item.thirsty .mood-label{color:#b8862a}
+.mood-item.wilting .mood-label{color:#c47a3a}
+.mood-item.critical .mood-label{color:#b05040}
+
+.tier-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
+.tier-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:20px;text-align:center;transition:.3s}
+.tier-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.05)}
+.tier-card h4{font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:700;margin-bottom:6px}
+.tier-card p{font-size:.8rem;color:var(--text-secondary);line-height:1.6}
+.tier-card.free h4{color:var(--text-muted)}
+.tier-card.bloom h4{color:#b05040}
+.tier-card.forest h4{color:var(--green-700)}
+
+.dark-card{background:var(--green-900);border-radius:var(--radius-lg);padding:48px 40px;color:#fff;margin:32px 0;position:relative;overflow:hidden}
+.dark-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(91,166,91,.12),transparent 60%);pointer-events:none}
+.dark-card h3{font-family:'DM Serif Display',serif;font-size:1.6rem;font-weight:400;margin-bottom:12px;position:relative}
+.dark-card p{color:rgba(255,255,255,.65);line-height:1.75;font-size:.95rem;position:relative}
+.dark-card .tag{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:var(--green-300)}
+
+footer{border-top:1px solid rgba(0,0,0,.06);padding:64px 0 40px;color:var(--text-secondary)}
+footer .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+footer h5{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text-primary);margin-bottom:8px}
+footer p{font-size:.85rem;line-height:1.6;max-width:280px}
+footer .col h6{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:16px}
+footer .col a{display:block;font-size:.9rem;padding:4px 0;transition:.2s}
+footer .col a:hover{color:var(--green-600)}
+footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-top:1px solid rgba(0,0,0,.06);font-size:.8rem;color:var(--text-muted);text-align:center}
+
+@media(max-width:900px){
+  .tier-cards{grid-template-columns:1fr}
+  footer .inner{grid-template-columns:1fr 1fr}
+  nav .nav-links{display:none}
+}
+@media(max-width:600px){
+  .content{padding:56px 16px 80px}
+  footer .inner{grid-template-columns:1fr}
+  .dark-card{padding:32px 24px}
+}
 </style>
 </head>
 <body>
+
 <nav>
-  <a href="/" class="nav-brand">BloomDay</a>
-  <a href="/" class="nav-back">&larr; Back to home</a>
+  <div class="inner">
+    <a href="/" class="logo">BloomDay</a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/" class="back-btn">Back to home</a>
+    </div>
+  </div>
 </nav>
+
 <div class="hero">
-  <svg class="hero-icon" width="48" height="48" viewBox="0 0 64 64" fill="none">
-    <path d="M32 52V30" stroke="#6B8F71" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M32 30c-4-9-15-11-15-4s9 8 15 4z" fill="#6B8F71"/>
-    <path d="M32 36c4-8 14-9 14-3s-8 7-14 3z" fill="#8AAF8A"/>
-    <path d="M32 24c-3-7-11-8-11-3s7 6 11 3z" fill="#4A6B4A"/>
-    <circle cx="32" cy="19" r="3.5" fill="#B8862A" opacity="0.5"/>
-  </svg>
-  <span class="hero-label">Guide</span>
-  <h1>BloomDay <em>grows with you</em></h1>
-  <p>Complete tasks. Earn seeds. Tend your garden.<br>A guide to every system in the app.</p>
+  <span class="badge">User Guide</span>
+  <h1>How <em>BloomDay</em> works</h1>
+  <p>Complete tasks. Earn seeds. Tend your garden. A complete guide to every system, rule, and reward in the app.</p>
 </div>
+
 <div class="toc">
-  <a href="#tasks">Tasks</a><a href="#seeds">Seeds</a><a href="#plants">Plants</a>
-  <a href="#focus">Focus</a><a href="#tokens">Tokens</a><a href="#weather">Weather</a>
-  <a href="#garden">Garden</a><a href="#weekly">Weekly</a><a href="#tips">Tips</a>
+  <div class="inner">
+    <a href="#tasks">Tasks</a><a href="#seeds">Seeds & Economy</a><a href="#plants">Plants</a>
+    <a href="#garden">Garden</a><a href="#focus">Focus Mode</a><a href="#challenges">Challenges</a>
+    <a href="#achievements">Achievements</a><a href="#tokens">Tokens</a><a href="#weather">Weather</a>
+    <a href="#recurring">Recurring Tasks</a><a href="#journal">Journal & Capsules</a>
+    <a href="#weekly">Weekly Report</a><a href="#plans">Plans</a><a href="#tips">Tips</a>
+  </div>
 </div>
+
 <div class="content">
 
-  <!-- 01 TASKS -->
+  <!-- ═══ TASKS ═══ -->
   <div class="section" id="tasks">
-    <span class="sec-num">01 — Tasks</span>
-    <h2>The root of <em>everything</em></h2>
-    <p>Every seed you earn, every plant that grows, every streak you build — it all starts with completing a task.</p>
-    <div class="steps">
-      <div class="step"><div class="step-icon num">1</div><div class="step-body"><h4>Add a task</h4><p>Tap the + button, type your task, and press ADD. Assign a category: Work, Health, Home, Learn, Social, or Self.</p></div></div>
-      <div class="step"><div class="step-icon num">2</div><div class="step-body"><h4>Set a time and reminder</h4><p>Assign a start time and duration. Toggle the reminder to get a notification 5 minutes before it begins.</p></div></div>
-      <div class="step"><div class="step-icon num">3</div><div class="step-body"><h4>Use templates</h4><p>Tap Quick Templates to add a full routine at once — Morning Ritual, Study Block, Cat Care, Dog Care, and more.</p></div></div>
-      <div class="step"><div class="step-icon num">4</div><div class="step-body"><h4>Complete it — earn seeds</h4><p>Tap the circle to complete. You earn <strong>2 seeds per task</strong>, once per task per day. Toggling done/undone won't give extra seeds.</p></div></div>
+    <div class="sec-head">
+      <span class="sec-badge">01 &mdash; Tasks</span>
+      <h2>The root of <em>everything</em></h2>
+      <p>Every seed you earn, every plant that grows, every streak you build begins with completing a task. Tasks are the heartbeat of BloomDay.</p>
     </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Add a task</h4><p>Tap the input bar, type your task, and press ADD. Assign a category: Work, Health, Home, Learn, Social, or Self.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Set a time window</h4><p>Tap Time to assign a start time and duration. Tasks completed during their window earn +1 bonus seed.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Add a reminder</h4><p>Set a notification to fire before your task begins. You can choose how many minutes ahead.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Add a note</h4><p>Attach a short note to any task. Notes appear in italic beneath the task title so you can add context or details.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body"><h4>Complete it</h4><p>Tap the circle to complete. You earn 2 seeds per task. Swipe left to postpone or delete.</p></div></div>
+    </div>
+    <div class="tip">The calendar scrolls 180 days into the past and 365 days into the future. Tap any day to see its tasks, or schedule tasks for future dates.</div>
   </div>
 
-  <!-- 02 SEEDS -->
+  <!-- ═══ SEEDS ═══ -->
   <div class="section" id="seeds">
-    <span class="sec-num">02 — Seeds</span>
-    <h2>The <em>currency</em> of your garden</h2>
-    <p>Seeds are earned through consistent work and spent on plants and decor. They are designed to feel valuable — not abundant.</p>
-    <table>
-      <tr><th>Action</th><th>Seeds</th><th>Notes</th></tr>
-      <tr><td>Complete a task</td><td><strong>+2</strong></td><td>Base rate. Once per task per day.</td></tr>
-      <tr><td>Daily Challenge</td><td><strong>+3–10</strong></td><td>One per day. Varies by difficulty.</td></tr>
-      <tr><td>Plant reaches full bloom</td><td><strong>+20</strong></td><td>One-time reward per plant.</td></tr>
-    </table>
-    <div class="tip">Seeds do not expire. They accumulate across days. Some rare plants take several days of consistent work to afford — that tension is intentional.</div>
+    <div class="sec-head">
+      <span class="sec-badge">02 &mdash; Seeds & Economy</span>
+      <h2>The <em>currency</em> of your garden</h2>
+      <p>Seeds are earned through consistent work and spent on plants and decor. They are designed to feel valuable, not abundant.</p>
+    </div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Action</th><th>Seeds</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Complete a task</td><td><strong>+2</strong></td><td>Base rate. Once per task per day.</td></tr>
+          <tr><td>Complete within time window</td><td><strong>+1</strong></td><td>Bonus on top of base 2.</td></tr>
+          <tr><td>Focus Mode active</td><td><strong>+1</strong></td><td>Stacks with time-window bonus.</td></tr>
+          <tr><td>Spring season (Mar&ndash;May)</td><td><strong>&times;2</strong></td><td>All task earnings doubled.</td></tr>
+          <tr><td>Daily Challenge</td><td><strong>+5&ndash;25</strong></td><td>One per day. Varies by challenge.</td></tr>
+          <tr><td>Plant reaches full bloom</td><td><strong>+20</strong></td><td>One-time reward per species.</td></tr>
+          <tr><td>Achievement unlocked</td><td><strong>+5</strong></td><td>Per achievement milestone.</td></tr>
+          <tr><td>Focus session complete</td><td><strong>+3</strong></td><td>Awarded when timer finishes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip">Seeds do not expire. They accumulate across days. Some rare Eden-tier plants cost 300&ndash;400 seeds, requiring several days of consistent work to afford. That tension is intentional.</div>
   </div>
 
-  <!-- 03 PLANTS -->
+  <!-- ═══ PLANTS ═══ -->
   <div class="section" id="plants">
-    <span class="sec-num">03 — Plants</span>
-    <h2>Species, growth <em>&amp; full bloom</em></h2>
+    <div class="sec-head">
+      <span class="sec-badge">03 &mdash; Plants</span>
+      <h2>Species, growth <em>& full bloom</em></h2>
+      <p>BloomDay features over 100 hand-illustrated botanical species across three environments. Each plant grows through watering, not task completion.</p>
+    </div>
+
     <h3>How plants grow</h3>
-    <p>Plants grow <strong>only through watering</strong> — not by completing tasks. Tasks earn seeds to buy plants; watering is what makes them grow. Each watering adds <strong>5% growth</strong> toward full bloom.</p>
-    <div class="info-card">
-      <div class="ic-icon" style="background:rgba(138,174,192,0.14)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 5 10 5 15a7 7 0 0014 0C19 10 12 2 12 2z" fill="#8AAEC0"/></svg>
-      </div>
-      <div>
-        <div class="ic-title">Watering schedule</div>
-        <div class="ic-desc">High-need plants (ferns, lettuce): <strong>every day</strong>. Standard (monstera, pothos): <strong>every 3 days</strong>. Low-need (cactus, snake plant): <strong>every 5 days</strong>. A water droplet label appears above any plant that needs watering.</div>
-      </div>
-    </div>
+    <p>Plants grow exclusively through watering. Tasks earn the seeds to buy plants, but only water makes them grow. Each species has its own growth rate and watering interval.</p>
+
     <h3>Watering moods</h3>
-    <p>Each plant's mood reflects how recently it was watered. Neglected plants visually wilt in the garden — they become transparent and tilt.</p>
-    <div class="mood-row">
-      <span class="mood-chip"><span class="mood-dot" style="background:#6B8F71"></span> Thriving</span>
-      <span class="mood-chip"><span class="mood-dot" style="background:#8AAF8A"></span> Happy</span>
-      <span class="mood-chip"><span class="mood-dot" style="background:#C4A35A"></span> Thirsty</span>
-      <span class="mood-chip"><span class="mood-dot" style="background:#C2703E"></span> Wilting</span>
-      <span class="mood-chip"><span class="mood-dot" style="background:#B84040"></span> Needs Rescue</span>
+    <p>Your plant's mood depends on how recently it was watered. Mood affects nothing mechanically but gives you a gentle visual cue.</p>
+    <div class="mood-grid">
+      <div class="mood-item thriving"><div class="mood-label">Thriving</div><div class="mood-desc">Watered today</div></div>
+      <div class="mood-item happy"><div class="mood-label">Happy</div><div class="mood-desc">1 day missed</div></div>
+      <div class="mood-item thirsty"><div class="mood-label">Thirsty</div><div class="mood-desc">2 days missed</div></div>
+      <div class="mood-item wilting"><div class="mood-label">Wilting</div><div class="mood-desc">3 days missed</div></div>
+      <div class="mood-item critical"><div class="mood-label">Critical</div><div class="mood-desc">4+ days missed</div></div>
     </div>
+
     <h3>Full bloom</h3>
-    <p>When a plant reaches 100% growth, a bloom moment appears with a reward: <strong>+20 seeds and +1 Resilience Token</strong>. This happens only once per plant. The "Growing Now" display on your Today screen automatically switches to the next unfinished plant.</p>
-  </div>
+    <p>When a plant reaches 100% growth, a bloom celebration appears with a reward: +20 seeds and +1 Resilience Token. This happens only once per species.</p>
 
-  <!-- 04 FOCUS -->
-  <div class="section" id="focus">
-    <span class="sec-num">04 — Focus Mode</span>
-    <h2>A commitment to <em>deep work</em></h2>
-    <p>Tap the Focus card on the Today screen to enter a full-screen immersive session. Select a duration (25, 45, 60, or 90 min) and tap BEGIN.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-icon walnut-bg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#3D2B1F" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#3D2B1F" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="step-body"><h4>Full-screen dark interface</h4><p>Calming, distraction-free. Your active plant is displayed with a breathing animation alongside a large countdown timer.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-icon sage-bg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#6B8F71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.54 8.46a5 5 0 010 7.07" stroke="#6B8F71" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="step-body"><h4>Ambient sound</h4><p>Toggle optional background audio for extra immersion during your session.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-icon terra-bg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#B05040" stroke-width="1.3"/><line x1="12" y1="9" x2="12" y2="13" stroke="#B05040" stroke-width="1.3" stroke-linecap="round"/><circle cx="12" cy="16" r="0.7" fill="#B05040"/></svg></div>
-        <div class="step-body"><h4>Stay focused</h4><p>Leaving the app sends a notification to return. Tapping the close button or switching tabs asks you to confirm ending the session.</p></div>
-      </div>
+    <h3>Plant trivia</h3>
+    <p>Every plant comes with three real botanical trivia facts. Tap any plant in your collection to learn something you probably didn't know, available in English, Turkish, and Spanish.</p>
+
+    <h3>Plant tiers</h3>
+    <div class="tier-cards">
+      <div class="tier-card free"><h4>FREE</h4><p>Starter species. Monstera, snake plant, barrel cactus, pothos, and more.</p></div>
+      <div class="tier-card bloom"><h4>BLOOM</h4><p>30+ premium cultivars including calathea, rubber plant, peace lily, and orchids.</p></div>
+      <div class="tier-card forest"><h4>FOREST & EDEN</h4><p>Rare specimens, dwarf fruit trees, exotic allotment vegetables, and heritage varieties.</p></div>
     </div>
   </div>
 
-  <!-- 05 TOKENS -->
-  <div class="section" id="tokens">
-    <span class="sec-num">05 — Resilience Tokens</span>
-    <h2>Earned, never <em>bought</em></h2>
-    <p>Tokens cannot be purchased. They are earned only through genuine milestones.</p>
-    <table>
-      <tr><th>Milestone</th><th>Tokens</th></tr>
-      <tr><td>7-day streak</td><td><strong>+1</strong></td></tr>
-      <tr><td>14-day streak</td><td><strong>+1</strong></td></tr>
-      <tr><td>30-day streak</td><td><strong>+1</strong></td></tr>
-      <tr><td>100-day streak</td><td><strong>+1</strong></td></tr>
-      <tr><td>Plant reaches full bloom</td><td><strong>+1</strong></td></tr>
-    </table>
-    <p>Tokens are capped at 10. Use them to <strong>restore a broken streak</strong> — a prompt appears automatically when you return after a missed day.</p>
-  </div>
-
-  <!-- 06 WEATHER -->
-  <div class="section" id="weather">
-    <span class="sec-num">06 — Weather</span>
-    <h2>Real conditions, <em>real effects</em></h2>
-    <p>BloomDay reads your local weather once per day. Weather has mechanical effects — not just decoration.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-icon sky-bg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 17.58A5 5 0 0018 8h-1.26A8 8 0 104 16.25" stroke="#8AAEC0" stroke-width="1.5" stroke-linecap="round"/><path d="M8 19v2M12 19v2M16 19v2" stroke="#8AAEC0" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="step-body"><h4>Rain or Storm</h4><p>Garden and allotment plants are automatically watered for free.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-icon brass-bg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="#B8862A" stroke-width="1.5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M16.95 16.95l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M16.95 7.05l1.42-1.42" stroke="#B8862A" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="step-body"><h4>Sunny day</h4><p>+1 growth bonus on your next manual watering.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-icon walnut-bg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 17.58A5 5 0 0018 8h-1.26A8 8 0 104 16.25" stroke="#8A7E72" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="step-body"><h4>Fog &amp; Snow</h4><p>Visual overlays change the garden atmosphere — misty mornings and snow-dusted shelves.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 07 GARDEN -->
+  <!-- ═══ GARDEN ═══ -->
   <div class="section" id="garden">
-    <span class="sec-num">07 — Garden</span>
-    <h2>Arrange, tend, <em>share</em></h2>
+    <div class="sec-head">
+      <span class="sec-badge">04 &mdash; Garden</span>
+      <h2>Three worlds to <em>design</em></h2>
+      <p>Your garden is a living reflection of your productivity. Arrange plants, add decor, and switch between themes.</p>
+    </div>
     <div class="steps">
-      <div class="step"><div class="step-icon num">1</div><div class="step-body"><h4>Switch environments</h4><p>Interior (houseplants), Garden (outdoor), Allotment (vegetables). Each has its own species, themes, and decor.</p></div></div>
-      <div class="step"><div class="step-icon num">2</div><div class="step-body"><h4>Choose a theme</h4><p>Scroll the theme bar — Cosy Cottage, Zen Studio, Nordic Loft, Grand Manor, and more. Some require a paid plan.</p></div></div>
-      <div class="step"><div class="step-icon num">3</div><div class="step-body"><h4>Buy plants and decor</h4><p>Browse the Nursery tab for plants and the Decor tab for decorative items. Each has a seed cost.</p></div></div>
-      <div class="step"><div class="step-icon num">4</div><div class="step-body"><h4>Arrange your space</h4><p>Tap ARRANGE to drag plants and decor to reposition them. Tap the X badge to remove an item.</p></div></div>
-      <div class="step"><div class="step-icon num">5</div><div class="step-body"><h4>Share your garden</h4><p>Tap SHARE GARDEN to capture a screenshot with your stats, streak, and weather.</p></div></div>
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Switch environments</h4><p>Interior (houseplants), Garden (outdoor flowers and trees), Allotment (vegetables and herbs). Each has its own species catalog and visual scene.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Choose a theme</h4><p>Scroll the theme bar to pick Cosy Cottage, Zen Studio, Nordic Loft, and more. Some themes require a paid plan.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Buy from the nursery</h4><p>Browse the full species catalog. Tap a plant to see its cost, tier, latin name, and trivia. Spend seeds to add it to your collection.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Arrange your space</h4><p>Tap ARRANGE to drag plants and decor items freely. Long-press to remove an item from the scene.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body"><h4>Share your garden</h4><p>Tap SHARE GARDEN to capture a screenshot with your stats and the BloomDay watermark. Share it anywhere.</p></div></div>
     </div>
   </div>
 
-  <!-- 08 WEEKLY -->
+  <!-- ═══ FOCUS ═══ -->
+  <div class="section" id="focus">
+    <div class="sec-head">
+      <span class="sec-badge">05 &mdash; Focus Mode</span>
+      <h2>A <em>commitment</em> to deep work</h2>
+      <p>Focus Mode is a full-screen timer with ambient sound, breathing animation, and bonus seed rewards.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num icon">&#9201;</div><div class="step-body"><h4>Choose your duration</h4><p>Select 25, 45, 60, or 90 minutes. A breathing plant animation keeps you grounded.</p></div></div>
+      <div class="step"><div class="step-num icon">&#9834;</div><div class="step-body"><h4>Ambient sound</h4><p>Toggle ambient garden sounds on or off. The sound loops gently throughout your session.</p></div></div>
+      <div class="step"><div class="step-num icon">&#10003;</div><div class="step-body"><h4>Earn +3 seeds on completion</h4><p>When the timer finishes, you receive 3 seeds automatically. Ending early forfeits the reward.</p></div></div>
+    </div>
+    <div class="tip">If you try to navigate away or end a session early, BloomDay asks for confirmation. Cancel returns you to the timer; your session continues uninterrupted.</div>
+  </div>
+
+  <!-- ═══ CHALLENGES ═══ -->
+  <div class="section" id="challenges">
+    <div class="sec-head">
+      <span class="sec-badge">06 &mdash; Daily Challenges</span>
+      <h2>A new goal <em>every day</em></h2>
+      <p>Each day BloomDay generates a challenge based on the date. Challenges rotate automatically and reward you with bonus seeds when completed.</p>
+    </div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Challenge</th><th>Requirement</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Complete 2 tasks</strong></td><td>Finish any 2 tasks today.</td></tr>
+          <tr><td><strong>Complete 3 tasks</strong></td><td>Finish any 3 tasks today.</td></tr>
+          <tr><td><strong>Complete 5 tasks</strong></td><td>A bigger push for ambitious days.</td></tr>
+          <tr><td><strong>Complete all tasks</strong></td><td>Every task for the day, done.</td></tr>
+          <tr><td><strong>Water a plant</strong></td><td>Water any plant in your garden.</td></tr>
+          <tr><td><strong>Write a note</strong></td><td>Complete a task and water a plant.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The challenge card appears at the top of your task list. When the condition is met, the card turns green and your seeds are awarded instantly.</p>
+  </div>
+
+  <!-- ═══ ACHIEVEMENTS ═══ -->
+  <div class="section" id="achievements">
+    <div class="sec-head">
+      <span class="sec-badge">07 &mdash; Achievements</span>
+      <h2>Milestones that <em>celebrate you</em></h2>
+      <p>BloomDay tracks over 35 achievements across six categories. When you unlock a new achievement, a special celebration alert appears with a +5 seed reward.</p>
+    </div>
+    <div class="tags">
+      <span class="tag">Tasks</span><span class="tag">Streaks</span><span class="tag">Garden</span>
+      <span class="tag">Watering</span><span class="tag">Economy</span><span class="tag">Special</span>
+    </div>
+    <p style="margin-top:16px;">Achievements include milestones like completing your first task, reaching a 30-day streak, collecting 10 plants, watering for 7 consecutive days, reaching 200 seeds, completing your first focus session, and many more. View your full progress in Settings.</p>
+    <div class="tip">Achievements are detected automatically in real-time. The moment you hit a milestone, the alert appears. No need to check manually.</div>
+  </div>
+
+  <!-- ═══ TOKENS ═══ -->
+  <div class="section" id="tokens">
+    <div class="sec-head">
+      <span class="sec-badge">08 &mdash; Resilience Tokens</span>
+      <h2>Earned, <em>never bought</em></h2>
+      <p>Resilience Tokens are the rarest currency in BloomDay. They cannot be purchased with money. They are earned only through genuine milestones.</p>
+    </div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Milestone</th><th>Tokens</th></tr></thead>
+        <tbody>
+          <tr><td>7-day streak</td><td><strong>+1</strong></td></tr>
+          <tr><td>14-day streak</td><td><strong>+1</strong></td></tr>
+          <tr><td>30-day streak</td><td><strong>+1</strong></td></tr>
+          <tr><td>100-day streak</td><td><strong>+1</strong></td></tr>
+          <tr><td>100 lifetime tasks completed</td><td><strong>+1</strong></td></tr>
+          <tr><td>Plant reaches full bloom</td><td><strong>+1</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Use tokens to restore a broken streak or revive a critical plant that hasn't been watered for 4+ days.</p>
+  </div>
+
+  <!-- ═══ WEATHER ═══ -->
+  <div class="section" id="weather">
+    <div class="sec-head">
+      <span class="sec-badge">09 &mdash; Weather</span>
+      <h2>Real conditions, <em>real effects</em></h2>
+      <p>BloomDay reads your local weather once per day. Weather conditions have mechanical effects on your garden, not just decoration.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num icon">&#9748;</div><div class="step-body"><h4>Rain or storm</h4><p>Garden and allotment plants are automatically watered for free. Your watering drops are preserved.</p></div></div>
+      <div class="step"><div class="step-num icon">&#9728;</div><div class="step-body"><h4>Sunny days</h4><p>Clear skies give a gentle growth boost. Outdoor plants respond well to sunlight.</p></div></div>
+      <div class="step"><div class="step-num icon">&#9729;</div><div class="step-body"><h4>Seasons</h4><p>Spring (March&ndash;May) doubles all seed earnings from tasks. The season indicator appears in your garden scene.</p></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ RECURRING ═══ -->
+  <div class="section" id="recurring">
+    <div class="sec-head">
+      <span class="sec-badge">10 &mdash; Recurring Tasks</span>
+      <h2>Habits that <em>repeat</em></h2>
+      <p>Set any task to repeat daily or weekly. Recurring tasks reappear automatically on the correct days without you needing to recreate them.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Set frequency</h4><p>When adding a task, choose Once, Daily, or Weekly. Daily tasks appear every day. Weekly tasks appear on the same weekday you created them.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Per-day tracking</h4><p>Each recurring instance tracks completion independently. Completing Monday's instance doesn't affect Tuesday's.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Stop repeating</h4><p>Swipe left on any recurring task to reveal the Stop button. This converts it to a one-time task and cancels its notification.</p></div></div>
+    </div>
+    <div class="tip">Recurring tasks get their own notification schedules. A daily task fires its reminder every day at the same time. A weekly task fires on the same weekday.</div>
+  </div>
+
+  <!-- ═══ JOURNAL & CAPSULES ═══ -->
+  <div class="section" id="journal">
+    <div class="sec-head">
+      <span class="sec-badge">11 &mdash; Journal & Time Capsules</span>
+      <h2>Letters to <em>your future self</em></h2>
+      <p>BloomDay includes a journal and a time capsule system, both connected to your plants.</p>
+    </div>
+
+    <h3>Journal</h3>
+    <p>Write daily reflections in the journal section under Settings. Each entry is timestamped and stored locally. Free users can save up to 3 entries; premium users get unlimited.</p>
+
+    <h3>Time Capsules</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Write a letter</h4><p>Choose a plant and write a letter to your future self. The letter is sealed to that plant.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Grow your plant</h4><p>The capsule stays sealed while the plant grows. You cannot read it until the plant reaches 100% growth.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Read your letter</h4><p>When the plant fully blooms, the capsule opens automatically. A special reveal animation shows your letter alongside the bloomed plant.</p></div></div>
+    </div>
+
+    <div class="dark-card">
+      <h3>Why this matters</h3>
+      <p>The capsule creates a tangible link between your present effort and a future reward that only patience can unlock. It cannot be bought, skipped, or rushed.</p>
+      <div class="tags" style="margin-top:20px">
+        <span class="tag">Patience</span><span class="tag">Reflection</span><span class="tag">Earned rewards</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WEEKLY ═══ -->
   <div class="section" id="weekly">
-    <span class="sec-num">08 — Weekly Report</span>
-    <h2>Seven days, <em>clearly seen</em></h2>
-    <p>The Progress tab shows your weekly performance at a glance.</p>
-    <div class="info-card">
-      <div class="ic-icon" style="background:rgba(107,143,113,0.1)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#6B8F71" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="#6B8F71" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="#6B8F71" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="#6B8F71" stroke-width="1.5"/></svg>
-      </div>
-      <div>
-        <div class="ic-title">Daily breakdown chart</div>
-        <div class="ic-desc">Bar chart with done/total counts per day. Today highlighted in brass, perfect days in green. Weekly completion percentage shown alongside.</div>
-      </div>
+    <div class="sec-head">
+      <span class="sec-badge">12 &mdash; Weekly Report</span>
+      <h2>Seven days, <em>clearly seen</em></h2>
+      <p>Every week BloomDay generates a visual report of your progress. The mood headline changes based on your actual completion rate.</p>
     </div>
-    <div class="info-card">
-      <div class="ic-icon" style="background:rgba(184,134,42,0.1)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" stroke="#B8862A" stroke-width="1.5" fill="none"/></svg>
-      </div>
-      <div>
-        <div class="ic-title">Highlights &amp; categories</div>
-        <div class="ic-desc">Perfect days count, best day of the week, top categories breakdown, and a mood headline that adapts to your actual completion rate.</div>
-      </div>
+    <div class="tags">
+      <span class="tag">Tasks completed</span><span class="tag">Current streak</span>
+      <span class="tag">Days watered</span><span class="tag">Challenge wins</span>
+      <span class="tag">Completion rate</span><span class="tag">Daily bar chart</span>
+      <span class="tag">Category breakdown</span>
     </div>
   </div>
 
-  <!-- 09 TIPS -->
-  <div class="section" id="tips">
-    <span class="sec-num">09 — Tips</span>
-    <h2>Getting the most <em>from your garden</em></h2>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <div class="tc-icon" style="background:rgba(107,143,113,0.1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 5 10 5 15a7 7 0 0014 0C19 10 12 2 12 2z" fill="#6B8F71"/></svg></div>
-        <h4>Water every day</h4>
-        <p>Growth comes only from watering. Look for the water labels on your plants in the garden.</p>
+  <!-- ═══ PLANS ═══ -->
+  <div class="section" id="plans">
+    <div class="sec-head">
+      <span class="sec-badge">13 &mdash; Plans</span>
+      <h2>Free forever. <em>Premium if you want.</em></h2>
+      <p>BloomDay is fully usable for free. Premium plans unlock additional plant species, garden themes, and remove ads.</p>
+    </div>
+    <div class="tier-cards">
+      <div class="tier-card free">
+        <h4>FREE</h4>
+        <p>Starter plants, 5 watering drops per day, basic garden theme, ads between sessions, 3 journal entries, 3 time capsules.</p>
       </div>
-      <div class="tip-card">
-        <div class="tc-icon" style="background:rgba(61,43,31,0.07)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#3D2B1F" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#3D2B1F" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <h4>Use Focus Mode</h4>
-        <p>The full-screen experience helps you stay present. Enable ambient sound for extra immersion.</p>
+      <div class="tier-card bloom">
+        <h4>BLOOM &mdash; $1.99/mo</h4>
+        <p>30+ premium cultivars, ad-free experience, indoor garden theme, focus mode ambient sounds.</p>
       </div>
-      <div class="tip-card">
-        <div class="tc-icon" style="background:rgba(184,134,42,0.1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 8 6 6.5 10.8A5.5 5.5 0 0017.5 10.8C17.5 9.5 15 6 12 2z" fill="#B8862A"/></svg></div>
-        <h4>Save for rare plants</h4>
-        <p>Forest-tier plants cost 200–280 seeds. Eden-tier can reach 400–500. Let it feel earned.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tc-icon" style="background:rgba(176,80,64,0.08)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" stroke="#B05040" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#B05040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h4>Guard your streak</h4>
-        <p>A streak only needs one task per day. On slow days, do your smallest task. Miss a day? Use a token.</p>
-      </div>
-      <div class="tip-card wide">
-        <div class="tc-icon" style="background:rgba(107,143,113,0.1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22V12" stroke="#6B8F71" stroke-width="1.5" stroke-linecap="round"/><path d="M12 12c-3-6-10-7-10-3s7 6 10 3z" fill="#6B8F71"/><path d="M12 16c3-5 9-6 9-2s-6 5-9 2z" fill="#8AAF8A"/></svg></div>
-        <h4>Growing Now</h4>
-        <p>The plant on your Today screen automatically switches to your next unfinished plant once the current one reaches full bloom. Keep growing.</p>
+      <div class="tier-card forest">
+        <h4>FOREST &mdash; $3.99/mo</h4>
+        <p>Everything in Bloom plus rare specimens, unlimited watering, all garden themes, priority features.</p>
       </div>
     </div>
-    <div class="tip" style="margin-top:28px;">The app is designed around one principle: every reward should be a consequence of real work, not a shortcut around it.</div>
+    <p>Annual plans are also available at a significant discount. Eden ($6.99/mo) unlocks the complete collection including ultra-rare exotics and time capsule letters.</p>
+  </div>
+
+  <!-- ═══ TIPS ═══ -->
+  <div class="section" id="tips">
+    <div class="sec-head">
+      <span class="sec-badge">14 &mdash; Tips</span>
+      <h2>Getting the most from <em>your garden</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num icon">&#10047;</div><div class="step-body"><h4>Water every day</h4><p>Growth comes only from watering. Open the app, water your plant, and let the streak build naturally.</p></div></div>
+      <div class="step"><div class="step-num icon">&#9201;</div><div class="step-body"><h4>Use Focus Mode for deep work</h4><p>Every completed focus session earns +3 seeds. Use it for your hardest tasks of the day.</p></div></div>
+      <div class="step"><div class="step-num icon">&#9733;</div><div class="step-body"><h4>Save for rare plants</h4><p>Forest and Eden tier plants cost 200&ndash;400 seeds. Saving for them should feel earned, not effortless.</p></div></div>
+      <div class="step"><div class="step-num icon">&#9752;</div><div class="step-body"><h4>Guard your streak</h4><p>A streak only requires one task per day. On slow days, complete your smallest task. That still counts.</p></div></div>
+      <div class="step"><div class="step-num icon">&#9998;</div><div class="step-body"><h4>Write a time capsule early</h4><p>Seal a letter to a slow-growing plant. By the time it blooms, you will have forgotten what you wrote. That surprise is the reward.</p></div></div>
+      <div class="step"><div class="step-num icon">&#8635;</div><div class="step-body"><h4>Set up recurring tasks</h4><p>Your daily habits should be recurring tasks. Set them once, and they reappear automatically every day or week.</p></div></div>
+    </div>
+
+    <div class="dark-card">
+      <h3>The BloomDay philosophy</h3>
+      <p>Every reward should be a consequence of real work, not a shortcut around it. Growth is quiet. It happens one task, one day, one leaf at a time.</p>
+    </div>
   </div>
 
 </div>
+
 <footer>
-  <div class="foot-brand">BloomDay</div>
-  <p>Complete tasks. Grow plants. Build something beautiful.</p>
-  <p><a href="/">Home</a> &nbsp;&middot;&nbsp; <a href="/support/">Support</a> &nbsp;&middot;&nbsp; <a href="/privacy/">Privacy Policy</a></p>
+<div class="inner">
+  <div>
+    <h5>BloomDay</h5>
+    <p>Productivity that grows with you. Turn every completed task into a living plant.</p>
+  </div>
+  <div class="col">
+    <h6>Product</h6>
+    <a href="/#features">Features</a>
+    <a href="#">Plants</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/#download">Download</a>
+  </div>
+  <div class="col">
+    <h6>Resources</h6>
+    <a href="/guide/">User Guide</a>
+    <a href="/support/">Support</a>
+    <a href="/press/">Press</a>
+    <a href="/privacy/">Privacy Policy</a>
+  </div>
+  <div class="col">
+    <h6>Connect</h6>
+    <a href="https://instagram.com/bloomday.app" target="_blank">Instagram</a>
+    <a href="mailto:hello@bloomdayapp.com">Contact Us</a>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 BloomDay. All rights reserved.</div>
 </footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08});
+document.querySelectorAll('.section').forEach(s => obs.observe(s));
+</script>
 </body>
 </html>
