@@ -140,9 +140,6 @@
 
 <script>
 (function () {
-  var SUPA_URL = 'https://fiwewmngvywokptjpnwj.supabase.co';
-  var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpd2V3bW5ndnl3b2twdGpwbndqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNjIwNjIsImV4cCI6MjA4NzgzODA2Mn0.3X_N5v_eJDTZn8rwdQCytouUyFJuZZyEHX93mhtxFTg';
-
   var titleEl = document.getElementById('title');
   var subtitleEl = document.getElementById('subtitle');
   var statusEl = document.getElementById('status');
@@ -150,11 +147,12 @@
   var fallbackNote = document.getElementById('fallbackNote');
 
   // ── Extract params from URL ──
+  // Supabase may redirect with ?code= (PKCE) or #access_token= (implicit)
   var params = new URLSearchParams(window.location.search);
   var hashParams = new URLSearchParams(window.location.hash.replace('#', '?'));
 
   var code = params.get('code');
-  var accessToken = hashParams.get('access_token');
+  var accessToken = hashParams.get('access_token') || params.get('access_token');
 
   function showError(msg) {
     titleEl.textContent = 'Link expired';
@@ -165,13 +163,15 @@
   }
 
   function readyToOpen(token) {
+    // CRITICAL: use ?access_token= (query param), NOT #access_token= (fragment)
+    // React Native Linking strips URL fragments on both iOS and Android
     var deepLink = 'bloomday://reset-password?access_token=' + encodeURIComponent(token);
 
     titleEl.textContent = 'Set your new password';
     subtitleEl.textContent = 'Tap the button below to open BloomDay and choose a new password.';
     statusEl.innerHTML = '';
     openBtn.href = deepLink;
-    openBtn.className = 'btn-open'; // remove .disabled
+    openBtn.className = 'btn-open';
     openBtn.addEventListener('click', function () {
       statusEl.innerHTML = '<span class="spinner"></span>Opening BloomDay…';
       setTimeout(function () {
@@ -200,57 +200,33 @@
     return;
   }
 
-  // ── CASE 2: Have a code — exchange it for access_token right here ──
+  // ── CASE 2: Have a code — pass it to the app as a query param ──
   if (code) {
-    fetch(SUPA_URL + '/auth/v1/token?grant_type=pkce', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPA_KEY
-      },
-      body: JSON.stringify({
-        auth_code: code,
-        code_verifier: '' // Supabase skips PKCE verification if no challenge was sent
-      })
-    })
-    .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
-    .then(function (res) {
-      if (res.ok && res.data.access_token) {
-        readyToOpen(res.data.access_token);
-      } else {
-        // PKCE exchange failed — the code might require the original verifier
-        // Fall back to passing code to app (it may still have the verifier)
-        var fallbackLink = 'bloomday://reset-password?code=' + encodeURIComponent(code);
+    var deepLink = 'bloomday://reset-password?code=' + encodeURIComponent(code);
 
-        titleEl.textContent = 'Set your new password';
-        subtitleEl.textContent = 'Tap the button below to open BloomDay and choose a new password.';
-        statusEl.textContent = '';
-        openBtn.href = fallbackLink;
-        openBtn.className = 'btn-open';
-        openBtn.addEventListener('click', function () {
-          statusEl.innerHTML = '<span class="spinner"></span>Opening BloomDay…';
-          setTimeout(function () {
-            if (!document.hidden) {
-              statusEl.textContent = "Didn't open? Make sure BloomDay is installed and try again.";
-              statusEl.className = 'status error';
-              fallbackNote.classList.remove('hidden');
-            }
-          }, 2500);
-        });
-
-        // Auto-open
-        setTimeout(function () { window.location.href = fallbackLink; }, 400);
-        setTimeout(function () {
-          if (!document.hidden) {
-            statusEl.textContent = '';
-            fallbackNote.classList.remove('hidden');
-          }
-        }, 3000);
-      }
-    })
-    .catch(function () {
-      showError('Something went wrong verifying your link. Please request a new reset.');
+    titleEl.textContent = 'Set your new password';
+    subtitleEl.textContent = 'Tap the button below to open BloomDay and choose a new password.';
+    statusEl.textContent = '';
+    openBtn.href = deepLink;
+    openBtn.className = 'btn-open';
+    openBtn.addEventListener('click', function () {
+      statusEl.innerHTML = '<span class="spinner"></span>Opening BloomDay…';
+      setTimeout(function () {
+        if (!document.hidden) {
+          statusEl.textContent = "Didn't open? Make sure BloomDay is installed and try again.";
+          statusEl.className = 'status error';
+          fallbackNote.classList.remove('hidden');
+        }
+      }, 2500);
     });
+
+    setTimeout(function () { window.location.href = deepLink; }, 400);
+    setTimeout(function () {
+      if (!document.hidden) {
+        statusEl.textContent = '';
+        fallbackNote.classList.remove('hidden');
+      }
+    }, 3000);
     return;
   }
 
