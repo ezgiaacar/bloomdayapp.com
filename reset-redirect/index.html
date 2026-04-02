@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>BloomDay — Reset Password</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --walnut: #3D2B1F;
+    --cream: #FDFAF6;
+    --linen: #F0EBE3;
+    --stone: #8C7B6B;
+    --mist: #B5A89A;
+    --fog: #DDD5CB;
+    --sage: #7A8B6F;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--walnut);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .card {
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    padding: 40px 28px;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--fog);
+    box-shadow: 0 4px 24px rgba(61, 43, 31, 0.06);
+  }
+
+  /* Leaf icon */
+  .icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 20px;
+    border-radius: 16px;
+    background: var(--linen);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon svg { width: 28px; height: 28px; }
+
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--walnut);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--stone);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .btn-open {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background: var(--walnut);
+    color: var(--cream);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn-open:hover { opacity: 0.9; }
+  .btn-open:active { opacity: 0.8; }
+
+  .status {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--mist);
+    min-height: 20px;
+  }
+  .status.error { color: #B05050; }
+  .status.success { color: var(--sage); }
+
+  .fallback-note {
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--mist);
+    line-height: 1.5;
+  }
+
+  /* Spinner for auto-redirect attempt */
+  .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid var(--fog);
+    border-top-color: var(--sage);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22c0 0-8-4.5-8-11.8C4 5.2 9.5 2 12 2c2.5 0 8 3.2 8 8.2C20 17.5 12 22 12 22z"/>
+      <path d="M12 22V9"/>
+      <path d="M8 13c2-1.5 3-3.5 4-6"/>
+      <path d="M16 13c-2-1.5-3-3.5-4-6"/>
+    </svg>
+  </div>
+
+  <h1>Set your new password</h1>
+  <p class="subtitle" id="subtitle">Tap the button below to open BloomDay and choose a new password.</p>
+
+  <a class="btn-open" id="openBtn" href="#">Open BloomDay</a>
+
+  <p class="status" id="status"></p>
+
+  <p class="fallback-note" id="fallbackNote" class="hidden">
+    If the app doesn't open, make sure BloomDay is installed,
+    then tap the button again.
+  </p>
+</div>
+
+<script>
+(function () {
+  // ── Extract the auth code from the current URL ──
+  // Supabase redirects here as:
+  //   https://bloomdayapp.com/reset-redirect?code=XXXXX
+  // or with a hash fragment (implicit flow):
+  //   https://bloomdayapp.com/reset-redirect#access_token=XXXXX
+
+  const params = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(window.location.hash.replace('#', '?'));
+
+  const code = params.get('code');
+  const accessToken = hashParams.get('access_token');
+
+  const statusEl = document.getElementById('status');
+  const subtitleEl = document.getElementById('subtitle');
+  const openBtn = document.getElementById('openBtn');
+  const fallbackNote = document.getElementById('fallbackNote');
+
+  // ── Build the deep link ──
+  let deepLink = null;
+
+  if (code) {
+    // PKCE flow — pass code for the app to exchange
+    deepLink = 'bloomday://reset-password?code=' + encodeURIComponent(code);
+  } else if (accessToken) {
+    // Implicit flow — pass the token directly
+    deepLink = 'bloomday://reset-password#access_token=' + encodeURIComponent(accessToken);
+  }
+
+  if (!deepLink) {
+    // No code or token — bad link
+    subtitleEl.textContent = 'This reset link is invalid or has expired.';
+    openBtn.style.display = 'none';
+    statusEl.className = 'status error';
+    statusEl.textContent = 'Please request a new password reset from the app.';
+    return;
+  }
+
+  // ── Wire up the button ──
+  openBtn.href = deepLink;
+  openBtn.addEventListener('click', function (e) {
+    // On iOS, the href alone should work, but we also try programmatic open
+    statusEl.innerHTML = '<span class="spinner"></span>Opening BloomDay…';
+    statusEl.className = 'status';
+
+    // After 2.5s assume the app didn't open
+    setTimeout(function () {
+      statusEl.textContent = 'Couldn\'t detect the app. Make sure BloomDay is installed and try again.';
+      statusEl.className = 'status error';
+      fallbackNote.classList.remove('hidden');
+    }, 2500);
+  });
+
+  // ── Auto-redirect attempt ──
+  // Try to open the app immediately. If it works, the browser will
+  // navigate away. If not, the user still has the manual button.
+  statusEl.innerHTML = '<span class="spinner"></span>Redirecting to BloomDay…';
+
+  setTimeout(function () {
+    window.location.href = deepLink;
+  }, 600);
+
+  // After 3s, drop the auto-redirect status and show the manual state
+  setTimeout(function () {
+    if (!document.hidden) {
+      // User is still on this page — app didn't open automatically
+      statusEl.textContent = '';
+      fallbackNote.classList.remove('hidden');
+    }
+  }, 3000);
+})();
+</script>
+</body>
+</html>
