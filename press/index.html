@@ -767,11 +767,11 @@ h1, h2, h3 {
     <div class="brand-card fade-in">
       <h3>Downloads</h3>
       <p>Press kit with logos, screenshots, and brand guidelines.</p>
-      <a href="https://raw.githubusercontent.com/ezgiaacar/bloomdayapp.com/main/press/BloomDay_Press_Kit.pdf" target="_blank" download class="btn btn-primary" style="margin-top: 0.5rem;">
+      <a href="#" class="btn btn-primary" style="margin-top: 0.5rem;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Press Kit (.pdf)
+        Download Press Kit (.zip)
       </a>
-      <a href="mailto:bloomday.app@icloud.com?subject=Screenshot%20Request%20%E2%80%94%20BloomDay%20Press&body=Hi%20Ezgi%2C%0A%0AI'm%20writing%20about%20BloomDay%20and%20would%20love%20to%20request%20screenshots%20for%20my%20coverage.%0A%0AThank%20you!" class="btn btn-outline">Request Screenshots</a>
+      <a href="#" class="btn btn-outline">Request Screenshots</a>
       <div style="margin-top: 1.5rem;">
         <div class="meta-card-label">Connect</div>
         <a href="https://www.linkedin.com/in/ezgi-acar-a27a46167" target="_blank" class="btn btn-outline" style="margin-top: 0.4rem;">
@@ -835,7 +835,7 @@ h1, h2, h3 {
         BloomDay
       </div>
       <div class="footer-contact" style="margin-top: 0.5rem;">
-        Press inquiries: <a href="/cdn-cgi/l/email-protection#1a78767575777e7b63347b6a6a5a737976756f7e34797577"><span class="__cf_email__" data-cfemail="6507090a0a0801041c4b041515250c06090a10014b060a08">[email&#160;protected]</span></a>
+        Press inquiries: <a href="mailto:bloomday.app@icloud.com">bloomday.app@icloud.com</a>
       </div>
     </div>
     <div class="footer-links">
@@ -850,7 +850,7 @@ h1, h2, h3 {
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add('visible'); }
@@ -863,4 +863,11 @@ function copyText(btn) {
   const text = btn.parentElement.querySelector('p').textContent;
   navigator.clipboard.writeText(text).then(() => {
     const original = btn.innerHTML;
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    setTimeout(() => { btn.innerHTML = original; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
