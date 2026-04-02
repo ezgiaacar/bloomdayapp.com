@@ -7,151 +7,61 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --walnut: #3D2B1F;
-    --cream: #FDFAF6;
-    --linen: #F0EBE3;
-    --stone: #8C7B6B;
-    --mist: #B5A89A;
-    --fog: #DDD5CB;
-    --sage: #7A8B6F;
-  }
-  body {
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    background: var(--cream);
-    color: var(--walnut);
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .card {
-    max-width: 380px;
-    width: 100%;
-    text-align: center;
-    padding: 40px 28px;
-    background: white;
-    border-radius: 20px;
-    border: 1px solid var(--fog);
-    box-shadow: 0 4px 24px rgba(61, 43, 31, 0.06);
-  }
-  .icon {
-    width: 56px; height: 56px;
-    margin: 0 auto 20px;
-    border-radius: 16px;
-    background: var(--linen);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .icon svg { width: 28px; height: 28px; }
-  h1 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 500;
-    font-size: 24px;
-    color: var(--walnut);
-    margin-bottom: 8px;
-    line-height: 1.3;
-  }
-  .subtitle {
-    font-size: 14px;
-    color: var(--stone);
-    line-height: 1.6;
-    margin-bottom: 32px;
-  }
-  .btn-open {
-    display: block;
-    width: 100%;
-    padding: 15px 20px;
-    background: var(--walnut);
-    color: var(--cream);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: opacity 0.15s;
-  }
-  .btn-open:hover { opacity: 0.9; }
-  .btn-open:active { opacity: 0.8; }
-  .btn-open.disabled {
-    background: var(--fog);
-    color: var(--mist);
-    pointer-events: none;
-  }
-  .status {
-    margin-top: 16px;
-    font-size: 13px;
-    color: var(--mist);
-    min-height: 20px;
-  }
-  .status.error { color: #B05050; }
-  .status.success { color: var(--sage); }
-  .fallback-note {
-    margin-top: 24px;
-    font-size: 12px;
-    color: var(--mist);
-    line-height: 1.5;
-  }
-  .spinner {
-    display: inline-block;
-    width: 16px; height: 16px;
-    border: 2px solid var(--fog);
-    border-top-color: var(--sage);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    vertical-align: middle;
-    margin-right: 6px;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .hidden { display: none; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--walnut:#3D2B1F;--cream:#FDFAF6;--linen:#F0EBE3;--stone:#8C7B6B;--mist:#B5A89A;--fog:#DDD5CB;--sage:#7A8B6F}
+  body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--cream);color:var(--walnut);min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+  .card{max-width:380px;width:100%;text-align:center;padding:40px 28px;background:white;border-radius:20px;border:1px solid var(--fog);box-shadow:0 4px 24px rgba(61,43,31,0.06)}
+  .icon{width:56px;height:56px;margin:0 auto 20px;border-radius:16px;background:var(--linen);display:flex;align-items:center;justify-content:center}
+  .icon svg{width:28px;height:28px}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:24px;color:var(--walnut);margin-bottom:8px;line-height:1.3}
+  .subtitle{font-size:14px;color:var(--stone);line-height:1.6;margin-bottom:32px}
+  .btn-open{display:block;width:100%;padding:15px 20px;background:var(--walnut);color:var(--cream);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.5px;border:none;border-radius:12px;cursor:pointer;text-decoration:none;transition:opacity 0.15s}
+  .btn-open:hover{opacity:0.9}.btn-open:active{opacity:0.8}
+  .btn-open.disabled{background:var(--fog);color:var(--mist);pointer-events:none}
+  .status{margin-top:16px;font-size:13px;color:var(--mist);min-height:20px}
+  .status.error{color:#B05050}.status.success{color:var(--sage)}
+  .fallback-note{margin-top:24px;font-size:12px;color:var(--mist);line-height:1.5}
+  .spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--fog);border-top-color:var(--sage);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hidden{display:none}
 </style>
 </head>
 <body>
-
 <div class="card">
   <div class="icon">
     <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 22c0 0-8-4.5-8-11.8C4 5.2 9.5 2 12 2c2.5 0 8 3.2 8 8.2C20 17.5 12 22 12 22z"/>
-      <path d="M12 22V9"/>
-      <path d="M8 13c2-1.5 3-3.5 4-6"/>
-      <path d="M16 13c-2-1.5-3-3.5-4-6"/>
+      <path d="M12 22V9"/><path d="M8 13c2-1.5 3-3.5 4-6"/><path d="M16 13c-2-1.5-3-3.5-4-6"/>
     </svg>
   </div>
-
   <h1 id="title">Verifying your link…</h1>
   <p class="subtitle" id="subtitle">Hang on — we're preparing your password reset.</p>
-
   <a class="btn-open disabled" id="openBtn" href="#">Open BloomDay</a>
-
   <p class="status" id="status"><span class="spinner"></span>Verifying…</p>
-
   <p class="fallback-note hidden" id="fallbackNote">
-    If the app doesn't open, make sure BloomDay is installed,
-    then tap the button again.
+    If the app doesn't open, make sure BloomDay is installed, then tap the button again.
   </p>
 </div>
 
 <script>
 (function () {
+  var SUPA_URL = 'https://fiwewmngvywokptjpnwj.supabase.co';
+  var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpd2V3bW5ndnl3b2twdGpwbndqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNjIwNjIsImV4cCI6MjA4NzgzODA2Mn0.3X_N5v_eJDTZn8rwdQCytouUyFJuZZyEHX93mhtxFTg';
+
   var titleEl = document.getElementById('title');
   var subtitleEl = document.getElementById('subtitle');
   var statusEl = document.getElementById('status');
   var openBtn = document.getElementById('openBtn');
   var fallbackNote = document.getElementById('fallbackNote');
 
-  // ── Extract params from URL ──
-  // Supabase may redirect with ?code= (PKCE) or #access_token= (implicit)
+  // ── Extract ALL possible params ──
   var params = new URLSearchParams(window.location.search);
   var hashParams = new URLSearchParams(window.location.hash.replace('#', '?'));
 
+  // Supabase PKCE flow sends ?code=    Supabase implicit sends #access_token=
+  // The app embeds the PKCE verifier as ?v= in the redirect URL
   var code = params.get('code');
+  var verifier = params.get('v');
   var accessToken = hashParams.get('access_token') || params.get('access_token');
 
   function showError(msg) {
@@ -162,8 +72,8 @@
     openBtn.style.display = 'none';
   }
 
-  function readyToOpen(token) {
-    // CRITICAL: use ?access_token= (query param), NOT #access_token= (fragment)
+  function openApp(token) {
+    // CRITICAL: use ?access_token= query param, NOT #access_token= fragment
     // React Native Linking strips URL fragments on both iOS and Android
     var deepLink = 'bloomday://reset-password?access_token=' + encodeURIComponent(token);
 
@@ -172,7 +82,8 @@
     statusEl.innerHTML = '';
     openBtn.href = deepLink;
     openBtn.className = 'btn-open';
-    openBtn.addEventListener('click', function () {
+
+    openBtn.onclick = function() {
       statusEl.innerHTML = '<span class="spinner"></span>Opening BloomDay…';
       setTimeout(function () {
         if (!document.hidden) {
@@ -181,56 +92,52 @@
           fallbackNote.classList.remove('hidden');
         }
       }, 2500);
-    });
+    };
 
-    // Auto-open attempt
+    // Auto-open the app
     statusEl.innerHTML = '<span class="spinner"></span>Opening BloomDay…';
-    setTimeout(function () { window.location.href = deepLink; }, 400);
+    setTimeout(function () { window.location.href = deepLink; }, 500);
     setTimeout(function () {
-      if (!document.hidden) {
-        statusEl.textContent = '';
-        fallbackNote.classList.remove('hidden');
-      }
+      if (!document.hidden) { statusEl.textContent = ''; fallbackNote.classList.remove('hidden'); }
     }, 3000);
   }
 
-  // ── CASE 1: Already have access_token (implicit flow) ──
+  // ── CASE 1: access_token already present (implicit flow) ──
   if (accessToken) {
-    readyToOpen(accessToken);
+    openApp(accessToken);
     return;
   }
 
-  // ── CASE 2: Have a code — pass it to the app as a query param ──
-  if (code) {
-    var deepLink = 'bloomday://reset-password?code=' + encodeURIComponent(code);
+  // ── CASE 2: code + verifier → exchange for access_token on this page ──
+  if (code && verifier) {
+    statusEl.innerHTML = '<span class="spinner"></span>Verifying…';
 
-    titleEl.textContent = 'Set your new password';
-    subtitleEl.textContent = 'Tap the button below to open BloomDay and choose a new password.';
-    statusEl.textContent = '';
-    openBtn.href = deepLink;
-    openBtn.className = 'btn-open';
-    openBtn.addEventListener('click', function () {
-      statusEl.innerHTML = '<span class="spinner"></span>Opening BloomDay…';
-      setTimeout(function () {
-        if (!document.hidden) {
-          statusEl.textContent = "Didn't open? Make sure BloomDay is installed and try again.";
-          statusEl.className = 'status error';
-          fallbackNote.classList.remove('hidden');
-        }
-      }, 2500);
-    });
-
-    setTimeout(function () { window.location.href = deepLink; }, 400);
-    setTimeout(function () {
-      if (!document.hidden) {
-        statusEl.textContent = '';
-        fallbackNote.classList.remove('hidden');
+    fetch(SUPA_URL + '/auth/v1/token?grant_type=pkce', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+      body: JSON.stringify({ auth_code: code, code_verifier: verifier })
+    })
+    .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
+    .then(function(res) {
+      if (res.ok && res.data.access_token) {
+        openApp(res.data.access_token);
+      } else {
+        showError('This reset link has expired. Please request a new one from the app.');
       }
-    }, 3000);
+    })
+    .catch(function() {
+      showError('Something went wrong. Please request a new password reset.');
+    });
     return;
   }
 
-  // ── CASE 3: No code or token — invalid link ──
+  // ── CASE 3: code but no verifier ──
+  if (code) {
+    showError('This reset link is incomplete. Please request a new password reset from the app.');
+    return;
+  }
+
+  // ── CASE 4: nothing ──
   showError('This reset link is invalid or has expired.');
 })();
 </script>
