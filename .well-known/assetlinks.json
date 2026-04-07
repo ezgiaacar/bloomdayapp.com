@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bloomday.app",
+      "sha256_cert_fingerprints": [
+        "E9:54:0F:2F:D2:40:F9:A5:EA:DB:AA:E4:C3:64:CA:4A:0C:E0:32:56:12:DC:36:6D:E2:F0:C8:43:B9:8F:81:84"
+      ]
+    }
+  }
+]
