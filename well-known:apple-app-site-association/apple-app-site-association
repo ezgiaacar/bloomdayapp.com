@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "42YH4BW3AZ.com.bloomday.app",
+        "paths": [
+          "/confirm-redirect",
+          "/confirm-redirect/*",
+          "/reset-redirect",
+          "/reset-redirect/*"
+        ]
+      }
+    ]
+  }
+}
