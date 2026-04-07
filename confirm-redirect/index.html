@@ -1,107 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>BloomDay — Email Confirmed</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{--walnut:#3D2B1F;--cream:#FDFAF6;--linen:#F0EBE3;--stone:#8C7B6B;--mist:#B5A89A;--fog:#DDD5CB;--sage:#7A8B6F}
-  body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--cream);color:var(--walnut);min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-  .card{max-width:380px;width:100%;text-align:center;padding:40px 28px;background:white;border-radius:20px;border:1px solid var(--fog);box-shadow:0 4px 24px rgba(61,43,31,0.06)}
-  .icon{width:56px;height:56px;margin:0 auto 20px;border-radius:16px;background:var(--linen);display:flex;align-items:center;justify-content:center}
-  .icon svg{width:28px;height:28px}
-  h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:24px;color:var(--walnut);margin-bottom:8px;line-height:1.3}
-  .subtitle{font-size:14px;color:var(--stone);line-height:1.6;margin-bottom:32px}
-  .btn-open{display:block;width:100%;padding:15px 20px;background:var(--walnut);color:var(--cream);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.5px;border:none;border-radius:12px;cursor:pointer;text-decoration:none;transition:opacity 0.15s}
-  .btn-open:hover{opacity:0.9}.btn-open:active{opacity:0.8}
-  .status{margin-top:16px;font-size:13px;color:var(--mist);min-height:20px}
-  .status.error{color:#B05050}
-  .fallback-note{margin-top:24px;font-size:12px;color:var(--mist);line-height:1.5}
-  .spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--fog);border-top-color:var(--sage);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .hidden{display:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>BloomDay — Email Confirmed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #F0EBE3;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      color: #3D2B1F;
+      padding: 24px;
+    }
+    .card {
+      max-width: 400px;
+      width: 100%;
+      background: #FDFAF6;
+      border-radius: 16px;
+      padding: 48px 32px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(61,43,31,0.06);
+    }
+    .brand { font-family: 'Fraunces', Georgia, serif; font-size: 24px; color: #3D2B1F; }
+    .tagline { font-size: 11px; color: #8C7B6B; margin-top: 4px; letter-spacing: 1px; }
+    .emoji { font-size: 40px; margin: 28px 0 12px; }
+    .title { font-family: 'Fraunces', Georgia, serif; font-size: 22px; color: #3D2B1F; font-style: italic; }
+    .subtitle { font-size: 14px; color: #6B4E2A; margin-top: 12px; line-height: 1.7; }
+    .btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 14px 40px;
+      background: #3D2B1F;
+      color: #FDFAF6;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .note { font-size: 11px; color: #B5A89A; margin-top: 24px; line-height: 1.6; }
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2px solid #D4C9BC; border-top-color: #3D2B1F;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: inline-block; vertical-align: middle; margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body>
-<div class="card">
-  <div class="icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 22c0 0-8-4.5-8-11.8C4 5.2 9.5 2 12 2c2.5 0 8 3.2 8 8.2C20 17.5 12 22 12 22z"/>
-      <path d="M12 22V9"/><path d="M8 13c2-1.5 3-3.5 4-6"/><path d="M16 13c-2-1.5-3-3.5-4-6"/>
-    </svg>
+  <div class="card">
+    <div class="brand">BloomDay</div>
+    <div class="tagline">grow every day</div>
+    <div class="emoji">🌱</div>
+    <div class="title" id="title">Email Confirmed!</div>
+    <div class="subtitle" id="subtitle"><span class="spinner"></span>Opening BloomDay…</div>
+    <a class="btn" id="openBtn" style="display:none;" href="#">Open BloomDay</a>
+    <div class="note" id="note"></div>
   </div>
-  <h1 id="title">Email Confirmed!</h1>
-  <p class="subtitle" id="subtitle">Your email has been verified. Opening BloomDay so you can sign in.</p>
-  <a class="btn-open" id="openBtn" href="#">Open BloomDay</a>
-  <p class="status" id="status"><span class="spinner"></span>Redirecting…</p>
-  <p class="fallback-note hidden" id="fallbackNote">
-    If the app doesn't open, make sure BloomDay is installed, then tap the button above.
-  </p>
-</div>
 
-<script>
-(function () {
-  var titleEl = document.getElementById('title');
-  var subtitleEl = document.getElementById('subtitle');
-  var statusEl = document.getElementById('status');
-  var openBtn = document.getElementById('openBtn');
-  var fallbackNote = document.getElementById('fallbackNote');
-
-  // ── Collect every possible param from Supabase ──
-  var params = new URLSearchParams(window.location.search);
-  var hash = window.location.hash || '';
-  var hashParams = new URLSearchParams(hash.replace('#', '?'));
-
-  var code = params.get('code');
-  var accessToken = hashParams.get('access_token') || params.get('access_token');
-  var refreshToken = hashParams.get('refresh_token') || params.get('refresh_token');
-
-  // ── Build the deep link ──
-  // Always include type=signup so the app knows this is a confirmation, not a reset
-  var deepLink = null;
-
-  if (accessToken) {
-    deepLink = 'bloomday://confirm?access_token=' + encodeURIComponent(accessToken)
-      + '&type=signup'
-      + (refreshToken ? '&refresh_token=' + encodeURIComponent(refreshToken) : '');
-  } else if (code) {
-    deepLink = 'bloomday://confirm?code=' + encodeURIComponent(code) + '&type=signup';
-  }
-
-  if (!deepLink) {
-    titleEl.textContent = 'Link expired';
-    subtitleEl.textContent = 'This confirmation link is invalid or has already been used. Please request a new confirmation email from the BloomDay app.';
-    statusEl.className = 'status error';
-    statusEl.textContent = '';
-    openBtn.style.display = 'none';
-    return;
-  }
-
-  // ── Wire up the button ──
-  openBtn.href = deepLink;
-  openBtn.onclick = function () {
-    statusEl.innerHTML = '<span class="spinner"></span>Opening BloomDay…';
-    setTimeout(function () {
-      if (!document.hidden) {
-        statusEl.textContent = "Didn't open? Make sure BloomDay is installed and try again.";
-        statusEl.className = 'status error';
-        fallbackNote.classList.remove('hidden');
+  <script>
+    (function () {
+      // Grab params from hash fragment (Supabase puts tokens there) or query string
+      var raw = window.location.hash.substring(1) || window.location.search.substring(1);
+      if (!raw) {
+        document.getElementById('subtitle').textContent = 'Your email has been confirmed. You can sign in from the app.';
+        return;
       }
-    }, 2500);
-  };
 
-  // ── Auto-redirect ──
-  setTimeout(function () { window.location.href = deepLink; }, 400);
-  setTimeout(function () {
-    if (!document.hidden) {
-      statusEl.textContent = '';
-      fallbackNote.classList.remove('hidden');
-    }
-  }, 3000);
-})();
-</script>
+      // Parse params
+      var params = {};
+      raw.split('&').forEach(function (pair) {
+        var parts = pair.split('=');
+        if (parts.length === 2) params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+      });
+
+      // Build deep link — ensure type=signup is present
+      var deepParams = [];
+      if (params.access_token) deepParams.push('access_token=' + encodeURIComponent(params.access_token));
+      if (params.refresh_token) deepParams.push('refresh_token=' + encodeURIComponent(params.refresh_token));
+      if (params.code) deepParams.push('code=' + encodeURIComponent(params.code));
+      deepParams.push('type=' + encodeURIComponent(params.type || 'signup'));
+
+      var deepLink = 'bloomday://confirm?' + deepParams.join('&');
+
+      // Try to open the app
+      window.location.replace(deepLink);
+
+      // Fallback: if the app didn't open after 1.5s, show manual button
+      setTimeout(function () {
+        document.getElementById('subtitle').textContent = 'Your email is confirmed! Tap below to open the app.';
+        var btn = document.getElementById('openBtn');
+        btn.href = deepLink;
+        btn.style.display = 'inline-block';
+        document.getElementById('note').textContent = 'If the button doesn\'t work, open BloomDay and sign in with your email and password.';
+      }, 1500);
+    })();
+  </script>
 </body>
 </html>
