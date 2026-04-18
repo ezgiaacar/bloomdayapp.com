@@ -25,11 +25,17 @@ a{text-decoration:none;color:inherit}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(250,247,242,.85);border-bottom:1px solid rgba(0,0,0,.06)}
 nav .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
 nav .logo{font-family:'Fraunces',serif;font-size:1.35rem;color:var(--green-800)}
+nav .nav-right{display:flex;align-items:center;gap:24px}
 nav .nav-links{display:flex;gap:32px;align-items:center}
 nav .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-secondary);transition:.2s}
 nav .nav-links a:hover{color:var(--green-600)}
 nav .back-btn{font-size:.85rem;font-weight:600;color:var(--green-800);background:var(--green-50);border:1px solid var(--green-200);padding:8px 20px;border-radius:100px;transition:.2s}
 nav .back-btn:hover{background:var(--green-100);border-color:var(--green-400)}
+
+.lang-toggle{display:flex;gap:4px;background:var(--green-50);border:1px solid var(--green-200);border-radius:100px;padding:4px}
+.lang-toggle button{font-family:'Plus Jakarta Sans',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.04em;color:var(--text-muted);background:transparent;border:none;padding:6px 12px;border-radius:100px;cursor:pointer;transition:.2s;text-transform:uppercase}
+.lang-toggle button.active{background:var(--green-800);color:#fff}
+.lang-toggle button:not(.active):hover{color:var(--green-700)}
 
 .hero{padding:140px 0 64px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,var(--green-100) 0%,transparent 70%);pointer-events:none}
@@ -48,63 +54,70 @@ nav .back-btn:hover{background:var(--green-100);border-color:var(--green-400)}
 
 .section{margin-bottom:80px;opacity:0;transform:translateY(24px);transition:.7s ease}
 .section.visible{opacity:1;transform:none}
-.sec-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:5px 14px;border-radius:100px;margin-bottom:14px}
-.section h2{font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.15;margin-bottom:14px}
+.sec-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.section h2{font-size:clamp(2rem,4vw,2.8rem);line-height:1.15;color:var(--green-900);margin-bottom:24px}
 .section h2 em{font-style:normal;color:var(--green-600)}
-.section > p{font-size:1rem;color:var(--text-secondary);line-height:1.75;margin-bottom:16px}
-.section h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:600;margin:28px 0 10px;color:var(--text-primary)}
+.section > p{font-size:1.05rem;color:var(--text-secondary);line-height:1.8;margin-bottom:16px}
+.section h4{font-size:1.1rem;font-weight:500;color:var(--green-900);margin-bottom:8px}
 
-.card{background:#fff;border-radius:var(--radius-lg);border:1px solid rgba(0,0,0,.06);padding:28px 32px;margin-bottom:14px;transition:.3s}
-.card:hover{box-shadow:0 12px 40px rgba(0,0,0,.05);transform:translateY(-2px)}
-.card h4{font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;font-weight:700;color:var(--text-primary);margin-bottom:6px}
-.card p{font-size:.9rem;color:var(--text-secondary);line-height:1.7;margin:0}
+.dark-card{background:var(--green-900);color:#fff;padding:40px;border-radius:var(--radius-lg);margin:24px 0}
+.dark-card p{font-size:1rem;color:rgba(255,255,255,.85);line-height:1.7}
+.dark-card strong{color:#fff}
 
-.list-cards{display:flex;flex-direction:column;gap:12px;margin:16px 0}
-.list-card{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:20px 24px;transition:.3s}
-.list-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.05);transform:translateY(-2px)}
-.list-icon{width:32px;height:32px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem;color:var(--green-700);font-weight:700}
-.list-body h4{font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;font-weight:600;margin-bottom:4px}
-.list-body p{font-size:.9rem;color:var(--text-secondary);line-height:1.7;margin:0}
+.list-cards{display:flex;flex-direction:column;gap:12px;margin:24px 0}
+.list-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:24px;display:flex;gap:16px;transition:.2s}
+.list-card:hover{border-color:var(--green-300);transform:translateX(4px)}
+.list-icon{flex-shrink:0;width:44px;height:44px;background:var(--green-100);color:var(--green-700);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600}
+.list-body{flex:1}
+.list-body p{color:var(--text-secondary);font-size:.95rem;line-height:1.7}
 
-.highlight{background:var(--green-50);border:1px solid var(--green-200);border-radius:var(--radius);padding:20px 24px;margin:24px 0;font-size:.9rem;color:var(--text-secondary);line-height:1.75;position:relative;padding-left:48px}
-.highlight::before{content:'\2726';position:absolute;left:20px;top:20px;color:var(--green-500);font-size:1rem}
+.highlight{background:var(--green-50);border-left:3px solid var(--green-500);padding:20px 24px;border-radius:0 var(--radius) var(--radius) 0;margin:24px 0;font-size:.95rem;color:var(--text-secondary);line-height:1.7}
 
-.dark-card{background:var(--green-900);border-radius:var(--radius-lg);padding:40px 36px;color:#fff;margin:32px 0;position:relative;overflow:hidden}
-.dark-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(91,166,91,.12),transparent 60%);pointer-events:none}
-.dark-card p{color:rgba(255,255,255,.65);line-height:1.75;font-size:.95rem;position:relative}
-.dark-card strong{color:#fff;font-weight:600}
+.card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:28px;margin:16px 0;transition:.2s}
+.card:hover{border-color:var(--green-300)}
+.card p{color:var(--text-secondary);font-size:.95rem;line-height:1.7}
+.card strong{color:var(--green-900)}
 
-.third-party-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0}
-.tp-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:20px;transition:.3s}
-.tp-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.05)}
-.tp-card h4{font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:700;margin-bottom:6px;color:var(--text-primary)}
-.tp-card p{font-size:.82rem;color:var(--text-secondary);line-height:1.6;margin:0}
-.tp-card .tp-tag{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:3px 10px;border-radius:100px;margin-top:8px}
+.third-party-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:24px 0}
+.tp-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:24px;transition:.2s}
+.tp-card:hover{border-color:var(--green-400);transform:translateY(-2px)}
+.tp-card h4{font-size:1rem;color:var(--green-900);margin-bottom:10px}
+.tp-card p{font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin-bottom:12px}
+.tp-tag{display:inline-block;font-size:.7rem;font-weight:600;color:var(--green-600);background:var(--green-100);padding:4px 10px;border-radius:100px;letter-spacing:.03em}
 
-.contact-box{background:#fff;border:2px solid var(--green-200);border-radius:var(--radius-lg);padding:36px;text-align:center;margin:24px 0}
-.contact-box p{font-size:.95rem;color:var(--text-secondary);margin-bottom:16px}
-.contact-box a{display:inline-block;font-size:1rem;font-weight:600;color:var(--green-800);background:var(--green-50);border:1px solid var(--green-200);padding:12px 32px;border-radius:100px;transition:.2s}
-.contact-box a:hover{background:var(--green-100);border-color:var(--green-400);transform:translateY(-1px)}
+.contact-box{background:linear-gradient(135deg,var(--green-100) 0%,var(--sand-200) 100%);border-radius:var(--radius-lg);padding:40px;text-align:center;margin:24px 0}
+.contact-box p{font-size:1rem;color:var(--green-900);margin-bottom:16px}
+.contact-box a{display:inline-block;font-weight:600;color:#fff;background:var(--green-800);padding:12px 28px;border-radius:100px;transition:.2s}
+.contact-box a:hover{background:var(--green-900);transform:translateY(-1px)}
 
-footer{border-top:1px solid rgba(0,0,0,.06);padding:64px 0 40px;color:var(--text-secondary)}
+footer{background:var(--green-900);color:rgba(255,255,255,.7);padding:64px 0 32px;margin-top:0}
 footer .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
-footer h5{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--text-primary);margin-bottom:8px}
+footer h5{font-family:'Fraunces',serif;font-size:1.3rem;color:#fff;margin-bottom:12px}
+footer h6{font-size:.85rem;font-weight:600;color:#fff;margin-bottom:12px;letter-spacing:.04em}
+footer .col a{display:block;font-size:.85rem;color:rgba(255,255,255,.6);padding:4px 0;transition:.2s}
+footer .col a:hover{color:var(--green-300)}
 footer p{font-size:.85rem;line-height:1.6;max-width:280px}
-footer .col h6{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:16px}
-footer .col a{display:block;font-size:.9rem;padding:4px 0;transition:.2s}
-footer .col a:hover{color:var(--green-600)}
-footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-top:1px solid rgba(0,0,0,.06);font-size:.8rem;color:var(--text-muted);text-align:center}
+footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:center;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.5)}
+
+[data-lang]{display:none}
+[data-lang].active{display:block}
+[data-lang-inline].active{display:inline}
 
 @media(max-width:900px){
-  .third-party-grid{grid-template-columns:1fr}
   footer .inner{grid-template-columns:1fr 1fr}
-  nav .nav-links{display:none}
+  nav .nav-right{gap:12px}
 }
 @media(max-width:600px){
   .content{padding:56px 16px 80px}
   footer .inner{grid-template-columns:1fr}
   .dark-card{padding:28px 20px}
   .contact-box{padding:28px 20px}
+  .lang-toggle button{padding:5px 10px;font-size:.7rem}
+  nav .back-btn{padding:8px 14px;font-size:.8rem}
+}
+@media(max-width:420px){
+  nav .logo{font-size:1.15rem}
+  nav .back-btn span{margin-right:4px!important}
 }
 </style>
 </head>
@@ -113,26 +126,38 @@ footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-to
 <nav>
   <div class="inner">
     <a href="/" class="logo">BloomDay</a>
-    <div class="nav-links">
-      <a href="/guide/">User Guide</a>
-      <a href="/support/">Support</a>
-      <a href="/" class="back-btn">Back to home</a>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language selection">
+        <button data-set-lang="en" class="active" aria-label="English">EN</button>
+        <button data-set-lang="tr" aria-label="Türkçe">TR</button>
+        <button data-set-lang="es" aria-label="Español">ES</button>
+      </div>
+      <a href="/" class="back-btn" data-t="nav_back">
+        <span aria-hidden="true" style="display:inline-block;margin-right:6px;transform:translateY(-1px)">&larr;</span>Return to home
+      </a>
     </div>
   </div>
 </nav>
 
 <div class="hero">
-  <span class="badge">Legal</span>
-  <h1>Privacy <em>Policy</em></h1>
-  <p>Your data belongs to you. Here is exactly what we collect, why, and how it is protected.</p>
-  <span class="updated">Last updated: April 2026</span>
+  <span class="badge" data-t="hero_badge">Legal</span>
+  <h1 data-t-html="hero_title">Privacy <em>Policy</em></h1>
+  <p data-t="hero_desc">Your data belongs to you. Here is exactly what we collect, why, and how it is protected.</p>
+  <span class="updated" data-t="hero_updated">Last updated: April 2026</span>
 </div>
 
 <div class="toc">
   <div class="inner">
-    <a href="#overview">Overview</a><a href="#collect">Data We Collect</a><a href="#use">How We Use It</a>
-    <a href="#ads">Advertising</a><a href="#sharing">Third Parties</a><a href="#storage">Storage</a>
-    <a href="#rights">Your Rights</a><a href="#children">Children</a><a href="#contact">Contact</a>
+    <a href="#overview" data-t="toc_overview">Overview</a>
+    <a href="#collect" data-t="toc_collect">Data We Collect</a>
+    <a href="#use" data-t="toc_use">How We Use It</a>
+    <a href="#analytics" data-t="toc_analytics">Analytics</a>
+    <a href="#ads" data-t="toc_ads">Advertising</a>
+    <a href="#sharing" data-t="toc_sharing">Third Parties</a>
+    <a href="#storage" data-t="toc_storage">Storage</a>
+    <a href="#rights" data-t="toc_rights">Your Rights</a>
+    <a href="#children" data-t="toc_children">Children</a>
+    <a href="#contact" data-t="toc_contact">Contact</a>
   </div>
 </div>
 
@@ -140,141 +165,179 @@ footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-to
 
   <!-- ═══ OVERVIEW ═══ -->
   <div class="section" id="overview">
-    <span class="sec-badge">01 &mdash; Overview</span>
-    <h2>Simple by <em>design</em></h2>
-    <p>BloomDay is a task planner and virtual garden app. We collect only what is necessary to run the app. We do not sell data, build profiles, or share your information with advertisers.</p>
+    <span class="sec-badge" data-t="overview_badge">01 — Overview</span>
+    <h2 data-t-html="overview_title">Simple by <em>design</em></h2>
+    <p data-t="overview_p1">BloomDay is a task planner and virtual garden app. We collect only what is necessary to run the app and understand how it is used. We do not sell data, build behavioural profiles, or share your information with advertisers beyond what is required to serve ads on the free plan.</p>
     <div class="dark-card">
-      <p><strong>We believe privacy should be the default, not a setting you have to find.</strong> This policy is written to be read, not to obscure. If anything is unclear, write to us.</p>
+      <p data-t-html="overview_card"><strong>We believe privacy should be the default, not a setting you have to find.</strong> This policy is written to be read, not to obscure. If anything is unclear, write to us.</p>
     </div>
   </div>
 
   <!-- ═══ DATA WE COLLECT ═══ -->
   <div class="section" id="collect">
-    <span class="sec-badge">02 &mdash; Data We Collect</span>
-    <h2>What we <em>know about you</em></h2>
+    <span class="sec-badge" data-t="collect_badge">02 — Data We Collect</span>
+    <h2 data-t-html="collect_title">What we <em>know about you</em></h2>
 
     <div class="list-cards">
       <div class="list-card">
         <div class="list-icon">@</div>
         <div class="list-body">
-          <h4>Account information</h4>
-          <p>When you create an account, we collect your email address and a securely hashed password. This is used solely to authenticate your identity. We do not collect your name, phone number, or any other personal identifier.</p>
+          <h4 data-t="collect_1_title">Account information</h4>
+          <p data-t="collect_1_body">When you create an account, we collect your email address and a securely hashed password. This is used solely to authenticate your identity. We do not collect your name, phone number, or any other personal identifier.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9752;</div>
         <div class="list-body">
-          <h4>App data (local only)</h4>
-          <p>Your tasks, garden progress, plant inventory, streak history, achievements, journal entries, time capsules, and preferences are stored locally on your device using on-device storage. None of this data is sent to or stored on our servers.</p>
+          <h4 data-t="collect_2_title">App data (local only)</h4>
+          <p data-t="collect_2_body">Your tasks, garden progress, plant inventory, streak history, achievements, journal entries, time capsules, and preferences are stored locally on your device using on-device storage. None of this data is sent to or stored on our servers.</p>
         </div>
       </div>
-    <div class="highlight">We do not collect IP addresses, usage statistics, crash telemetry, or any other form of analytics. The only device identifier that may be used is your advertising ID, and only if you explicitly grant permission through the iOS tracking prompt (see Advertising below).</div>
+      <div class="list-card">
+        <div class="list-icon">&#9788;</div>
+        <div class="list-body">
+          <h4 data-t="collect_3_title">Usage analytics</h4>
+          <p data-t="collect_3_body">To improve the app, we collect anonymous usage patterns such as which screens you visit, which features you use, session duration, and general device information (model, operating system, app version). This data is not linked to your email or personal identity. You can disable this in Settings → Privacy → Analytics.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight" data-t="collect_highlight">We do not collect your precise location, contacts, photos, microphone, or any other sensitive data. The only device identifier that may be used for advertising is your advertising ID, and only if you explicitly grant permission through the iOS tracking prompt (see Advertising below).</div>
   </div>
 
   <!-- ═══ HOW WE USE IT ═══ -->
   <div class="section" id="use">
-    <span class="sec-badge">03 &mdash; How We Use It</span>
-    <h2>Only what <em>runs the app</em></h2>
+    <span class="sec-badge" data-t="use_badge">03 — How We Use It</span>
+    <h2 data-t-html="use_title">Only what <em>runs the app</em></h2>
 
     <div class="list-cards">
       <div class="list-card">
         <div class="list-icon">&#9919;</div>
         <div class="list-body">
-          <h4>Authentication</h4>
-          <p>Your email and credentials are used to create and protect your account via Supabase. We support email/password and Apple Sign In.</p>
+          <h4 data-t="use_1_title">Authentication</h4>
+          <p data-t="use_1_body">Your email and credentials are used to create and protect your account via Supabase. We support email/password and Apple Sign In.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#8635;</div>
         <div class="list-body">
-          <h4>Local persistence</h4>
-          <p>Your tasks, plants, achievements, and progress are saved to your device's local storage so your garden persists between sessions. Data does not sync across devices or to the cloud.</p>
+          <h4 data-t="use_2_title">Local persistence</h4>
+          <p data-t="use_2_body">Your tasks, plants, achievements, and progress are saved to your device's local storage so your garden persists between sessions. Data does not sync across devices or to the cloud.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9881;</div>
         <div class="list-body">
-          <h4>Notifications</h4>
-          <p>If you enable task reminders, the app schedules local notifications on your device. Notifications are never routed through a server. Daily and weekly recurring reminders fire locally.</p>
+          <h4 data-t="use_3_title">Notifications</h4>
+          <p data-t="use_3_body">If you enable task reminders, the app schedules local notifications on your device. Notifications are never routed through a server. Daily and weekly recurring reminders fire locally.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9993;</div>
         <div class="list-body">
-          <h4>Account communications</h4>
-          <p>We may use your email for critical account events only: password reset and account deletion confirmation. We do not send marketing emails, newsletters, or promotional content.</p>
+          <h4 data-t="use_4_title">Account communications</h4>
+          <p data-t="use_4_body">We may use your email for critical account events only: password reset and account deletion confirmation. We do not send marketing emails, newsletters, or promotional content.</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ═══ ANALYTICS ═══ -->
+  <div class="section" id="analytics">
+    <span class="sec-badge" data-t="analytics_badge">04 — Analytics</span>
+    <h2 data-t-html="analytics_title">How we <em>understand usage</em></h2>
+    <p data-t="analytics_intro">BloomDay uses PostHog, a third-party product analytics service, to understand how users interact with the app so we can improve it. PostHog is used in a privacy-first mode with no behavioural profiling or cross-site tracking.</p>
+
+    <div class="card">
+      <h4 data-t="analytics_what_title">What PostHog receives</h4>
+      <p data-t="analytics_what_body">Screen views, feature interactions (e.g. "completed a task", "opened garden"), session duration, app version, device model, operating system version, and a randomly generated anonymous ID. PostHog does not receive your email, name, tasks, journal entries, or any content you create in the app.</p>
+    </div>
+
+    <div class="card">
+      <h4 data-t="analytics_control_title">Your control</h4>
+      <p data-t="analytics_control_body">Analytics are enabled by default to help us improve the app. You can turn them off anytime in Settings → Privacy → Analytics. When disabled, PostHog stops collecting data immediately, and no events are sent from your device.</p>
+    </div>
+
+    <div class="card">
+      <h4 data-t="analytics_storage_title">Storage and retention</h4>
+      <p data-t="analytics_storage_body">PostHog stores aggregated usage data on its EU-hosted servers (GDPR-compliant, ISO 27001 certified). Event data is retained for 12 months, after which it is automatically deleted. We do not export this data or combine it with any other source.</p>
+    </div>
+
+    <p data-t-html="analytics_link">Learn more about PostHog's privacy practices at <a href="https://posthog.com/privacy" target="_blank" style="color:var(--green-600);font-weight:500">posthog.com/privacy</a>.</p>
+  </div>
+
   <!-- ═══ ADVERTISING ═══ -->
   <div class="section" id="ads">
-    <span class="sec-badge">04 &mdash; Advertising</span>
-    <h2>Ads on the <em>free plan</em></h2>
-    <p>The free plan includes occasional ads served by Google AdMob. Ads appear at most once per day and are never shown during Focus Mode or during onboarding.</p>
+    <span class="sec-badge" data-t="ads_badge">05 — Advertising</span>
+    <h2 data-t-html="ads_title">Ads on the <em>free plan</em></h2>
+    <p data-t="ads_intro">The free plan includes occasional ads served by Google AdMob. Ads appear at most once per day and are never shown during Focus Mode or during onboarding.</p>
     <div class="card">
-      <h4>App Tracking Transparency (iOS)</h4>
-      <p>On iOS, BloomDay asks for your permission before any tracking occurs. You can choose <strong>"Ask App Not to Track"</strong> and BloomDay will request non-personalised ads only &mdash; no behavioural profile is built on you. If you choose <strong>"Allow"</strong>, Google AdMob may use your device's advertising identifier (IDFA) to show more relevant ads. Either choice is fully respected.</p>
+      <h4 data-t="ads_att_title">App Tracking Transparency (iOS)</h4>
+      <p data-t-html="ads_att_body">On iOS, BloomDay asks for your permission before any tracking occurs. You can choose <strong>"Ask App Not to Track"</strong> and BloomDay will request non-personalised ads only &mdash; no behavioural profile is built on you. If you choose <strong>"Allow"</strong>, Google AdMob may use your device's advertising identifier (IDFA) to show more relevant ads. Either choice is fully respected.</p>
     </div>
     <div class="card">
-      <h4>Your control</h4>
-      <p>You can change this permission anytime in iOS Settings &rarr; Privacy &amp; Security &rarr; Tracking &rarr; BloomDay.</p>
+      <h4 data-t="ads_control_title">Your control</h4>
+      <p data-t-html="ads_control_body">You can change this permission anytime in iOS Settings &rarr; Privacy &amp; Security &rarr; Tracking &rarr; BloomDay.</p>
     </div>
-    <p>Upgrading to any paid plan (Bloom, Forest, or Eden) removes all ads permanently.</p>
+    <p data-t="ads_upgrade">Upgrading to any paid plan (Bloom, Forest, or Eden) removes all ads permanently.</p>
   </div>
 
   <!-- ═══ THIRD PARTIES ═══ -->
   <div class="section" id="sharing">
-    <span class="sec-badge">05 &mdash; Third Parties</span>
-    <h2>Who else <em>touches your data</em></h2>
+    <span class="sec-badge" data-t="sharing_badge">06 — Third Parties</span>
+    <h2 data-t-html="sharing_title">Who else <em>touches your data</em></h2>
 
     <div class="third-party-grid">
       <div class="tp-card">
         <h4>Supabase</h4>
-        <p>Account authentication only. Stores your email and hashed password. No garden or task data is sent to Supabase.</p>
-        <span class="tp-tag">GDPR compliant &middot; SOC 2</span>
+        <p data-t="tp_supabase_body">Account authentication only. Stores your email and hashed password. No garden or task data is sent to Supabase.</p>
+        <span class="tp-tag" data-t="tp_supabase_tag">GDPR compliant · SOC 2</span>
+      </div>
+      <div class="tp-card">
+        <h4>PostHog</h4>
+        <p data-t="tp_posthog_body">Anonymous product analytics to help us improve the app. EU-hosted, no behavioural profiling. Opt-out available in Settings.</p>
+        <span class="tp-tag" data-t="tp_posthog_tag">EU-hosted · Opt-out available</span>
       </div>
       <div class="tp-card">
         <h4>RevenueCat</h4>
-        <p>Subscription management via Apple App Store and Google Play. Receives a transaction token only.</p>
-        <span class="tp-tag">No payment data shared</span>
+        <p data-t="tp_rc_body">Subscription management via Apple App Store and Google Play. Receives a transaction token only.</p>
+        <span class="tp-tag" data-t="tp_rc_tag">No payment data shared</span>
       </div>
       <div class="tp-card">
         <h4>Google AdMob</h4>
-        <p>Ads on the free plan. With your consent (via iOS App Tracking Transparency), uses your advertising identifier to show relevant ads. Without consent, shows non-personalised ads only.</p>
-        <span class="tp-tag">Free plan &middot; Consent-based</span>
+        <p data-t="tp_admob_body">Ads on the free plan. With your consent (via iOS App Tracking Transparency), uses your advertising identifier to show relevant ads. Without consent, shows non-personalised ads only.</p>
+        <span class="tp-tag" data-t="tp_admob_tag">Free plan · Consent-based</span>
       </div>
     </div>
 
-    <div class="highlight">No other third parties have access to your data. We do not use Facebook SDK, Amplitude, Mixpanel, Firebase Analytics, Sentry, or any analytics or tracking service.</div>
+    <div class="highlight" data-t="sharing_highlight">No other third parties have access to your data. We do not use Facebook SDK, Amplitude, Mixpanel, Firebase Analytics, or any other tracking service beyond what is listed above.</div>
   </div>
 
   <!-- ═══ STORAGE ═══ -->
   <div class="section" id="storage">
-    <span class="sec-badge">06 &mdash; Storage & Retention</span>
-    <h2>Where your data <em>lives</em></h2>
+    <span class="sec-badge" data-t="storage_badge">07 — Storage & Retention</span>
+    <h2 data-t-html="storage_title">Where your data <em>lives</em></h2>
 
     <div class="list-cards">
       <div class="list-card">
         <div class="list-icon">&#9679;</div>
         <div class="list-body">
-          <h4>Local storage</h4>
-          <p>Your tasks, plants, streaks, achievements, journal entries, and all garden data are stored locally on your device. We do not store this data on our servers. Your email address is the only personal data we hold.</p>
+          <h4 data-t="storage_1_title">Local storage</h4>
+          <p data-t="storage_1_body">Your tasks, plants, streaks, achievements, journal entries, and all garden data are stored locally on your device. We do not store this data on our servers. Your email address is the only personal data we hold.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9679;</div>
         <div class="list-body">
-          <h4>Deleting the app</h4>
-          <p>Removing the app from your device deletes all local data permanently, including your garden, tasks, and progress. This cannot be recovered.</p>
+          <h4 data-t="storage_2_title">Deleting the app</h4>
+          <p data-t="storage_2_body">Removing the app from your device deletes all local data permanently, including your garden, tasks, and progress. This cannot be recovered.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9679;</div>
         <div class="list-body">
-          <h4>Account deletion</h4>
-          <p>Settings &rarr; Delete Account removes your email from our authentication system and erases all local data. After deletion, we retain nothing.</p>
+          <h4 data-t="storage_3_title">Account deletion</h4>
+          <p data-t-html="storage_3_body">Settings &rarr; Delete Account removes your email from our authentication system and erases all local data. After deletion, we retain nothing.</p>
         </div>
       </div>
     </div>
@@ -282,29 +345,37 @@ footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-to
 
   <!-- ═══ YOUR RIGHTS ═══ -->
   <div class="section" id="rights">
-    <span class="sec-badge">07 &mdash; Your Rights</span>
-    <h2>What you can <em>ask of us</em></h2>
+    <span class="sec-badge" data-t="rights_badge">08 — Your Rights</span>
+    <h2 data-t-html="rights_title">What you can <em>ask of us</em></h2>
+    <p data-t="rights_intro">Under GDPR (EU), KVKK (Turkey), CCPA (California), and similar regulations, you have the following rights regarding your personal data:</p>
 
     <div class="list-cards">
       <div class="list-card">
         <div class="list-icon">1</div>
         <div class="list-body">
-          <h4>Access</h4>
-          <p>Request confirmation of what personal data we hold. The only personal data on our servers is your email address.</p>
+          <h4 data-t="rights_1_title">Access</h4>
+          <p data-t="rights_1_body">Request confirmation of what personal data we hold. The only personal data on our servers is your email address.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">2</div>
         <div class="list-body">
-          <h4>Deletion</h4>
-          <p>Delete your account in-app (Settings &rarr; Delete Account) or by emailing us. This removes your email from our authentication system. All garden and task data is stored locally on your device and is deleted when you remove the app.</p>
+          <h4 data-t="rights_2_title">Deletion</h4>
+          <p data-t-html="rights_2_body">Delete your account in-app (Settings &rarr; Delete Account) or by emailing us. This removes your email from our authentication system. All garden and task data is stored locally on your device and is deleted when you remove the app.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">3</div>
         <div class="list-body">
-          <h4>Export</h4>
-          <p>Export your task data anytime from Settings &rarr; Export Data. Downloads as a CSV file directly to your device. Since all data is local, you always have full control.</p>
+          <h4 data-t="rights_3_title">Export</h4>
+          <p data-t-html="rights_3_body">Export your task data anytime from Settings &rarr; Export Data. Downloads as a CSV file directly to your device. Since all data is local, you always have full control.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">4</div>
+        <div class="list-body">
+          <h4 data-t="rights_4_title">Opt-out of analytics</h4>
+          <p data-t-html="rights_4_body">Turn off analytics collection anytime in Settings &rarr; Privacy &rarr; Analytics. This takes effect immediately.</p>
         </div>
       </div>
     </div>
@@ -312,18 +383,18 @@ footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-to
 
   <!-- ═══ CHILDREN ═══ -->
   <div class="section" id="children">
-    <span class="sec-badge">08 &mdash; Children</span>
-    <h2>Not for children <em>under 13</em></h2>
-    <p>BloomDay is not directed at children under 13. We do not knowingly collect personal information from anyone under 13. If you believe a child under 13 has created an account, please contact us and we will delete it promptly.</p>
+    <span class="sec-badge" data-t="children_badge">09 — Children</span>
+    <h2 data-t-html="children_title">Not for children <em>under 13</em></h2>
+    <p data-t="children_body">BloomDay is not directed at children under 13. We do not knowingly collect personal information from anyone under 13. If you believe a child under 13 has created an account, please contact us and we will delete it promptly.</p>
   </div>
 
   <!-- ═══ CONTACT ═══ -->
   <div class="section" id="contact">
-    <span class="sec-badge">09 &mdash; Contact</span>
-    <h2>Questions or <em>requests</em></h2>
-    <p>We respond to all privacy enquiries within 5 business days.</p>
+    <span class="sec-badge" data-t="contact_badge">10 — Contact</span>
+    <h2 data-t-html="contact_title">Questions or <em>requests</em></h2>
+    <p data-t="contact_intro">BloomDay is operated by an independent solo developer based in Turkey. For all privacy enquiries, data requests, or concerns, we respond within 5 business days.</p>
     <div class="contact-box">
-      <p>Reach us for any data request, question, or concern.</p>
+      <p data-t="contact_box">Reach us for any data request, question, or concern.</p>
       <a href="mailto:bloomday.app@icloud.com">bloomday.app@icloud.com</a>
     </div>
   </div>
@@ -334,32 +405,403 @@ footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-to
 <div class="inner">
   <div>
     <h5>BloomDay</h5>
-    <p>Productivity that grows with you. Turn every completed task into a living plant.</p>
+    <p data-t="footer_tagline">Productivity that grows with you. Turn every completed task into a living plant.</p>
   </div>
   <div class="col">
-    <h6>Product</h6>
-    <a href="/#features">Features</a>
-    <a href="#">Plants</a>
-    <a href="/#pricing">Pricing</a>
-    <a href="/#download">Download</a>
+    <h6 data-t="footer_resources">Resources</h6>
+    <a href="/guide/" data-t="footer_guide">User Guide</a>
+    <a href="/support/" data-t="footer_support">Support</a>
+    <a href="/press/" data-t="footer_press">Press</a>
+    <a href="/privacy/" data-t="footer_privacy">Privacy Policy</a>
   </div>
   <div class="col">
-    <h6>Resources</h6>
-    <a href="/guide/">User Guide</a>
-    <a href="/support/">Support</a>
-    <a href="/press/">Press</a>
-    <a href="/privacy/">Privacy Policy</a>
-  </div>
-  <div class="col">
-    <h6>Connect</h6>
+    <h6 data-t="footer_connect">Connect</h6>
     <a href="https://instagram.com/bloomday.app" target="_blank">Instagram</a>
-    <a href="mailto:bloomday.app@icloud.com">Contact Us</a>
+    <a href="mailto:bloomday.app@icloud.com" data-t="footer_contact">Contact Us</a>
   </div>
 </div>
-<div class="bottom">&copy; 2026 BloomDay. All rights reserved.</div>
+<div class="bottom" data-t="footer_copyright">© 2026 BloomDay. All rights reserved.</div>
 </footer>
 
 <script>
+// ─── TRANSLATIONS ─────────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    nav_back: "Return to home",
+    hero_badge: "Legal",
+    hero_title: 'Privacy <em>Policy</em>',
+    hero_desc: "Your data belongs to you. Here is exactly what we collect, why, and how it is protected.",
+    hero_updated: "Last updated: April 2026",
+    toc_overview: "Overview",
+    toc_collect: "Data We Collect",
+    toc_use: "How We Use It",
+    toc_analytics: "Analytics",
+    toc_ads: "Advertising",
+    toc_sharing: "Third Parties",
+    toc_storage: "Storage",
+    toc_rights: "Your Rights",
+    toc_children: "Children",
+    toc_contact: "Contact",
+    overview_badge: "01 — Overview",
+    overview_title: 'Simple by <em>design</em>',
+    overview_p1: "BloomDay is a task planner and virtual garden app. We collect only what is necessary to run the app and understand how it is used. We do not sell data, build behavioural profiles, or share your information with advertisers beyond what is required to serve ads on the free plan.",
+    overview_card: '<strong>We believe privacy should be the default, not a setting you have to find.</strong> This policy is written to be read, not to obscure. If anything is unclear, write to us.',
+    collect_badge: "02 — Data We Collect",
+    collect_title: 'What we <em>know about you</em>',
+    collect_1_title: "Account information",
+    collect_1_body: "When you create an account, we collect your email address and a securely hashed password. This is used solely to authenticate your identity. We do not collect your name, phone number, or any other personal identifier.",
+    collect_2_title: "App data (local only)",
+    collect_2_body: "Your tasks, garden progress, plant inventory, streak history, achievements, journal entries, time capsules, and preferences are stored locally on your device using on-device storage. None of this data is sent to or stored on our servers.",
+    collect_3_title: "Usage analytics",
+    collect_3_body: "To improve the app, we collect anonymous usage patterns such as which screens you visit, which features you use, session duration, and general device information (model, operating system, app version). This data is not linked to your email or personal identity. You can disable this in Settings → Privacy → Analytics.",
+    collect_highlight: "We do not collect your precise location, contacts, photos, microphone, weather, or any other sensitive data. The only device identifier that may be used for advertising is your advertising ID, and only if you explicitly grant permission through the iOS tracking prompt (see Advertising below).",
+    use_badge: "03 — How We Use It",
+    use_title: 'Only what <em>runs the app</em>',
+    use_1_title: "Authentication",
+    use_1_body: "Your email and credentials are used to create and protect your account via Supabase. We support email/password and Apple Sign In.",
+    use_2_title: "Local persistence",
+    use_2_body: "Your tasks, plants, achievements, and progress are saved to your device's local storage so your garden persists between sessions. Data does not sync across devices or to the cloud.",
+    use_3_title: "Notifications",
+    use_3_body: "If you enable task reminders, the app schedules local notifications on your device. Notifications are never routed through a server. Daily and weekly recurring reminders fire locally.",
+    use_4_title: "Account communications",
+    use_4_body: "We may use your email for critical account events only: password reset and account deletion confirmation. We do not send marketing emails, newsletters, or promotional content.",
+    analytics_badge: "04 — Analytics",
+    analytics_title: 'How we <em>understand usage</em>',
+    analytics_intro: "BloomDay uses PostHog, a third-party product analytics service, to understand how users interact with the app so we can improve it. PostHog is used in a privacy-first mode with no behavioural profiling or cross-site tracking.",
+    analytics_what_title: "What PostHog receives",
+    analytics_what_body: 'Screen views, feature interactions (e.g. "completed a task", "opened garden"), session duration, app version, device model, operating system version, and a randomly generated anonymous ID. PostHog does not receive your email, name, tasks, journal entries, or any content you create in the app.',
+    analytics_control_title: "Your control",
+    analytics_control_body: "Analytics are enabled by default to help us improve the app. You can turn them off anytime in Settings → Privacy → Analytics. When disabled, PostHog stops collecting data immediately, and no events are sent from your device.",
+    analytics_storage_title: "Storage and retention",
+    analytics_storage_body: "PostHog stores aggregated usage data on its EU-hosted servers (GDPR-compliant, ISO 27001 certified). Event data is retained for 12 months, after which it is automatically deleted. We do not export this data or combine it with any other source.",
+    analytics_link: 'Learn more about PostHog\'s privacy practices at <a href="https://posthog.com/privacy" target="_blank" style="color:var(--green-600);font-weight:500">posthog.com/privacy</a>.',
+    ads_badge: "05 — Advertising",
+    ads_title: 'Ads on the <em>free plan</em>',
+    ads_intro: "The free plan includes occasional ads served by Google AdMob. Ads appear at most once per day and are never shown during Focus Mode or during onboarding.",
+    ads_att_title: "App Tracking Transparency (iOS)",
+    ads_att_body: 'On iOS, BloomDay asks for your permission before any tracking occurs. You can choose <strong>"Ask App Not to Track"</strong> and BloomDay will request non-personalised ads only &mdash; no behavioural profile is built on you. If you choose <strong>"Allow"</strong>, Google AdMob may use your device\'s advertising identifier (IDFA) to show more relevant ads. Either choice is fully respected.',
+    ads_control_title: "Your control",
+    ads_control_body: 'You can change this permission anytime in iOS Settings &rarr; Privacy &amp; Security &rarr; Tracking &rarr; BloomDay.',
+    ads_upgrade: "Upgrading to any paid plan (Bloom, Forest, or Eden) removes all ads permanently.",
+    sharing_badge: "06 — Third Parties",
+    sharing_title: 'Who else <em>touches your data</em>',
+    tp_supabase_body: "Account authentication only. Stores your email and hashed password. No garden or task data is sent to Supabase.",
+    tp_supabase_tag: "GDPR compliant · SOC 2",
+    tp_posthog_body: "Anonymous product analytics to help us improve the app. EU-hosted, no behavioural profiling. Opt-out available in Settings.",
+    tp_posthog_tag: "EU-hosted · Opt-out available",
+    tp_rc_body: "Subscription management via Apple App Store and Google Play. Receives a transaction token only.",
+    tp_rc_tag: "No payment data shared",
+    tp_admob_body: "Ads on the free plan. With your consent (via iOS App Tracking Transparency), uses your advertising identifier to show relevant ads. Without consent, shows non-personalised ads only.",
+    tp_admob_tag: "Free plan · Consent-based",
+    sharing_highlight: "No other third parties have access to your data. We do not use Facebook SDK, Amplitude, Mixpanel, Firebase Analytics, or any other tracking service beyond what is listed above.",
+    storage_badge: "07 — Storage & Retention",
+    storage_title: 'Where your data <em>lives</em>',
+    storage_1_title: "Local storage",
+    storage_1_body: "Your tasks, plants, streaks, achievements, journal entries, and all garden data are stored locally on your device. We do not store this data on our servers. Your email address is the only personal data we hold.",
+    storage_2_title: "Deleting the app",
+    storage_2_body: "Removing the app from your device deletes all local data permanently, including your garden, tasks, and progress. This cannot be recovered.",
+    storage_3_title: "Account deletion",
+    storage_3_body: 'Settings &rarr; Delete Account removes your email from our authentication system and erases all local data. After deletion, we retain nothing.',
+    rights_badge: "08 — Your Rights",
+    rights_title: 'What you can <em>ask of us</em>',
+    rights_intro: "Under GDPR (EU), KVKK (Turkey), CCPA (California), and similar regulations, you have the following rights regarding your personal data:",
+    rights_1_title: "Access",
+    rights_1_body: "Request confirmation of what personal data we hold. The only personal data on our servers is your email address.",
+    rights_2_title: "Deletion",
+    rights_2_body: 'Delete your account in-app (Settings &rarr; Delete Account) or by emailing us. This removes your email from our authentication system. All garden and task data is stored locally on your device and is deleted when you remove the app.',
+    rights_3_title: "Export",
+    rights_3_body: 'Export your task data anytime from Settings &rarr; Export Data. Downloads as a CSV file directly to your device. Since all data is local, you always have full control.',
+    rights_4_title: "Opt-out of analytics",
+    rights_4_body: 'Turn off analytics collection anytime in Settings &rarr; Privacy &rarr; Analytics. This takes effect immediately.',
+    children_badge: "09 — Children",
+    children_title: 'Not for children <em>under 13</em>',
+    children_body: "BloomDay is not directed at children under 13. We do not knowingly collect personal information from anyone under 13. If you believe a child under 13 has created an account, please contact us and we will delete it promptly.",
+    contact_badge: "10 — Contact",
+    contact_title: 'Questions or <em>requests</em>',
+    contact_intro: "BloomDay is operated by an independent solo developer based in Turkey. For all privacy enquiries, data requests, or concerns, we respond within 5 business days.",
+    contact_box: "Reach us for any data request, question, or concern.",
+    footer_tagline: "Productivity that grows with you. Turn every completed task into a living plant.",
+    footer_resources: "Resources",
+    footer_guide: "User Guide",
+    footer_support: "Support",
+    footer_press: "Press",
+    footer_privacy: "Privacy Policy",
+    footer_connect: "Connect",
+    footer_contact: "Contact Us",
+    footer_copyright: "© 2026 BloomDay. All rights reserved."
+  },
+  tr: {
+    nav_back: "Ana sayfaya dön",
+    hero_badge: "Yasal",
+    hero_title: 'Gizlilik <em>Politikası</em>',
+    hero_desc: "Verileriniz size ait. Topladığımız her şeyi, neden topladığımızı ve nasıl koruduğumuzu burada bulabilirsiniz.",
+    hero_updated: "Son güncelleme: Nisan 2026",
+    toc_overview: "Genel Bakış",
+    toc_collect: "Topladığımız Veriler",
+    toc_use: "Nasıl Kullanıyoruz",
+    toc_analytics: "Analitik",
+    toc_ads: "Reklamlar",
+    toc_sharing: "Üçüncü Taraflar",
+    toc_storage: "Depolama",
+    toc_rights: "Haklarınız",
+    toc_children: "Çocuklar",
+    toc_contact: "İletişim",
+    overview_badge: "01 — Genel Bakış",
+    overview_title: 'Tasarımca <em>sade</em>',
+    overview_p1: "BloomDay bir görev planlayıcısı ve sanal bahçe uygulamasıdır. Yalnızca uygulamayı çalıştırmak ve nasıl kullanıldığını anlamak için gerekli olanı topluyoruz. Verilerinizi satmıyoruz, davranışsal profil oluşturmuyoruz ve ücretsiz planda reklam göstermek için gerekli olanın dışında bilgilerinizi reklamcılarla paylaşmıyoruz.",
+    overview_card: '<strong>Gizliliğin bulmanız gereken bir ayar değil, varsayılan olması gerektiğine inanıyoruz.</strong> Bu politika gizlemek için değil, okunmak için yazıldı. Anlaşılmayan bir şey olursa bize yazın.',
+    collect_badge: "02 — Topladığımız Veriler",
+    collect_title: 'Sizin <em>hakkınızda bildiklerimiz</em>',
+    collect_1_title: "Hesap bilgileri",
+    collect_1_body: "Hesap oluşturduğunuzda e-posta adresinizi ve güvenli şekilde hashlenmiş şifrenizi topluyoruz. Bu yalnızca kimliğinizi doğrulamak için kullanılır. Adınızı, telefon numaranızı veya başka bir kişisel tanımlayıcı toplamıyoruz.",
+    collect_2_title: "Uygulama verileri (sadece yerel)",
+    collect_2_body: "Görevleriniz, bahçe ilerlemeniz, bitki envanteriniz, seri geçmişiniz, başarılarınız, günlük girdileriniz, zaman kapsülleriniz ve tercihleriniz cihaz üstü depolama kullanılarak cihazınızda yerel olarak saklanır. Bu verilerin hiçbiri sunucularımıza gönderilmez veya orada saklanmaz.",
+    collect_3_title: "Kullanım analitiği",
+    collect_3_body: "Uygulamayı geliştirmek için hangi ekranları ziyaret ettiğiniz, hangi özellikleri kullandığınız, oturum süresi ve genel cihaz bilgileri (model, işletim sistemi, uygulama sürümü) gibi anonim kullanım örüntülerini topluyoruz. Bu veriler e-postanıza veya kişisel kimliğinize bağlanmaz. Ayarlar → Gizlilik → Analitik bölümünden kapatabilirsiniz.",
+    collect_highlight: "Kesin konumunuzu, kişilerinizi, fotoğraflarınızı, mikrofonunuzu, hava durumunuzu veya başka hiçbir hassas veriyi toplamıyoruz. Reklamcılık için kullanılabilecek tek cihaz tanımlayıcısı reklam kimliğinizdir ve yalnızca iOS takip istemi aracılığıyla açıkça izin verirseniz (aşağıdaki Reklamlar bölümüne bakın).",
+    use_badge: "03 — Nasıl Kullanıyoruz",
+    use_title: 'Yalnızca <em>uygulamayı çalıştıran</em>',
+    use_1_title: "Kimlik doğrulama",
+    use_1_body: "E-posta ve kimlik bilgileriniz, Supabase aracılığıyla hesabınızı oluşturmak ve korumak için kullanılır. E-posta/şifre ve Apple ile Giriş destekliyoruz.",
+    use_2_title: "Yerel saklama",
+    use_2_body: "Görevleriniz, bitkileriniz, başarılarınız ve ilerlemeniz, bahçeniz oturumlar arasında kalıcı olsun diye cihazınızın yerel depolamasına kaydedilir. Veriler cihazlar arasında veya buluta senkronize edilmez.",
+    use_3_title: "Bildirimler",
+    use_3_body: "Görev hatırlatıcılarını etkinleştirirseniz uygulama, cihazınızda yerel bildirimler zamanlar. Bildirimler asla bir sunucu üzerinden yönlendirilmez. Günlük ve haftalık tekrar eden hatırlatıcılar yerel olarak tetiklenir.",
+    use_4_title: "Hesap iletişimleri",
+    use_4_body: "E-postanızı yalnızca kritik hesap olayları için kullanabiliriz: şifre sıfırlama ve hesap silme onayı. Pazarlama e-postaları, bültenler veya promosyon içeriği göndermiyoruz.",
+    analytics_badge: "04 — Analitik",
+    analytics_title: 'Kullanımı <em>nasıl anlıyoruz</em>',
+    analytics_intro: "BloomDay, kullanıcıların uygulamayla nasıl etkileşim kurduğunu anlamak ve geliştirmek için üçüncü taraf ürün analitiği servisi PostHog'u kullanır. PostHog, davranışsal profilleme veya siteler arası takip olmaksızın gizlilik öncelikli modda kullanılır.",
+    analytics_what_title: "PostHog ne alıyor",
+    analytics_what_body: 'Ekran görüntülemeleri, özellik etkileşimleri (örn. "görev tamamlandı", "bahçe açıldı"), oturum süresi, uygulama sürümü, cihaz modeli, işletim sistemi sürümü ve rastgele oluşturulmuş anonim bir kimlik. PostHog e-postanızı, adınızı, görevlerinizi, günlük girdilerinizi veya uygulamada oluşturduğunuz herhangi bir içeriği almaz.',
+    analytics_control_title: "Sizin kontrolünüz",
+    analytics_control_body: "Analitik, uygulamayı geliştirmemize yardımcı olmak için varsayılan olarak açıktır. İstediğiniz zaman Ayarlar → Gizlilik → Analitik bölümünden kapatabilirsiniz. Kapatıldığında PostHog hemen veri toplamayı durdurur ve cihazınızdan olay gönderilmez.",
+    analytics_storage_title: "Depolama ve saklama",
+    analytics_storage_body: "PostHog, toplu kullanım verilerini AB'de barındırılan sunucularında (GDPR uyumlu, ISO 27001 sertifikalı) saklar. Olay verileri 12 ay saklanır, ardından otomatik olarak silinir. Bu veriyi dışa aktarmıyor veya başka bir kaynakla birleştirmiyoruz.",
+    analytics_link: 'PostHog\'un gizlilik uygulamaları hakkında daha fazla bilgi için <a href="https://posthog.com/privacy" target="_blank" style="color:var(--green-600);font-weight:500">posthog.com/privacy</a> adresini ziyaret edin.',
+    ads_badge: "05 — Reklamlar",
+    ads_title: '<em>Ücretsiz planda</em> reklamlar',
+    ads_intro: "Ücretsiz plan, Google AdMob tarafından sunulan ara sıra reklamlar içerir. Reklamlar günde en fazla bir kez görünür ve Odak Modu ya da onboarding sırasında asla gösterilmez.",
+    ads_att_title: "App Tracking Transparency (iOS)",
+    ads_att_body: 'iOS\'ta BloomDay herhangi bir takip gerçekleşmeden önce izninizi sorar. <strong>"Uygulamadan İzlememesini İste"</strong>yi seçebilirsiniz, BloomDay yalnızca kişiselleştirilmemiş reklamlar isteyecektir &mdash; size özel davranışsal profil oluşturulmaz. <strong>"İzin Ver"</strong>i seçerseniz Google AdMob daha alakalı reklamlar göstermek için cihazınızın reklam tanımlayıcısını (IDFA) kullanabilir. Her iki seçim de tam olarak saygı görür.',
+    ads_control_title: "Sizin kontrolünüz",
+    ads_control_body: 'Bu izni istediğiniz zaman iOS Ayarlar &rarr; Gizlilik ve Güvenlik &rarr; İzleme &rarr; BloomDay bölümünden değiştirebilirsiniz.',
+    ads_upgrade: "Herhangi bir ücretli plana (Bloom, Forest veya Eden) yükseltmek tüm reklamları kalıcı olarak kaldırır.",
+    sharing_badge: "06 — Üçüncü Taraflar",
+    sharing_title: '<em>Verilerinize</em> kim daha dokunuyor',
+    tp_supabase_body: "Yalnızca hesap kimlik doğrulaması. E-posta ve hashlenmiş şifrenizi saklar. Bahçe veya görev verisi Supabase'e gönderilmez.",
+    tp_supabase_tag: "GDPR uyumlu · SOC 2",
+    tp_posthog_body: "Uygulamayı geliştirmemize yardımcı olan anonim ürün analitiği. AB'de barındırılır, davranışsal profilleme yok. Ayarlarda kapatılabilir.",
+    tp_posthog_tag: "AB'de barındırılır · Kapatılabilir",
+    tp_rc_body: "Apple App Store ve Google Play üzerinden abonelik yönetimi. Yalnızca bir işlem belirteci alır.",
+    tp_rc_tag: "Ödeme verisi paylaşılmaz",
+    tp_admob_body: "Ücretsiz planda reklamlar. İzninizle (iOS App Tracking Transparency aracılığıyla), alakalı reklamlar göstermek için reklam tanımlayıcınızı kullanır. İzin olmadan yalnızca kişiselleştirilmemiş reklamlar gösterir.",
+    tp_admob_tag: "Ücretsiz plan · İzin bazlı",
+    sharing_highlight: "Başka hiçbir üçüncü tarafın verilerinize erişimi yoktur. Yukarıda listelenenlerin dışında Facebook SDK, Amplitude, Mixpanel, Firebase Analytics veya başka herhangi bir takip hizmeti kullanmıyoruz.",
+    storage_badge: "07 — Depolama ve Saklama",
+    storage_title: 'Verileriniz <em>nerede yaşar</em>',
+    storage_1_title: "Yerel depolama",
+    storage_1_body: "Görevleriniz, bitkileriniz, serileriniz, başarılarınız, günlük girdileriniz ve tüm bahçe verileriniz cihazınızda yerel olarak saklanır. Bu veriyi sunucularımızda saklamıyoruz. Tuttuğumuz tek kişisel veri e-posta adresinizdir.",
+    storage_2_title: "Uygulamayı silmek",
+    storage_2_body: "Uygulamayı cihazınızdan kaldırmak bahçeniz, görevleriniz ve ilerlemeniz dahil tüm yerel verileri kalıcı olarak siler. Bu geri alınamaz.",
+    storage_3_title: "Hesap silme",
+    storage_3_body: 'Ayarlar &rarr; Hesabı Sil, e-postanızı kimlik doğrulama sistemimizden kaldırır ve tüm yerel verileri siler. Silme sonrası hiçbir şey tutmuyoruz.',
+    rights_badge: "08 — Haklarınız",
+    rights_title: 'Bizden <em>isteyebilecekleriniz</em>',
+    rights_intro: "GDPR (AB), KVKK (Türkiye), CCPA (Kaliforniya) ve benzeri düzenlemeler kapsamında kişisel verileriniz hakkında aşağıdaki haklara sahipsiniz:",
+    rights_1_title: "Erişim",
+    rights_1_body: "Elimizde hangi kişisel veriyi tuttuğumuzun onayını talep edin. Sunucularımızdaki tek kişisel veri e-posta adresinizdir.",
+    rights_2_title: "Silme",
+    rights_2_body: 'Hesabınızı uygulama içinde (Ayarlar &rarr; Hesabı Sil) veya bize e-posta atarak silin. Bu, e-postanızı kimlik doğrulama sistemimizden kaldırır. Tüm bahçe ve görev verisi cihazınızda yerel olarak saklanır ve uygulamayı kaldırdığınızda silinir.',
+    rights_3_title: "Dışa aktarma",
+    rights_3_body: 'Görev verilerinizi istediğiniz zaman Ayarlar &rarr; Veriyi Dışa Aktar bölümünden dışa aktarın. CSV dosyası olarak doğrudan cihazınıza indirilir. Tüm veriler yerel olduğundan her zaman tam kontrole sahipsiniz.',
+    rights_4_title: "Analitikten çıkış",
+    rights_4_body: 'Analitik toplamayı istediğiniz zaman Ayarlar &rarr; Gizlilik &rarr; Analitik bölümünden kapatın. Hemen etkili olur.',
+    children_badge: "09 — Çocuklar",
+    children_title: '<em>13 yaş altı</em> çocuklar için değil',
+    children_body: "BloomDay, 13 yaş altı çocuklara yönelik değildir. 13 yaş altındaki kimseden bilerek kişisel bilgi toplamıyoruz. 13 yaş altı bir çocuğun hesap oluşturduğunu düşünüyorsanız lütfen bize ulaşın, hemen sileriz.",
+    contact_badge: "10 — İletişim",
+    contact_title: 'Sorular veya <em>talepler</em>',
+    contact_intro: "BloomDay, Türkiye merkezli bağımsız bir solo geliştirici tarafından işletilmektedir. Tüm gizlilik soruları, veri talepleri veya endişeler için 5 iş günü içinde yanıt veriyoruz.",
+    contact_box: "Herhangi bir veri talebi, soru veya endişe için bize ulaşın.",
+    footer_tagline: "Sizinle büyüyen üretkenlik. Her tamamlanan görevi canlı bir bitkiye dönüştürün.",
+    footer_resources: "Kaynaklar",
+    footer_guide: "Kullanım Kılavuzu",
+    footer_support: "Destek",
+    footer_press: "Basın",
+    footer_privacy: "Gizlilik Politikası",
+    footer_connect: "Bağlanın",
+    footer_contact: "Bize Ulaşın",
+    footer_copyright: "© 2026 BloomDay. Tüm hakları saklıdır."
+  },
+  es: {
+    nav_back: "Volver al inicio",
+    hero_badge: "Legal",
+    hero_title: 'Política de <em>Privacidad</em>',
+    hero_desc: "Tus datos son tuyos. Aquí tienes exactamente qué recopilamos, por qué y cómo los protegemos.",
+    hero_updated: "Última actualización: Abril 2026",
+    toc_overview: "Resumen",
+    toc_collect: "Datos que Recopilamos",
+    toc_use: "Cómo los Usamos",
+    toc_analytics: "Analítica",
+    toc_ads: "Publicidad",
+    toc_sharing: "Terceros",
+    toc_storage: "Almacenamiento",
+    toc_rights: "Tus Derechos",
+    toc_children: "Niños",
+    toc_contact: "Contacto",
+    overview_badge: "01 — Resumen",
+    overview_title: 'Simple por <em>diseño</em>',
+    overview_p1: "BloomDay es una app de planificación de tareas y jardín virtual. Recopilamos solo lo necesario para hacer funcionar la app y entender cómo se usa. No vendemos datos, no construimos perfiles de comportamiento ni compartimos tu información con anunciantes más allá de lo necesario para mostrar anuncios en el plan gratuito.",
+    overview_card: '<strong>Creemos que la privacidad debe ser lo predeterminado, no un ajuste que hay que buscar.</strong> Esta política está escrita para leerse, no para confundir. Si algo no queda claro, escríbenos.',
+    collect_badge: "02 — Datos que Recopilamos",
+    collect_title: 'Lo que <em>sabemos de ti</em>',
+    collect_1_title: "Información de la cuenta",
+    collect_1_body: "Al crear una cuenta, recopilamos tu dirección de correo y una contraseña cifrada de forma segura. Esto se usa únicamente para autenticar tu identidad. No recopilamos tu nombre, número de teléfono ni ningún otro identificador personal.",
+    collect_2_title: "Datos de la app (solo locales)",
+    collect_2_body: "Tus tareas, progreso del jardín, inventario de plantas, historial de rachas, logros, entradas de diario, cápsulas del tiempo y preferencias se almacenan localmente en tu dispositivo. Nada de esto se envía ni almacena en nuestros servidores.",
+    collect_3_title: "Analítica de uso",
+    collect_3_body: "Para mejorar la app, recopilamos patrones de uso anónimos como qué pantallas visitas, qué funciones usas, duración de sesión e información general del dispositivo (modelo, sistema operativo, versión de la app). Estos datos no se vinculan a tu correo ni identidad personal. Puedes desactivarlo en Ajustes → Privacidad → Analítica.",
+    collect_highlight: "No recopilamos tu ubicación precisa, contactos, fotos, micrófono, datos meteorológicos ni ningún otro dato sensible. El único identificador de dispositivo que puede usarse para publicidad es tu ID de publicidad, y solo si lo autorizas explícitamente a través del aviso de seguimiento de iOS (ver Publicidad abajo).",
+    use_badge: "03 — Cómo los Usamos",
+    use_title: 'Solo lo que <em>hace funcionar la app</em>',
+    use_1_title: "Autenticación",
+    use_1_body: "Tu correo y credenciales se usan para crear y proteger tu cuenta a través de Supabase. Soportamos correo/contraseña e Inicio de Sesión con Apple.",
+    use_2_title: "Persistencia local",
+    use_2_body: "Tus tareas, plantas, logros y progreso se guardan en el almacenamiento local de tu dispositivo para que tu jardín persista entre sesiones. Los datos no se sincronizan entre dispositivos ni en la nube.",
+    use_3_title: "Notificaciones",
+    use_3_body: "Si activas los recordatorios de tareas, la app programa notificaciones locales en tu dispositivo. Las notificaciones nunca pasan por un servidor. Los recordatorios recurrentes diarios y semanales se disparan localmente.",
+    use_4_title: "Comunicaciones de cuenta",
+    use_4_body: "Podemos usar tu correo solo para eventos críticos de cuenta: restablecimiento de contraseña y confirmación de eliminación. No enviamos correos de marketing, boletines ni contenido promocional.",
+    analytics_badge: "04 — Analítica",
+    analytics_title: 'Cómo <em>entendemos el uso</em>',
+    analytics_intro: "BloomDay usa PostHog, un servicio de analítica de producto de terceros, para entender cómo los usuarios interactúan con la app y poder mejorarla. PostHog se usa en modo privacidad-primero sin perfilado de comportamiento ni seguimiento entre sitios.",
+    analytics_what_title: "Qué recibe PostHog",
+    analytics_what_body: 'Vistas de pantalla, interacciones con funciones (p. ej. "tarea completada", "jardín abierto"), duración de sesión, versión de la app, modelo del dispositivo, versión del sistema operativo y un ID anónimo generado aleatoriamente. PostHog no recibe tu correo, nombre, tareas, entradas de diario ni ningún contenido que crees en la app.',
+    analytics_control_title: "Tu control",
+    analytics_control_body: "La analítica está activada por defecto para ayudarnos a mejorar la app. Puedes desactivarla en cualquier momento en Ajustes → Privacidad → Analítica. Cuando se desactiva, PostHog deja de recopilar datos inmediatamente y no se envían eventos desde tu dispositivo.",
+    analytics_storage_title: "Almacenamiento y retención",
+    analytics_storage_body: "PostHog almacena datos agregados de uso en sus servidores alojados en la UE (cumplimiento RGPD, certificación ISO 27001). Los datos de eventos se conservan 12 meses, tras lo cual se eliminan automáticamente. No exportamos estos datos ni los combinamos con ninguna otra fuente.",
+    analytics_link: 'Conoce más sobre las prácticas de privacidad de PostHog en <a href="https://posthog.com/privacy" target="_blank" style="color:var(--green-600);font-weight:500">posthog.com/privacy</a>.',
+    ads_badge: "05 — Publicidad",
+    ads_title: 'Anuncios en el <em>plan gratuito</em>',
+    ads_intro: "El plan gratuito incluye anuncios ocasionales servidos por Google AdMob. Los anuncios aparecen como máximo una vez al día y nunca se muestran durante el Modo Enfoque o durante la introducción.",
+    ads_att_title: "Transparencia de Seguimiento (iOS)",
+    ads_att_body: 'En iOS, BloomDay pide tu permiso antes de cualquier seguimiento. Puedes elegir <strong>"Pedir a la app que no rastree"</strong> y BloomDay solicitará solo anuncios no personalizados &mdash; no se construye ningún perfil de comportamiento sobre ti. Si eliges <strong>"Permitir"</strong>, Google AdMob puede usar el identificador de publicidad de tu dispositivo (IDFA) para mostrar anuncios más relevantes. Ambas opciones se respetan plenamente.',
+    ads_control_title: "Tu control",
+    ads_control_body: 'Puedes cambiar este permiso en cualquier momento en Ajustes de iOS &rarr; Privacidad y Seguridad &rarr; Seguimiento &rarr; BloomDay.',
+    ads_upgrade: "Actualizar a cualquier plan de pago (Bloom, Forest o Eden) elimina todos los anuncios permanentemente.",
+    sharing_badge: "06 — Terceros",
+    sharing_title: 'Quién más <em>toca tus datos</em>',
+    tp_supabase_body: "Solo autenticación de cuenta. Almacena tu correo y contraseña cifrada. No se envían datos de jardín o tareas a Supabase.",
+    tp_supabase_tag: "Conforme RGPD · SOC 2",
+    tp_posthog_body: "Analítica de producto anónima para ayudarnos a mejorar la app. Alojado en la UE, sin perfilado de comportamiento. Desactivable en Ajustes.",
+    tp_posthog_tag: "Alojado en UE · Desactivable",
+    tp_rc_body: "Gestión de suscripciones vía Apple App Store y Google Play. Recibe solo un token de transacción.",
+    tp_rc_tag: "Sin datos de pago compartidos",
+    tp_admob_body: "Anuncios en el plan gratuito. Con tu consentimiento (vía Transparencia de Seguimiento de iOS), usa tu identificador de publicidad para mostrar anuncios relevantes. Sin consentimiento, muestra solo anuncios no personalizados.",
+    tp_admob_tag: "Plan gratuito · Basado en consentimiento",
+    sharing_highlight: "Ningún otro tercero tiene acceso a tus datos. No usamos Facebook SDK, Amplitude, Mixpanel, Firebase Analytics ni ningún otro servicio de seguimiento más allá de lo listado arriba.",
+    storage_badge: "07 — Almacenamiento y Retención",
+    storage_title: 'Dónde <em>viven tus datos</em>',
+    storage_1_title: "Almacenamiento local",
+    storage_1_body: "Tus tareas, plantas, rachas, logros, entradas de diario y todos los datos del jardín se almacenan localmente en tu dispositivo. No almacenamos estos datos en nuestros servidores. Tu correo es el único dato personal que guardamos.",
+    storage_2_title: "Eliminar la app",
+    storage_2_body: "Eliminar la app de tu dispositivo borra permanentemente todos los datos locales, incluyendo tu jardín, tareas y progreso. Esto no se puede recuperar.",
+    storage_3_title: "Eliminación de cuenta",
+    storage_3_body: 'Ajustes &rarr; Eliminar Cuenta elimina tu correo de nuestro sistema de autenticación y borra todos los datos locales. Tras la eliminación, no conservamos nada.',
+    rights_badge: "08 — Tus Derechos",
+    rights_title: 'Lo que puedes <em>pedirnos</em>',
+    rights_intro: "Bajo el RGPD (UE), KVKK (Turquía), CCPA (California) y regulaciones similares, tienes los siguientes derechos sobre tus datos personales:",
+    rights_1_title: "Acceso",
+    rights_1_body: "Solicita confirmación de qué datos personales tenemos. El único dato personal en nuestros servidores es tu correo electrónico.",
+    rights_2_title: "Eliminación",
+    rights_2_body: 'Elimina tu cuenta dentro de la app (Ajustes &rarr; Eliminar Cuenta) o escribiéndonos. Esto elimina tu correo de nuestro sistema de autenticación. Todos los datos de jardín y tareas se almacenan localmente en tu dispositivo y se eliminan cuando quitas la app.',
+    rights_3_title: "Exportación",
+    rights_3_body: 'Exporta tus datos de tareas en cualquier momento desde Ajustes &rarr; Exportar Datos. Se descarga como un archivo CSV directamente a tu dispositivo. Como todos los datos son locales, siempre tienes control total.',
+    rights_4_title: "Desactivar analítica",
+    rights_4_body: 'Desactiva la recopilación de analítica en cualquier momento en Ajustes &rarr; Privacidad &rarr; Analítica. Surte efecto inmediatamente.',
+    children_badge: "09 — Niños",
+    children_title: 'No para niños <em>menores de 13</em>',
+    children_body: "BloomDay no está dirigida a niños menores de 13 años. No recopilamos conscientemente información personal de nadie menor de 13. Si crees que un niño menor de 13 ha creado una cuenta, contáctanos y la eliminaremos pronto.",
+    contact_badge: "10 — Contacto",
+    contact_title: 'Preguntas o <em>solicitudes</em>',
+    contact_intro: "BloomDay es operada por un desarrollador solo independiente basado en Turquía. Para todas las consultas de privacidad, solicitudes de datos o preocupaciones, respondemos en 5 días hábiles.",
+    contact_box: "Contáctanos para cualquier solicitud de datos, pregunta o preocupación.",
+    footer_tagline: "Productividad que crece contigo. Convierte cada tarea completada en una planta viva.",
+    footer_resources: "Recursos",
+    footer_guide: "Guía del Usuario",
+    footer_support: "Soporte",
+    footer_press: "Prensa",
+    footer_privacy: "Política de Privacidad",
+    footer_connect: "Conecta",
+    footer_contact: "Contáctanos",
+    footer_copyright: "© 2026 BloomDay. Todos los derechos reservados."
+  }
+};
+
+// ─── LANGUAGE SWITCHING ─────────────────────────────────────────────
+function setLanguage(lang) {
+  if (!TRANSLATIONS[lang]) lang = 'en';
+  const t = TRANSLATIONS[lang];
+
+  // Text content keys
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // HTML content keys (for strings with <em>, <strong>, etc.)
+  document.querySelectorAll('[data-t-html]').forEach(el => {
+    const key = el.getAttribute('data-t-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Update <html lang> attribute for accessibility + SEO
+  document.documentElement.setAttribute('lang', lang);
+
+  // Update page title
+  const titles = {
+    en: 'BloomDay · Privacy Policy',
+    tr: 'BloomDay · Gizlilik Politikası',
+    es: 'BloomDay · Política de Privacidad'
+  };
+  document.title = titles[lang] || titles.en;
+
+  // Update toggle active state
+  document.querySelectorAll('.lang-toggle button').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-set-lang') === lang);
+  });
+
+  // Persist user's choice
+  try { localStorage.setItem('bloomday_lang', lang); } catch(_) {}
+}
+
+// Wire up toggle buttons
+document.querySelectorAll('.lang-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lang = btn.getAttribute('data-set-lang');
+    setLanguage(lang);
+  });
+});
+
+// Initial language: saved preference → browser language → EN
+(function initLang() {
+  let initial = 'en';
+  try {
+    const saved = localStorage.getItem('bloomday_lang');
+    if (saved && TRANSLATIONS[saved]) {
+      initial = saved;
+    } else {
+      // Detect from browser
+      const browserLang = (navigator.language || '').toLowerCase().slice(0, 2);
+      if (TRANSLATIONS[browserLang]) initial = browserLang;
+    }
+  } catch(_) {}
+  setLanguage(initial);
+})();
+
+// Section fade-in observer
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 },{threshold:0.08});
