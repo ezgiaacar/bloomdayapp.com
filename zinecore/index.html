@@ -1,199 +1,2362 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZINECORE – Privacy & Support</title>
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>.:*~ZINECORE~*:. - OFFICIAL SITE - Your #1 Zine Destination!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&family=Irish+Grover&family=Patrick+Hand&display=swap');
 
-<style>
-body {
-    margin: 0;
-    font-family: "Arial Black", Arial, sans-serif;
-    background: linear-gradient(135deg, #ff2d95, #6be7ff);
-    color: black;
-}
+    /* Y2K COLOR PALETTE */
+    :root {
+      --hotpink: #ff1493;
+      --lime: #a8ff04;
+      --yellow: #ffe600;
+      --teal: #00ced1;
+      --blue: #4169e1;
+      --black: #111;
+    }
 
-.container {
-    max-width: 820px;
-    margin: 40px auto;
-    background: #f5f5f5;
-    border: 4px solid black;
-    box-shadow: 10px 10px 0px black;
-    padding: 30px;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 14px;
+      background: 
+        radial-gradient(ellipse at 50% 80%, rgba(255,182,193,0.7) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 20%, rgba(173,216,230,0.6) 0%, transparent 40%),
+        radial-gradient(ellipse at 70% 30%, rgba(200,220,255,0.5) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 50%, rgba(255,192,203,0.5) 0%, transparent 60%),
+        linear-gradient(180deg, 
+          #a8d4f0 0%, 
+          #c5dff5 15%,
+          #d4e4f7 25%,
+          #e8d5e8 40%,
+          #f5c6d6 55%,
+          #f8d0d8 65%,
+          #e0dff5 80%,
+          #b8d4ea 100%
+        );
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #fff;
+      cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><polygon points="10,0 12,8 20,10 12,12 10,20 8,12 0,10 8,8" fill="%23ff1493"/></svg>') 10 10, auto;
+    }
 
-h1 {
-    background: #ffea00;
-    display: inline-block;
-    padding: 10px 16px;
-    border: 3px solid black;
-    margin-bottom: 10px;
-    font-size: 28px;
-}
+    /* INLINE ICONS */
+    .icon {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      vertical-align: middle;
+      margin: 0 2px;
+    }
+    .icon-sm { width: 10px; height: 10px; }
+    .icon-md { width: 14px; height: 14px; }
+    .icon-lg { width: 16px; height: 16px; }
 
-h2 {
-    background: #00ffd0;
-    display: inline-block;
-    padding: 6px 12px;
-    border: 2px solid black;
-    margin-top: 30px;
-    font-size: 18px;
-}
+    /* MAIN WRAPPER - CENTERED TABLE STYLE */
+    .main-table {
+      width: 780px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
 
-p {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin-top: 10px;
-}
+    /* TOP BAR */
+    .topbar {
+      background: linear-gradient(90deg, #9370db, #c0106f, #9370db);
+      border: 2px outset #dda0dd;
+      padding: 4px 10px;
+      text-align: right;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 16px;
+      color: #fff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 5px #ff69b4;
+    }
 
-ul {
-    font-family: Arial, sans-serif;
-    padding-left: 20px;
-}
+    /* HEADER CELL */
+    .header-cell {
+      background: linear-gradient(135deg, #ff69b4 0%, #dda0dd 25%, #87ceeb 50%, #dda0dd 75%, #ff69b4 100%);
+      border: 4px outset #dda0dd;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
 
-li {
-    margin-bottom: 8px;
-}
+    .header-cell::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+        rgba(255,105,180,0.3) 0%, 
+        rgba(135,206,235,0.3) 50%, 
+        rgba(221,160,221,0.3) 100%);
+      animation: shimmer 3s ease-in-out infinite;
+    }
 
-.sticker {
-    display: inline-block;
-    padding: 6px 10px;
-    margin: 5px;
-    background: #ff2d95;
-    color: white;
-    border: 2px solid black;
-    transform: rotate(-3deg);
-    font-size: 12px;
-}
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
 
-.sticker.yellow {
-    background: #ffea00;
-    color: black;
-    transform: rotate(3deg);
-}
+    .header-cell h1 {
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 48px;
+      color: var(--yellow);
+      text-shadow: 
+        3px 3px 0 #c0106f,
+        -1px -1px 0 #9370db,
+        1px -1px 0 #87ceeb,
+        -1px 1px 0 #ff69b4,
+        0 0 20px var(--yellow),
+        0 0 40px #ff69b4;
+      margin: 0;
+      letter-spacing: 4px;
+      animation: glow 1.5s ease-in-out infinite alternate;
+      position: relative;
+      z-index: 1;
+    }
 
-.sticker.blue {
-    background: #00d9ff;
-    color: black;
-}
+    @keyframes glow {
+      from { text-shadow: 3px 3px 0 #c0106f, 0 0 10px var(--yellow), 0 0 20px #ff69b4; }
+      to { text-shadow: 3px 3px 0 #9370db, 0 0 30px var(--yellow), 0 0 50px #87ceeb, 0 0 60px #dda0dd; }
+    }
 
-.divider {
-    margin: 40px 0;
-    height: 3px;
-    background: black;
-}
+    .header-cell p {
+      font-family: 'Irish Grover', cursive;
+      font-size: 20px;
+      color: #fff;
+      margin: 8px 0;
+      font-weight: normal;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px #c0106f, 0 0 10px #ff69b4;
+      position: relative;
+      z-index: 1;
+    }
 
-.footer {
-    margin-top: 40px;
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-}
+    .blink {
+      animation: blinker 0.8s linear infinite;
+      color: var(--yellow);
+      font-size: 14px !important;
+      font-family: 'VT323', monospace;
+      text-shadow: 0 0 8px #ff69b4, 0 0 15px #dda0dd;
+    }
 
-.button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 18px;
-    background: #ff2d95;
-    color: white;
-    border: 3px solid black;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 4px 4px 0px black;
-}
-</style>
-</head>
+    @keyframes blinker {
+      50% { opacity: 0; }
+    }
 
+    /* MARQUEE BAR */
+    .marquee-bar {
+      background: linear-gradient(90deg, #87ceeb, #dda0dd, #ff69b4, #dda0dd, #87ceeb);
+      border-left: 4px outset #87ceeb;
+      border-right: 4px outset #87ceeb;
+      padding: 6px 0;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 2px #c0106f;
+    }
+
+    .marquee-bar marquee {
+      color: #fff;
+    }
+
+    /* NAVIGATION BAR */
+    .navbar {
+      background: linear-gradient(180deg, #c5a0c5 0%, #9370db 50%, #c5a0c5 100%);
+      border: 3px outset #dda0dd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .nav-btn {
+      display: inline-block;
+      background: linear-gradient(180deg, #ff69b4 0%, #c0106f 50%, #ff69b4 100%);
+      border: 3px outset #ff69b4;
+      padding: 5px 15px;
+      margin: 2px 4px;
+      color: #fff;
+      font-family: 'VT323', monospace;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 0 #8a0c50;
+    }
+
+    .nav-btn:hover {
+      border-style: inset;
+      background: linear-gradient(180deg, #dda0dd 0%, #9370db 50%, #dda0dd 100%);
+      color: #fff;
+      text-shadow: 1px 1px 0 #6a4c93;
+    }
+
+    /* CONTENT LAYOUT TABLE */
+    .content-row {
+      vertical-align: top;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 180px;
+      background: linear-gradient(180deg, var(--teal) 0%, #009a9a 100%);
+      border: 4px outset var(--teal);
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    .sidebar-box {
+      background: #fff;
+      border: 3px inset #999;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-box h3 {
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 14px;
+      color: var(--hotpink);
+      margin: 0 0 8px 0;
+      text-align: center;
+      border-bottom: 2px dashed var(--hotpink);
+      padding-bottom: 5px;
+    }
+
+    .sidebar-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar-box li {
+      padding: 3px 0;
+      font-size: 13px;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Patrick Hand', cursive;
+    }
+
+    .sidebar-box a {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+
+    .sidebar-box a:hover {
+      color: var(--hotpink);
+      background: var(--yellow);
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      background: linear-gradient(180deg, var(--yellow) 0%, #e6cf00 100%);
+      border: 4px outset var(--yellow);
+      padding: 15px;
+      vertical-align: top;
+    }
+
+    .content-box {
+      background: #fff;
+      border: 3px inset #999;
+      padding: 12px;
+      margin-bottom: 15px;
+    }
+
+    .content-box h2 {
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 22px;
+      color: var(--hotpink);
+      margin: 0 0 10px 0;
+      text-shadow: 1px 1px 0 var(--yellow);
+      border-bottom: 3px double var(--hotpink);
+      padding-bottom: 5px;
+    }
+
+    .content-box p {
+      color: var(--black);
+      line-height: 1.6;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 14px;
+    }
+
+    /* STICKERS */
+    .sticker {
+      display: inline-block;
+      background: var(--lime);
+      border: 2px solid var(--black);
+      padding: 3px 8px;
+      margin: 2px;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--black);
+      transform: rotate(-5deg);
+      box-shadow: 2px 2px 0 var(--black);
+    }
+
+    .sticker:nth-child(2) {
+      background: var(--hotpink);
+      color: var(--yellow);
+      transform: rotate(3deg);
+    }
+
+    .sticker:nth-child(3) {
+      background: var(--teal);
+      color: #fff;
+      transform: rotate(-2deg);
+    }
+
+    /* BUTTONS */
+    .y2k-btn {
+      display: inline-block;
+      background: linear-gradient(180deg, var(--lime) 0%, #86cc03 50%, #5a8a02 100%);
+      border: 3px outset var(--lime);
+      padding: 8px 20px;
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--black);
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .y2k-btn:hover {
+      border-style: inset;
+      background: linear-gradient(180deg, #86cc03 0%, #5a8a02 50%, #3d5c01 100%);
+    }
+
+    .y2k-btn.pink {
+      background: linear-gradient(180deg, var(--hotpink) 0%, #c0106f 50%, #8a0c50 100%);
+      border-color: var(--hotpink);
+      color: var(--yellow);
+    }
+
+    /* FEATURES LIST */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .feature-list li {
+      padding: 5px 0;
+      color: var(--black);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Patrick Hand', cursive;
+    }
+
+    /* GIF ROW */
+    .gif-cell {
+      background: var(--black);
+      border: 4px ridge #444;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .gif-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gif-cell img {
+      border: 3px outset var(--hotpink);
+      flex-shrink: 0;
+    }
+
+    /* GUESTBOOK TABLE */
+    .guestbook-cell {
+      background: linear-gradient(180deg, var(--lime) 0%, #86cc03 100%);
+      border: 4px outset var(--lime);
+      padding: 15px;
+    }
+
+    .guestbook-cell h2 {
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 24px;
+      color: var(--black);
+      text-align: center;
+      margin: 0 0 10px 0;
+    }
+
+    .gb-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 14px;
+      font-family: 'Patrick Hand', cursive;
+    }
+
+    .gb-table td, .gb-table th {
+      border: 2px solid var(--black);
+      padding: 6px;
+      color: var(--black);
+    }
+
+    .gb-table tr:first-child {
+      background: var(--hotpink);
+      color: var(--yellow);
+      font-weight: bold;
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+    }
+
+    .gb-table tr:first-child td {
+      color: var(--yellow);
+    }
+
+    .gb-table tr:nth-child(even) {
+      background: #f0f0f0;
+    }
+
+    .gb-table tr:nth-child(odd):not(:first-child) {
+      background: #fff;
+    }
+
+    /* PRIVACY SECTION */
+    .privacy-cell {
+      background: linear-gradient(180deg, var(--teal) 0%, #009a9a 100%);
+      border: 4px outset var(--teal);
+      padding: 15px;
+    }
+
+    .privacy-box {
+      background: #fff;
+      border: 3px inset #999;
+      padding: 15px;
+    }
+
+    .privacy-box h2, .privacy-box h3 {
+      font-family: 'VT323', 'Courier New', monospace;
+      color: var(--hotpink);
+      margin: 10px 0 5px 0;
+    }
+
+    .privacy-box h2 {
+      font-size: 22px;
+      text-align: center;
+      border-bottom: 3px double var(--hotpink);
+      padding-bottom: 8px;
+    }
+
+    .privacy-box h3 {
+      font-size: 18px;
+    }
+
+    .privacy-box p {
+      color: var(--black);
+      line-height: 1.5;
+      font-size: 14px;
+      font-family: 'Patrick Hand', cursive;
+    }
+
+    .privacy-box hr {
+      border: none;
+      border-top: 2px dashed var(--hotpink);
+      margin: 12px 0;
+    }
+
+    /* SUPPORT TABLE */
+    .support-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .support-table td {
+      border: 2px solid var(--black);
+      padding: 6px;
+      color: var(--black);
+      font-family: 'Patrick Hand', cursive;
+      font-size: 14px;
+    }
+
+    .support-table tr:first-child {
+      background: var(--hotpink);
+      font-weight: bold;
+    }
+
+    .support-table tr:first-child td {
+      color: var(--yellow);
+    }
+
+    .support-table tr:nth-child(even) {
+      background: var(--lime);
+    }
+
+    /* FOOTER */
+    .footer-cell {
+      background: linear-gradient(180deg, #222 0%, var(--black) 100%);
+      border: 4px outset #333;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .footer-cell hr {
+      border: none;
+      border-top: 2px dashed var(--hotpink);
+      margin: 10px 0;
+    }
+
+    .footer-cell p {
+      color: #999;
+      font-size: 14px;
+      margin: 5px 0;
+      font-family: 'VT323', monospace;
+      letter-spacing: 1px;
+    }
+
+    .footer-cell .copy {
+      color: var(--yellow);
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 14px;
+    }
+
+    /* WEBRINGS / BADGES */
+    .badge-row {
+      margin: 10px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(180deg, #333 0%, #111 100%);
+      border: 2px outset #555;
+      padding: 4px 8px;
+      margin: 3px;
+      font-size: 12px;
+      color: var(--lime);
+      font-family: 'VT323', monospace;
+    }
+
+    /* UNDER CONSTRUCTION */
+    .construction {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .construction-gif {
+      width: 40px;
+      image-rendering: pixelated;
+    }
+
+    /* HIT COUNTER */
+    .hit-counter {
+      display: inline-block;
+      background: linear-gradient(180deg, #2d1b4e, #1a1a4e);
+      border: 2px inset #9370db;
+      padding: 4px 10px;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 18px;
+      color: #ffb6c1;
+      letter-spacing: 3px;
+      text-shadow: 0 0 5px #ff69b4;
+    }
+
+    /* AESTHETICS BOX */
+    .aesthetics-box {
+      background: linear-gradient(180deg, var(--blue) 0%, #2a4db0 100%);
+      border: 4px outset var(--blue);
+      padding: 15px;
+      text-align: center;
+    }
+
+    .aesthetics-box h2 {
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 24px;
+      color: var(--yellow);
+      text-shadow: 2px 2px 0 var(--black);
+      margin: 0 0 10px 0;
+    }
+
+    .aesthetics-box p {
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      font-family: 'Patrick Hand', cursive;
+    }
+
+    /* CSS FOLDER ICON */
+    .css-folder {
+      position: relative;
+      width: 36px;
+      height: 28px;
+      background: linear-gradient(180deg, #ffe600 0%, #e6cf00 100%);
+      border-radius: 0 3px 3px 3px;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+      animation: folderWobble 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .css-folder::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 0;
+      width: 14px;
+      height: 8px;
+      background: linear-gradient(180deg, #ffe600 0%, #e6cf00 100%);
+      border-radius: 3px 3px 0 0;
+    }
+    .css-folder::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+    @keyframes folderWobble {
+      0%, 100% { transform: rotate(-3deg) scale(1); }
+      25% { transform: rotate(2deg) scale(1.05); }
+      50% { transform: rotate(-2deg) scale(1); }
+      75% { transform: rotate(3deg) scale(1.02); }
+    }
+    .css-folder.delay { animation-delay: 0.5s; }
+
+    /* CSS CD ICON */
+    .css-cd {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: 
+        radial-gradient(circle at center, #333 6px, transparent 6px),
+        conic-gradient(from 0deg, #ff1493, #ffe600, #a8ff04, #00ced1, #4169e1, #ff1493);
+      box-shadow: 
+        inset 0 0 15px rgba(255,255,255,0.6),
+        inset 0 0 4px rgba(0,0,0,0.2),
+        2px 2px 4px rgba(0,0,0,0.3);
+      animation: cdSpin 3s linear infinite;
+      margin: 0 auto 6px auto;
+    }
+    .css-cd::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+    }
+    @keyframes cdSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* CSS PIXEL PHONE */
+    .css-pixel-phone {
+      position: relative;
+      width: 24px;
+      height: 40px;
+      background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
+      border-radius: 4px;
+      box-shadow: 
+        inset 2px 2px 0 #e0e0e0,
+        inset -2px -2px 0 #808080,
+        3px 3px 0 rgba(0,0,0,0.3);
+      animation: phoneRing 0.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .css-pixel-phone::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, #98fb98 0%, #32cd32 50%, #228b22 100%);
+      border: 2px inset #666;
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+    }
+    .css-pixel-phone::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 10px;
+      background: 
+        linear-gradient(90deg, transparent 2px, #555 2px, #555 4px, transparent 4px, transparent 6px, #555 6px, #555 8px, transparent 8px, transparent 10px, #555 10px, #555 12px, transparent 12px),
+        linear-gradient(180deg, transparent 2px, #555 2px, #555 4px, transparent 4px, transparent 6px, #555 6px, #555 8px, transparent 8px);
+      background-size: 14px 4px, 14px 10px;
+    }
+    @keyframes phoneRing {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+    .css-pixel-phone.delay { animation-delay: 0.25s; }
+
+    /* RESPONSIVE - NOT VERY Y2K BUT NECESSARY */
+    @media (max-width: 800px) {
+      .main-table {
+        width: 100%;
+      }
+      .sidebar {
+        display: none;
+      }
+      .main-content {
+        width: 100% !important;
+      }
+      .content-row td {
+        display: block;
+        width: 100% !important;
+      }
+    }
+
+    /* SPARKLE ANIMATION FOR DIVIDERS */
+    .sparkle-divider {
+      text-align: center;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .sparkle-divider svg {
+      animation: sparkleColor 2s linear infinite;
+    }
+
+    @keyframes sparkleColor {
+      0% { fill: var(--hotpink); }
+      25% { fill: var(--yellow); }
+      50% { fill: var(--lime); }
+      75% { fill: var(--teal); }
+      100% { fill: var(--hotpink); }
+    }
+
+    /* WELCOME SIGN */
+    .welcome-sign {
+      background: linear-gradient(135deg, var(--hotpink), var(--yellow), var(--lime), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      padding: 5px;
+    }
+
+    /* FLOATING SIDE BOXES */
+    .side-box {
+      position: fixed;
+      width: 120px;
+      background: #fff;
+      border: 3px outset #999;
+      padding: 8px;
+      font-size: 9px;
+      text-align: center;
+      z-index: 100;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+    }
+
+    .side-box h4 {
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 12px;
+      color: var(--hotpink);
+      margin: 0 0 6px 0;
+      border-bottom: 2px dashed var(--hotpink);
+      padding-bottom: 4px;
+    }
+
+    .side-box-left {
+      left: 20px;
+    }
+
+    .side-box-right {
+      right: 20px;
+    }
+
+    .side-box.box-pink {
+      background: linear-gradient(135deg, #ffe6f0, #fff);
+      border-color: var(--hotpink);
+    }
+
+    .side-box.box-teal {
+      background: linear-gradient(135deg, #e0ffff, #fff);
+      border-color: var(--teal);
+    }
+
+    .side-box.box-lime {
+      background: linear-gradient(135deg, #f0ffe0, #fff);
+      border-color: var(--lime);
+    }
+
+    .side-box.box-dark {
+      background: linear-gradient(135deg, #222, #111);
+      border-color: #444;
+      color: var(--lime);
+    }
+
+    .side-box.box-dark h4 {
+      color: var(--yellow);
+      border-color: var(--yellow);
+    }
+
+    .floating-badge {
+      display: inline-block;
+      background: linear-gradient(180deg, #333, #111);
+      border: 2px outset #444;
+      padding: 3px 6px;
+      margin: 2px;
+      font-size: 11px;
+      color: var(--lime);
+      font-family: 'VT323', monospace;
+    }
+
+    .side-sticker {
+      display: inline-block;
+      padding: 4px 8px;
+      margin: 3px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 2px solid #000;
+      transform: rotate(-3deg);
+      box-shadow: 2px 2px 0 #000;
+      font-family: 'VT323', monospace;
+    }
+
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    .float-anim {
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+
+    .wobble-anim {
+      animation: wobble 2s ease-in-out infinite;
+    }
+
+    /* 3D Perspective Cube Links */
+    .cube-box {
+      position: relative;
+      width: 100%;
+      height: 140px;
+      transform-style: preserve-3d;
+      transform: rotateX(-12deg) rotateY(-20deg);
+      transition: transform 0.4s ease;
+      animation: cubeFloat 4s ease-in-out infinite;
+    }
+
+    .cube-box:hover {
+      transform: rotateX(-8deg) rotateY(-12deg);
+    }
+
+    @keyframes cubeFloat {
+      0%, 100% { transform: rotateX(-12deg) rotateY(-20deg) translateY(0); }
+      50% { transform: rotateX(-12deg) rotateY(-20deg) translateY(-5px); }
+    }
+
+    .cube-face {
+      position: absolute;
+      backface-visibility: hidden;
+    }
+
+    .cube-front {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1a4e 0%, #2d1b4e 50%, #4a2c7a 100%);
+      border: 3px outset #9932cc;
+      box-shadow: inset 0 0 20px rgba(153, 50, 204, 0.3);
+      padding: 10px 8px;
+      transform: translateZ(12px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cube-right {
+      width: 24px;
+      height: 100%;
+      background: linear-gradient(180deg, #2d1b4e 0%, #1a1a2e 100%);
+      border: 2px solid #6a2c9a;
+      transform: rotateY(90deg) translateZ(12px) translateX(-12px);
+      right: 0;
+    }
+
+    .cube-bottom {
+      width: 100%;
+      height: 24px;
+      background: linear-gradient(180deg, #1a1a2e 0%, #0a0a1e 100%);
+      border: 2px solid #4a1c6a;
+      transform: rotateX(-90deg) translateZ(12px) translateY(-12px);
+      bottom: 0;
+    }
+
+    .cube-link {
+      display: block;
+      width: 90%;
+      margin: 2px 0;
+      padding: 4px 6px;
+      text-decoration: none;
+      font-size: 11px;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-weight: bold;
+      text-align: center;
+      transition: all 0.2s;
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+    }
+
+    .cube-link:nth-child(2) {
+      background: linear-gradient(180deg, var(--hotpink), #cc1177);
+      border: 2px outset var(--hotpink);
+      color: #fff;
+    }
+
+    .cube-link:nth-child(3) {
+      background: linear-gradient(180deg, var(--lime), #6fc703);
+      border: 2px outset var(--lime);
+      color: #111;
+    }
+
+    .cube-link:nth-child(4) {
+      background: linear-gradient(180deg, var(--teal), #00a8ab);
+      border: 2px outset var(--teal);
+      color: #fff;
+    }
+
+    .cube-link:nth-child(5) {
+      background: linear-gradient(180deg, var(--yellow), #d4c200);
+      border: 2px outset var(--yellow);
+      color: #111;
+    }
+
+    .cube-link:nth-child(6) {
+      background: linear-gradient(180deg, var(--blue), #3050b0);
+      border: 2px outset var(--blue);
+      color: #fff;
+    }
+
+    .cube-link:hover {
+      filter: brightness(1.15);
+      border-style: inset;
+      transform: scale(1.03);
+    }
+
+    /* Email bounce animation */
+    @keyframes emailBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Arrow bounce animation */
+    @keyframes bounceArrow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* Y2K Popup Window */
+    .y2k-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 10000;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 60px;
+    }
+
+    .y2k-popup {
+      background: linear-gradient(180deg, #c0c0c0, #a0a0a0);
+      border: 3px outset #dfdfdf;
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+      max-width: 350px;
+      animation: popupAppear 0.3s ease-out;
+    }
+
+    @keyframes popupAppear {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .y2k-popup-titlebar {
+      background: linear-gradient(180deg, #000080, #000050);
+      padding: 4px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .y2k-popup-titlebar span {
+      color: #fff;
+      font-family: 'VT323', monospace;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .y2k-popup-close {
+      background: linear-gradient(180deg, #ddd, #aaa);
+      border: 2px outset #ccc;
+      width: 18px;
+      height: 18px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .y2k-popup-close:active {
+      border-style: inset;
+    }
+
+    .y2k-popup-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .y2k-popup-btn {
+      background: linear-gradient(180deg, #ddd, #aaa);
+      border: 2px outset #ccc;
+      padding: 6px 30px;
+      font-family: 'VT323', monospace;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .y2k-popup-btn:active {
+      border-style: inset;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10001;
+      animation: confettiFall 3s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Slot machine animation */
+    @keyframes slotSpin {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100%); }
+    }
+
+    /* Hide side boxes and floating gifs on smaller screens */
+    @media (max-width: 1100px) {
+      .side-box, .floating-gif {
+        display: none;
+      }
+      .y2k-popup {
+        margin: 20px;
+        max-width: calc(100% - 40px);
+      }
+    }
+
+    /* Rainbow text animation for footer */
+    @keyframes rainbowText {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+  </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss-browser/4.1.13/index.global.min.js"></script><style data-moda-export-fonts="true">@font-face { font-family: 'VT323'; src: url("../fonts/vt323-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Patrick Hand'; src: url("../fonts/patrickhand-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Irish Grover'; src: url("../fonts/irishgrover-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }</style></head>
 <body>
 
-<div class="container">
+<!-- ======== FLOATING SIDE BOXES - LEFT ======== -->
 
-    <div class="sticker">Y2K</div>
-    <div class="sticker blue">ZINECORE</div>
-    <div class="sticker yellow">PRIVACY</div>
-
-    <h1>Privacy Policy</h1>
-    <p><strong>Last updated:</strong> January 2026</p>
-
-    <p>
-        ZINECORE is a space for self-expression, chaos, and creativity.  
-        Your privacy should feel like silence — always there, never intrusive.
-    </p>
-
-    <h2>1. Information We Collect</h2>
-    <p>
-        We do <strong>not collect personal data</strong> from users.  
-        ZINECORE is designed to work without requiring personal information.
-    </p>
-
-    <h2>2. How We Use Information</h2>
-    <p>
-        Since we do not collect personal data, we do not use it for tracking, profiling, or analytics.
-    </p>
-    <p>
-        If this changes in the future, this policy will be updated accordingly.
-    </p>
-
-    <h2>3. Data Sharing</h2>
-    <p>
-        We do not sell, trade, or share personal data.  
-        ZINECORE does not use third-party analytics or tracking tools at this time.
-    </p>
-
-    <h2>4. Data Retention</h2>
-    <p>
-        Since we do not collect personal data, we do not retain it.
-    </p>
-
-    <h2>5. Your Rights</h2>
-    <p>
-        If you have any questions or concerns, you may contact us at any time.
-    </p>
-
-    <h2>6. Security</h2>
-    <p>
-        We aim to keep ZINECORE safe and reliable, but no system is completely secure.
-    </p>
-
-    <h2>7. Contact</h2>
-    <p>
-        bloomday.app@icloud.com
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="sticker">SUPPORT</div>
-    <div class="sticker yellow">HELP</div>
-
-    <h1>Support</h1>
-
-    <p>
-        Something broken? Weird? Confusing?  
-        We got you.
-    </p>
-
-    <h2>Contact</h2>
-    <p>bloomday.app@icloud.com</p>
-
-    <a class="button" href="mailto:bloomday.app@icloud.com">EMAIL US</a>
-
-    <h2>Common Issues</h2>
-    <ul>
-        <li>App not loading → restart the app</li>
-        <li>Progress not saved → update to latest version</li>
-        <li>Glitches → update your device OS</li>
-    </ul>
-
-    <h2>Feedback</h2>
-    <p>
-        ZINECORE is always evolving.  
-        Your ideas shape what comes next.
-    </p>
-
-    <div class="footer">
-        © 2026 ZINECORE — DIY FOREVER ✂️
-    </div>
-
+<!-- MIDI PLAYER WIDGET -->
+<div class="side-box side-box-left" style="top: 20px; width: 150px; background: linear-gradient(135deg, #f5c6d6, #e8d5e8, #c5dff5); border: 3px outset #dda0dd; box-shadow: 4px 4px 0 rgba(221, 160, 221, 0.4);">
+  <div style="background: linear-gradient(90deg, #ff69b4, #dda0dd, #87ceeb); padding: 3px 6px; margin: -8px -8px 6px -8px; border-bottom: 2px solid #c5a0c5;">
+    <span style="color: #fff; font-family: 'VT323', monospace; font-size: 12px; text-shadow: 1px 1px 0 #c0106f;">~*~ Now Playing ~*~</span>
+  </div>
+  <div style="background: linear-gradient(135deg, #2d1b4e, #1a1a4e); border: 2px inset #9370db; padding: 4px; margin-bottom: 6px; border-radius: 3px;">
+    <p id="midi-track" style="color: #ffb6c1; font-family: 'VT323', monospace; font-size: 11px; margin: 0; white-space: nowrap; overflow: hidden; text-shadow: 0 0 5px #ff69b4;">♪ y2k_vibes.mid</p>
+  </div>
+  <div style="display: flex; justify-content: center; gap: 4px;">
+    <button onclick="midiPrev()" style="background: linear-gradient(180deg, #ffb6c1, #f5c6d6); border: 2px outset #ffb6c1; width: 24px; height: 20px; font-size: 10px; cursor: pointer; color: #c0106f;">⏮</button>
+    <button id="midi-play-btn" onclick="midiToggle()" style="background: linear-gradient(180deg, #dda0dd, #c5a0c5); border: 2px outset #dda0dd; width: 24px; height: 20px; font-size: 10px; cursor: pointer; color: #fff;">▶</button>
+    <button onclick="midiNext()" style="background: linear-gradient(180deg, #87ceeb, #a8d4f0); border: 2px outset #87ceeb; width: 24px; height: 20px; font-size: 10px; cursor: pointer; color: #4a6a8a;">⏭</button>
+  </div>
+  <div style="background: linear-gradient(135deg, #e8d5e8, #d4e4f7); border: 2px inset #c5a0c5; height: 8px; margin-top: 6px; position: relative; border-radius: 4px;">
+    <div id="midi-progress" style="background: linear-gradient(90deg, #ff69b4, #dda0dd, #87ceeb); height: 100%; width: 35%; transition: width 0.3s; border-radius: 4px;"></div>
+  </div>
+  <p style="text-align: center; font-size: 8px; color: #9370db; margin: 4px 0 0 0;">Volume: <span style="color: #ff69b4;">████████</span><span style="color: #d4d4d4;">░░</span></p>
 </div>
 
-</body>
-</html>
+<!-- SLOT MACHINE / ZINE GENERATOR -->
+<div class="side-box side-box-left" style="top: 200px; width: 150px; background: linear-gradient(135deg, #c5dff5, #d4e4f7, #e8d5e8); border: 4px outset #87ceeb; box-shadow: 4px 4px 0 rgba(135, 206, 235, 0.4);">
+  <h4 style="color: #c0106f; border-color: #ffb6c1; text-shadow: 1px 1px 0 #fff;"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff69b4"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> ZINE SLOTS <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff69b4"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg></h4>
+  <div style="display: flex; gap: 3px; justify-content: center; margin-bottom: 6px;">
+    <div id="slot1" style="background: linear-gradient(180deg, #fff, #f5c6d6); border: 2px inset #dda0dd; width: 38px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #c0106f; overflow: hidden; border-radius: 3px;">Y2K</div>
+    <div id="slot2" style="background: linear-gradient(180deg, #fff, #e8d5e8); border: 2px inset #c5a0c5; width: 38px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #9370db; overflow: hidden; border-radius: 3px;">POP</div>
+    <div id="slot3" style="background: linear-gradient(180deg, #fff, #c5dff5); border: 2px inset #87ceeb; width: 38px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #4a6a8a; overflow: hidden; border-radius: 3px;">PINK</div>
+  </div>
+  <button onclick="spinSlots()" style="display: block; width: 100%; background: linear-gradient(180deg, #ff69b4, #c0106f); border: 3px outset #ff69b4; padding: 6px; color: #fff; font-family: 'VT323', monospace; font-size: 14px; font-weight: bold; cursor: pointer; text-shadow: 1px 1px 0 #8a0c50;">[ SPIN! ]</button>
+  <p id="slot-result" style="color: #9370db; font-size: 9px; text-align: center; margin: 6px 0 0 0; min-height: 12px; text-shadow: 0 0 3px #dda0dd;"></p>
+</div>
+
+<!-- ★★★ FULL MOOD QUIZ - LEFT FLOATING ★★★ -->
+<div class="side-box side-box-left" style="top: 380px; width: 200px; background: url('http://dl7.glitter-graphics.net/pub/148/148607tg6rggnb0l.gif') repeat fixed; border: 4px outset #9932cc; box-shadow: 0 0 20px rgba(153, 50, 204, 0.5); padding: 0;">
+  <div style="background: rgba(45,27,78,0.92); padding: 8px;">
+    <h4 style="color: var(--yellow); border-color: var(--yellow); font-size: 12px; padding-bottom: 6px; margin: 0 0 6px 0;">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> 
+      MOOD QUIZ 
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg>
+    </h4>
+    <p style="color: #fff; font-size: 13px; text-align: center; margin: 0 0 8px 0; opacity: 0.8; font-family: 'Patrick Hand', cursive;">~*~ find ur zine aesthetic! ~*~</p>
+    
+    <!-- Progress Bar -->
+    <div style="background: #222; border: 2px inset #111; height: 8px; margin-bottom: 8px; border-radius: 4px;">
+      <div id="quiz-progress-side" style="background: linear-gradient(90deg, var(--hotpink), var(--yellow), var(--lime)); height: 100%; width: 0%; transition: width 0.3s; border-radius: 4px;"></div>
+    </div>
+    
+    <div id="quiz-container-side" style="background: #fff; border: 3px inset #999; padding: 10px;">
+    
+    <!-- Q1 -->
+    <div id="qs1" class="quiz-q-side">
+      <p style="font-family: 'VT323', monospace; font-size: 14px; color: var(--hotpink); margin: 0 0 8px 0; text-align: center;"><b>Q1/6:</b> it's friday night, ur doing...</p>
+      <button onclick="answerSide(1,'pop')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff69b4, #ff1493); border: 2px outset #ff69b4; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* mall trip + sleepover</button>
+      <button onclick="answerSide(1,'grunge')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #444, #222); border: 2px outset #444; padding: 6px; color: #a8ff04; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* basement show, moshing</button>
+      <button onclick="answerSide(1,'dream')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #dda0dd, #e6e6fa); border: 2px outset #dda0dd; padding: 6px; color: #333; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* tea + fairy lights + sad playlist</button>
+      <button onclick="answerSide(1,'riot')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff6347, #ff4500); border: 2px outset #ff6347; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* zine workshop + revolution</button>
+    </div>
+
+    <!-- Q2 -->
+    <div id="qs2" class="quiz-q-side" style="display: none;">
+      <p style="font-family: 'VT323', monospace; font-size: 14px; color: var(--hotpink); margin: 0 0 8px 0; text-align: center;"><b>Q2/6:</b> what's ur signature look?</p>
+      <button onclick="answerSide(2,'pop')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff69b4, #87ceeb); border: 2px outset #ff69b4; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* butterfly clips + lip gloss</button>
+      <button onclick="answerSide(2,'grunge')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #556b2f, #2f4f4f); border: 2px outset #556b2f; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* flannel + ripped jeans + docs</button>
+      <button onclick="answerSide(2,'dream')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #e6e6fa, #fff0f5); border: 2px outset #e6e6fa; padding: 6px; color: #333; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* vintage dress + soft florals</button>
+      <button onclick="answerSide(2,'riot')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #000, #333); border: 2px outset #000; padding: 6px; color: #ff1493; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* band tee + combat boots</button>
+    </div>
+
+    <!-- Q3 -->
+    <div id="qs3" class="quiz-q-side" style="display: none;">
+      <p style="font-family: 'VT323', monospace; font-size: 14px; color: var(--hotpink); margin: 0 0 8px 0; text-align: center;"><b>Q3/6:</b> what's on ur playlist rn?</p>
+      <button onclick="answerSide(3,'pop')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #c0c0c0, #fff); border: 2px outset #c0c0c0; padding: 6px; color: #ff1493; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* britney, *NSYNC, spice girls</button>
+      <button onclick="answerSide(3,'grunge')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #8b4513, #2f2f2f); border: 2px outset #8b4513; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* nirvana, hole, soundgarden</button>
+      <button onclick="answerSide(3,'dream')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #87ceeb, #e6e6fa); border: 2px outset #87ceeb; padding: 6px; color: #333; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* mazzy star, cocteau twins</button>
+      <button onclick="answerSide(3,'riot')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff4500, #8b0000); border: 2px outset #ff4500; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* bikini kill, sleater-kinney</button>
+    </div>
+
+    <!-- Q4 -->
+    <div id="qs4" class="quiz-q-side" style="display: none;">
+      <p style="font-family: 'VT323', monospace; font-size: 14px; color: var(--hotpink); margin: 0 0 8px 0; text-align: center;"><b>Q4/6:</b> describe ur room walls:</p>
+      <button onclick="answerSide(4,'pop')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff69b4, #ffe4e1); border: 2px outset #ff69b4; padding: 6px; color: #333; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* teen mag posters + beads</button>
+      <button onclick="answerSide(4,'grunge')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #2f2f2f, #000); border: 2px outset #2f2f2f; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* band posters + xmas lights</button>
+      <button onclick="answerSide(4,'dream')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ffefd5, #e6e6fa); border: 2px outset #ffefd5; padding: 6px; color: #333; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* dried flowers + polaroids</button>
+      <button onclick="answerSide(4,'riot')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff1493, #000); border: 2px outset #ff1493; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* protest flyers + zines</button>
+    </div>
+
+    <!-- Q5 -->
+    <div id="qs5" class="quiz-q-side" style="display: none;">
+      <p style="font-family: 'VT323', monospace; font-size: 14px; color: var(--hotpink); margin: 0 0 8px 0; text-align: center;"><b>Q5/6:</b> ur zine would be about...</p>
+      <button onclick="answerSide(5,'pop')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff69b4, #ffe600); border: 2px outset #ff69b4; padding: 6px; color: #333; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* celeb crushes + fashion</button>
+      <button onclick="answerSide(5,'grunge')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #556b2f, #2f4f4f); border: 2px outset #556b2f; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* raw feelings + poetry</button>
+      <button onclick="answerSide(5,'dream')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #b0e0e6, #dda0dd); border: 2px outset #b0e0e6; padding: 6px; color: #333; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* nostalgia + soft memories</button>
+      <button onclick="answerSide(5,'riot')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff0000, #000); border: 2px outset #ff0000; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Patrick Hand', cursive;">* activism + DIY guides</button>
+    </div>
+
+    <!-- Q6 -->
+    <div id="qs6" class="quiz-q-side" style="display: none;">
+      <p style="font-family: 'VT323', monospace; font-size: 14px; color: var(--hotpink); margin: 0 0 8px 0; text-align: center;"><b>Q6/6:</b> pick ur zine text style:</p>
+      <button onclick="answerSide(6,'pop')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ff69b4, #87ceeb); border: 2px outset #ff69b4; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'VT323', monospace;">* bubbly + xoxo!!! *</button>
+      <button onclick="answerSide(6,'grunge')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #333, #111); border: 2px outset #333; padding: 6px; color: #fff; font-size: 12px; cursor: pointer; font-family: 'Courier New', monospace;">typewriter... smudged...</button>
+      <button onclick="answerSide(6,'dream')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #e6e6fa, #fff0f5); border: 2px outset #e6e6fa; padding: 6px; color: #666; font-size: 12px; cursor: pointer; font-family: Georgia, serif; font-style: italic;">elegant serif... whispered</button>
+      <button onclick="answerSide(6,'riot')" style="display:block; width:100%; margin:3px 0; background: linear-gradient(135deg, #ffe600, #ff1493); border: 2px outset #ffe600; padding: 6px; color: #000; font-size: 12px; cursor: pointer; font-family: Impact, sans-serif;">BOLD. LOUD. CUTOUTS.</button>
+    </div>
+
+    <!-- Result -->
+    <div id="quiz-result-side" style="display: none; text-align: center;">
+      <p style="font-size: 12px; color: #666; margin: 0 0 6px 0; font-family: 'Patrick Hand', cursive;">ur zine aesthetic is...</p>
+      <div id="result-box-side" style="padding: 10px; margin: 6px 0; border: 3px outset; font-size: 12px; font-family: 'Patrick Hand', cursive;"></div>
+      <button onclick="resetQuizSide()" style="background: linear-gradient(180deg, #666, #333); border: 2px outset #555; color: var(--lime); padding: 5px 12px; cursor: pointer; font-size: 14px; margin-top: 6px; font-family: 'VT323', monospace;">[ RETAKE QUIZ ]</button>
+    </div>
+  </div>
+  
+  <p style="color: #fff; text-align: center; font-size: 9px; margin-top: 8px; opacity: 0.7;">
+    <span class="blink">*</span> 6 questions <span class="blink">*</span> 100% accurate <span class="blink">*</span>
+  </p>
+  </div>
+</div>
+
+<!-- ======== FLOATING SIDE BOXES - RIGHT ======== -->
+
+<!-- UPCOMING CD PACKAGES - RIGHT FLOATING -->
+<div class="side-box side-box-right" style="top: 120px; width: 140px; background: linear-gradient(135deg, #ffe600 0%, #ff1493 50%, #00ced1 100%); border: 3px outset #ff1493;">
+  <h4 style="color: #fff; text-shadow: 1px 1px 0 #000; border-color: #fff;"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#fff"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> UPCOMING <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#fff"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg></h4>
+  <div style="background: #fff; border: 2px inset #999; padding: 6px; font-size: 8px;">
+    <div class="css-cd"></div>
+    <div style="display: flex; flex-wrap: wrap; gap: 2px; justify-content: center;">
+      <span style="background: linear-gradient(135deg, #c0c0c0, #fff); border: 1px outset #999; padding: 2px 4px; font-size: 7px;">Y2K Chrome</span>
+      <span style="background: linear-gradient(135deg, #f0e6ff, #d4c4ff); border: 1px outset #999; padding: 2px 4px; font-size: 7px;">Gen X Soft</span>
+      <span style="background: linear-gradient(135deg, #ffb6c1, #ff69b4); border: 1px outset #999; padding: 2px 4px; font-size: 7px; color: #fff;">90s Pop</span>
+      <span style="background: linear-gradient(135deg, #add8e6, #87ceeb); border: 1px outset #999; padding: 2px 4px; font-size: 7px;">Britpop</span>
+      <span style="background: linear-gradient(135deg, #2f2f2f, #1a1a1a); border: 1px outset #999; padding: 2px 4px; font-size: 7px; color: #ff1493;">Emo</span>
+      <span style="background: linear-gradient(135deg, #e6e6fa, #dda0dd); border: 1px outset #999; padding: 2px 4px; font-size: 7px;">Dream Pop</span>
+    </div>
+    <p style="text-align: center; font-size: 7px; margin: 4px 0 0 0; color: var(--hotpink);"><span style="animation: blinker 0.8s linear infinite;">STAY TUNED!</span></p>
+  </div>
+</div>
+
+<!-- Y2K MINI CALENDAR - Dreamy Pastel Style -->
+<div class="side-box side-box-right" style="top: 340px; width: 150px; background: linear-gradient(135deg, #e8d5e8, #f5c6d6, #c5dff5); border: 3px outset #dda0dd; padding: 0; box-shadow: 4px 4px 0 rgba(221, 160, 221, 0.4);">
+  <div style="background: linear-gradient(90deg, #dda0dd, #ff69b4, #87ceeb); padding: 3px 6px; display: flex; justify-content: space-between; align-items: center;">
+    <span style="color: #fff; font-family: 'VT323', monospace; font-size: 12px; text-shadow: 1px 1px 0 #9370db;">~*~ Calendar ~*~</span>
+    <span style="color: #fff; font-size: 10px; text-shadow: 1px 1px 0 #c0106f;">x</span>
+  </div>
+  <div style="padding: 6px; background: rgba(255,255,255,0.6);">
+    <p id="cal-month" style="text-align: center; font-family: 'VT323', monospace; font-size: 12px; color: #c0106f; margin: 0 0 4px 0; font-weight: bold; text-shadow: 0 0 3px #ffb6c1;"></p>
+    <table style="width: 100%; border-collapse: collapse; font-size: 8px; font-family: 'VT323', monospace;">
+      <tbody><tr style="background: linear-gradient(90deg, #ff69b4, #dda0dd, #87ceeb); color: #fff;">
+        <td style="padding: 2px; text-align: center;">Su</td>
+        <td style="padding: 2px; text-align: center;">Mo</td>
+        <td style="padding: 2px; text-align: center;">Tu</td>
+        <td style="padding: 2px; text-align: center;">We</td>
+        <td style="padding: 2px; text-align: center;">Th</td>
+        <td style="padding: 2px; text-align: center;">Fr</td>
+        <td style="padding: 2px; text-align: center;">Sa</td>
+      </tr>
+      </tbody><tbody id="cal-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ======== TOP VISITOR COUNTER ======== -->
+<table class="main-table" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td colspan="2" class="topbar">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> VISITORS: <span id="counter" class="hit-counter">000847</span> <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+    </td>
+  </tr>
+
+  <!-- ======== HEADER ======== -->
+  <tr>
+    <td colspan="2" class="header-cell">
+      <!-- Corner GIF -->
+      <img src="https://bettysgraphics.neocities.org/images/web%20graphics/welcome%205.gif " style="position: absolute; top: 20px; right: 20px; width: 100px; z-index: 10; image-rendering: pixelated;">
+      <h1 style="display: flex; justify-content: center; align-items: center; gap: 0;"><a href="https://www.glitter-graphics.com/myspace/text_generator.php" target="_blank" style="display: inline-flex;"><img src="https://text.glitter-graphics.net/spblue/z.gif" style="display: inline-block;"><img src="https://text.glitter-graphics.net/spblue/i.gif" style="display: inline-block;"><img src="https://text.glitter-graphics.net/spblue/n.gif" style="display: inline-block;"><img src="https://text.glitter-graphics.net/spblue/e.gif" style="display: inline-block;"><img src="https://text.glitter-graphics.net/spblue/c.gif" style="display: inline-block;"><img src="https://text.glitter-graphics.net/spblue/o.gif" style="display: inline-block;"><img src="https://text.glitter-graphics.net/spblue/r.gif" style="display: inline-block;"><img src="https://text.glitter-graphics.net/spblue/e.gif" style="display: inline-block;"></a></h1>
+      <p>.:. AUTHENTIC 90s / 00s ZINE CREATOR .:.</p>
+      <div class="construction">
+        <img src="https://web.archive.org/web/20091027065613im_/http://geocities.com/leahd1973/constructiongirl.gif" alt="under construction" class="construction-gif" onerror="this.style.display='none'">
+        <span class="blink">!! THIS SITE IS UNDER CONSTRUCTION !!</span>
+        <img src="https://web.archive.org/web/20091027065613im_/http://geocities.com/leahd1973/constructiongirl.gif" alt="under construction" class="construction-gif" onerror="this.style.display='none'">
+      </div>
+    </td>
+  </tr>
+
+  <!-- ======== MARQUEE ======== -->
+  <tr>
+    <td colspan="2" class="marquee-bar">
+      <marquee scrollamount="4" behavior="scroll">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> CUT IT OUT <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> MAKE A ZINE <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> Y2K <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> GRUNGE <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> DREAM GIRL <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> CHAOS AND MORE <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> CUT IT OUT <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> MAKE A ZINE <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg>
+      </marquee>
+    </td>
+  </tr>
+
+  <!-- ======== NAVIGATION ======== -->
+  <tr>
+    <td colspan="2" class="navbar">
+      <a href="#" class="nav-btn">:: HOME ::</a>
+      <a href="#" class="nav-btn">:: DOWNLOAD ::</a>
+      <a href="#features" class="nav-btn">:: FEATURES ::</a>
+      <a href="#guestbook" class="nav-btn">:: GUESTBOOK ::</a>
+      <a href="#privacy" class="nav-btn">:: PRIVACY ::</a>
+      <a href="#support" class="nav-btn">:: SUPPORT ::</a>
+    </td>
+  </tr>
+
+  <!-- ======== WELCOME ======== -->
+  <tr>
+    <td colspan="2" class="welcome-sign">
+      ~*~*~ WELCOME 2 THE OFFICIAL ZINECORE HOMEPAGE ~*~*~
+    </td>
+  </tr>
+
+  <!-- ======== MAIN CONTENT AREA ======== -->
+  <tr class="content-row">
+    
+    <!-- SIDEBAR -->
+    <td class="sidebar">
+      
+      <!-- 3D PERSPECTIVE QUICK LINKS -->
+      <div style="perspective: 400px; margin-bottom: 30px; padding-bottom: 10px;">
+        <div class="cube-box">
+          <div class="cube-face cube-front">
+            <h3 style="margin: 0 0 6px 0; font-size: 12px; color: var(--yellow); text-shadow: 1px 1px 0 #000; font-family: 'VT323', monospace;">~*~ QUICK LINKS ~*~</h3>
+            <a href="#" class="cube-link">Download App</a>
+            <a href="#" class="cube-link">Zine Gallery</a>
+            <a href="#templates" class="cube-link">Templates</a>
+            <a href="#stickers" class="cube-link">Stickers</a>
+            <a href="#privacy" class="cube-link">FAQ</a>
+          </div>
+          <div class="cube-face cube-right"></div>
+          <div class="cube-face cube-bottom"></div>
+        </div>
+      </div>
+
+      <div class="sidebar-box" style="background: url('http://dl7.glitter-graphics.net/pub/148/148607tg6rggnb0l.gif') repeat fixed; padding: 0; border: 3px inset #999;">
+        <div style="background: rgba(255,255,255,0.70); padding: 8px;">
+          <h3><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> SITE UPDATES <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg></h3>
+          <p style="font-size:10px; color:#333; margin:0;">
+            <b>04/22/03</b> - New templates!<br>
+            <b>04/18/03</b> - Stickers added<br>
+            <b>04/12/03</b> - GRAND OPENING!
+          </p>
+        </div>
+      </div>
+
+      <!-- MINI DEMO -->
+      <div class="sidebar-box" style="background: url('http://dl7.glitter-graphics.net/pub/148/148607tg6rggnb0l.gif') repeat fixed; padding: 0; border: 3px inset #999;">
+        <div style="background: rgba(255,255,255,0.70); padding: 6px;">
+          <h3><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> TRY IT! <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg></h3>
+          <p style="font-size:9px; color:#333; margin:0 0 5px 0; text-align:center;">drag stickers onto the canvas!</p>
+          <div id="demo-canvas" style="width:100%; height:120px; background: linear-gradient(135deg, #ffe6f0, #e6f0ff); border:3px inset #999; position:relative; overflow:hidden; cursor:crosshair;">
+            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:8px; color:#999; pointer-events:none;">DROP HERE</div>
+          </div>
+          <div id="sticker-tray" style="display:flex; justify-content:center; gap:4px; margin-top:6px; flex-wrap:wrap;">
+            <div class="demo-sticker" draggable="true" style="width:28px; height:28px; background:var(--hotpink); border:2px outset var(--hotpink); cursor:grab; display:flex; align-items:center; justify-content:center; font-size:14px;">★</div>
+            <div class="demo-sticker" draggable="true" style="width:28px; height:28px; background:var(--lime); border:2px outset var(--lime); cursor:grab; display:flex; align-items:center; justify-content:center; font-size:14px;">♥</div>
+            <div class="demo-sticker" draggable="true" style="width:28px; height:28px; background:var(--yellow); border:2px outset var(--yellow); cursor:grab; display:flex; align-items:center; justify-content:center; font-size:14px;">✿</div>
+            <div class="demo-sticker" draggable="true" style="width:28px; height:28px; background:var(--teal); border:2px outset var(--teal); cursor:grab; display:flex; align-items:center; justify-content:center; font-size:14px; color:#fff;">☆</div>
+            <div class="demo-sticker" draggable="true" style="width:28px; height:28px; background:#333; border:2px outset #333; cursor:grab; display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--lime);">XO</div>
+          </div>
+          <center style="margin-top:6px;">
+            <button onclick="clearCanvas()" style="font-size:9px; background:linear-gradient(180deg,#666,#333); border:2px outset #555; color:var(--lime); padding:3px 8px; cursor:pointer; font-family:Verdana,sans-serif;">CLEAR</button>
+          </center>
+        </div>
+      </div>
+
+      <center>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWpmYzliZTE0ZWx3dWxveng3dmt0ajRyeTBqenQ3bzFyaXp1ZjM1cSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KDc4nW81te869NNZOT/giphy.gif" width="180" style="border:3px solid var(--hotpink);" alt="typing gif">
+        <br><br>
+        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3MGxjOHBsZXRjbHdqaXE4MmZjNnJ5cGQzZWxjbG0xcDlyMzJzdnN5OCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/dVPn12XOhlaEhOMX2v/giphy.gif" width="180" style="border:3px solid var(--hotpink);">
+      </center>
+
+    </td>
+
+    <!-- MAIN CONTENT -->
+    <td class="main-content">
+
+      <!-- HERO BOX -->
+      <div class="content-box" style="background: url('http://dl7.glitter-graphics.net/pub/1028/1028697ahsqselomu.gif') repeat; position: relative;">
+        <div style="background: rgba(255,255,255,0.85); padding: 15px; border: 3px inset #ff69b4;">
+          <span class="sticker">DIY</span>
+          <span class="sticker">Y2K</span>
+          <span class="sticker">ZINE</span>
+          
+          <h2>~*~ MAKE YOUR OWN ZINE ~*~</h2>
+          <p>
+            collage your world. cut, paste, layer, break rules.<br>
+            express yourself with the ultimate zine creator app!
+          </p>
+          <br>
+          <center>
+            <a href="#" class="y2k-btn"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#111"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> DOWNLOAD APP <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#111"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg></a>
+          </center>
+        </div>
+      </div>
+
+      <div class="sparkle-divider">
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+      </div>
+
+      <!-- FEATURES BOX -->
+      <div class="content-box" id="features" style="background: url('http://dl7.glitter-graphics.net/pub/1028/1028697ahsqselomu.gif') repeat; position: relative;">
+        <div style="background: rgba(255,255,255,0.85); padding: 15px; border: 3px inset #ff69b4;">
+          <h2>~*~ FEATURES ~*~</h2>
+          <table width="100%" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+              <td width="50%" valign="top">
+                <ul class="feature-list">
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>Cutout tool</li>
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>Add photos</li>
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>30 templates</li>
+                </ul>
+              </td>
+              <td width="50%" valign="top">
+                <ul class="feature-list">
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>Stickers + layers + backgrounds</li>
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>Export PDF or PNG</li>
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>100% FREE!</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- TEMPLATE PACKS -->
+      <div id="templates" class="aesthetics-box" style="background: url('http://dl7.glitter-graphics.net/pub/1028/1028697ahsqselomu.gif') repeat; border-color: var(--hotpink);">
+        <div style="background: rgba(255,20,147,0.88); padding: 15px; border: 3px inset #ff69b4;">
+          <h2 style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+            <div class="css-folder"></div>
+            TEMPLATE PACKS
+            <div class="css-folder delay"></div>
+          </h2>
+          <p style="font-size: 11px; color: #fff;">iconic retro-inspired aesthetics:</p>
+          <table cellpadding="4" cellspacing="3" width="100%" style="margin-top: 8px;">
+            <tbody>
+              <tr>
+                <td style="background:#ff69b4; color:#fff; font-size:9px; padding:4px 8px; border:2px outset #ff69b4;">Y2K Pop Princess</td>
+                <td style="background:#333; color:#a8ff04; font-size:9px; padding:4px 8px; border:2px outset #333;">Grunge</td>
+                <td style="background:#87ceeb; color:#000; font-size:9px; padding:4px 8px; border:2px outset #87ceeb;">Dream Pop</td>
+              </tr>
+              <tr>
+                <td style="background:#deb887; color:#000; font-size:9px; padding:4px 8px; border:2px outset #deb887;">90s Era</td>
+                <td style="background:#c0c0c0; color:#000; font-size:9px; padding:4px 8px; border:2px outset #c0c0c0;">Chromecore</td>
+                <td style="background:#1a1a2e; color:#ff1493; font-size:9px; padding:4px 8px; border:2px outset #1a1a2e;">Myspace</td>
+              </tr>
+              <tr>
+                <td style="background:#a8ff04; color:#000; font-size:9px; padding:4px 8px; border:2px outset #a8ff04;">Sk8ter Girl</td>
+                <td style="background:#dda0dd; color:#000; font-size:9px; padding:4px 8px; border:2px outset #dda0dd;">Gen X Soft</td>
+                <td style="background:#4169e1; color:#fff; font-size:9px; padding:4px 8px; border:2px outset #4169e1;">Y2K Futurism</td>
+              </tr>
+              <tr>
+                <td style="background:#ff6347; color:#fff; font-size:9px; padding:4px 8px; border:2px outset #ff6347;">Riot Grrrl</td>
+                <td style="background:#f0e68c; color:#000; font-size:9px; padding:4px 8px; border:2px outset #f0e68c;">Britpop</td>
+                <td style="background:#8b4513; color:#fff; font-size:9px; padding:4px 8px; border:2px outset #8b4513;">Indiecraft</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 10px; margin-top: 10px; color: #fff;">+ Pixel Art, Beverly Hills, Retro Pop, and MORE!</p>
+        </div>
+      </div>
+
+      <!-- STICKERS & CHAOS -->
+      <div id="stickers" class="content-box" style="background: url('http://dl7.glitter-graphics.net/pub/1028/1028697ahsqselomu.gif') repeat; position: relative;">
+        <div style="background: rgba(255,255,255,0.85); padding: 15px; border: 3px inset #a8ff04;">
+          <h2>~*~ STICKERS &amp; CHAOS ~*~</h2>
+          <p style="text-align: center;">
+            <b style="font-size: 24px; color: var(--hotpink);">500+</b><br>
+            retro stickers included!
+          </p>
+          <table width="100%" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+              <td width="50%" valign="top">
+                <ul class="feature-list">
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>3D images &amp; doodles</li>
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>Y2K icons</li>
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>Photo cutout tool</li>
+                </ul>
+              </td>
+              <td width="50%" valign="top">
+                <ul class="feature-list">
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>Layer-based editing</li>
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>Endless combos</li>
+                  <li><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>One-tap editing</li>
+                </ul>
+              </td>
+            </tr></tbody>
+          </table>
+          <p style="text-align: center; font-size: 11px; color: #666;">
+            messy, maximalist, or minimal... it's your call.
+          </p>
+        </div>
+      </div>
+
+      <div class="sparkle-divider">
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+      </div>
+
+      <!-- NO RULES BOX -->
+      <div class="content-box" style="background: url('http://dl7.glitter-graphics.net/pub/1028/1028697ahsqselomu.gif') repeat; position: relative;">
+        <div style="background: rgba(255,255,255,0.85); padding: 15px; border: 3px inset #00ced1;">
+          <h2>~*~ NO RULES ~*~</h2>
+          <p style="font-size:14px; text-align:center;">
+            tilt &amp; overlap &amp; clash &amp; chaos is the feature<br>
+            <b style="color:var(--hotpink);">BE YOURSELF. MAKE ART. NO LIMITS.</b>
+          </p>
+        </div>
+      </div>
+
+      <div class="sparkle-divider">
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+      </div>
+
+      <!-- SHARE YOUR ZINE -->
+      <div class="content-box" style="background: url('http://dl7.glitter-graphics.net/pub/1028/1028697ahsqselomu.gif') repeat; position: relative;">
+        <div style="background: rgba(255,255,255,0.85); padding: 15px; border: 3px inset #ffe600;">
+          <h2>~*~ SHARE YOUR ZINE ~*~</h2>
+          <p style="text-align: center;">your zine deserves to be seen!</p>
+          <table width="100%" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+              <td width="33%" valign="top" style="text-align: center;">
+                <div style="background: var(--lime); border: 2px solid #000; padding: 8px; margin: 3px;">
+                  <b style="font-size: 10px;">EXPORT PDF</b>
+                </div>
+              </td>
+              <td width="33%" valign="top" style="text-align: center;">
+                <div style="background: var(--hotpink); border: 2px solid #000; padding: 8px; margin: 3px; color: #fff;">
+                  <b style="font-size: 10px;">SHARE SOCIAL</b>
+                </div>
+              </td>
+              <td width="33%" valign="top" style="text-align: center;">
+                <div style="background: var(--teal); border: 2px solid #000; padding: 8px; margin: 3px; color: #fff;">
+                  <b style="font-size: 10px;">SAVE COLLECTION</b>
+                </div>
+              </td>
+            </tr>
+          </tbody></table>
+          <p style="text-align: center; font-size: 12px; margin-top: 10px;">
+            <b>create it. own it. share it.</b>
+          </p>
+        </div>
+      </div>
+
+      <!-- WHY ZINECORE -->
+      <div class="content-box" style="background: url('http://dl7.glitter-graphics.net/pub/1028/1028697ahsqselomu.gif') repeat; position: relative;">
+        <div style="background: rgba(255,255,255,0.85); padding: 15px; border: 3px inset #ff69b4;">
+          <h2>~*~ WHY ZINECORE? ~*~</h2>
+          <p style="text-align: center; font-size: 12px;">
+            The <b style="color: var(--hotpink);">ONLY</b> zine maker built for 90s/00s nostalgia.<br><br>
+            Every template, sticker, and color is <b style="color: var(--blue);">era-correct</b>.<br><br>
+            No design skills needed. <b style="color: var(--teal);">Just vibes.</b>
+          </p>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- PRICING -->
+      <div class="content-box" style="background: url('http://dl7.glitter-graphics.net/pub/1028/1028697ahsqselomu.gif') repeat; position: relative;">
+        <div style="background: rgba(255,255,255,0.85); padding: 15px; border: 3px inset #ff69b4;">
+          <h2>~*~ GET ZINECORE ~*~</h2>
+          <table width="100%" cellpadding="8" cellspacing="5">
+            <tbody><tr>
+              <td width="50%" style="background: #f0f0f0; border: 3px outset #ccc; text-align: center; vertical-align: top;">
+                <b style="color: var(--hotpink); font-size: 14px;">FREE</b><br>
+                <span style="font-size: 10px;">
+                  Free templates<br>
+                  50+ stickers<br>
+                  Basic features
+                </span>
+              </td>
+              <td width="50%" style="background: linear-gradient(135deg, var(--hotpink), var(--yellow)); border: 3px outset var(--hotpink); text-align: center; vertical-align: top;">
+                <b style="color: #fff; font-size: 14px; text-shadow: 1px 1px 0 #000;">PRO</b><br>
+                <span style="font-size: 10px; color: #fff;">
+                  All templates<br>
+                  500+ stickers<br>
+                  $4.99/month
+                </span>
+              </td>
+            </tr>
+          </tbody></table>
+          <p style="text-align: center; font-size: 9px; color: #666; margin-top: 8px;">
+            or unlock packs individually for $2.99 each
+          </p>
+        </div>
+      </div>
+
+    </td>
+  </tr>
+
+
+
+  <!-- ======== GUESTBOOK ======== -->
+  <tr>
+    <td colspan="2" class="guestbook-cell" id="guestbook">
+      <h2><svg class="icon icon-lg" viewBox="0 0 24 24" fill="#111"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg> GUESTBOOK <svg class="icon icon-lg" viewBox="0 0 24 24" fill="#111"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9Z"></path></svg></h2>
+      <table class="gb-table" cellpadding="6" cellspacing="0">
+        <tbody><tr>
+          <td width="20%"><b>NAME</b></td>
+          <td width="60%"><b>MESSAGE</b></td>
+          <td width="20%"><b>DATE</b></td>
+        </tr>
+        <tr>
+          <td>xoxo_zinegirl</td>
+          <td>love this site so much!!!! adding to faves <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path></svg></td>
+          <td>04/12/03</td>
+        </tr>
+        <tr>
+          <td>sk8_chaos99</td>
+          <td>this is the coolest site on the internet no cap</td>
+          <td>04/14/03</td>
+        </tr>
+        <tr>
+          <td>dreamgurl2003</td>
+          <td>made my first zine bc of this omg thank u!!!</td>
+          <td>04/18/03</td>
+        </tr>
+        <tr>
+          <td>PUNKR0CK_4EVR</td>
+          <td>best site ever. bookmarked. told all my friends.</td>
+          <td>04/22/03</td>
+        </tr>
+      </tbody></table>
+      <br>
+      <center>
+        <a href="#" class="y2k-btn pink">[ <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> SIGN THE GUESTBOOK <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ffe600"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> ]</a>
+      </center>
+    </td>
+  </tr>
+
+  <!-- ======== PRIVACY SECTION ======== -->
+  <tr>
+    <td colspan="2" class="privacy-cell" id="privacy" style="background: url('http://dl7.glitter-graphics.net/pub/676/676657yhxq5o5bjd.gif') repeat fixed;">
+      <div class="privacy-box" style="background: rgba(255,255,255,0.92);">
+        <h2><svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> PRIVACY POLICY <svg class="icon icon-md" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg></h2>
+        <p><b>Last updated:</b> April 2026</p>
+        <p>
+          ZINECORE is a space for self-expression, chaos, and creativity.<br>
+          Your privacy should feel like silence - always there, never intrusive.
+        </p>
+
+        <hr>
+        <h3>1. Information We Collect</h3>
+        <p>We do not collect personal data. No accounts, no names, no tracking.<br>
+        Everything you create stays on your device unless you export it.</p>
+
+        <hr>
+        <h3>2. How We Use Information</h3>
+        <p>We do not use data for analytics, ads, or profiling.</p>
+
+        <hr>
+        <h3>3. Permissions</h3>
+        <p>Photo access is used only so you can import images into your zines.<br>
+        Nothing is uploaded or stored externally.</p>
+
+        <hr>
+        <h3>4. Data Sharing</h3>
+        <p>We do not sell or share data. No third-party tracking tools are used.</p>
+
+        <hr>
+        <h3>5. Data Retention</h3>
+        <p>We do not store personal data.</p>
+
+        <hr>
+        <h3>6. Your Rights</h3>
+        <p>You can contact us anytime with questions.</p>
+
+        <hr>
+        <h3>7. Children's Privacy</h3>
+        <p>We do not collect data from anyone, including children.</p>
+
+        <hr>
+        <h3>8. Security</h3>
+        <p>No system is 100% secure, but we keep things simple and local.</p>
+
+        <hr>
+        <h3>9. Changes</h3>
+        <p>If anything changes, this page will be updated.</p>
+      </div>
+    </td>
+  </tr>
+
+  <!-- ======== SUPPORT SECTION ======== -->
+  <tr>
+    <td colspan="2" class="guestbook-cell" id="support" style="background: url('http://dl7.glitter-graphics.net/pub/676/676657yhxq5o5bjd.gif') repeat fixed;">
+      <div class="privacy-box" style="background: rgba(255,255,255,0.92);">
+        <h2 style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+          <img src="https://bettysgraphics.neocities.org/images/gadgets/phone%2073.gif " width="40" style="image-rendering: pixelated;">
+          SUPPORT
+          <img src="https://bettysgraphics.neocities.org/images/gadgets/phone%2073.gif " width="40" style="image-rendering: pixelated;">
+        </h2>
+        <p>something broken? weird? confusing? we got you.</p>
+        
+        <center>
+          <a href="mailto:bloomday.app@icloud.com" class="y2k-btn"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="#111"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> EMAIL US <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#111"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg></a>
+          <br><br>
+          <!-- Bouncing Mailbox Email Button -->
+          <a href="mailto:bloomday.app@icloud.com" style="display: inline-block; text-decoration: none; animation: emailBounce 1s ease-in-out infinite;">
+            <div style="background: linear-gradient(180deg, #ffe600, #ffa500); border: 3px outset #ffe600; padding: 10px 15px; text-align: center;">
+              <img src="https://bettysgraphics.neocities.org/images/web%20graphics/email%20106.gif " width="60" style="display: block; margin: 0 auto; image-rendering: pixelated;">
+            </div>
+          </a>
+        </center>
+
+        <h3>COMMON ISSUES</h3>
+        <table class="support-table" cellpadding="5" cellspacing="0">
+          <tbody><tr>
+            <td width="50%"><b>PROBLEM</b></td>
+            <td width="50%"><b>FIX</b></td>
+          </tr>
+          <tr>
+            <td>App not loading</td>
+            <td>---&gt; restart</td>
+          </tr>
+          <tr>
+            <td>Progress not saved</td>
+            <td>---&gt; update app</td>
+          </tr>
+          <tr>
+            <td>Glitches</td>
+            <td>---&gt; update OS</td>
+          </tr>
+        </tbody></table>
+
+        <br>
+        <h3>FEEDBACK</h3>
+        <p>your ideas shape what comes next. <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg></p>
+      </div>
+    </td>
+  </tr>
+
+  <!-- ======== FOOTER ======== -->
+  <tr>
+    <td colspan="2" style="background: url('http://dl10.glitter-graphics.net/pub/976/976240sqrrsjlejc.jpg') repeat fixed; border: 4px outset #ff69b4; padding: 0;">
+      <div style="background: rgba(255,255,255,0.85); padding: 15px; text-align: center;">
+        <hr style="border: none; border-top: 2px dashed var(--hotpink); margin: 10px 0;">
+        <p style="color: var(--hotpink); font-family: 'VT323', monospace; font-size: 16px; font-weight: bold; margin: 5px 0;">// 2026 ZINECORE <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#ff1493"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg> DIY FOREVER //</p>
+        
+        <div style="margin: 10px 0;">
+          <span style="display: inline-block; background: linear-gradient(180deg, var(--hotpink), #cc1177); border: 2px outset var(--hotpink); padding: 4px 8px; margin: 3px; font-size: 9px; color: #fff; font-family: 'VT323', monospace;">MADE WITH <svg class="icon icon-sm" viewBox="0 0 24 24" fill="#fff"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path></svg></span>
+          <span style="display: inline-block; background: linear-gradient(180deg, var(--lime), #6fc703); border: 2px outset var(--lime); padding: 4px 8px; margin: 3px; font-size: 9px; color: #111; font-family: 'VT323', monospace;">HTML 4.01</span>
+          <span style="display: inline-block; background: linear-gradient(180deg, var(--teal), #00a8ab); border: 2px outset var(--teal); padding: 4px 8px; margin: 3px; font-size: 9px; color: #fff; font-family: 'VT323', monospace;">CSS 2.0</span>
+          <span style="display: inline-block; background: linear-gradient(180deg, var(--yellow), #d4c200); border: 2px outset var(--yellow); padding: 4px 8px; margin: 3px; font-size: 9px; color: #111; font-family: 'VT323', monospace;">BEST VIEWED 800x600</span>
+        </div>
+
+        <p style="color: var(--blue); font-size: 14px; font-weight: bold; margin: 10px 0; font-family: 'VT323', monospace;">~*~ BEST VIEWED WITH CHAOS ~*~</p>
+        
+        <p style="font-size: 10px; color: #666; margin-top: 15px; font-family: 'Courier New', monospace;">
+          <span style="animation: blinker 1.5s linear infinite; color: var(--hotpink);">~*~ SECRET ~*~</span><br>
+          <span style="color: #555;">psst... true gamers know the code</span><br>
+          <span style="color: #888; font-size: 9px;">hint: up up down down...</span>
+        </p>
+        
+        <!-- FOOTER GIFS -->
+        <div style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 15px; flex-wrap: wrap;">
+          <a href="https://www.linkedin.com/in/ezgi-acar-a27a46167" target="_blank" style="display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; gap: 5px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 22px; color: var(--hotpink); animation: bounceArrowRight 0.6s ease-in-out infinite;">→</span>
+              <span style="font-size: 22px; color: var(--yellow); animation: bounceArrowRight 0.6s ease-in-out infinite 0.15s;">→</span>
+              <img src="https://bettysgraphics.neocities.org/images/gadgets/computer%20256.gif " width="90" style="image-rendering: pixelated;" alt="Connect with Founder">
+              <span style="font-size: 22px; color: var(--yellow); animation: bounceArrowLeft 0.6s ease-in-out infinite 0.15s;">←</span>
+              <span style="font-size: 22px; color: var(--hotpink); animation: bounceArrowLeft 0.6s ease-in-out infinite;">←</span>
+            </div>
+            <span style="display: inline-block; font-family: 'VT323', monospace; font-size: 12px; font-weight: bold; background: linear-gradient(90deg, var(--hotpink), var(--yellow), var(--lime), var(--teal), var(--hotpink)); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rainbowText 2s linear infinite;">
+              CONNECT WITH FOUNDER
+            </span>
+          </a>
+        </div>
+      </div>
+    </td>
+  </tr>
+
+</tbody></table>
+
+<!-- ======== SPARKLE CURSOR SCRIPT ======== -->
+<script>
+var lastSpawn = 0;
+var sparkleColors = ['#ff1493', '#ffe600', '#a8ff04', '#00ced1', '#4169e1', '#ffffff'];
+
+function makeSVGSparkle(color, size) {
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", size);
+  svg.setAttribute("height", size);
+  svg.setAttribute("viewBox", "0 0 20 20");
+  svg.style.position = "fixed";
+  svg.style.pointerEvents = "none";
+  svg.style.zIndex = "9999";
+  svg.style.overflow = "visible";
+
+  var filterId = "glow" + Math.floor(Math.random() * 999999);
+  var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  var filter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
+  filter.setAttribute("id", filterId);
+  filter.setAttribute("x", "-50%");
+  filter.setAttribute("y", "-50%");
+  filter.setAttribute("width", "200%");
+  filter.setAttribute("height", "200%");
+  var blur = document.createElementNS("http://www.w3.org/2000/svg", "feGaussianBlur");
+  blur.setAttribute("stdDeviation", "1.5");
+  blur.setAttribute("result", "blur");
+  var merge = document.createElementNS("http://www.w3.org/2000/svg", "feMerge");
+  var n1 = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+  n1.setAttribute("in", "blur");
+  var n2 = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+  n2.setAttribute("in", "SourceGraphic");
+  merge.appendChild(n1);
+  merge.appendChild(n2);
+  filter.appendChild(blur);
+  filter.appendChild(merge);
+  defs.appendChild(filter);
+  svg.appendChild(defs);
+
+  var star = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  star.setAttribute("points", "10,0 12,8 20,10 12,12 10,20 8,12 0,10 8,8");
+  star.setAttribute("fill", color);
+  star.setAttribute("filter", "url(#" + filterId + ")");
+  svg.appendChild(star);
+
+  return svg;
+}
+
+document.addEventListener("mousemove", function(e) {
+  var now = Date.now();
+  if (now - lastSpawn < 60) return;
+  lastSpawn = now;
+  spawnSparkle(e.clientX, e.clientY);
+});
+
+document.addEventListener("touchmove", function(e) {
+  var touch = e.touches[0];
+  spawnSparkle(touch.clientX, touch.clientY);
+}, { passive: true });
+
+function spawnSparkle(x, y) {
+  var color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+  var size = 12 + Math.floor(Math.random() * 16);
+  var angle = Math.random() * 360;
+  var driftX = (Math.random() - 0.5) * 40;
+  var driftY = -15 - Math.random() * 20;
+
+  var svg = makeSVGSparkle(color, size);
+  svg.style.left = (x - size / 2) + "px";
+  svg.style.top = (y - size / 2) + "px";
+  svg.style.transform = "rotate(" + angle + "deg)";
+  svg.style.transition = "all 0.6s ease-out";
+  svg.style.opacity = "1";
+
+  document.body.appendChild(svg);
+
+  setTimeout(function() {
+    svg.style.opacity = "0";
+    svg.style.transform = "rotate(" + (angle + 120) + "deg) translate(" + driftX + "px, " + driftY + "px) scale(0.2)";
+  }, 30);
+
+  setTimeout(function() { svg.remove(); }, 680);
+}
+
+// VISITOR COUNTER
+var count = 847;
+function pad(n) { return String(n).padStart(6, '0'); }
+setInterval(function() {
+  count += Math.floor(Math.random() * 2);
+  document.getElementById('counter').textContent = pad(count);
+  document.getElementById('counter-footer').textContent = pad(count);
+}, 4000);
+
+// MINI DEMO DRAG & DROP
+var canvas = document.getElementById('demo-canvas');
+var stickers = document.querySelectorAll('.demo-sticker');
+var draggedSticker = null;
+
+stickers.forEach(function(sticker) {
+  sticker.addEventListener('dragstart', function(e) {
+    draggedSticker = {
+      content: sticker.innerHTML,
+      bg: sticker.style.background,
+      border: sticker.style.borderColor || sticker.style.background
+    };
+    e.dataTransfer.effectAllowed = 'copy';
+  });
+});
+
+canvas.addEventListener('dragover', function(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'copy';
+});
+
+canvas.addEventListener('drop', function(e) {
+  e.preventDefault();
+  if (!draggedSticker) return;
+  
+  var rect = canvas.getBoundingClientRect();
+  var x = e.clientX - rect.left - 14;
+  var y = e.clientY - rect.top - 14;
+  
+  var placed = document.createElement('div');
+  placed.className = 'placed-sticker';
+  placed.innerHTML = draggedSticker.content;
+  placed.style.cssText = 'position:absolute; width:28px; height:28px; background:' + draggedSticker.bg + '; border:2px outset ' + draggedSticker.border + '; display:flex; align-items:center; justify-content:center; font-size:14px; cursor:move; transform:rotate(' + (Math.random() * 30 - 15) + 'deg); box-shadow:2px 2px 4px rgba(0,0,0,0.3);';
+  placed.style.left = x + 'px';
+  placed.style.top = y + 'px';
+  
+  // Make placed stickers draggable within canvas
+  placed.addEventListener('mousedown', function(ev) {
+    var shiftX = ev.clientX - placed.getBoundingClientRect().left;
+    var shiftY = ev.clientY - placed.getBoundingClientRect().top;
+    
+    function moveAt(pageX, pageY) {
+      var canvasRect = canvas.getBoundingClientRect();
+      placed.style.left = (pageX - canvasRect.left - shiftX) + 'px';
+      placed.style.top = (pageY - canvasRect.top - shiftY) + 'px';
+    }
+    
+    function onMouseMove(event) {
+      moveAt(event.clientX, event.clientY);
+    }
+    
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', function() {
+      document.removeEventListener('mousemove', onMouseMove);
+    }, { once: true });
+  });
+  
+  placed.ondragstart = function() { return false; };
+  
+  canvas.appendChild(placed);
+  draggedSticker = null;
+});
+
+function clearCanvas() {
+  var placed = canvas.querySelectorAll('.placed-sticker');
+  placed.forEach(function(s) { s.remove(); });
+}
+
+// MOOD QUIZ - 6 Questions
+var quizScores = { pop: 0, grunge: 0, dream: 0, riot: 0 };
+var totalQuestions = 6;
+
+function updateProgress(qNum) {
+  var percent = (qNum / totalQuestions) * 100;
+  document.getElementById('quiz-progress').style.width = percent + '%';
+}
+
+function answer(qNum, choice) {
+  quizScores[choice]++;
+  document.getElementById('q' + qNum).style.display = 'none';
+  
+  if (qNum < totalQuestions) {
+    document.getElementById('q' + (qNum + 1)).style.display = 'block';
+    updateProgress(qNum);
+  } else {
+    updateProgress(totalQuestions);
+    showResult();
+  }
+}
+
+function showResult() {
+  var maxScore = 0;
+  var result = 'pop';
+  for (var key in quizScores) {
+    if (quizScores[key] > maxScore) {
+      maxScore = quizScores[key];
+      result = key;
+    }
+  }
+  
+  var results = {
+    pop: {
+      name: '~*~ Y2K POP PRINCESS ~*~',
+      desc: 'glitter, shimmer, and maximum girlhood energy! you live for butterfly clips, frosted lip gloss, bedazzled everything, and pink on pink on pink. your zines are fun, flirty, and unapologetically sparkly. think: teen magazine collages, boy band posters, and "xoxo" everywhere.',
+      color: 'linear-gradient(135deg, #ff69b4, #ffb6c1, #ff69b4)',
+      border: '#ff69b4',
+      text: '#fff',
+      pack: 'Y2K Pop Princess Pack',
+      icons: '* * * * *',
+      vibe: 'mall queen energy'
+    },
+    grunge: {
+      name: '~*~ 90s GRUNGE ~*~',
+      desc: 'raw, unfiltered, and beautifully messy. you channel flannel-wearing, coffee-drinking, seattle-scene energy. your zines have ripped edges, typewriter text, smudged ink, and that "i woke up like this" aesthetic. think: thrift store finds, angsty poetry, and beautiful imperfection.',
+      color: 'linear-gradient(135deg, #2f2f2f, #1a1a1a, #2f2f2f)',
+      border: '#556b2f',
+      text: '#a8ff04',
+      pack: 'Grunge Pack',
+      icons: '* * * * *',
+      vibe: 'basement show regular'
+    },
+    dream: {
+      name: '~*~ DREAM POP ~*~',
+      desc: 'soft, hazy, and ethereally beautiful. you exist in a world of fairy lights, dried flowers, and golden hour. your zines are delicate collages of nostalgia, whispered poetry, and vintage photographs. think: film grain, lace textures, and that feeling of a half-remembered dream.',
+      color: 'linear-gradient(135deg, #e6e6fa, #dda0dd, #e6e6fa)',
+      border: '#dda0dd',
+      text: '#4a4a6a',
+      pack: 'Dream Pop Pack',
+      icons: '* * * * *',
+      vibe: 'ethereal fairy'
+    },
+    riot: {
+      name: '~*~ RIOT GRRRL ~*~',
+      desc: 'LOUD, political, and unapologetically fierce! you\'re here to smash the patriarchy and make zines about it. cut-and-paste manifestos, bold slogans, clashing colors, and DIY everything. think: handwritten rage, magazine cutout ransom notes, and revolution in every page.',
+      color: 'linear-gradient(135deg, #ff4500, #ff0000, #ff4500)',
+      border: '#000',
+      text: '#fff',
+      pack: 'Riot Grrrl Pack',
+      icons: '* * * * *',
+      vibe: 'DIY revolutionary'
+    }
+  };
+  
+  var r = results[result];
+  var box = document.getElementById('result-box');
+  box.style.background = r.color;
+  box.style.borderColor = r.border;
+  box.style.color = r.text;
+  box.innerHTML = 
+    '<p style="font-family: VT323, monospace; font-size: 22px; margin: 0 0 5px 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">' + r.name + '</p>' +
+    '<p style="font-size: 14px; margin: 0 0 8px 0; letter-spacing: 2px;">' + r.icons + '</p>' +
+    '<p style="font-size: 11px; margin: 0 0 10px 0; line-height: 1.5;">' + r.desc + '</p>' +
+    '<p style="font-size: 9px; margin: 0 0 8px 0; opacity: 0.8; font-style: italic;">~ ' + r.vibe + ' ~</p>' +
+    '<div style="background: rgba(255,255,255,0.2); padding: 8px; margin-top: 8px; border: 2px dashed ' + r.border + ';">' +
+    '<p style="font-size: 11px; margin: 0;">~*~ recommended template: <b>' + r.pack + '</b> ~*~</p>' +
+    '</div>';
+  
+  document.getElementById('quiz-result').style.display = 'block';
+}
+
+function resetQuiz() {
+  quizScores = { pop: 0, grunge: 0, dream: 0, riot: 0 };
+  var progressEl = document.getElementById('quiz-progress');
+  if (progressEl) progressEl.style.width = '0%';
+  var resultEl = document.getElementById('quiz-result');
+  if (resultEl) resultEl.style.display = 'none';
+  for (var i = 1; i <= totalQuestions; i++) {
+    var qEl = document.getElementById('q' + i);
+    if (qEl) qEl.style.display = i === 1 ? 'block' : 'none';
+  }
+}
+
+// SIDE QUIZ - Floating left box version
+var quizScoresSide = { pop: 0, grunge: 0, dream: 0, riot: 0 };
+
+function updateProgressSide(qNum) {
+  var percent = (qNum / totalQuestions) * 100;
+  var el = document.getElementById('quiz-progress-side');
+  if (el) el.style.width = percent + '%';
+}
+
+function answerSide(qNum, choice) {
+  quizScoresSide[choice]++;
+  var qEl = document.getElementById('qs' + qNum);
+  if (qEl) qEl.style.display = 'none';
+  
+  if (qNum < totalQuestions) {
+    var nextEl = document.getElementById('qs' + (qNum + 1));
+    if (nextEl) nextEl.style.display = 'block';
+    updateProgressSide(qNum);
+  } else {
+    updateProgressSide(totalQuestions);
+    showResultSide();
+  }
+}
+
+function showResultSide() {
+  var maxScore = 0;
+  var result = 'pop';
+  for (var key in quizScoresSide) {
+    if (quizScoresSide[key] > maxScore) {
+      maxScore = quizScoresSide[key];
+      result = key;
+    }
+  }
+  
+  var results = {
+    pop: {
+      name: '~*~ Y2K POP PRINCESS ~*~',
+      desc: 'glitter, shimmer, and maximum girlhood energy!',
+      color: 'linear-gradient(135deg, #ff69b4, #ffb6c1, #ff69b4)',
+      border: '#ff69b4',
+      text: '#fff',
+      pack: 'Y2K Pop Princess Pack',
+      icons: '* * *'
+    },
+    grunge: {
+      name: '~*~ 90s GRUNGE ~*~',
+      desc: 'raw, unfiltered, and beautifully messy.',
+      color: 'linear-gradient(135deg, #2f2f2f, #1a1a1a, #2f2f2f)',
+      border: '#556b2f',
+      text: '#a8ff04',
+      pack: 'Grunge Pack',
+      icons: '* * *'
+    },
+    dream: {
+      name: '~*~ DREAM POP ~*~',
+      desc: 'soft, hazy, and ethereally beautiful.',
+      color: 'linear-gradient(135deg, #e6e6fa, #dda0dd, #e6e6fa)',
+      border: '#dda0dd',
+      text: '#4a4a6a',
+      pack: 'Dream Pop Pack',
+      icons: '* * *'
+    },
+    riot: {
+      name: '~*~ RIOT GRRRL ~*~',
+      desc: 'LOUD, political, and unapologetically fierce!',
+      color: 'linear-gradient(135deg, #ff4500, #ff0000, #ff4500)',
+      border: '#000',
+      text: '#fff',
+      pack: 'Riot Grrrl Pack',
+      icons: '* * *'
+    }
+  };
+  
+  var r = results[result];
+  var box = document.getElementById('result-box-side');
+  if (box) {
+    box.style.background = r.color;
+    box.style.borderColor = r.border;
+    box.style.color = r.text;
+    box.innerHTML = 
+      '<p style="font-size: 13px; margin: 0 0 4px 0; font-weight: bold;">' + r.name + '</p>' +
+      '<p style="font-size: 11px; margin: 0 0 6px 0;">' + r.icons + '</p>' +
+      '<p style="font-size: 9px; margin: 0 0 6px 0; line-height: 1.4;">' + r.desc + '</p>' +
+      '<p style="font-size: 8px; margin: 0; opacity: 0.9;">~*~ try: <b>' + r.pack + '</b></p>';
+  }
+  
+  var resultEl = document.getElementById('quiz-result-side');
+  if (resultEl) resultEl.style.display = 'block';
+}
+
+function resetQuizSide() {
+  quizScoresSide = { pop: 0, grunge: 0, dream: 0, riot: 0 };
+  var progressEl = document.getElementById('quiz-progress-side');
+  if (progressEl) progressEl.style.width = '0%';
+  var resultEl = document.getElementById('quiz-result-side');
+  if (resultEl) resultEl.style.display = 'none';
+  for (var i = 1; i <= totalQuestions; i++) {
+    var qEl = document.getElementById('qs' + i);
+    if (qEl) qEl.style.display = i === 1 ? 'block' : 'none';
+  }
+}
+
+// ========== MIDI PLAYER ==========
+var midiTracks = ['y2k_vibes.mid', 'sparkle_dreams.mid', 'neon_nights.mid', 'butterfly_kisses.mid', 'retro_wave.mid'];
+var midiIndex = 0;
+var midiPlaying = false;
+var midiProgress = 0;
+
+function midiToggle() {
+  midiPlaying = !midiPlaying;
+  document.getElementById('midi-play-btn').textContent = midiPlaying ? '⏸' : '▶';
+}
+
+function midiPrev() {
+  midiIndex = (midiIndex - 1 + midiTracks.length) % midiTracks.length;
+  document.getElementById('midi-track').textContent = '♪ ' + midiTracks[midiIndex];
+  midiProgress = 0;
+}
+
+function midiNext() {
+  midiIndex = (midiIndex + 1) % midiTracks.length;
+  document.getElementById('midi-track').textContent = '♪ ' + midiTracks[midiIndex];
+  midiProgress = 0;
+}
+
+setInterval(function() {
+  if (midiPlaying) {
+    midiProgress = (midiProgress + 1) % 101;
+    var el = document.getElementById('midi-progress');
+    if (el) el.style.width = midiProgress + '%';
+    if (midiProgress === 100) midiNext();
+  }
+}, 300);
+
+// ========== SLOT MACHINE ==========
+var slotOptions1 = ['Y2K', '90s', 'EMO', 'RIOT', 'SOFT', 'NEON'];
+var slotOptions2 = ['POP', 'PUNK', 'GOTH', 'GLAM', 'CUTE', 'DARK'];
+var slotOptions3 = ['PINK', 'BLUE', 'LIME', 'GOLD', 'GREY', 'PURPLE'];
+var slotSpinning = false;
+
+function spinSlots() {
+  if (slotSpinning) return;
+  slotSpinning = true;
+  
+  var slot1 = document.getElementById('slot1');
+  var slot2 = document.getElementById('slot2');
+  var slot3 = document.getElementById('slot3');
+  var result = document.getElementById('slot-result');
+  
+  result.textContent = '🎰 spinning...';
+  
+  var spins = 0;
+  var maxSpins = 15;
+  var interval = setInterval(function() {
+    slot1.textContent = slotOptions1[Math.floor(Math.random() * slotOptions1.length)];
+    slot2.textContent = slotOptions2[Math.floor(Math.random() * slotOptions2.length)];
+    slot3.textContent = slotOptions3[Math.floor(Math.random() * slotOptions3.length)];
+    spins++;
+    
+    if (spins >= maxSpins) {
+      clearInterval(interval);
+      slotSpinning = false;
+      result.textContent = '✨ ' + slot1.textContent + ' ' + slot2.textContent + ' ' + slot3.textContent + '! ✨';
+    }
+  }, 100);
+}
+
+// ========== Y2K CALENDAR ==========
+function buildCalendar() {
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth();
+  var today = now.getDate();
+  
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  
+  var monthEl = document.getElementById('cal-month');
+  if (monthEl) monthEl.textContent = months[month] + ' ' + year;
+  
+  var firstDay = new Date(year, month, 1).getDay();
+  var daysInMonth = new Date(year, month + 1, 0).getDate();
+  
+  var calBody = document.getElementById('cal-body');
+  if (!calBody) return;
+  
+  calBody.innerHTML = '';
+  var day = 1;
+  
+  for (var row = 0; row < 6; row++) {
+    if (day > daysInMonth) break;
+    var tr = document.createElement('tr');
+    
+    for (var col = 0; col < 7; col++) {
+      var td = document.createElement('td');
+      td.style.padding = '2px';
+      td.style.textAlign = 'center';
+      td.style.background = 'rgba(255,255,255,0.7)';
+      td.style.color = '#9370db';
+      
+      if (row === 0 && col < firstDay) {
+        td.textContent = '';
+      } else if (day > daysInMonth) {
+        td.textContent = '';
+      } else {
+        td.textContent = day;
+        if (day === today) {
+          td.style.background = 'linear-gradient(135deg, #ff69b4, #dda0dd)';
+          td.style.color = '#fff';
+          td.style.fontWeight = 'bold';
+          td.style.textShadow = '0 0 3px #c0106f';
+          td.style.borderRadius = '3px';
+        }
+        day++;
+      }
+      tr.appendChild(td);
+    }
+    calBody.appendChild(tr);
+  }
+}
+buildCalendar();
+
+// ========== Y2K POPUP ON LOAD ==========
+function showY2KPopup() {
+  var overlay = document.createElement('div');
+  overlay.className = 'y2k-popup-overlay';
+  overlay.id = 'y2k-popup-overlay';
+  
+  overlay.innerHTML = 
+    '<div class="y2k-popup">' +
+      '<div class="y2k-popup-titlebar">' +
+        '<span>!! Warning !!</span>' +
+        '<button class="y2k-popup-close" onclick="closeY2KPopup()">x</button>' +
+      '</div>' +
+      '<div class="y2k-popup-content">' +
+        '<div style="font-size: 40px; margin-bottom: 10px; font-family: VT323, monospace;">[!]</div>' +
+        '<p style="font-family: \'VT323\', monospace; font-size: 22px; color: #000; margin: 0 0 10px 0; font-weight: bold;">This site has never left 2003!</p>' +
+        '<p style="font-size: 12px; color: #666; margin: 0;">Proceed with caution... and nostalgia.</p>' +
+        '<button class="y2k-popup-btn" onclick="closeY2KPopup()">OK</button>' +
+      '</div>' +
+    '</div>';
+  
+  document.body.appendChild(overlay);
+}
+
+function closeY2KPopup() {
+  var overlay = document.getElementById('y2k-popup-overlay');
+  if (overlay) overlay.remove();
+}
+
+// Show popup after a short delay
+setTimeout(showY2KPopup, 800);
+
+// ========== KONAMI CODE EASTER EGG ==========
+var konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+var konamiIndex = 0;
+var konamiTriggered = false;
+
+document.addEventListener('keydown', function(e) {
+  if (konamiTriggered) return;
+  
+  if (e.code === konamiCode[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === konamiCode.length) {
+      konamiTriggered = true;
+      triggerKonamiEasterEgg();
+    }
+  } else {
+    konamiIndex = 0;
+  }
+});
+
+function triggerKonamiEasterEgg() {
+  // Create confetti explosion
+  var colors = ['#ff1493', '#ffe600', '#a8ff04', '#00ced1', '#4169e1', '#ff69b4', '#ffa500'];
+  
+  for (var i = 0; i < 150; i++) {
+    setTimeout(function() {
+      var confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.top = '-20px';
+      confetti.style.width = (Math.random() * 10 + 5) + 'px';
+      confetti.style.height = (Math.random() * 10 + 5) + 'px';
+      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      document.body.appendChild(confetti);
+      
+      setTimeout(function() { confetti.remove(); }, 4000);
+    }, i * 20);
+  }
+  
+  // Show secret message
+  var secretPopup = document.createElement('div');
+  secretPopup.className = 'y2k-popup-overlay';
+  secretPopup.id = 'konami-popup';
+  secretPopup.innerHTML = 
+    '<div class="y2k-popup">' +
+      '<div class="y2k-popup-titlebar">' +
+        '<span>~*~ SECRET UNLOCKED! ~*~</span>' +
+        '<button class="y2k-popup-close" onclick="document.getElementById(\'konami-popup\').remove()">x</button>' +
+      '</div>' +
+      '<div class="y2k-popup-content">' +
+        '<div style="font-size: 30px; margin-bottom: 10px; font-family: VT323, monospace;">* * *</div>' +
+        '<p style="font-family: VT323, monospace; font-size: 20px; color: var(--hotpink); margin: 0 0 10px 0; font-weight: bold;">YOU FOUND THE SECRET!</p>' +
+        '<p style="font-size: 14px; color: #333; margin: 0 0 5px 0; font-family: VT323, monospace;">up up down down left right left right B A</p>' +
+        '<p style="font-size: 12px; color: #666; margin: 0;">You are now officially a Y2K legend!</p>' +
+        '<button class="y2k-popup-btn" onclick="document.getElementById(\'konami-popup\').remove()">AWESOME!</button>' +
+      '</div>' +
+    '</div>';
+  
+  document.body.appendChild(secretPopup);
+}
+</script>
+
+
+</body></html>
