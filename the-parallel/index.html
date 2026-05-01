@@ -2,19 +2,24 @@
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Parallel — Privacy &amp; Support</title>
+  <title>The Parallel — Stories told day by day</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&amp;family=Jost:wght@300;400;500&amp;family=Lora:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital@0;1&amp;family=Jost:wght@300;400;500&amp;family=Lora:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-cream: #f4f2ed;
-      --bg-dark: #1a2520;
+      --bg-dark: #171f1b;
+      --bg-dark-lighter: #1e2924;
+      --text-light: #e8e6e1;
       --text-primary: #2a2a2a;
       --text-muted: #6b6b6b;
-      --accent-sage: #5a6b4d;
-      --accent-terracotta: #b8956b;
-      --border-subtle: rgba(42, 42, 42, 0.1);
+      --text-muted-light: rgba(232, 230, 225, 0.5);
+      --accent-sage: #7a9268;
+      --accent-gold: #c4a96b;
+      --accent-terracotta: #c49472;
+      --border-light: rgba(232, 230, 225, 0.1);
+      --border-dark: rgba(42, 42, 42, 0.08);
     }
     body {
       margin: 0;
@@ -26,23 +31,23 @@
       font-size: 16px;
       -webkit-font-smoothing: antialiased;
     }
-    .page-wrapper {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
 
     /* Header */
     header {
-      padding: 28px 24px;
-      position: sticky;
+      position: fixed;
       top: 0;
-      background: var(--bg-cream);
+      left: 0;
+      right: 0;
+      padding: 24px 32px;
       z-index: 100;
-      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.3s ease;
+    }
+    header.scrolled {
+      background: rgba(23, 31, 27, 0.95);
+      backdrop-filter: blur(10px);
     }
     .header-inner {
-      max-width: 800px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -50,11 +55,11 @@
     }
     .brand {
       font-family: 'Lora', serif;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 400;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-primary);
+      color: var(--text-light);
     }
     .header-nav {
       display: flex;
@@ -62,228 +67,298 @@
     }
     .header-nav a {
       font-size: 13px;
-      color: var(--text-muted);
+      color: var(--text-muted-light);
       text-decoration: none;
       transition: color 0.2s ease;
     }
     .header-nav a:hover {
-      color: var(--accent-sage);
+      color: var(--text-light);
     }
 
     /* Hero */
     .hero {
-      padding: 80px 24px 60px;
+      min-height: 100vh;
+      background: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
+      padding: 120px 24px 80px;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(122, 146, 104, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content {
+      max-width: 720px;
+      position: relative;
+      z-index: 1;
     }
     .hero-label {
       font-family: 'Courier Prime', monospace;
       font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-family: 'Lora', serif;
-      font-size: clamp(36px, 7vw, 52px);
-      font-weight: 400;
-      font-style: italic;
-      margin: 0 0 24px;
-      line-height: 1.15;
-    }
-    .hero-intro {
-      font-family: 'Lora', serif;
-      font-size: 18px;
-      line-height: 1.8;
-      color: var(--text-primary);
-      opacity: 0.75;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    /* Main content */
-    main {
-      flex: 1;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 24px 100px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    /* Section headers */
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 48px;
-      padding-top: 80px;
-    }
-    .section-header::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border-subtle);
-    }
-    .section-title {
-      font-family: 'Jost', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent-sage);
+      margin-bottom: 32px;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(40px, 8vw, 72px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-light);
+      margin: 0 0 32px;
+      line-height: 1.1;
+    }
+    .hero-subtitle {
+      font-family: 'Lora', serif;
+      font-size: clamp(18px, 3vw, 22px);
+      line-height: 1.7;
+      color: var(--text-light);
+      opacity: 0.7;
+      max-width: 520px;
+      margin: 0 auto 48px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: var(--text-light);
+      color: var(--bg-dark);
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+    .hero-cta svg {
+      width: 16px;
+      height: 16px;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted-light);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .hero-scroll span {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
     }
 
-    /* Privacy Grid */
-    .privacy-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px 48px;
+    /* How It Works */
+    .how-it-works {
+      background: var(--bg-dark-lighter);
+      padding: 120px 24px;
     }
-    .privacy-item {
-      padding-bottom: 32px;
+    .section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
     }
-    .privacy-number {
+    .section-label {
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--accent-sage);
-      margin-bottom: 10px;
+      margin-bottom: 24px;
     }
-    .privacy-item h3 {
+    .how-it-works h2 {
       font-family: 'Lora', serif;
-      font-size: 18px;
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-light);
+      margin: 0 0 64px;
+      max-width: 500px;
+      line-height: 1.25;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+    .step {
+      position: relative;
+    }
+    .step-number {
+      font-family: 'Courier Prime', monospace;
+      font-size: 48px;
+      color: var(--border-light);
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+    .step h3 {
+      font-family: 'Lora', serif;
+      font-size: 20px;
       font-weight: 500;
+      color: var(--text-light);
       margin: 0 0 12px;
     }
-    .privacy-item p {
+    .step p {
+      font-size: 15px;
+      color: var(--text-muted-light);
       margin: 0;
-      opacity: 0.75;
-      font-size: 15px;
-    }
-    .privacy-item ul {
-      margin: 8px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-    .privacy-item li {
-      position: relative;
-      padding-left: 16px;
-      margin-bottom: 6px;
-      opacity: 0.75;
-      font-size: 15px;
-    }
-    .privacy-item li::before {
-      content: '·';
-      position: absolute;
-      left: 0;
-      color: var(--accent-sage);
+      line-height: 1.7;
     }
 
-    /* Support Cards */
+    /* Privacy & Support */
+    .legal-section {
+      background: var(--bg-cream);
+      padding: 100px 24px;
+    }
+    .legal-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .legal-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .legal-header h2 {
+      font-family: 'Lora', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin: 0;
+    }
+    .legal-updated {
+      font-family: 'Courier Prime', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .legal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px 40px;
+      margin-bottom: 80px;
+    }
+    .legal-item h3 {
+      font-family: 'Lora', serif;
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0 0 10px;
+    }
+    .legal-item p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    /* Support Grid */
+    .support-header {
+      margin-bottom: 32px;
+    }
+    .support-header h2 {
+      font-family: 'Lora', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin: 0;
+    }
     .support-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
     .support-card {
-      background: rgba(255, 255, 255, 0.45);
-      border: 1px solid var(--border-subtle);
+      background: white;
+      border: 1px solid var(--border-dark);
       border-radius: 12px;
       padding: 32px;
-    }
-    .support-card.full-width {
-      grid-column: 1 / -1;
     }
     .support-card h3 {
       font-family: 'Lora', serif;
       font-size: 18px;
       font-weight: 500;
-      margin: 0 0 16px;
+      margin: 0 0 12px;
     }
     .support-card p {
-      margin: 0;
-      opacity: 0.75;
-      font-size: 15px;
-    }
-
-    /* Contact */
-    .contact-box {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-top: 20px;
-      padding: 16px 24px;
-      background: var(--bg-dark);
-      border-radius: 8px;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .contact-box:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-    .contact-box svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--accent-sage);
-      flex-shrink: 0;
-    }
-    .contact-box span {
-      font-family: 'Courier Prime', monospace;
       font-size: 14px;
-      color: var(--bg-cream);
-    }
-
-    /* Issue list */
-    .issue-list {
+      color: var(--text-muted);
       margin: 0;
+      line-height: 1.65;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 12px 20px;
+      background: var(--bg-dark);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+    .contact-link:hover {
+      transform: translateY(-1px);
+    }
+    .contact-link span {
+      font-family: 'Courier Prime', monospace;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+    .contact-link svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--accent-sage);
+    }
+    .issue-list {
+      margin: 16px 0 0;
       padding: 0;
       list-style: none;
     }
     .issue-item {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      padding: 12px 0;
-      border-bottom: 1px dotted var(--border-subtle);
-      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px dotted var(--border-dark);
+      font-size: 14px;
     }
     .issue-item:last-child {
       border-bottom: none;
-      padding-bottom: 0;
-    }
-    .issue-problem {
-      font-size: 15px;
-      opacity: 0.85;
     }
     .issue-solution {
       font-family: 'Courier Prime', monospace;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-muted);
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    /* Feedback quote */
-    .feedback-text {
-      font-family: 'Lora', serif;
-      font-style: italic;
-      font-size: 17px;
-      line-height: 1.7;
-      opacity: 0.8;
-      margin: 0;
     }
 
     /* Footer */
     footer {
-      padding: 48px 24px;
       background: var(--bg-dark);
-      color: var(--bg-cream);
+      padding: 64px 24px;
     }
     .footer-inner {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -293,58 +368,63 @@
     }
     .footer-brand {
       font-family: 'Lora', serif;
-      font-size: 14px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      opacity: 0.6;
+    }
+    .footer-tagline {
+      font-family: 'Lora', serif;
       font-style: italic;
-      opacity: 0.7;
-    }
-    .footer-meta {
-      font-family: 'Courier Prime', monospace;
-      font-size: 11px;
-      opacity: 0.5;
-      letter-spacing: 0.05em;
-    }
-
-    /* Links */
-    a {
-      color: var(--accent-sage);
-      text-decoration: none;
+      font-size: 15px;
+      color: var(--text-light);
+      opacity: 0.4;
     }
 
     /* Responsive */
-    @media (max-width: 680px) {
-      .privacy-grid,
-      .support-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero {
-        padding: 60px 24px 40px;
-      }
-      .section-header {
-        padding-top: 60px;
+    @media (max-width: 768px) {
+      header {
+        padding: 20px 24px;
       }
       .header-nav {
         gap: 20px;
       }
-      .support-card {
-        padding: 24px;
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
-      .issue-item {
-        flex-direction: column;
-        gap: 4px;
-        align-items: flex-start;
+      .legal-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
-      .issue-solution {
-        text-align: left;
+      .support-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding: 100px 24px 60px;
+      }
+      .hero-scroll {
+        display: none;
       }
       .footer-inner {
         flex-direction: column;
         text-align: center;
       }
     }
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
       .header-inner {
         flex-direction: column;
-        gap: 12px;
+        gap: 16px;
+      }
+      .featured-meta {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .issue-item {
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -379,134 +459,148 @@
 @font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
 @font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }</style></head>
 <body>
-  <div class="page-wrapper">
-    <header>
-      <div class="header-inner">
-        <div class="brand">The Parallel</div>
-        <nav class="header-nav">
-          <a href="#privacy">Privacy</a>
-          <a href="#support">Support</a>
-        </nav>
-      </div>
-    </header>
-
-    <div class="hero">
-      <div class="hero-label">A narrative experience</div>
-      <h1>Privacy &amp; Support</h1>
-      <p class="hero-intro">
-        We believe privacy should feel like silence — present, but never intrusive.
-      </p>
+  <header id="header">
+    <div class="header-inner">
+      <div class="brand">The Parallel</div>
+      <nav class="header-nav">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
+      </nav>
     </div>
+  </header>
 
-    <main>
-      <!-- Privacy Section -->
-      <section id="privacy">
-        <div class="section-header">
-          <span class="section-title">Privacy Policy</span>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-label">Interactive Fiction</div>
+      <h1>Stories told<br>day by day.</h1>
+      <p class="hero-subtitle">
+        Each day, a new scene arrives. Read it. Make a choice.
+        Over days and weeks, watch how small decisions ripple outward.
+      </p>
+      <a href="https://apps.apple.com/tr/app/the-parallel/id6762150557" class="hero-cta">
+        <span>Download on iOS</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 4V20M8 20L2 14M8 20L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-label">The Experience</div>
+      <h2>Not a book. Not a game. Something in between.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">i.</div>
+          <h3>A scene arrives</h3>
+          <p>Each day, a new moment from the story lands in your hands. Brief. Intimate. Meant to be savored.</p>
         </div>
-
-        <div class="privacy-grid">
-          <div class="privacy-item">
-            <div class="privacy-number">01</div>
-            <h3>Information We Collect</h3>
-            <p>We do not collect personal data. No accounts, no names, no tracking.
-            Everything you create stays on your device unless you export it.</p>
-            <ul>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>
-
-          <div class="privacy-item">
-            <div class="privacy-number">02</div>
-            <h3>How We Use Information</h3>
-            <p>We do not use data for analytics, ads, or profiling.
-</p>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>
-
-          <div class="privacy-item">
-            <div class="privacy-number">03</div>
-            <h3>Data Sharing</h3>
-            <p>We do not sell, trade, or rent your personal data.</p>
-          </div>
-
-          <div class="privacy-item">
-            <div class="privacy-number">04</div>
-            <h3>Data Retention</h3>
-            <p>We do not store personal data.</p>
-          </div>
-
-          <div class="privacy-item">
-            <div class="privacy-number">05</div>
-            <h3>Your Rights</h3>
-            <p>You can contact us anytime with questions.</p>
-          </div>
-
-          <div class="privacy-item">
-            <div class="privacy-number">06</div>
-            <h3>Security</h3>
-            <p>No system is 100% secure, but we keep things simple and local.</p>
-          </div>
+        <div class="step">
+          <div class="step-number">ii.</div>
+          <h3>You make a choice</h3>
+          <p>Forward or inward. To speak or stay silent. Small decisions that feel weightless — until they don't.</p>
         </div>
-      </section>
-
-      <!-- Support Section -->
-      <section id="support">
-        <div class="section-header">
-          <span class="section-title">Support</span>
+        <div class="step">
+          <div class="step-number">iii.</div>
+          <h3>The story remembers</h3>
+          <p>Over 7, 14, or 28 days, your choices accumulate. The narrative bends. The ending becomes yours.</p>
         </div>
-
-        <div class="support-grid">
-          <div class="support-card">
-            <h3>Contact Us</h3>
-            <p>For questions, issues, or anything else: we're listening.</p>
-            <a href="mailto:bloomday.app@icloud.com" class="contact-box">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
-              </svg>
-              <span>Email Us</span>
-            </a>
-          </div>
-
-          <div class="support-card">
-            <h3>Common Issues</h3>
-            <ul class="issue-list">
-              <li class="issue-item">
-                <span class="issue-problem">App not loading</span>
-                <span class="issue-solution">Restart the app</span>
-              </li>
-              <li class="issue-item">
-                <span class="issue-problem">Progress not saved</span>
-                <span class="issue-solution">Update to latest version</span>
-              </li>
-              <li class="issue-item">
-                <span class="issue-problem">Visual glitches</span>
-                <span class="issue-solution">Update device OS</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="support-card full-width">
-            <h3>Feedback</h3>
-            <p class="feedback-text">
-              The Parallel is an evolving narrative. Your feedback shapes what comes next — what stories are told, how they unfold, and who gets to hear them.
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-inner">
-        <div class="footer-brand">The Parallel</div>
-        <div class="footer-meta">Last updated: April 2026</div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </section>
+
+  <!-- Privacy & Support -->
+  <section class="legal-section" id="privacy">
+    <div class="legal-inner">
+      <div class="legal-header">
+        <h2>Privacy</h2>
+        <span class="legal-updated">Last updated: April 2026</span>
+      </div>
+      <div class="legal-grid">
+        <div class="legal-item">
+          <h3>What We Collect</h3>
+          <p>We do not collect personal data. No accounts, no names, no tracking. Everything you create stays on your device unless you export it.</p>
+        </div>
+        <div class="legal-item">
+          <h3>How We Use It</h3>
+          <p>TWe do not use data for analytics, ads, or profiling.</p>
+        </div>
+        <div class="legal-item">
+          <h3>Data Sharing</h3>
+          <p>We do not sell, trade, or rent your personal data.</p>
+        </div>
+        <div class="legal-item">
+          <h3>Retention</h3>
+          <p>We do not store personal data.</p>
+        </div>
+        <div class="legal-item">
+          <h3>Your Rights</h3>
+          <p>You can contact us anytime with questions.</p>
+        </div>
+        <div class="legal-item">
+          <h3>Security</h3>
+          <p>No system is 100% secure, but we keep things simple and local.</p>
+        </div>
+      </div>
+
+      <div class="support-header" id="support">
+        <h2>Support</h2>
+      </div>
+      <div class="support-grid">
+        <div class="support-card">
+          <h3>Contact Us</h3>
+          <p>Questions, issues, or feedback — we're here.</p>
+          <a href="mailto:bloomday.app@icloud.com" class="contact-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
+            </svg>
+            <span>Email Us</span>
+          </a>
+        </div>
+        <div class="support-card">
+          <h3>Common Issues</h3>
+          <ul class="issue-list">
+            <li class="issue-item">
+              <span>App not loading</span>
+              <span class="issue-solution">Restart the app</span>
+            </li>
+            <li class="issue-item">
+              <span>Progress not saved</span>
+              <span class="issue-solution">Update to latest version</span>
+            </li>
+            <li class="issue-item">
+              <span>Visual glitches</span>
+              <span class="issue-solution">Update device OS</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">The Parallel</div>
+      <div class="footer-tagline">A life running alongside yours.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
 
 </body></html>
