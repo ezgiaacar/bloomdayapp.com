@@ -43,10 +43,10 @@
        ANIMATIONS
        ============================================ */
     
-    /* Typing animation for title */
+    /* Typing animation for title using clip-path */
     @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
+      from { clip-path: inset(0 100% 0 0); }
+      to { clip-path: inset(0 0 0 0); }
     }
 
     @keyframes blink {
@@ -244,7 +244,6 @@
       color: var(--ink);
       margin-bottom: 28px;
       line-height: 1.2;
-      overflow: hidden;
       white-space: nowrap;
       animation: typing 2s steps(18) 0.8s both;
       border-right: 3px solid var(--ink);
