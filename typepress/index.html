@@ -5,269 +5,913 @@
   <title>Privacy &amp; Support – TypePress</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Source+Sans+3:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Courier+Prime:wght@400;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream: #F7F5F0;
-      --cream-dark: #EDE9E0;
-      --brown: #8B7355;
-      --brown-dark: #5C4D3C;
-      --text: #2C2416;
-      --text-light: #6B5D4D;
-      --paper: #FFFEF9;
+      --cream: #FAF8F3;
+      --cream-dark: #F0EDE5;
+      --warm-white: #FFFDF8;
+      --ink: #1C1915;
+      --ink-soft: #2D2A25;
+      --ink-light: #5C5650;
+      --ink-muted: #8A847B;
+      --gold: #B8A88A;
+      --gold-dark: #9A8B6F;
+      --red-ribbon: #8B3A3A;
     }
-    
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Source Sans 3', Georgia, serif;
-      background-color: var(--cream);
-      color: var(--text);
-      line-height: 1.7;
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+      color: var(--ink);
+      line-height: 1.9;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    
-    .font-serif {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+
+    .font-display {
+      font-family: 'Libre Baskerville', Georgia, serif;
     }
+
+    /* ============================================
+       ANIMATIONS
+       ============================================ */
     
-    .paper-texture {
-      background: linear-gradient(180deg, var(--paper) 0%, #FDFCF7 100%);
-      box-shadow: 
-        0 1px 3px rgba(0,0,0,0.04),
-        0 4px 12px rgba(0,0,0,0.03),
-        inset 0 1px 0 rgba(255,255,255,0.8);
+    /* Typing animation for title */
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
     }
-    
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--cream-dark), transparent);
-    }
-    
-    .typewriter-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      background-color: var(--brown);
-      margin-left: 2px;
-      animation: blink 1s step-end infinite;
-    }
-    
+
     @keyframes blink {
-      50% { opacity: 0; }
+      0%, 45% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    /* Carriage return - slide in from right */
+    @keyframes carriageReturn {
+      0% { 
+        opacity: 0; 
+        transform: translateX(40px);
+      }
+      10% {
+        opacity: 1;
+      }
+      100% { 
+        opacity: 1; 
+        transform: translateX(0);
+      }
+    }
+
+    /* Key strike effect */
+    @keyframes keyStrike {
+      0% { 
+        opacity: 0;
+        transform: scale(1.1) translateY(-5px);
+      }
+      30% {
+        opacity: 1;
+        transform: scale(0.98) translateY(2px);
+      }
+      50% {
+        transform: scale(1.02) translateY(-1px);
+      }
+      100% { 
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* Ink press - like stamping */
+    @keyframes inkPress {
+      0% { 
+        opacity: 0;
+        filter: blur(1px);
+      }
+      60% {
+        opacity: 1;
+        filter: blur(0);
+      }
+      70% {
+        opacity: 0.7;
+      }
+      100% { 
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    /* Paper feed animation */
+    @keyframes paperFeed {
+      0% { 
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Fade up */
+    @keyframes fadeUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    /* Bell ding indicator */
+    @keyframes bellDing {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Typewriter roller spin */
+    @keyframes rollerSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Subtle float */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* ============================================
+       LAYOUT
+       ============================================ */
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 32px 24px;
+      animation: paperFeed 0.8s ease-out;
+    }
+
+    .header-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .logo-link img {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-link:hover img {
+      animation: float 1s ease-in-out infinite;
+    }
+
+    .logo-text {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 22px;
+      color: var(--ink);
+      letter-spacing: 0.5px;
+    }
+
+    .est-badge {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      font-style: italic;
+      animation: inkPress 1s ease-out 0.5s both;
+    }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    
+    .hero {
+      text-align: center;
+      padding: 60px 24px 80px;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 24px;
+      animation: inkPress 0.6s ease-out 0.3s both;
+    }
+
+    /* Typing title container */
+    .typing-container {
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 28px;
+      line-height: 1.2;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 2s steps(18) 0.8s both;
+      border-right: 3px solid var(--ink);
+    }
+
+    .hero-title::after {
+      content: '';
+      animation: blink 0.8s step-end infinite;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--ink-light);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.8;
+      animation: carriageReturn 0.8s ease-out 2.8s both;
+    }
+
+    .hero-subtitle em {
+      font-family: 'Libre Baskerville', Georgia, serif;
+    }
+
+    /* Divider with bell */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin: 48px 0;
+      animation: fadeUp 0.6s ease-out 3.2s both;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .divider span {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 4px;
+      animation: bellDing 0.4s ease-out 3.5s;
+    }
+
+    /* ============================================
+       CARDS
+       ============================================ */
+
+    .card {
+      background: var(--warm-white);
+      border: 1px solid rgba(184, 168, 138, 0.2);
+      border-radius: 20px;
+      box-shadow: 
+        0 2px 4px rgba(0,0,0,0.01),
+        0 8px 24px rgba(0,0,0,0.04),
+        0 24px 48px rgba(0,0,0,0.02);
+      overflow: hidden;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: paperFeed 0.8s ease-out forwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.2s; }
+    .card:nth-child(2) { animation-delay: 0.4s; }
+
+    .card-header {
+      text-align: center;
+      padding: 48px 32px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red-ribbon);
+      margin-bottom: 12px;
+      animation: inkPress 0.5s ease-out 0.6s both;
+    }
+
+    .card-title {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--ink);
+      animation: keyStrike 0.4s ease-out 0.8s both;
+    }
+
+    .card-date {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 12px;
+      animation: carriageReturn 0.5s ease-out 1s both;
+    }
+
+    /* ============================================
+       POLICY ITEMS - Typed line by line
+       ============================================ */
+
+    .policy-item {
+      text-align: center;
+      padding: 40px 32px;
+      border-bottom: 1px solid var(--cream-dark);
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .policy-item.visible {
+      animation: carriageReturn 0.6s ease-out forwards;
+    }
+
+    .policy-item:last-child {
+      border-bottom: none;
+    }
+
+    .policy-item h3 {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Typewriter strike-through decoration on hover */
+    .policy-item:hover h3::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      width: 10px;
+      height: 2px;
+      background: var(--red-ribbon);
+      animation: keyStrike 0.2s ease-out;
+    }
+
+    .policy-item p {
+      color: var(--ink-light);
+      font-size: 15px;
+      max-width: 380px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ============================================
+       SUPPORT SECTION
+       ============================================ */
+
+    .support-card {
+      padding: 56px 48px;
+    }
+
+    .support-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .contact-section {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .contact-title {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    .contact-text {
+      color: var(--ink-light);
+      margin-bottom: 28px;
+    }
+
+    /* Email button with key press effect */
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 18px 36px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      transition: all 0.15s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .email-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .email-btn:hover::before {
+      left: 100%;
+    }
+
+    .email-btn:hover {
+      background: transparent;
+      color: var(--ink);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .email-btn:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    .email-btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .email-btn:hover svg {
+      transform: rotate(-5deg) scale(1.1);
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 10%, var(--cream-dark) 50%, transparent 90%);
+      margin-bottom: 48px;
+    }
+
+    /* ============================================
+       ISSUES - With typewriter numbering
+       ============================================ */
+
+    .issues-section h3 {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .issues-list {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .issue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--cream-dark);
+      transition: all 0.25s ease;
+      cursor: default;
+      opacity: 0;
+    }
+
+    .issue-item.visible {
+      animation: carriageReturn 0.5s ease-out forwards;
+    }
+
+    .issue-item:last-child {
+      border-bottom: none;
+    }
+
+    .issue-item:hover {
+      padding-left: 16px;
+      background: linear-gradient(90deg, rgba(184, 168, 138, 0.08), transparent);
+    }
+
+    .issue-item:hover .issue-number {
+      animation: keyStrike 0.3s ease-out;
+      color: var(--red-ribbon);
+    }
+
+    .issue-number {
+      font-family: 'Special Elite', 'Courier New', monospace;
+      font-size: 14px;
+      color: var(--gold-dark);
+      min-width: 32px;
+      transition: color 0.2s ease;
+    }
+
+    .issue-content h4 {
+      font-family: 'Courier Prime', monospace;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .issue-content p {
+      color: var(--ink-muted);
+      font-size: 14px;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+
+    footer {
+      padding: 64px 24px;
+      border-top: 1px solid var(--cream-dark);
+      text-align: center;
+    }
+
+    .footer-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .footer-divider::before,
+    .footer-divider::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .footer-divider span {
+      font-family: 'Special Elite', monospace;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--gold-dark);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-logo:hover img {
+      transform: rotate(-5deg) scale(1.05);
+    }
+
+    .footer-logo span {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 20px;
+      color: var(--ink);
+    }
+
+    .footer-tagline {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--ink-muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-copyright {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* ============================================
+       TYPEWRITER ROLLER DECORATION
+       ============================================ */
+
+    .roller-decoration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease-out 0.5s forwards;
+    }
+
+    .roller {
+      width: 8px;
+      height: 8px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+    }
+
+    .roller.spinning {
+      animation: rollerSpin 2s linear infinite;
+      border-top-color: transparent;
+    }
+
+    .roller-line {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+
+    @media (max-width: 640px) {
+      .header-inner {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .hero {
+        padding: 40px 20px 60px;
+      }
+
+      .hero-title {
+        white-space: normal;
+        animation: fadeUp 0.8s ease-out 0.8s both;
+        border-right: none;
+      }
+
+      .card-header {
+        padding: 36px 24px;
+      }
+
+      .policy-item {
+        padding: 32px 24px;
+      }
+
+      .support-card {
+        padding: 40px 24px;
+      }
+
+      .email-btn {
+        padding: 16px 28px;
+        font-size: 12px;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss-browser/4.1.13/index.global.min.js"></script><style data-moda-export-fonts="true">@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-extralight.ttf") format("truetype"); font-style: normal; font-weight: 200; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-extralightitalic.ttf") format("truetype"); font-style: italic; font-weight: 200; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-light.ttf") format("truetype"); font-style: normal; font-weight: 300; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-lightitalic.ttf") format("truetype"); font-style: italic; font-weight: 300; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-medium.ttf") format("truetype"); font-style: normal; font-weight: 500; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-mediumitalic.ttf") format("truetype"); font-style: italic; font-weight: 500; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-semibold.ttf") format("truetype"); font-style: normal; font-weight: 600; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-semibolditalic.ttf") format("truetype"); font-style: italic; font-weight: 600; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-extrabold.ttf") format("truetype"); font-style: normal; font-weight: 800; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-extrabolditalic.ttf") format("truetype"); font-style: italic; font-weight: 800; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-black.ttf") format("truetype"); font-style: normal; font-weight: 900; font-display: swap; }
-@font-face { font-family: 'Source Sans 3'; src: url("../fonts/sourcesans3-blackitalic.ttf") format("truetype"); font-style: italic; font-weight: 900; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--light.ttf") format("truetype"); font-style: normal; font-weight: 300; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--lightitalic.ttf") format("truetype"); font-style: italic; font-weight: 300; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--medium.ttf") format("truetype"); font-style: normal; font-weight: 500; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--mediumitalic.ttf") format("truetype"); font-style: italic; font-weight: 500; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--semibold.ttf") format("truetype"); font-style: normal; font-weight: 600; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--semibolditalic.ttf") format("truetype"); font-style: italic; font-weight: 600; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Cormorant Garamond'; src: url("../fonts/cormorantgaramond-wght--bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }</style></head>
-<body class="min-h-screen">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss-browser/4.1.13/index.global.min.js"></script><style data-moda-export-fonts="true">@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Libre Baskerville'; src: url("../fonts/librebaskerville-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Libre Baskerville'; src: url("../fonts/librebaskerville-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Libre Baskerville'; src: url("../fonts/librebaskerville-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Special Elite'; src: url("../fonts/specialelite-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }</style></head>
+<body>
   <!-- Header -->
-  <header class="py-6 px-6">
-    <div class="max-w-3xl mx-auto flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <img src="3fce82b3-6909-4975-9e37-40e2b3179c90.png" alt="TypePress" class="w-10 h-10 rounded-lg">
-        <span class="font-serif text-2xl font-medium text-[#2C2416] tracking-tight">TypePress</span>
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo-link">
+        <img src="3fce82b3-6909-4975-9e37-40e2b3179c90.png" alt="TypePress">
+        <span class="logo-text">TypePress</span>
       </a>
-      <span class="text-sm text-[#6B5D4D] tracking-widest uppercase">Est. 2026</span>
+      <span class="est-badge">Est. 2026</span>
     </div>
   </header>
 
-  <main class="px-6 pb-20">
+  <main>
     <!-- Hero Section -->
-    <section class="max-w-3xl mx-auto pt-12 pb-16 text-center">
-      <p class="text-sm tracking-[0.2em] uppercase text-[#8B7355] mb-4">Legal &amp; Support</p>
-      <h1 class="font-serif text-5xl md:text-6xl font-medium text-[#2C2416] leading-tight mb-6">
-        Privacy &amp; Support<span class="typewriter-cursor"></span>
-      </h1>
-      <p class="text-lg text-[#6B5D4D] max-w-xl mx-auto">
-        Simple, transparent policies for a simple, private app. Your words are yours alone.
+    <section class="hero">
+      <div class="roller-decoration">
+        <div class="roller spinning"></div>
+        <div class="roller-line"></div>
+        <div class="roller"></div>
+        <div class="roller-line"></div>
+        <div class="roller spinning"></div>
+      </div>
+      
+      <p class="hero-label">Legal &amp; Support</p>
+      
+      <div class="typing-container">
+        <h1 class="hero-title">Privacy &amp; Support</h1>
+      </div>
+      
+      <p class="hero-subtitle">
+        Simple, transparent policies for a simple, private app.<br>
+        <em>Your words are yours alone.</em>
       </p>
-    </section>
-
-    <!-- Privacy Policy Card -->
-    <section class="max-w-3xl mx-auto mb-12">
-      <div class="paper-texture rounded-2xl p-8 md:p-12">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-10 h-10 rounded-full bg-[#EDE9E0] flex items-center justify-center">
-            <svg class="w-5 h-5 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
-          </div>
-          <div>
-            <h2 class="font-serif text-3xl font-medium text-[#2C2416]">Privacy</h2>
-            <p class="text-sm text-[#6B5D4D]">Last updated: April 2026</p>
-          </div>
-        </div>
-
-        <div class="space-y-8">
-          <!-- What We Collect -->
-          <div>
-            <h3 class="font-serif text-xl font-semibold text-[#2C2416] mb-3">What We Collect</h3>
-            <p class="text-[#5C4D3C] leading-relaxed">
-              We do not collect personal data. No accounts, no names, no tracking. Everything you create stays on your device unless you export it.
-            </p>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- How We Use It -->
-          <div>
-            <h3 class="font-serif text-xl font-semibold text-[#2C2416] mb-3">How We Use It</h3>
-            <p class="text-[#5C4D3C] leading-relaxed">
-              We do not use data for analytics, ads, or profiling.
-            </p>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- Data Sharing -->
-          <div>
-            <h3 class="font-serif text-xl font-semibold text-[#2C2416] mb-3">Data Sharing</h3>
-            <p class="text-[#5C4D3C] leading-relaxed">
-              We do not sell, trade, or rent your personal data.
-            </p>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- Retention -->
-          <div>
-            <h3 class="font-serif text-xl font-semibold text-[#2C2416] mb-3">Retention</h3>
-            <p class="text-[#5C4D3C] leading-relaxed">
-              We do not store personal data.
-            </p>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- Your Rights -->
-          <div>
-            <h3 class="font-serif text-xl font-semibold text-[#2C2416] mb-3">Your Rights</h3>
-            <p class="text-[#5C4D3C] leading-relaxed">
-              You can contact us anytime with questions.
-            </p>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- Security -->
-          <div>
-            <h3 class="font-serif text-xl font-semibold text-[#2C2416] mb-3">Security</h3>
-            <p class="text-[#5C4D3C] leading-relaxed">
-              No system is 100% secure, but we keep things simple and local.
-            </p>
-          </div>
-        </div>
+      
+      <div class="divider">
+        <span>✦</span>
       </div>
     </section>
 
-    <!-- Support Section -->
-    <section class="max-w-3xl mx-auto">
-      <div class="paper-texture rounded-2xl p-8 md:p-12">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-10 h-10 rounded-full bg-[#EDE9E0] flex items-center justify-center">
-            <svg class="w-5 h-5 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h2 class="font-serif text-3xl font-medium text-[#2C2416]">Support</h2>
+    <div class="container">
+      <!-- Privacy Policy Card -->
+      <div class="card">
+        <div class="card-header">
+          <p class="section-label">Section I</p>
+          <h2 class="card-title">Privacy Policy</h2>
+          <p class="card-date">Last Updated: April 2026</p>
         </div>
 
-        <!-- Contact Us -->
-        <div class="mb-10">
-          <h3 class="font-serif text-xl font-semibold text-[#2C2416] mb-3">Contact Us</h3>
-          <p class="text-[#5C4D3C] leading-relaxed mb-5">
-            Questions, issues, or feedback — we're here.
-          </p>
-          <a href="mailto:bloomday.app@icloud.com" class="inline-flex items-center gap-3 px-6 py-3 bg-[#5C4D3C] hover:bg-[#4A3E30] text-white rounded-full transition-colors duration-200 group">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="policy-item" data-animate="">
+          <h3>What We Collect</h3>
+          <p>We do not collect personal data. No accounts, no names, no tracking. Everything you create stays on your device.</p>
+        </div>
+
+        <div class="policy-item" data-animate="">
+          <h3>How We Use It</h3>
+          <p>We do not use data for analytics, ads, or profiling.</p>
+        </div>
+
+        <div class="policy-item" data-animate="">
+          <h3>Data Sharing</h3>
+          <p>We do not sell, trade, or rent your personal data.</p>
+        </div>
+
+        <div class="policy-item" data-animate="">
+          <h3>Retention</h3>
+          <p>We do not store personal data on our servers.</p>
+        </div>
+
+        <div class="policy-item" data-animate="">
+          <h3>Your Rights</h3>
+          <p>You can contact us anytime with questions or concerns.</p>
+        </div>
+
+        <div class="policy-item" data-animate="">
+          <h3>Security</h3>
+          <p>No system is 100% secure, but we keep things simple and local.</p>
+        </div>
+      </div>
+
+      <!-- Support Card -->
+      <div class="card support-card">
+        <div class="support-header">
+          <p class="section-label">Section II</p>
+          <h2 class="card-title">Support</h2>
+        </div>
+
+        <div class="contact-section">
+          <h3 class="contact-title">Contact Us</h3>
+          <p class="contact-text">Questions, issues, or feedback — we're here to help.</p>
+          <a href="mailto:bloomday.app@icloud.com" class="email-btn">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
-            <span class="font-medium">bloomday.app@icloud.com</span>
+            Send Email
           </a>
         </div>
 
-        <div class="divider mb-10"></div>
+        <div class="section-divider"></div>
 
-        <!-- Common Issues -->
-        <div>
-          <h3 class="font-serif text-xl font-semibold text-[#2C2416] mb-6">Common Issues</h3>
-          <div class="grid gap-4">
-            <!-- Issue 1 -->
-            <div class="flex items-start gap-4 p-5 bg-[#F7F5F0] rounded-xl">
-              <div class="w-8 h-8 rounded-lg bg-[#EDE9E0] flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-4 h-4 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                </svg>
-              </div>
-              <div>
-                <p class="font-semibold text-[#2C2416] mb-1">App not loading</p>
-                <p class="text-[#6B5D4D]">Restart the app</p>
+        <div class="issues-section">
+          <h3>Common Issues</h3>
+          <div class="issues-list">
+            <div class="issue-item" data-animate="">
+              <span class="issue-number">01</span>
+              <div class="issue-content">
+                <h4>App not loading</h4>
+                <p>Try restarting the application</p>
               </div>
             </div>
 
-            <!-- Issue 2 -->
-            <div class="flex items-start gap-4 p-5 bg-[#F7F5F0] rounded-xl">
-              <div class="w-8 h-8 rounded-lg bg-[#EDE9E0] flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-4 h-4 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
-                </svg>
-              </div>
-              <div>
-                <p class="font-semibold text-[#2C2416] mb-1">Progress not saved</p>
-                <p class="text-[#6B5D4D]">Update to latest version</p>
+            <div class="issue-item" data-animate="">
+              <span class="issue-number">02</span>
+              <div class="issue-content">
+                <h4>Progress not saved</h4>
+                <p>Update to the latest version</p>
               </div>
             </div>
 
-            <!-- Issue 3 -->
-            <div class="flex items-start gap-4 p-5 bg-[#F7F5F0] rounded-xl">
-              <div class="w-8 h-8 rounded-lg bg-[#EDE9E0] flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-4 h-4 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-              <div>
-                <p class="font-semibold text-[#2C2416] mb-1">Visual glitches</p>
-                <p class="text-[#6B5D4D]">Update device OS</p>
+            <div class="issue-item" data-animate="">
+              <span class="issue-number">03</span>
+              <div class="issue-content">
+                <h4>Visual glitches</h4>
+                <p>Update your device's operating system</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-[#EDE9E0] py-10 px-6">
-    <div class="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <img src="3fce82b3-6909-4975-9e37-40e2b3179c90.png" alt="TypePress" class="w-6 h-6 rounded">
-        <span class="font-serif text-lg font-medium text-[#2C2416]">TypePress</span>
-      </div>
-      <p class="text-sm text-[#6B5D4D]">
-        © 2026 TypePress. The joy of typing, reimagined.
-      </p>
+  <footer>
+    <div class="footer-divider">
+      <span>— END —</span>
     </div>
+    <div class="footer-logo">
+      <img src="3fce82b3-6909-4975-9e37-40e2b3179c90.png" alt="TypePress">
+      <span>TypePress</span>
+    </div>
+    <p class="footer-tagline">The joy of typing, reimagined.</p>
+    <p class="footer-copyright">© 2026 TypePress</p>
   </footer>
+
+  <script>
+    // Intersection Observer for scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    let delay = 0;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Stagger the animations like typewriter lines
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          delay += 150; // Each item appears 150ms after the previous
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animatable elements
+    document.querySelectorAll('[data-animate]').forEach((el, index) => {
+      observer.observe(el);
+    });
+
+    // Reset delay when scrolling stops
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        delay = 0;
+      }, 200);
+    });
+
+    // Add typewriter sound effect on button click (visual feedback)
+    document.querySelector('.email-btn').addEventListener('mousedown', function() {
+      this.style.transform = 'translateY(2px) scale(0.98)';
+    });
+
+    document.querySelector('.email-btn').addEventListener('mouseup', function() {
+      this.style.transform = '';
+    });
+  </script>
 
 </body></html>
