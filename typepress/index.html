@@ -2,10 +2,14 @@
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy &amp; Support – TypePress</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Courier+Prime:wght@400;700&amp;display=swap" rel="stylesheet">
+  <title>TypePress: Typewriter Writing</title>
+  <meta name="description" content="A typewriter for your words, on iPhone, iPad and Mac. Real keys, a moving carriage and an ink ribbon.">
+  <meta name="apple-itunes-app" content="app-id=6766309471">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TypePress: Typewriter Writing">
+  <meta property="og:description" content="A typewriter for your words, on iPhone, iPad and Mac.">
+  <meta property="og:image" content="https://bloomdayapp.com/typepress/3fce82b3-6909-4975-9e37-40e2b3179c90.png">
+  <meta property="og:url" content="https://bloomdayapp.com/typepress/">
   <style>
     :root {
       --cream: #FAF8F3;
@@ -709,6 +713,131 @@
     }
 
     /* Reduced motion */
+
+
+    /* ============================================
+       INTRO, CTA, LEGAL HEAD
+       ============================================ */
+    html { scroll-behavior: smooth; }
+    .card { scroll-margin-top: 24px; }
+
+    .hero-cta {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      animation: carriageReturn 0.8s ease-out 3.1s both;
+    }
+
+    .hero-nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    .hero-nav a {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 3px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hero-nav a:hover { color: var(--red-ribbon); border-bottom-color: var(--red-ribbon); }
+    .hero-nav a:focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 4px; }
+
+    .hero .divider { margin-top: 56px; }
+
+    .legal-head {
+      text-align: center;
+      padding: 0 24px 44px;
+    }
+
+    .legal-head .hero-label { animation: none; margin-bottom: 18px; }
+
+    .legal-title {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(28px, 5vw, 38px);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .legal-sub {
+      font-size: 16px;
+      color: var(--ink-light);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ============================================
+       LANGUAGE SWITCH
+       ============================================ */
+    .header-side {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .lang-switch {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px 14px;
+      animation: inkPress 1s ease-out 0.7s both;
+    }
+
+    .lang-switch button {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--ink-muted);
+      background: none;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      padding: 4px 0;
+      cursor: pointer;
+      line-height: 1.4;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lang-switch button:hover { color: var(--ink); }
+
+    .lang-switch button[aria-current="true"] {
+      color: var(--red-ribbon);
+      border-bottom-color: var(--red-ribbon);
+    }
+
+    .lang-switch button:focus-visible {
+      outline: 2px solid var(--gold-dark);
+      outline-offset: 3px;
+    }
+
+    html[lang="ja"] body, html[lang="zh-Hant"] body {
+      font-family: 'Courier Prime', 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif CJK JP', 'PMingLiU', 'Songti TC', 'Noto Serif CJK TC', serif;
+    }
+    html[lang="ja"] .font-display, html[lang="zh-Hant"] .font-display,
+    html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4,
+    html[lang="zh-Hant"] h1, html[lang="zh-Hant"] h2, html[lang="zh-Hant"] h3, html[lang="zh-Hant"] h4 {
+      font-family: 'Libre Baskerville', 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif CJK JP', 'PMingLiU', 'Songti TC', 'Noto Serif CJK TC', serif;
+    }
+    html[lang="ja"] .hero-title, html[lang="zh-Hant"] .hero-title { letter-spacing: 0.08em; }
+    html[lang="ja"] .hero-subtitle, html[lang="zh-Hant"] .hero-subtitle, html[lang="ja"] .legal-sub, html[lang="zh-Hant"] .legal-sub { word-break: auto-phrase; text-wrap: balance; }
+    html[lang="ja"] .contact-text, html[lang="zh-Hant"] .contact-text,
+    html[lang="ja"] .policy-item p, html[lang="zh-Hant"] .policy-item p { word-break: auto-phrase; text-wrap: pretty; }
+
+    @media (max-width: 640px) {
+      html[lang="ja"] .hero-title { font-size: 28px; letter-spacing: 0.04em; }
+      .header-side { align-items: center; }
+      .lang-switch { justify-content: center; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -716,14 +845,14 @@
       }
     }
   </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss-browser/4.1.13/index.global.min.js"></script><style data-moda-export-fonts="true">@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Libre Baskerville'; src: url("../fonts/librebaskerville-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Libre Baskerville'; src: url("../fonts/librebaskerville-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Libre Baskerville'; src: url("../fonts/librebaskerville-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Special Elite'; src: url("../fonts/specialelite-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }</style></head>
+<style data-moda-export-fonts="true">@font-face { font-family: 'Courier Prime'; src: url("fonts/courierprime-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("fonts/courierprime-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("fonts/courierprime-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("fonts/courierprime-bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Libre Baskerville'; src: url("fonts/librebaskerville-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Libre Baskerville'; src: url("fonts/librebaskerville-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Libre Baskerville'; src: url("fonts/librebaskerville-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Special Elite'; src: url("fonts/specialelite-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }</style></head>
 <body>
   <!-- Header -->
   <header>
@@ -732,7 +861,17 @@
         <img src="3fce82b3-6909-4975-9e37-40e2b3179c90.png" alt="TypePress">
         <span class="logo-text">TypePress</span>
       </a>
-      <span class="est-badge">Est. 2026</span>
+      <div class="header-side">
+        <span class="est-badge" data-i18n="est">Est. 2026</span>
+        <nav class="lang-switch" aria-label="Language">
+          <button type="button" data-lang="en" lang="en">EN</button>
+          <button type="button" data-lang="tr" lang="tr">TR</button>
+          <button type="button" data-lang="es" lang="es">ES</button>
+          <button type="button" data-lang="pt" lang="pt">PT</button>
+          <button type="button" data-lang="ja" lang="ja">日本語</button>
+          <button type="button" data-lang="zh" lang="zh-Hant">繁體</button>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -746,107 +885,131 @@
         <div class="roller-line"></div>
         <div class="roller spinning"></div>
       </div>
-      
-      <p class="hero-label">Legal &amp; Support</p>
-      
+
+      <p class="hero-label" data-i18n="introLabel">Typewriter Writing</p>
+
       <div class="typing-container">
-        <h1 class="hero-title">Privacy &amp; Support</h1>
+        <h1 class="hero-title">TypePress</h1>
       </div>
-      
-      <p class="hero-subtitle">
-        Simple, transparent policies for a simple, private app.<br>
-        <em>Your words are yours alone.</em>
-      </p>
-      
+
+      <p class="hero-subtitle" data-i18n="introText">A typewriter for your words, on iPhone, iPad and Mac. Real keys, a moving carriage and an ink ribbon, plus a Galley to read your pages like a book.</p>
+
+      <div class="hero-cta">
+        <a href="https://apps.apple.com/app/id6766309471" class="email-btn" target="_blank" rel="noopener" data-i18n="appStore">Download on the App Store</a>
+        <nav class="hero-nav" aria-label="Page sections">
+          <a href="#privacy" data-i18n="navPrivacy">Privacy</a>
+          <a href="#support" data-i18n="navSupport">Support</a>
+        </nav>
+      </div>
+
       <div class="divider">
         <span>✦</span>
       </div>
     </section>
 
+    <section class="legal-head" id="legal">
+      <p class="hero-label" data-i18n="label">Legal &amp; Support</p>
+      <h2 class="legal-title" data-i18n="title">Privacy &amp; Support</h2>
+      <p class="legal-sub" data-i18n-html="sub">
+        Simple, transparent policies for a simple, private app.<br>
+        <em>Your words are yours alone.</em>
+      </p>
+    </section>
+
     <div class="container">
       <!-- Privacy Policy Card -->
-      <div class="card">
+      <div class="card" id="privacy">
         <div class="card-header">
-          <p class="section-label">Section I</p>
-          <h2 class="card-title">Privacy Policy</h2>
-          <p class="card-date">Last Updated: April 2026</p>
+          <p class="section-label" data-i18n="sec1">Section I</p>
+          <h2 class="card-title" data-i18n="pp">Privacy Policy</h2>
+          <p class="card-date" data-i18n="upd">Last Updated: October 2026</p>
         </div>
 
         <div class="policy-item" data-animate="">
-          <h3>What We Collect</h3>
-          <p>We do not collect personal data. No accounts, no names, no tracking. Everything you create stays on your device.</p>
+          <h3 data-i18n="p1h">What We Collect</h3>
+          <p data-i18n="p1">We do not collect personal data. No accounts, no names, no tracking. Everything you create stays on your device.</p>
         </div>
 
         <div class="policy-item" data-animate="">
-          <h3>How We Use It</h3>
-          <p>We do not use data for analytics, ads, or profiling.</p>
+          <h3 data-i18n="p2h">How We Use It</h3>
+          <p data-i18n="p2">We do not use data for analytics, ads, or profiling.</p>
         </div>
 
         <div class="policy-item" data-animate="">
-          <h3>Data Sharing</h3>
-          <p>We do not sell, trade, or rent your personal data.</p>
+          <h3 data-i18n="p3h">Data Sharing</h3>
+          <p data-i18n="p3">We do not sell, trade, or rent your personal data.</p>
         </div>
 
         <div class="policy-item" data-animate="">
-          <h3>Retention</h3>
-          <p>We do not store personal data on our servers.</p>
+          <h3 data-i18n="p4h">Retention</h3>
+          <p data-i18n="p4">We do not store personal data on our servers.</p>
+        </div>
+
+      <div class="policy-item" data-animate>
+        <h3 data-i18n="p7h">iCloud Sync</h3>
+        <p data-i18n="p7">If you turn on iCloud Sync, your pages are stored in your own iCloud Drive and kept up to date across your devices. They never pass through our servers, and we cannot see them. Sync stays off until you turn it on.</p>
+      </div>
+
+      <div class="policy-item" data-animate>
+        <h3 data-i18n="p8h">Purchases</h3>
+        <p data-i18n="p8">TypePress Pro is bought through Apple. We use RevenueCat to confirm your subscription status. RevenueCat processes an anonymous app identifier and your purchase record, never your name, your email, or your writing.</p>
+      </div>
+
+        <div class="policy-item" data-animate="">
+          <h3 data-i18n="p5h">Your Rights</h3>
+          <p data-i18n="p5">You can contact us anytime with questions or concerns.</p>
         </div>
 
         <div class="policy-item" data-animate="">
-          <h3>Your Rights</h3>
-          <p>You can contact us anytime with questions or concerns.</p>
-        </div>
-
-        <div class="policy-item" data-animate="">
-          <h3>Security</h3>
-          <p>No system is 100% secure, but we keep things simple and local.</p>
+          <h3 data-i18n="p6h">Security</h3>
+          <p data-i18n="p6">No system is 100% secure, but we keep things simple and local.</p>
         </div>
       </div>
 
       <!-- Support Card -->
-      <div class="card support-card">
+      <div class="card support-card" id="support">
         <div class="support-header">
-          <p class="section-label">Section II</p>
-          <h2 class="card-title">Support</h2>
+          <p class="section-label" data-i18n="sec2">Section II</p>
+          <h2 class="card-title" data-i18n="support">Support</h2>
         </div>
 
         <div class="contact-section">
-          <h3 class="contact-title">Contact Us</h3>
-          <p class="contact-text">Questions, issues, or feedback — we're here to help.</p>
+          <h3 class="contact-title" data-i18n="contact">Contact Us</h3>
+          <p class="contact-text" data-i18n="contactText">Questions, issues, or feedback — we're here to help.</p>
           <a href="mailto:bloomday.app@icloud.com" class="email-btn">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
-            Send Email
+            <span data-i18n="send">Send Email</span>
           </a>
         </div>
 
         <div class="section-divider"></div>
 
         <div class="issues-section">
-          <h3>Common Issues</h3>
+          <h3 data-i18n="issues">Common Issues</h3>
           <div class="issues-list">
             <div class="issue-item" data-animate="">
               <span class="issue-number">01</span>
               <div class="issue-content">
-                <h4>App not loading</h4>
-                <p>Try restarting the application</p>
+                <h4 data-i18n="i1h">App not loading</h4>
+                <p data-i18n="i1">Try restarting the application</p>
               </div>
             </div>
 
             <div class="issue-item" data-animate="">
               <span class="issue-number">02</span>
               <div class="issue-content">
-                <h4>Progress not saved</h4>
-                <p>Update to the latest version</p>
+                <h4 data-i18n="i2h">Progress not saved</h4>
+                <p data-i18n="i2">Update to the latest version</p>
               </div>
             </div>
 
             <div class="issue-item" data-animate="">
               <span class="issue-number">03</span>
               <div class="issue-content">
-                <h4>Visual glitches</h4>
-                <p>Update your device's operating system</p>
+                <h4 data-i18n="i3h">Visual glitches</h4>
+                <p data-i18n="i3">Update your device's operating system</p>
               </div>
             </div>
           </div>
@@ -858,13 +1021,13 @@
   <!-- Footer -->
   <footer>
     <div class="footer-divider">
-      <span>— END —</span>
+      <span data-i18n="end">— END —</span>
     </div>
     <div class="footer-logo">
       <img src="3fce82b3-6909-4975-9e37-40e2b3179c90.png" alt="TypePress">
       <span>TypePress</span>
     </div>
-    <p class="footer-tagline">The joy of typing, reimagined.</p>
+    <p class="footer-tagline" data-i18n="tagline">The joy of typing, reimagined.</p>
     <p class="footer-copyright">© 2026 TypePress</p>
   </footer>
 
@@ -905,13 +1068,63 @@
     });
 
     // Add typewriter sound effect on button click (visual feedback)
-    document.querySelector('.email-btn').addEventListener('mousedown', function() {
-      this.style.transform = 'translateY(2px) scale(0.98)';
-    });
-
-    document.querySelector('.email-btn').addEventListener('mouseup', function() {
-      this.style.transform = '';
+    document.querySelectorAll('.email-btn').forEach(function(btn) {
+      btn.addEventListener('mousedown', function() { this.style.transform = 'translateY(2px) scale(0.98)'; });
+      btn.addEventListener('mouseup', function() { this.style.transform = ''; });
     });
   </script>
 
+
+  <script>
+  // Dil seçimi. Önce ?lang=, sonra kayıtlı tercih, sonra tarayıcı dili. Metin yoksa İngilizce kalır.
+  (function () {
+    var T = {"tr": {"est": "Kuruluş 2026", "label": "Hukuki ve Destek", "title": "Gizlilik ve Destek", "sub": "Sade bir uygulama için sade ve şeffaf politikalar.<br>\n        <em>Yazdıkların yalnızca senin.</em>", "sec1": "Bölüm I", "pp": "Gizlilik Politikası", "upd": "Son Güncelleme: Ekim 2026", "p1h": "Neleri Topluyoruz", "p1": "Kişisel veri toplamıyoruz. Hesap yok, isim yok, takip yok. Ürettiğin her şey cihazında kalır.", "p2h": "Nasıl Kullanıyoruz", "p2": "Verileri analiz, reklam ya da profilleme için kullanmıyoruz.", "p3h": "Veri Paylaşımı", "p3": "Kişisel verilerini satmıyor, takas etmiyor, kiralamıyoruz.", "p4h": "Saklama", "p4": "Kişisel verileri sunucularımızda saklamıyoruz.", "p5h": "Haklarınız", "p5": "Sorularınla ya da endişelerinle istediğin zaman bize ulaşabilirsin.", "p6h": "Güvenlik", "p6": "Hiçbir sistem yüzde yüz güvenli değildir, ama biz işleri sade ve yerel tutuyoruz.", "sec2": "Bölüm II", "support": "Destek", "contact": "Bize Ulaş", "contactText": "Sorular, sorunlar ya da geri bildirimler için buradayız.", "send": "E-posta Gönder", "issues": "Sık Karşılaşılan Sorunlar", "i1h": "Uygulama açılmıyor", "i1": "Uygulamayı yeniden başlatmayı dene", "i2h": "İlerleme kaydedilmedi", "i2": "En son sürüme güncelle", "i3h": "Görsel aksaklıklar", "i3": "Cihazının işletim sistemini güncelle", "tagline": "Yazmanın keyfi, yeniden.", "end": "— SON —", "pagetitle": "TypePress: Daktilo", "p7h": "iCloud Senkronizasyonu", "p7": "iCloud Senkronizasyonu'nu açarsan sayfaların kendi iCloud Drive'ında saklanır ve cihazların arasında güncel tutulur. Sayfalar sunucularımızdan geçmez, biz onları göremeyiz. Sen açmadıkça senkronizasyon kapalı kalır.", "p8h": "Satın Almalar", "p8": "TypePress Pro, Apple üzerinden satın alınır. Abonelik durumunu doğrulamak için RevenueCat'i kullanıyoruz. RevenueCat anonim bir uygulama kimliğini ve satın alma kaydını işler, adını, e-postanı ya da yazdıklarını işlemez.", "introLabel": "Daktilo ile Yazı", "introText": "Kelimelerin için bir daktilo, iPhone, iPad ve Mac'te. Gerçek tuşlar, kayan bir araba ve mürekkep şeridi, ayrıca sayfalarını kitap gibi okuyabileceğin bir Galley.", "appStore": "App Store'dan indir", "navPrivacy": "Gizlilik", "navSupport": "Destek"}, "es": {"est": "Desde 2026", "label": "Legal y soporte", "title": "Privacidad y soporte", "sub": "Políticas simples y transparentes para una app simple y privada.<br>\n        <em>Tus palabras son solo tuyas.</em>", "sec1": "Sección I", "pp": "Política de privacidad", "upd": "Última actualización: octubre de 2026", "p1h": "Qué recopilamos", "p1": "No recopilamos datos personales. Sin cuentas, sin nombres, sin rastreo. Todo lo que creas se queda en tu dispositivo.", "p2h": "Cómo los usamos", "p2": "No usamos datos para analítica, publicidad ni elaboración de perfiles.", "p3h": "Compartir datos", "p3": "No vendemos, intercambiamos ni alquilamos tus datos personales.", "p4h": "Conservación", "p4": "No almacenamos datos personales en nuestros servidores.", "p5h": "Tus derechos", "p5": "Puedes escribirnos en cualquier momento con tus preguntas o inquietudes.", "p6h": "Seguridad", "p6": "Ningún sistema es 100 % seguro, pero mantenemos todo simple y local.", "sec2": "Sección II", "support": "Soporte", "contact": "Contáctanos", "contactText": "Preguntas, problemas o comentarios, estamos para ayudarte.", "send": "Enviar correo", "issues": "Problemas frecuentes", "i1h": "La app no carga", "i1": "Prueba a reiniciar la aplicación", "i2h": "El progreso no se guarda", "i2": "Actualiza a la última versión", "i3h": "Fallos visuales", "i3": "Actualiza el sistema operativo de tu dispositivo", "tagline": "El placer de escribir a máquina, reinventado.", "end": "— FIN —", "pagetitle": "TypePress: Máquina de escribir", "p7h": "Sincronización de iCloud", "p7": "Si activas la sincronización de iCloud, tus páginas se guardan en tu propio iCloud Drive y se mantienen al día entre tus dispositivos. Nunca pasan por nuestros servidores y no podemos verlas. La sincronización sigue desactivada hasta que la actives.", "p8h": "Compras", "p8": "TypePress Pro se compra a través de Apple. Usamos RevenueCat para confirmar el estado de tu suscripción. RevenueCat procesa un identificador anónimo de la app y tu registro de compra, nunca tu nombre, tu correo ni lo que escribes.", "introLabel": "Escribir a máquina", "introText": "Una máquina de escribir para tus palabras, en iPhone, iPad y Mac. Teclas reales, un carro que se desliza y una cinta de tinta, además de una Galley para leer tus páginas como un libro.", "appStore": "Descárgala en la App Store", "navPrivacy": "Privacidad", "navSupport": "Soporte"}, "pt": {"est": "Desde 2026", "label": "Jurídico e suporte", "title": "Privacidade e suporte", "sub": "Políticas simples e transparentes para um app simples e privado.<br>\n        <em>Suas palavras são só suas.</em>", "sec1": "Seção I", "pp": "Política de privacidade", "upd": "Última atualização: outubro de 2026", "p1h": "O que coletamos", "p1": "Não coletamos dados pessoais. Sem contas, sem nomes, sem rastreamento. Tudo o que você cria fica no seu dispositivo.", "p2h": "Como usamos", "p2": "Não usamos dados para análises, anúncios ou criação de perfis.", "p3h": "Compartilhamento de dados", "p3": "Não vendemos, trocamos nem alugamos seus dados pessoais.", "p4h": "Retenção", "p4": "Não armazenamos dados pessoais em nossos servidores.", "p5h": "Seus direitos", "p5": "Você pode falar conosco a qualquer momento com dúvidas ou preocupações.", "p6h": "Segurança", "p6": "Nenhum sistema é 100% seguro, mas mantemos tudo simples e local.", "sec2": "Seção II", "support": "Suporte", "contact": "Fale conosco", "contactText": "Dúvidas, problemas ou sugestões, estamos aqui para ajudar.", "send": "Enviar e-mail", "issues": "Problemas comuns", "i1h": "O app não abre", "i1": "Tente reiniciar o aplicativo", "i2h": "O progresso não foi salvo", "i2": "Atualize para a versão mais recente", "i3h": "Falhas visuais", "i3": "Atualize o sistema operacional do seu dispositivo", "tagline": "A alegria de datilografar, reinventada.", "end": "— FIM —", "pagetitle": "TypePress: Máquina de Escrever", "p7h": "Sincronização do iCloud", "p7": "Se você ativar a sincronização do iCloud, suas páginas ficam no seu próprio iCloud Drive e se mantêm atualizadas entre os seus dispositivos. Elas nunca passam pelos nossos servidores e não temos como vê-las. A sincronização continua desativada até você ativá-la.", "p8h": "Compras", "p8": "O TypePress Pro é comprado pela Apple. Usamos o RevenueCat para confirmar o status da sua assinatura. O RevenueCat processa um identificador anônimo do app e o registro da compra, nunca seu nome, seu e-mail ou o que você escreve.", "introLabel": "Escrever à máquina", "introText": "Uma máquina de escrever para as suas palavras, no iPhone, no iPad e no Mac. Teclas de verdade, um carro que desliza e uma fita de tinta, além de uma Galley para ler suas páginas como um livro.", "appStore": "Baixe na App Store", "navPrivacy": "Privacidade", "navSupport": "Suporte"}, "ja": {"est": "2026年創設", "label": "法的情報とサポート", "title": "プライバシーとサポート", "sub": "シンプルなアプリのための、シンプルで透明性のある方針です。<br>\n        <em>あなたの言葉は、あなただけのものです。</em>", "sec1": "第I章", "pp": "プライバシーポリシー", "upd": "最終更新：2026年10月", "p1h": "収集する情報", "p1": "個人データは収集しません。アカウントも、氏名も、トラッキングもありません。作成したものはすべて端末に残ります。", "p2h": "利用方法", "p2": "データを分析、広告、プロファイリングに使用することはありません。", "p3h": "データの共有", "p3": "個人データを販売、交換、貸与することはありません。", "p4h": "保存", "p4": "個人データを当社のサーバーに保存することはありません。", "p5h": "お客様の権利", "p5": "ご質問やご懸念があれば、いつでもご連絡ください。", "p6h": "セキュリティ", "p6": "100%安全なシステムはありませんが、すべてをシンプルかつローカルに保っています。", "sec2": "第II章", "support": "サポート", "contact": "お問い合わせ", "contactText": "ご質問、不具合、ご意見など、お気軽にご連絡ください。", "send": "メールを送る", "issues": "よくある問題", "i1h": "アプリが起動しない", "i1": "アプリを再起動してみてください", "i2h": "進捗が保存されない", "i2": "最新バージョンにアップデートしてください", "i3h": "表示の不具合", "i3": "端末のOSをアップデートしてください", "tagline": "タイプする喜びを、あらためて。", "end": "— 終 —", "pagetitle": "TypePress | タイプライター", "p7h": "iCloud同期", "p7": "iCloud同期をオンにすると、ページはご自身のiCloud Driveに保存され、デバイス間で最新の状態に保たれます。ページが当社のサーバーを経由することはなく、当社が内容を見ることもできません。オンにしない限り、同期はオフのままです。", "p8h": "購入", "p8": "TypePress ProはAppleを通じて購入されます。サブスクリプションの状態を確認するためにRevenueCatを使用しています。RevenueCatが処理するのは匿名のアプリ識別子と購入記録のみで、お名前、メールアドレス、書いた内容は処理されません。", "introLabel": "タイプライターで書く", "introText": "あなたの言葉のためのタイプライター。iPhone、iPad、Macで使えます。本物のようなキー、動くキャリッジ、インクリボン、そしてページを本のように読めるゲラ。", "appStore": "App Storeでダウンロード", "navPrivacy": "プライバシー", "navSupport": "サポート"}, "zh": {"est": "創立於 2026", "label": "法律與支援", "title": "隱私與支援", "sub": "為一款簡單、私密的 App，提供簡單、透明的政策。<br>\n        <em>你的文字，只屬於你。</em>", "sec1": "第一章", "pp": "隱私權政策", "upd": "最後更新：2026 年 10 月", "p1h": "我們蒐集什麼", "p1": "我們不蒐集個人資料。沒有帳號、沒有姓名、沒有追蹤。你創作的一切都留在你的裝置上。", "p2h": "我們如何使用", "p2": "我們不會將資料用於分析、廣告或建立個人檔案。", "p3h": "資料分享", "p3": "我們不會出售、交換或出租你的個人資料。", "p4h": "保存", "p4": "我們不會在伺服器上儲存個人資料。", "p5h": "你的權利", "p5": "你隨時可以來信詢問或表達疑慮。", "p6h": "安全性", "p6": "沒有任何系統能保證百分之百安全，但我們讓一切保持簡單與在地。", "sec2": "第二章", "support": "支援", "contact": "聯絡我們", "contactText": "有任何問題、狀況或意見，我們都樂意協助。", "send": "寄送電子郵件", "issues": "常見問題", "i1h": "App 無法開啟", "i1": "請嘗試重新啟動 App", "i2h": "進度沒有儲存", "i2": "請更新到最新版本", "i3h": "畫面異常", "i3": "請更新裝置的作業系統", "tagline": "打字的樂趣，煥然一新。", "end": "— 完 —", "pagetitle": "TypePress | 打字機", "p7h": "iCloud 同步", "p7": "如果你開啟 iCloud 同步，頁面會存放在你自己的 iCloud Drive，並在你的裝置之間保持最新。頁面不會經過我們的伺服器，我們也無法查看。除非你自己開啟，否則同步會保持關閉。", "p8h": "購買", "p8": "TypePress Pro 透過 Apple 購買。我們使用 RevenueCat 來確認你的訂閱狀態。RevenueCat 只處理匿名的 App 識別碼與購買紀錄，絕不會處理你的姓名、電子郵件或你寫下的內容。", "introLabel": "打字機寫作", "introText": "為你的文字準備的打字機，支援 iPhone、iPad 和 Mac。真實手感的按鍵、會移動的滑架、墨帶，還有能把頁面像書一樣閱讀的校樣。", "appStore": "前往 App Store 下載", "navPrivacy": "隱私", "navSupport": "支援"}};
+    var HTML_KEYS = { sub: true };
+    var LANG_ATTR = { en: 'en', tr: 'tr', es: 'es', pt: 'pt', ja: 'ja', zh: 'zh-Hant' };
+    var nodes = document.querySelectorAll('[data-i18n], [data-i18n-html]');
+    var base = {};
+    nodes.forEach(function (el) {
+      var k = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
+      base[k] = el.innerHTML;
+    });
+    var baseTitle = document.title;
+    var buttons = document.querySelectorAll('.lang-switch button');
+
+    function pick() {
+      var q = new URLSearchParams(location.search).get('lang');
+      var saved = null;
+      try { saved = localStorage.getItem('typepress_lang'); } catch (e) {}
+      var nav = (navigator.language || 'en').toLowerCase();
+      var guess = nav.indexOf('zh') === 0 ? 'zh' : nav.slice(0, 2);
+      var order = [q, saved, guess];
+      for (var i = 0; i < order.length; i++) {
+        if (order[i] && (order[i] === 'en' || T[order[i]])) return order[i];
+      }
+      return 'en';
+    }
+
+    function apply(lang) {
+      nodes.forEach(function (el) {
+        var k = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
+        var v = lang === 'en' ? base[k] : T[lang][k];
+        if (v !== undefined) el.innerHTML = v;
+      });
+      document.documentElement.setAttribute('lang', LANG_ATTR[lang]);
+      document.title = lang === 'en' ? baseTitle : T[lang].pagetitle;
+      buttons.forEach(function (b) {
+        b.setAttribute('aria-current', b.getAttribute('data-lang') === lang ? 'true' : 'false');
+      });
+    }
+
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var lang = b.getAttribute('data-lang');
+        try { localStorage.setItem('typepress_lang', lang); } catch (e) {}
+        apply(lang);
+      });
+    });
+
+    apply(pick());
+  })();
+  </script>
 </body></html>
