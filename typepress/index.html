@@ -1,1130 +1,196 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TypePress: Typewriter Writing</title>
-  <meta name="description" content="A typewriter for your words, on iPhone, iPad and Mac. Real keys, a moving carriage and an ink ribbon.">
-  <meta name="apple-itunes-app" content="app-id=6766309471">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="TypePress: Typewriter Writing">
-  <meta property="og:description" content="A typewriter for your words, on iPhone, iPad and Mac.">
-  <meta property="og:image" content="https://bloomdayapp.com/typepress/3fce82b3-6909-4975-9e37-40e2b3179c90.png">
-  <meta property="og:url" content="https://bloomdayapp.com/typepress/">
-  <style>
-    :root {
-      --cream: #FAF8F3;
-      --cream-dark: #F0EDE5;
-      --warm-white: #FFFDF8;
-      --ink: #1C1915;
-      --ink-soft: #2D2A25;
-      --ink-light: #5C5650;
-      --ink-muted: #8A847B;
-      --gold: #B8A88A;
-      --gold-dark: #9A8B6F;
-      --red-ribbon: #8B3A3A;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Courier Prime', 'Courier New', monospace;
-      background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
-      color: var(--ink);
-      line-height: 1.9;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .font-display {
-      font-family: 'Libre Baskerville', Georgia, serif;
-    }
-
-    /* ============================================
-       ANIMATIONS
-       ============================================ */
-    
-    /* Typing animation for title */
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      0%, 45% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-
-    /* Carriage return - slide in from right */
-    @keyframes carriageReturn {
-      0% { 
-        opacity: 0; 
-        transform: translateX(40px);
-      }
-      10% {
-        opacity: 1;
-      }
-      100% { 
-        opacity: 1; 
-        transform: translateX(0);
-      }
-    }
-
-    /* Key strike effect */
-    @keyframes keyStrike {
-      0% { 
-        opacity: 0;
-        transform: scale(1.1) translateY(-5px);
-      }
-      30% {
-        opacity: 1;
-        transform: scale(0.98) translateY(2px);
-      }
-      50% {
-        transform: scale(1.02) translateY(-1px);
-      }
-      100% { 
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
-    /* Ink press - like stamping */
-    @keyframes inkPress {
-      0% { 
-        opacity: 0;
-        filter: blur(1px);
-      }
-      60% {
-        opacity: 1;
-        filter: blur(0);
-      }
-      70% {
-        opacity: 0.7;
-      }
-      100% { 
-        opacity: 1;
-        filter: blur(0);
-      }
-    }
-
-    /* Paper feed animation */
-    @keyframes paperFeed {
-      0% { 
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      100% { 
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Fade up */
-    @keyframes fadeUp {
-      from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-      }
-      to { 
-        opacity: 1; 
-        transform: translateY(0); 
-      }
-    }
-
-    /* Bell ding indicator */
-    @keyframes bellDing {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    /* Typewriter roller spin */
-    @keyframes rollerSpin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Subtle float */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
-    }
-
-    /* ============================================
-       LAYOUT
-       ============================================ */
-
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Header */
-    header {
-      padding: 32px 24px;
-      animation: paperFeed 0.8s ease-out;
-    }
-
-    .header-inner {
-      max-width: 700px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-
-    .logo-link:hover {
-      transform: translateY(-2px);
-    }
-
-    .logo-link img {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      transition: transform 0.3s ease;
-    }
-
-    .logo-link:hover img {
-      animation: float 1s ease-in-out infinite;
-    }
-
-    .logo-text {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 22px;
-      color: var(--ink);
-      letter-spacing: 0.5px;
-    }
-
-    .est-badge {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: var(--ink-muted);
-      text-transform: uppercase;
-      font-style: italic;
-      animation: inkPress 1s ease-out 0.5s both;
-    }
-
-    /* ============================================
-       HERO
-       ============================================ */
-    
-    .hero {
-      text-align: center;
-      padding: 60px 24px 80px;
-    }
-
-    .hero-label {
-      font-size: 11px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--gold-dark);
-      margin-bottom: 24px;
-      animation: inkPress 0.6s ease-out 0.3s both;
-    }
-
-    /* Typing title container */
-    .typing-container {
-      display: inline-block;
-      position: relative;
-    }
-
-    .hero-title {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: clamp(36px, 6vw, 52px);
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 28px;
-      line-height: 1.2;
-      overflow: hidden;
-      white-space: nowrap;
-      animation: typing 2s steps(18) 0.8s both;
-      border-right: 3px solid var(--ink);
-    }
-
-    .hero-title::after {
-      content: '';
-      animation: blink 0.8s step-end infinite;
-    }
-
-    .hero-subtitle {
-      font-size: 18px;
-      color: var(--ink-light);
-      max-width: 420px;
-      margin: 0 auto;
-      line-height: 1.8;
-      animation: carriageReturn 0.8s ease-out 2.8s both;
-    }
-
-    .hero-subtitle em {
-      font-family: 'Libre Baskerville', Georgia, serif;
-    }
-
-    /* Divider with bell */
-    .divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      margin: 48px 0;
-      animation: fadeUp 0.6s ease-out 3.2s both;
-    }
-
-    .divider::before,
-    .divider::after {
-      content: '';
-      width: 80px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-
-    .divider span {
-      color: var(--gold);
-      font-size: 14px;
-      letter-spacing: 4px;
-      animation: bellDing 0.4s ease-out 3.5s;
-    }
-
-    /* ============================================
-       CARDS
-       ============================================ */
-
-    .card {
-      background: var(--warm-white);
-      border: 1px solid rgba(184, 168, 138, 0.2);
-      border-radius: 20px;
-      box-shadow: 
-        0 2px 4px rgba(0,0,0,0.01),
-        0 8px 24px rgba(0,0,0,0.04),
-        0 24px 48px rgba(0,0,0,0.02);
-      overflow: hidden;
-      margin-bottom: 48px;
-      opacity: 0;
-      animation: paperFeed 0.8s ease-out forwards;
-    }
-
-    .card:nth-child(1) { animation-delay: 0.2s; }
-    .card:nth-child(2) { animation-delay: 0.4s; }
-
-    .card-header {
-      text-align: center;
-      padding: 48px 32px;
-      border-bottom: 1px solid var(--cream-dark);
-    }
-
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--red-ribbon);
-      margin-bottom: 12px;
-      animation: inkPress 0.5s ease-out 0.6s both;
-    }
-
-    .card-title {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 32px;
-      font-weight: 400;
-      color: var(--ink);
-      animation: keyStrike 0.4s ease-out 0.8s both;
-    }
-
-    .card-date {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-top: 12px;
-      animation: carriageReturn 0.5s ease-out 1s both;
-    }
-
-    /* ============================================
-       POLICY ITEMS - Typed line by line
-       ============================================ */
-
-    .policy-item {
-      text-align: center;
-      padding: 40px 32px;
-      border-bottom: 1px solid var(--cream-dark);
-      opacity: 0;
-      transform: translateX(20px);
-    }
-
-    .policy-item.visible {
-      animation: carriageReturn 0.6s ease-out forwards;
-    }
-
-    .policy-item:last-child {
-      border-bottom: none;
-    }
-
-    .policy-item h3 {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 14px;
-      position: relative;
-      display: inline-block;
-    }
-
-    /* Typewriter strike-through decoration on hover */
-    .policy-item:hover h3::before {
-      content: '';
-      position: absolute;
-      left: -20px;
-      top: 50%;
-      width: 10px;
-      height: 2px;
-      background: var(--red-ribbon);
-      animation: keyStrike 0.2s ease-out;
-    }
-
-    .policy-item p {
-      color: var(--ink-light);
-      font-size: 15px;
-      max-width: 380px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    /* ============================================
-       SUPPORT SECTION
-       ============================================ */
-
-    .support-card {
-      padding: 56px 48px;
-    }
-
-    .support-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .contact-section {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .contact-title {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 16px;
-    }
-
-    .contact-text {
-      color: var(--ink-light);
-      margin-bottom: 28px;
-    }
-
-    /* Email button with key press effect */
-    .email-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      background: var(--ink);
-      color: var(--cream);
-      padding: 18px 36px;
-      font-family: 'Courier Prime', monospace;
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 2px solid var(--ink);
-      transition: all 0.15s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .email-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .email-btn:hover::before {
-      left: 100%;
-    }
-
-    .email-btn:hover {
-      background: transparent;
-      color: var(--ink);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .email-btn:active {
-      transform: translateY(1px);
-      box-shadow: none;
-    }
-
-    .email-btn svg {
-      width: 18px;
-      height: 18px;
-      transition: transform 0.3s ease;
-    }
-
-    .email-btn:hover svg {
-      transform: rotate(-5deg) scale(1.1);
-    }
-
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent 10%, var(--cream-dark) 50%, transparent 90%);
-      margin-bottom: 48px;
-    }
-
-    /* ============================================
-       ISSUES - With typewriter numbering
-       ============================================ */
-
-    .issues-section h3 {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 32px;
-      text-align: center;
-    }
-
-    .issues-list {
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .issue-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--cream-dark);
-      transition: all 0.25s ease;
-      cursor: default;
-      opacity: 0;
-    }
-
-    .issue-item.visible {
-      animation: carriageReturn 0.5s ease-out forwards;
-    }
-
-    .issue-item:last-child {
-      border-bottom: none;
-    }
-
-    .issue-item:hover {
-      padding-left: 16px;
-      background: linear-gradient(90deg, rgba(184, 168, 138, 0.08), transparent);
-    }
-
-    .issue-item:hover .issue-number {
-      animation: keyStrike 0.3s ease-out;
-      color: var(--red-ribbon);
-    }
-
-    .issue-number {
-      font-family: 'Special Elite', 'Courier New', monospace;
-      font-size: 14px;
-      color: var(--gold-dark);
-      min-width: 32px;
-      transition: color 0.2s ease;
-    }
-
-    .issue-content h4 {
-      font-family: 'Courier Prime', monospace;
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-
-    .issue-content p {
-      color: var(--ink-muted);
-      font-size: 14px;
-    }
-
-    /* ============================================
-       FOOTER
-       ============================================ */
-
-    footer {
-      padding: 64px 24px;
-      border-top: 1px solid var(--cream-dark);
-      text-align: center;
-    }
-
-    .footer-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 40px;
-    }
-
-    .footer-divider::before,
-    .footer-divider::after {
-      content: '';
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-
-    .footer-divider span {
-      font-family: 'Special Elite', monospace;
-      font-size: 12px;
-      letter-spacing: 4px;
-      color: var(--gold-dark);
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .footer-logo img {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-
-    .footer-logo:hover img {
-      transform: rotate(-5deg) scale(1.05);
-    }
-
-    .footer-logo span {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 20px;
-      color: var(--ink);
-    }
-
-    .footer-tagline {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 14px;
-      font-style: italic;
-      color: var(--ink-muted);
-      margin-bottom: 16px;
-    }
-
-    .footer-copyright {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-    }
-
-    /* ============================================
-       TYPEWRITER ROLLER DECORATION
-       ============================================ */
-
-    .roller-decoration {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease-out 0.5s forwards;
-    }
-
-    .roller {
-      width: 8px;
-      height: 8px;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-    }
-
-    .roller.spinning {
-      animation: rollerSpin 2s linear infinite;
-      border-top-color: transparent;
-    }
-
-    .roller-line {
-      width: 40px;
-      height: 2px;
-      background: var(--gold);
-      opacity: 0.4;
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-
-    @media (max-width: 640px) {
-      .header-inner {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
-
-      .hero {
-        padding: 40px 20px 60px;
-      }
-
-      .hero-title {
-        white-space: normal;
-        animation: fadeUp 0.8s ease-out 0.8s both;
-        border-right: none;
-      }
-
-      .card-header {
-        padding: 36px 24px;
-      }
-
-      .policy-item {
-        padding: 32px 24px;
-      }
-
-      .support-card {
-        padding: 40px 24px;
-      }
-
-      .email-btn {
-        padding: 16px 28px;
-        font-size: 12px;
-      }
-    }
-
-    /* Reduced motion */
-
-
-    /* ============================================
-       INTRO, CTA, LEGAL HEAD
-       ============================================ */
-    html { scroll-behavior: smooth; }
-    .card { scroll-margin-top: 24px; }
-
-    .hero-cta {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 22px;
-      animation: carriageReturn 0.8s ease-out 3.1s both;
-    }
-
-    .hero-nav {
-      display: flex;
-      gap: 28px;
-    }
-
-    .hero-nav a {
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 3px;
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .hero-nav a:hover { color: var(--red-ribbon); border-bottom-color: var(--red-ribbon); }
-    .hero-nav a:focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 4px; }
-
-    .hero .divider { margin-top: 56px; }
-
-    .legal-head {
-      text-align: center;
-      padding: 0 24px 44px;
-    }
-
-    .legal-head .hero-label { animation: none; margin-bottom: 18px; }
-
-    .legal-title {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: clamp(28px, 5vw, 38px);
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1.2;
-      margin-bottom: 18px;
-    }
-
-    .legal-sub {
-      font-size: 16px;
-      color: var(--ink-light);
-      max-width: 420px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    /* ============================================
-       LANGUAGE SWITCH
-       ============================================ */
-    .header-side {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-    }
-
-    .lang-switch {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 4px 14px;
-      animation: inkPress 1s ease-out 0.7s both;
-    }
-
-    .lang-switch button {
-      font-family: 'Courier Prime', 'Courier New', monospace;
-      font-size: 12px;
-      letter-spacing: 2px;
-      color: var(--ink-muted);
-      background: none;
-      border: 0;
-      border-bottom: 1px solid transparent;
-      padding: 4px 0;
-      cursor: pointer;
-      line-height: 1.4;
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .lang-switch button:hover { color: var(--ink); }
-
-    .lang-switch button[aria-current="true"] {
-      color: var(--red-ribbon);
-      border-bottom-color: var(--red-ribbon);
-    }
-
-    .lang-switch button:focus-visible {
-      outline: 2px solid var(--gold-dark);
-      outline-offset: 3px;
-    }
-
-    html[lang="ja"] body, html[lang="zh-Hant"] body {
-      font-family: 'Courier Prime', 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif CJK JP', 'PMingLiU', 'Songti TC', 'Noto Serif CJK TC', serif;
-    }
-    html[lang="ja"] .font-display, html[lang="zh-Hant"] .font-display,
-    html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4,
-    html[lang="zh-Hant"] h1, html[lang="zh-Hant"] h2, html[lang="zh-Hant"] h3, html[lang="zh-Hant"] h4 {
-      font-family: 'Libre Baskerville', 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif CJK JP', 'PMingLiU', 'Songti TC', 'Noto Serif CJK TC', serif;
-    }
-    html[lang="ja"] .hero-title, html[lang="zh-Hant"] .hero-title { letter-spacing: 0.08em; }
-    html[lang="ja"] .hero-subtitle, html[lang="zh-Hant"] .hero-subtitle, html[lang="ja"] .legal-sub, html[lang="zh-Hant"] .legal-sub { word-break: auto-phrase; text-wrap: balance; }
-    html[lang="ja"] .contact-text, html[lang="zh-Hant"] .contact-text,
-    html[lang="ja"] .policy-item p, html[lang="zh-Hant"] .policy-item p { word-break: auto-phrase; text-wrap: pretty; }
-
-    @media (max-width: 640px) {
-      html[lang="ja"] .hero-title { font-size: 28px; letter-spacing: 0.04em; }
-      .header-side { align-items: center; }
-      .lang-switch { justify-content: center; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
-  </style>
-<style data-moda-export-fonts="true">@font-face { font-family: 'Courier Prime'; src: url("fonts/courierprime-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Courier Prime'; src: url("fonts/courierprime-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Courier Prime'; src: url("fonts/courierprime-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Courier Prime'; src: url("fonts/courierprime-bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Libre Baskerville'; src: url("fonts/librebaskerville-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Libre Baskerville'; src: url("fonts/librebaskerville-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Libre Baskerville'; src: url("fonts/librebaskerville-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Special Elite'; src: url("fonts/specialelite-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }</style></head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TypePress: a typewriter for iPhone, iPad and Mac</title>
+<meta name="description" content="A typewriter for your words, on iPhone, iPad and Mac. Real keys, a moving carriage and an ink ribbon, plus a Galley to read your pages like a book.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Special+Elite&amp;family=Courier+Prime:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f4eee1;--paper2:#ebe3d1;--ink:#1d1a16;--muted:#6b6255;--red:#b3261e;--rule:#cfc4ad}
+body{background:var(--paper);color:var(--ink);font-family:"Libre Caslon Text",Georgia,serif;
+  background-image:radial-gradient(rgba(60,40,10,.05) 1px,transparent 1px);background-size:4px 4px}
+.display{font-family:"Libre Caslon Display",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+.type{font-family:"Special Elite","Courier Prime",monospace}
+.mono{font-family:"Courier Prime",monospace}
+.kicker{font-family:"Courier Prime",monospace;text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--red)}
+.rule{border-top:1px solid var(--ink)}
+.rule2{border-top:3px double var(--ink)}
+.caret::after{content:"";display:inline-block;width:.55em;height:1em;background:var(--red);margin-left:3px;vertical-align:-.12em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--ink);color:var(--paper);padding:.9rem 1.4rem;border-radius:6px;font-family:"Courier Prime",monospace;font-weight:700;letter-spacing:.04em;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 0 var(--red)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--red)}
+.btn-ghost{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--ink);padding:.85rem 1.3rem;border-radius:6px;font-family:"Courier Prime",monospace;font-weight:700}
+.btn-ghost:hover{background:var(--paper2)}
+.card{background:#fbf8f1;border:1px solid var(--rule);border-radius:4px}
+.machine img{transition:transform .4s}
+.machine:hover img{transform:translateY(-6px) rotate(-1deg)}
+details summary{list-style:none;cursor:pointer}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{transition:transform .2s;color:var(--red)}
+.stamp{border:2px solid var(--red);color:var(--red);transform:rotate(-6deg);font-family:"Special Elite",monospace;letter-spacing:.12em}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+</style>
+<script src="https://cdn.moda.app/runtime-libs/tailwind-browser-4.1.13-index.global.min.js"></script><style data-moda-export-fonts="true">@font-face { font-family: 'Libre Caslon Text'; src: url("../fonts/librecaslontext-wght--regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Libre Caslon Text'; src: url("../fonts/librecaslontext-wght--italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Libre Caslon Text'; src: url("../fonts/librecaslontext-wght--medium.ttf") format("truetype"); font-style: normal; font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Libre Caslon Text'; src: url("../fonts/librecaslontext-wght--mediumitalic.ttf") format("truetype"); font-style: italic; font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Libre Caslon Text'; src: url("../fonts/librecaslontext-wght--semibold.ttf") format("truetype"); font-style: normal; font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Libre Caslon Text'; src: url("../fonts/librecaslontext-wght--semibolditalic.ttf") format("truetype"); font-style: italic; font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Libre Caslon Text'; src: url("../fonts/librecaslontext-wght--bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Libre Caslon Text'; src: url("../fonts/librecaslontext-wght--bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Libre Caslon Display'; src: url("../fonts/librecaslondisplay-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Special Elite'; src: url("../fonts/specialelite-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-italic.ttf") format("truetype"); font-style: italic; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url("../fonts/courierprime-bolditalic.ttf") format("truetype"); font-style: italic; font-weight: 700; font-display: swap; }</style></head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="header-inner">
-      <a href="#" class="logo-link">
-        <img src="3fce82b3-6909-4975-9e37-40e2b3179c90.png" alt="TypePress">
-        <span class="logo-text">TypePress</span>
-      </a>
-      <div class="header-side">
-        <span class="est-badge" data-i18n="est">Est. 2026</span>
-        <nav class="lang-switch" aria-label="Language">
-          <button type="button" data-lang="en" lang="en">EN</button>
-          <button type="button" data-lang="tr" lang="tr">TR</button>
-          <button type="button" data-lang="es" lang="es">ES</button>
-          <button type="button" data-lang="pt" lang="pt">PT</button>
-          <button type="button" data-lang="ja" lang="ja">日本語</button>
-          <button type="button" data-lang="zh" lang="zh-Hant">繁體</button>
-        </nav>
+
+<!-- Masthead -->
+<header class="max-w-6xl mx-auto px-5 pt-6">
+  <div class="flex items-center justify-between mono text-[11px] uppercase tracking-[.2em] text-[color:var(--muted)]">
+    <span>Est. 2026</span>
+    <nav class="hidden md:flex gap-7">
+      <a href="#machines" class="hover:text-[color:var(--red)]">Machines</a>
+      <a href="#galley" class="hover:text-[color:var(--red)]">Galley</a>
+      <a href="#privacy" class="hover:text-[color:var(--red)]">Privacy</a>
+      <a href="#support" class="hover:text-[color:var(--red)]">Support</a>
+    </nav>
+    <span>iPhone · iPad · Mac</span>
+  </div>
+  <div class="rule2 mt-4"></div>
+</header>
+
+<!-- Hero -->
+<section class="max-w-6xl mx-auto px-5 pt-10 md:pt-16 pb-16 grid md:grid-cols-[1.05fr_1fr] gap-10 items-center">
+  <div>
+    <p class="kicker mb-5">Typewriter Writing</p>
+    <h1 class="display text-6xl md:text-8xl leading-[.95]">TypePress</h1>
+    <p class="type text-xl md:text-2xl mt-6 min-h-[3.5em] leading-snug"><span id="typed"></span><span class="caret"></span></p>
+    <p class="text-lg text-[color:var(--muted)] mt-4 max-w-md leading-relaxed">Real keys, a moving carriage and an ink ribbon, plus a Galley to read your pages like a book.</p>
+    <div class="flex flex-wrap gap-3 mt-8">
+      <a class="btn" href="https://apps.apple.com/tr/app/typepress-typewriter-writing/id6766309471" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"></path></svg>
+        Download on the App Store</a>
+      <a class="btn-ghost" href="#machines">See the machines ↓</a>
+    </div>
+  </div>
+  <div class="relative">
+    <img src="../images/eea275b9-8888-4ede-894f-176d10484a15.jpg" alt="TypePress vintage typewriter illustration" class="w-full max-w-[520px] mx-auto mix-blend-multiply">
+    
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-5"><div class="rule"></div></div>
+
+<!-- Features -->
+<section class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[color:var(--rule)] border border-[color:var(--rule)] my-16 mx-5 lg:mx-auto reveal">
+  <div class="bg-[color:var(--paper)] p-7"><p class="mono text-[color:var(--red)] text-sm">No. 01</p><h3 class="display text-2xl mt-3">Real keys</h3><p class="text-[color:var(--muted)] mt-2 leading-relaxed">Every letter lands with the weight of a struck key.</p></div>
+  <div class="bg-[color:var(--paper)] p-7"><p class="mono text-[color:var(--red)] text-sm">No. 02</p><h3 class="display text-2xl mt-3">Moving carriage</h3><p class="text-[color:var(--muted)] mt-2 leading-relaxed">The page slides as you type, line after line.</p></div>
+  <div class="bg-[color:var(--paper)] p-7"><p class="mono text-[color:var(--red)] text-sm">No. 03</p><h3 class="display text-2xl mt-3">Ink ribbon</h3><p class="text-[color:var(--muted)] mt-2 leading-relaxed">Words pressed onto paper, imperfect and alive.</p></div>
+  <div class="bg-[color:var(--paper)] p-7"><p class="mono text-[color:var(--red)] text-sm">No. 04</p><h3 class="display text-2xl mt-3">The Galley</h3><p class="text-[color:var(--muted)] mt-2 leading-relaxed">Read your pages back like a book.</p></div>
+</section>
+
+<!-- Machines -->
+<section id="machines" class="max-w-6xl mx-auto px-5 pb-20">
+  <div class="text-center reveal">
+    <p class="kicker">The Collection</p>
+    <h2 class="display text-4xl md:text-6xl mt-3">Choose your machine</h2>
+    <p class="text-[color:var(--muted)] mt-4 max-w-xl mx-auto">Each one with its own character. Swap whenever the mood changes.</p>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+    <figure class="machine card p-6 reveal"><div class="h-52 flex items-center justify-center"><img src="../images/0bf63d4e-6d3b-4451-9bd3-d793bd7912fc.png" alt="Classic typewriter" class="max-h-full mix-blend-multiply"></div><figcaption class="flex justify-between items-baseline mt-4 rule pt-3"><span class="display text-xl">The Classic</span><span class="mono text-xs text-[color:var(--muted)]">I</span></figcaption></figure>
+    <figure class="machine card p-6 reveal"><div class="h-52 flex items-center justify-center"><img src="../images/e3d6118c-84ee-4b0c-8d37-35c2aa505280.png" alt="Coral electric typewriter" class="max-h-full mix-blend-multiply"></div><figcaption class="flex justify-between items-baseline mt-4 rule pt-3"><span class="display text-xl">The Coral</span><span class="mono text-xs text-[color:var(--muted)]">II</span></figcaption></figure>
+    <figure class="machine card p-6 reveal"><div class="h-52 flex items-center justify-center"><img src="../images/35ca7c5f-d957-49a6-867e-b6808e25fc38.png" alt="Hermes 3000 typewriter" class="max-h-full mix-blend-multiply"></div><figcaption class="flex justify-between items-baseline mt-4 rule pt-3"><span class="display text-xl">The Hermes</span><span class="mono text-xs text-[color:var(--muted)]">III</span></figcaption></figure>
+    <figure class="machine card p-6 reveal lg:col-start-1 lg:col-span-1 lg:ml-auto lg:w-full"><div class="h-52 flex items-center justify-center"><img src="../images/b79b3a02-c4b4-45ee-94c1-efe21a91e382.png" alt="Mehano typewriter" class="max-h-full mix-blend-multiply"></div><figcaption class="flex justify-between items-baseline mt-4 rule pt-3"><span class="display text-xl">The Mehano</span><span class="mono text-xs text-[color:var(--muted)]">IV</span></figcaption></figure>
+    <figure class="machine card p-6 reveal"><div class="h-52 flex items-center justify-center"><img src="../images/687e77f0-4730-4be3-95b2-7b96bc3af808.png" alt="Mint typewriter" class="max-h-full mix-blend-multiply"></div><figcaption class="flex justify-between items-baseline mt-4 rule pt-3"><span class="display text-xl">The Mint</span><span class="mono text-xs text-[color:var(--muted)]">V</span></figcaption></figure>
+    <div class="card p-6 flex flex-col justify-center items-center text-center bg-[color:var(--ink)] reveal" style="background:var(--ink);border-color:var(--ink)">
+      <p class="type text-[color:var(--paper)] text-2xl leading-snug">“Your words<br>are yours alone.”</p>
+      <a class="mt-6 mono text-sm text-[color:var(--paper)] underline underline-offset-4 decoration-[color:var(--red)]" href="https://apps.apple.com/tr/app/typepress-typewriter-writing/id6766309471" target="_blank" rel="noopener">Get TypePress →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Galley + Sync + Pro -->
+<section id="galley" class="bg-[color:var(--ink)] text-[color:var(--paper)] py-20">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-3 gap-10">
+    <div class="reveal"><p class="kicker" style="color:#e2675f">Read</p><h3 class="display text-3xl mt-3">The Galley</h3><p class="opacity-75 mt-3 leading-relaxed">Your typed pages, bound together so you can read them like a book.</p></div>
+    <div class="reveal"><p class="kicker" style="color:#e2675f">Sync</p><h3 class="display text-3xl mt-3">Your own iCloud</h3><p class="opacity-75 mt-3 leading-relaxed">Turn on iCloud Sync and your pages live in your iCloud Drive across iPhone, iPad and Mac. Off until you switch it on.</p></div>
+    <div class="reveal"><p class="kicker" style="color:#e2675f">Upgrade</p><h3 class="display text-3xl mt-3">TypePress Pro</h3><p class="opacity-75 mt-3 leading-relaxed">Available as a subscription through Apple, managed in your App Store account.</p></div>
+  </div>
+</section>
+
+<!-- Privacy -->
+<section id="privacy" class="max-w-3xl mx-auto px-5 py-20">
+  <div class="text-center reveal">
+    <p class="kicker">Section I</p>
+    <h2 class="display text-4xl md:text-6xl mt-3">Privacy Policy</h2>
+    <p class="mono text-xs text-[color:var(--muted)] mt-3 uppercase tracking-widest">Last Updated: October 2026</p>
+  </div>
+  <div class="card p-7 md:p-9 mt-10 text-center reveal">
+    <p class="type text-2xl md:text-3xl leading-snug">We collect nothing.</p>
+    <p class="text-[color:var(--muted)] mt-3">No accounts, no names, no tracking. Everything you create stays on your device. The details are below.</p>
+  </div>
+  <div class="mt-8 rule">
+    <details class="border-b border-[color:var(--rule)] py-5"><summary class="flex justify-between items-center"><span class="display text-xl">What We Collect</span><span class="plus text-2xl">+</span></summary><p class="text-[color:var(--muted)] mt-3 leading-relaxed">We do not collect personal data. No accounts, no names, no tracking. Everything you create stays on your device.</p></details>
+    <details class="border-b border-[color:var(--rule)] py-5"><summary class="flex justify-between items-center"><span class="display text-xl">How We Use It</span><span class="plus text-2xl">+</span></summary><p class="text-[color:var(--muted)] mt-3 leading-relaxed">We do not use data for analytics, ads, or profiling.</p></details>
+    <details class="border-b border-[color:var(--rule)] py-5"><summary class="flex justify-between items-center"><span class="display text-xl">Data Sharing</span><span class="plus text-2xl">+</span></summary><p class="text-[color:var(--muted)] mt-3 leading-relaxed">We do not sell, trade, or rent your personal data.</p></details>
+    <details class="border-b border-[color:var(--rule)] py-5"><summary class="flex justify-between items-center"><span class="display text-xl">Retention</span><span class="plus text-2xl">+</span></summary><p class="text-[color:var(--muted)] mt-3 leading-relaxed">We do not store personal data on our servers.</p></details>
+    <details class="border-b border-[color:var(--rule)] py-5"><summary class="flex justify-between items-center"><span class="display text-xl">iCloud Sync</span><span class="plus text-2xl">+</span></summary><p class="text-[color:var(--muted)] mt-3 leading-relaxed">If you turn on iCloud Sync, your pages are stored in your own iCloud Drive and kept up to date across your devices. They never pass through our servers, and we cannot see them. Sync stays off until you turn it on.</p></details>
+    <details class="border-b border-[color:var(--rule)] py-5"><summary class="flex justify-between items-center"><span class="display text-xl">Purchases</span><span class="plus text-2xl">+</span></summary><p class="text-[color:var(--muted)] mt-3 leading-relaxed">TypePress Pro is bought through Apple. We use RevenueCat to confirm your subscription status. RevenueCat processes an anonymous app identifier and your purchase record, never your name, your email, or your writing.</p></details>
+    <details class="border-b border-[color:var(--rule)] py-5"><summary class="flex justify-between items-center"><span class="display text-xl">Your Rights</span><span class="plus text-2xl">+</span></summary><p class="text-[color:var(--muted)] mt-3 leading-relaxed">You can contact us anytime with questions or concerns.</p></details>
+    <details class="border-b border-[color:var(--rule)] py-5"><summary class="flex justify-between items-center"><span class="display text-xl">Security</span><span class="plus text-2xl">+</span></summary><p class="text-[color:var(--muted)] mt-3 leading-relaxed">No system is 100% secure, but we keep things simple and local.</p></details>
+  </div>
+</section>
+
+<div class="text-center text-[color:var(--red)] text-2xl">✦</div>
+
+<!-- Support -->
+<section id="support" class="max-w-5xl mx-auto px-5 py-20">
+  <div class="text-center reveal">
+    <p class="kicker">Section II</p>
+    <h2 class="display text-4xl md:text-6xl mt-3">Support</h2>
+  </div>
+  <div class="grid md:grid-cols-[1fr_1.3fr] gap-8 mt-12">
+    <div class="card p-8 reveal">
+      <h3 class="display text-2xl">Contact Us</h3>
+      <p class="text-[color:var(--muted)] mt-3">Questions, issues, or feedback? We're here to help.</p>
+      <a class="btn mt-6" href="mailto:bloomday.app@icloud.com">Send Email</a>
+      <p class="mono text-sm mt-4 text-[color:var(--muted)] break-all">bloomday.app@icloud.com</p>
+    </div>
+    <div class="reveal">
+      <h3 class="display text-2xl mb-4">Common Issues</h3>
+      <div class="rule">
+        <div class="flex gap-5 py-5 border-b border-[color:var(--rule)]"><span class="mono text-[color:var(--red)] font-bold">01</span><div><p class="font-bold">App not loading</p><p class="text-[color:var(--muted)]">Try restarting the application</p></div></div>
+        <div class="flex gap-5 py-5 border-b border-[color:var(--rule)]"><span class="mono text-[color:var(--red)] font-bold">02</span><div><p class="font-bold">Progress not saved</p><p class="text-[color:var(--muted)]">Update to the latest version</p></div></div>
+        <div class="flex gap-5 py-5 border-b border-[color:var(--rule)]"><span class="mono text-[color:var(--red)] font-bold">03</span><div><p class="font-bold">Visual glitches</p><p class="text-[color:var(--muted)]">Update your device's operating system</p></div></div>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="roller-decoration">
-        <div class="roller spinning"></div>
-        <div class="roller-line"></div>
-        <div class="roller"></div>
-        <div class="roller-line"></div>
-        <div class="roller spinning"></div>
-      </div>
+<!-- Footer -->
+<footer class="max-w-6xl mx-auto px-5 pb-10">
+  <div class="rule2"></div>
+  <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6">
+    <span class="display text-2xl">TypePress</span>
+    <span class="type text-[color:var(--muted)]">— END —</span>
+    <span class="mono text-xs text-[color:var(--muted)]">© 2026 Bloomday</span>
+  </div>
+</footer>
 
-      <p class="hero-label" data-i18n="introLabel">Typewriter Writing</p>
+<script>
+(function(){
+  var s="A typewriter for your words, on iPhone, iPad and Mac.",el=document.getElementById('typed'),i=0;
+  (function t(){el.textContent=s.slice(0,i++);if(i<=s.length)setTimeout(t,i<2?400:45+Math.random()*70)})();
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(n){io.observe(n)});
+  setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(n){n.classList.add('in')})},2500);
+})();
+</script>
 
-      <div class="typing-container">
-        <h1 class="hero-title">TypePress</h1>
-      </div>
-
-      <p class="hero-subtitle" data-i18n="introText">A typewriter for your words, on iPhone, iPad and Mac. Real keys, a moving carriage and an ink ribbon, plus a Galley to read your pages like a book.</p>
-
-      <div class="hero-cta">
-        <a href="https://apps.apple.com/app/id6766309471" class="email-btn" target="_blank" rel="noopener" data-i18n="appStore">Download on the App Store</a>
-        <nav class="hero-nav" aria-label="Page sections">
-          <a href="#privacy" data-i18n="navPrivacy">Privacy</a>
-          <a href="#support" data-i18n="navSupport">Support</a>
-        </nav>
-      </div>
-
-      <div class="divider">
-        <span>✦</span>
-      </div>
-    </section>
-
-    <section class="legal-head" id="legal">
-      <p class="hero-label" data-i18n="label">Legal &amp; Support</p>
-      <h2 class="legal-title" data-i18n="title">Privacy &amp; Support</h2>
-      <p class="legal-sub" data-i18n-html="sub">
-        Simple, transparent policies for a simple, private app.<br>
-        <em>Your words are yours alone.</em>
-      </p>
-    </section>
-
-    <div class="container">
-      <!-- Privacy Policy Card -->
-      <div class="card" id="privacy">
-        <div class="card-header">
-          <p class="section-label" data-i18n="sec1">Section I</p>
-          <h2 class="card-title" data-i18n="pp">Privacy Policy</h2>
-          <p class="card-date" data-i18n="upd">Last Updated: October 2026</p>
-        </div>
-
-        <div class="policy-item" data-animate="">
-          <h3 data-i18n="p1h">What We Collect</h3>
-          <p data-i18n="p1">We do not collect personal data. No accounts, no names, no tracking. Everything you create stays on your device.</p>
-        </div>
-
-        <div class="policy-item" data-animate="">
-          <h3 data-i18n="p2h">How We Use It</h3>
-          <p data-i18n="p2">We do not use data for analytics, ads, or profiling.</p>
-        </div>
-
-        <div class="policy-item" data-animate="">
-          <h3 data-i18n="p3h">Data Sharing</h3>
-          <p data-i18n="p3">We do not sell, trade, or rent your personal data.</p>
-        </div>
-
-        <div class="policy-item" data-animate="">
-          <h3 data-i18n="p4h">Retention</h3>
-          <p data-i18n="p4">We do not store personal data on our servers.</p>
-        </div>
-
-      <div class="policy-item" data-animate>
-        <h3 data-i18n="p7h">iCloud Sync</h3>
-        <p data-i18n="p7">If you turn on iCloud Sync, your pages are stored in your own iCloud Drive and kept up to date across your devices. They never pass through our servers, and we cannot see them. Sync stays off until you turn it on.</p>
-      </div>
-
-      <div class="policy-item" data-animate>
-        <h3 data-i18n="p8h">Purchases</h3>
-        <p data-i18n="p8">TypePress Pro is bought through Apple. We use RevenueCat to confirm your subscription status. RevenueCat processes an anonymous app identifier and your purchase record, never your name, your email, or your writing.</p>
-      </div>
-
-        <div class="policy-item" data-animate="">
-          <h3 data-i18n="p5h">Your Rights</h3>
-          <p data-i18n="p5">You can contact us anytime with questions or concerns.</p>
-        </div>
-
-        <div class="policy-item" data-animate="">
-          <h3 data-i18n="p6h">Security</h3>
-          <p data-i18n="p6">No system is 100% secure, but we keep things simple and local.</p>
-        </div>
-      </div>
-
-      <!-- Support Card -->
-      <div class="card support-card" id="support">
-        <div class="support-header">
-          <p class="section-label" data-i18n="sec2">Section II</p>
-          <h2 class="card-title" data-i18n="support">Support</h2>
-        </div>
-
-        <div class="contact-section">
-          <h3 class="contact-title" data-i18n="contact">Contact Us</h3>
-          <p class="contact-text" data-i18n="contactText">Questions, issues, or feedback — we're here to help.</p>
-          <a href="mailto:bloomday.app@icloud.com" class="email-btn">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-            <span data-i18n="send">Send Email</span>
-          </a>
-        </div>
-
-        <div class="section-divider"></div>
-
-        <div class="issues-section">
-          <h3 data-i18n="issues">Common Issues</h3>
-          <div class="issues-list">
-            <div class="issue-item" data-animate="">
-              <span class="issue-number">01</span>
-              <div class="issue-content">
-                <h4 data-i18n="i1h">App not loading</h4>
-                <p data-i18n="i1">Try restarting the application</p>
-              </div>
-            </div>
-
-            <div class="issue-item" data-animate="">
-              <span class="issue-number">02</span>
-              <div class="issue-content">
-                <h4 data-i18n="i2h">Progress not saved</h4>
-                <p data-i18n="i2">Update to the latest version</p>
-              </div>
-            </div>
-
-            <div class="issue-item" data-animate="">
-              <span class="issue-number">03</span>
-              <div class="issue-content">
-                <h4 data-i18n="i3h">Visual glitches</h4>
-                <p data-i18n="i3">Update your device's operating system</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-divider">
-      <span data-i18n="end">— END —</span>
-    </div>
-    <div class="footer-logo">
-      <img src="3fce82b3-6909-4975-9e37-40e2b3179c90.png" alt="TypePress">
-      <span>TypePress</span>
-    </div>
-    <p class="footer-tagline" data-i18n="tagline">The joy of typing, reimagined.</p>
-    <p class="footer-copyright">© 2026 TypePress</p>
-  </footer>
-
-  <script>
-    // Intersection Observer for scroll-triggered animations
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    let delay = 0;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          // Stagger the animations like typewriter lines
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, delay);
-          delay += 150; // Each item appears 150ms after the previous
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Observe all animatable elements
-    document.querySelectorAll('[data-animate]').forEach((el, index) => {
-      observer.observe(el);
-    });
-
-    // Reset delay when scrolling stops
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        delay = 0;
-      }, 200);
-    });
-
-    // Add typewriter sound effect on button click (visual feedback)
-    document.querySelectorAll('.email-btn').forEach(function(btn) {
-      btn.addEventListener('mousedown', function() { this.style.transform = 'translateY(2px) scale(0.98)'; });
-      btn.addEventListener('mouseup', function() { this.style.transform = ''; });
-    });
-  </script>
-
-
-  <script>
-  // Dil seçimi. Önce ?lang=, sonra kayıtlı tercih, sonra tarayıcı dili. Metin yoksa İngilizce kalır.
-  (function () {
-    var T = {"tr": {"est": "Kuruluş 2026", "label": "Hukuki ve Destek", "title": "Gizlilik ve Destek", "sub": "Sade bir uygulama için sade ve şeffaf politikalar.<br>\n        <em>Yazdıkların yalnızca senin.</em>", "sec1": "Bölüm I", "pp": "Gizlilik Politikası", "upd": "Son Güncelleme: Ekim 2026", "p1h": "Neleri Topluyoruz", "p1": "Kişisel veri toplamıyoruz. Hesap yok, isim yok, takip yok. Ürettiğin her şey cihazında kalır.", "p2h": "Nasıl Kullanıyoruz", "p2": "Verileri analiz, reklam ya da profilleme için kullanmıyoruz.", "p3h": "Veri Paylaşımı", "p3": "Kişisel verilerini satmıyor, takas etmiyor, kiralamıyoruz.", "p4h": "Saklama", "p4": "Kişisel verileri sunucularımızda saklamıyoruz.", "p5h": "Haklarınız", "p5": "Sorularınla ya da endişelerinle istediğin zaman bize ulaşabilirsin.", "p6h": "Güvenlik", "p6": "Hiçbir sistem yüzde yüz güvenli değildir, ama biz işleri sade ve yerel tutuyoruz.", "sec2": "Bölüm II", "support": "Destek", "contact": "Bize Ulaş", "contactText": "Sorular, sorunlar ya da geri bildirimler için buradayız.", "send": "E-posta Gönder", "issues": "Sık Karşılaşılan Sorunlar", "i1h": "Uygulama açılmıyor", "i1": "Uygulamayı yeniden başlatmayı dene", "i2h": "İlerleme kaydedilmedi", "i2": "En son sürüme güncelle", "i3h": "Görsel aksaklıklar", "i3": "Cihazının işletim sistemini güncelle", "tagline": "Yazmanın keyfi, yeniden.", "end": "— SON —", "pagetitle": "TypePress: Daktilo", "p7h": "iCloud Senkronizasyonu", "p7": "iCloud Senkronizasyonu'nu açarsan sayfaların kendi iCloud Drive'ında saklanır ve cihazların arasında güncel tutulur. Sayfalar sunucularımızdan geçmez, biz onları göremeyiz. Sen açmadıkça senkronizasyon kapalı kalır.", "p8h": "Satın Almalar", "p8": "TypePress Pro, Apple üzerinden satın alınır. Abonelik durumunu doğrulamak için RevenueCat'i kullanıyoruz. RevenueCat anonim bir uygulama kimliğini ve satın alma kaydını işler, adını, e-postanı ya da yazdıklarını işlemez.", "introLabel": "Daktilo ile Yazı", "introText": "Kelimelerin için bir daktilo, iPhone, iPad ve Mac'te. Gerçek tuşlar, kayan bir araba ve mürekkep şeridi, ayrıca sayfalarını kitap gibi okuyabileceğin bir Galley.", "appStore": "App Store'dan indir", "navPrivacy": "Gizlilik", "navSupport": "Destek"}, "es": {"est": "Desde 2026", "label": "Legal y soporte", "title": "Privacidad y soporte", "sub": "Políticas simples y transparentes para una app simple y privada.<br>\n        <em>Tus palabras son solo tuyas.</em>", "sec1": "Sección I", "pp": "Política de privacidad", "upd": "Última actualización: octubre de 2026", "p1h": "Qué recopilamos", "p1": "No recopilamos datos personales. Sin cuentas, sin nombres, sin rastreo. Todo lo que creas se queda en tu dispositivo.", "p2h": "Cómo los usamos", "p2": "No usamos datos para analítica, publicidad ni elaboración de perfiles.", "p3h": "Compartir datos", "p3": "No vendemos, intercambiamos ni alquilamos tus datos personales.", "p4h": "Conservación", "p4": "No almacenamos datos personales en nuestros servidores.", "p5h": "Tus derechos", "p5": "Puedes escribirnos en cualquier momento con tus preguntas o inquietudes.", "p6h": "Seguridad", "p6": "Ningún sistema es 100 % seguro, pero mantenemos todo simple y local.", "sec2": "Sección II", "support": "Soporte", "contact": "Contáctanos", "contactText": "Preguntas, problemas o comentarios, estamos para ayudarte.", "send": "Enviar correo", "issues": "Problemas frecuentes", "i1h": "La app no carga", "i1": "Prueba a reiniciar la aplicación", "i2h": "El progreso no se guarda", "i2": "Actualiza a la última versión", "i3h": "Fallos visuales", "i3": "Actualiza el sistema operativo de tu dispositivo", "tagline": "El placer de escribir a máquina, reinventado.", "end": "— FIN —", "pagetitle": "TypePress: Máquina de escribir", "p7h": "Sincronización de iCloud", "p7": "Si activas la sincronización de iCloud, tus páginas se guardan en tu propio iCloud Drive y se mantienen al día entre tus dispositivos. Nunca pasan por nuestros servidores y no podemos verlas. La sincronización sigue desactivada hasta que la actives.", "p8h": "Compras", "p8": "TypePress Pro se compra a través de Apple. Usamos RevenueCat para confirmar el estado de tu suscripción. RevenueCat procesa un identificador anónimo de la app y tu registro de compra, nunca tu nombre, tu correo ni lo que escribes.", "introLabel": "Escribir a máquina", "introText": "Una máquina de escribir para tus palabras, en iPhone, iPad y Mac. Teclas reales, un carro que se desliza y una cinta de tinta, además de una Galley para leer tus páginas como un libro.", "appStore": "Descárgala en la App Store", "navPrivacy": "Privacidad", "navSupport": "Soporte"}, "pt": {"est": "Desde 2026", "label": "Jurídico e suporte", "title": "Privacidade e suporte", "sub": "Políticas simples e transparentes para um app simples e privado.<br>\n        <em>Suas palavras são só suas.</em>", "sec1": "Seção I", "pp": "Política de privacidade", "upd": "Última atualização: outubro de 2026", "p1h": "O que coletamos", "p1": "Não coletamos dados pessoais. Sem contas, sem nomes, sem rastreamento. Tudo o que você cria fica no seu dispositivo.", "p2h": "Como usamos", "p2": "Não usamos dados para análises, anúncios ou criação de perfis.", "p3h": "Compartilhamento de dados", "p3": "Não vendemos, trocamos nem alugamos seus dados pessoais.", "p4h": "Retenção", "p4": "Não armazenamos dados pessoais em nossos servidores.", "p5h": "Seus direitos", "p5": "Você pode falar conosco a qualquer momento com dúvidas ou preocupações.", "p6h": "Segurança", "p6": "Nenhum sistema é 100% seguro, mas mantemos tudo simples e local.", "sec2": "Seção II", "support": "Suporte", "contact": "Fale conosco", "contactText": "Dúvidas, problemas ou sugestões, estamos aqui para ajudar.", "send": "Enviar e-mail", "issues": "Problemas comuns", "i1h": "O app não abre", "i1": "Tente reiniciar o aplicativo", "i2h": "O progresso não foi salvo", "i2": "Atualize para a versão mais recente", "i3h": "Falhas visuais", "i3": "Atualize o sistema operacional do seu dispositivo", "tagline": "A alegria de datilografar, reinventada.", "end": "— FIM —", "pagetitle": "TypePress: Máquina de Escrever", "p7h": "Sincronização do iCloud", "p7": "Se você ativar a sincronização do iCloud, suas páginas ficam no seu próprio iCloud Drive e se mantêm atualizadas entre os seus dispositivos. Elas nunca passam pelos nossos servidores e não temos como vê-las. A sincronização continua desativada até você ativá-la.", "p8h": "Compras", "p8": "O TypePress Pro é comprado pela Apple. Usamos o RevenueCat para confirmar o status da sua assinatura. O RevenueCat processa um identificador anônimo do app e o registro da compra, nunca seu nome, seu e-mail ou o que você escreve.", "introLabel": "Escrever à máquina", "introText": "Uma máquina de escrever para as suas palavras, no iPhone, no iPad e no Mac. Teclas de verdade, um carro que desliza e uma fita de tinta, além de uma Galley para ler suas páginas como um livro.", "appStore": "Baixe na App Store", "navPrivacy": "Privacidade", "navSupport": "Suporte"}, "ja": {"est": "2026年創設", "label": "法的情報とサポート", "title": "プライバシーとサポート", "sub": "シンプルなアプリのための、シンプルで透明性のある方針です。<br>\n        <em>あなたの言葉は、あなただけのものです。</em>", "sec1": "第I章", "pp": "プライバシーポリシー", "upd": "最終更新：2026年10月", "p1h": "収集する情報", "p1": "個人データは収集しません。アカウントも、氏名も、トラッキングもありません。作成したものはすべて端末に残ります。", "p2h": "利用方法", "p2": "データを分析、広告、プロファイリングに使用することはありません。", "p3h": "データの共有", "p3": "個人データを販売、交換、貸与することはありません。", "p4h": "保存", "p4": "個人データを当社のサーバーに保存することはありません。", "p5h": "お客様の権利", "p5": "ご質問やご懸念があれば、いつでもご連絡ください。", "p6h": "セキュリティ", "p6": "100%安全なシステムはありませんが、すべてをシンプルかつローカルに保っています。", "sec2": "第II章", "support": "サポート", "contact": "お問い合わせ", "contactText": "ご質問、不具合、ご意見など、お気軽にご連絡ください。", "send": "メールを送る", "issues": "よくある問題", "i1h": "アプリが起動しない", "i1": "アプリを再起動してみてください", "i2h": "進捗が保存されない", "i2": "最新バージョンにアップデートしてください", "i3h": "表示の不具合", "i3": "端末のOSをアップデートしてください", "tagline": "タイプする喜びを、あらためて。", "end": "— 終 —", "pagetitle": "TypePress | タイプライター", "p7h": "iCloud同期", "p7": "iCloud同期をオンにすると、ページはご自身のiCloud Driveに保存され、デバイス間で最新の状態に保たれます。ページが当社のサーバーを経由することはなく、当社が内容を見ることもできません。オンにしない限り、同期はオフのままです。", "p8h": "購入", "p8": "TypePress ProはAppleを通じて購入されます。サブスクリプションの状態を確認するためにRevenueCatを使用しています。RevenueCatが処理するのは匿名のアプリ識別子と購入記録のみで、お名前、メールアドレス、書いた内容は処理されません。", "introLabel": "タイプライターで書く", "introText": "あなたの言葉のためのタイプライター。iPhone、iPad、Macで使えます。本物のようなキー、動くキャリッジ、インクリボン、そしてページを本のように読めるゲラ。", "appStore": "App Storeでダウンロード", "navPrivacy": "プライバシー", "navSupport": "サポート"}, "zh": {"est": "創立於 2026", "label": "法律與支援", "title": "隱私與支援", "sub": "為一款簡單、私密的 App，提供簡單、透明的政策。<br>\n        <em>你的文字，只屬於你。</em>", "sec1": "第一章", "pp": "隱私權政策", "upd": "最後更新：2026 年 10 月", "p1h": "我們蒐集什麼", "p1": "我們不蒐集個人資料。沒有帳號、沒有姓名、沒有追蹤。你創作的一切都留在你的裝置上。", "p2h": "我們如何使用", "p2": "我們不會將資料用於分析、廣告或建立個人檔案。", "p3h": "資料分享", "p3": "我們不會出售、交換或出租你的個人資料。", "p4h": "保存", "p4": "我們不會在伺服器上儲存個人資料。", "p5h": "你的權利", "p5": "你隨時可以來信詢問或表達疑慮。", "p6h": "安全性", "p6": "沒有任何系統能保證百分之百安全，但我們讓一切保持簡單與在地。", "sec2": "第二章", "support": "支援", "contact": "聯絡我們", "contactText": "有任何問題、狀況或意見，我們都樂意協助。", "send": "寄送電子郵件", "issues": "常見問題", "i1h": "App 無法開啟", "i1": "請嘗試重新啟動 App", "i2h": "進度沒有儲存", "i2": "請更新到最新版本", "i3h": "畫面異常", "i3": "請更新裝置的作業系統", "tagline": "打字的樂趣，煥然一新。", "end": "— 完 —", "pagetitle": "TypePress | 打字機", "p7h": "iCloud 同步", "p7": "如果你開啟 iCloud 同步，頁面會存放在你自己的 iCloud Drive，並在你的裝置之間保持最新。頁面不會經過我們的伺服器，我們也無法查看。除非你自己開啟，否則同步會保持關閉。", "p8h": "購買", "p8": "TypePress Pro 透過 Apple 購買。我們使用 RevenueCat 來確認你的訂閱狀態。RevenueCat 只處理匿名的 App 識別碼與購買紀錄，絕不會處理你的姓名、電子郵件或你寫下的內容。", "introLabel": "打字機寫作", "introText": "為你的文字準備的打字機，支援 iPhone、iPad 和 Mac。真實手感的按鍵、會移動的滑架、墨帶，還有能把頁面像書一樣閱讀的校樣。", "appStore": "前往 App Store 下載", "navPrivacy": "隱私", "navSupport": "支援"}};
-    var HTML_KEYS = { sub: true };
-    var LANG_ATTR = { en: 'en', tr: 'tr', es: 'es', pt: 'pt', ja: 'ja', zh: 'zh-Hant' };
-    var nodes = document.querySelectorAll('[data-i18n], [data-i18n-html]');
-    var base = {};
-    nodes.forEach(function (el) {
-      var k = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
-      base[k] = el.innerHTML;
-    });
-    var baseTitle = document.title;
-    var buttons = document.querySelectorAll('.lang-switch button');
-
-    function pick() {
-      var q = new URLSearchParams(location.search).get('lang');
-      var saved = null;
-      try { saved = localStorage.getItem('typepress_lang'); } catch (e) {}
-      var nav = (navigator.language || 'en').toLowerCase();
-      var guess = nav.indexOf('zh') === 0 ? 'zh' : nav.slice(0, 2);
-      var order = [q, saved, guess];
-      for (var i = 0; i < order.length; i++) {
-        if (order[i] && (order[i] === 'en' || T[order[i]])) return order[i];
-      }
-      return 'en';
-    }
-
-    function apply(lang) {
-      nodes.forEach(function (el) {
-        var k = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
-        var v = lang === 'en' ? base[k] : T[lang][k];
-        if (v !== undefined) el.innerHTML = v;
-      });
-      document.documentElement.setAttribute('lang', LANG_ATTR[lang]);
-      document.title = lang === 'en' ? baseTitle : T[lang].pagetitle;
-      buttons.forEach(function (b) {
-        b.setAttribute('aria-current', b.getAttribute('data-lang') === lang ? 'true' : 'false');
-      });
-    }
-
-    buttons.forEach(function (b) {
-      b.addEventListener('click', function () {
-        var lang = b.getAttribute('data-lang');
-        try { localStorage.setItem('typepress_lang', lang); } catch (e) {}
-        apply(lang);
-      });
-    });
-
-    apply(pick());
-  })();
-  </script>
 </body></html>
