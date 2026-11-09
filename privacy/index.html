@@ -143,7 +143,7 @@ footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:cente
   <span class="badge" data-t="hero_badge">Legal</span>
   <h1 data-t-html="hero_title">Privacy <em>Policy</em></h1>
   <p data-t="hero_desc">Your data belongs to you. Here is exactly what we collect, why, and how it is protected.</p>
-  <span class="updated" data-t="hero_updated">Last updated: April 2026</span>
+  <span class="updated" data-t="hero_updated">Last updated: November 2026</span>
 </div>
 
 <div class="toc">
@@ -183,26 +183,33 @@ footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:cente
         <div class="list-icon">@</div>
         <div class="list-body">
           <h4 data-t="collect_1_title">Account information</h4>
-          <p data-t="collect_1_body">When you create an account, we collect your email address and a securely hashed password. This is used solely to authenticate your identity. We do not collect your name, phone number, or any other personal identifier.</p>
+          <p data-t="collect_1_body">When you create an account, we collect your email address and a securely hashed password, or the identifier Apple gives us if you use Sign in with Apple. This is used to authenticate you and to keep your backup tied to your account. We do not collect your phone number or any other personal identifier.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9752;</div>
         <div class="list-body">
-          <h4 data-t="collect_2_title">App data (local only)</h4>
-          <p data-t="collect_2_body">Your tasks, garden progress, plant inventory, streak history, achievements, journal entries, time capsules, and preferences are stored locally on your device using on-device storage. None of this data is sent to or stored on our servers.</p>
+          <h4 data-t="collect_2_title">App data and backup</h4>
+          <p data-t="collect_2_body">Your tasks, garden, plants, streaks, achievements, journal pages, time capsules and preferences live on your device. While you are signed in, BloomDay also keeps a private backup copy of this data on our servers, tied to your account, so you can get your garden back on a new phone. Only your account can read it. Your daily mood mascot is never part of this backup.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9788;</div>
         <div class="list-body">
           <h4 data-t="collect_3_title">Usage analytics</h4>
-          <p data-t="collect_3_body">To improve the app, we collect anonymous usage patterns such as which screens you visit, which features you use, session duration, and general device information (model, operating system, app version). This data is not linked to your email or personal identity. You can disable this in Settings → Privacy → Analytics.</p>
+          <p data-t="collect_3_body">To improve the app, we collect anonymous usage patterns such as which screens you visit, which features you use, session duration, and general device information (model, operating system, app version). This data is not linked to your email or personal identity, and it never includes your mood. You can turn it off in Settings → Help → Privacy → Share Usage Data.</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">&#9834;</div>
+        <div class="list-body">
+          <h4 data-t="collect_4_title">Microphone and calendar, only when you ask</h4>
+          <p data-t="collect_4_body">When you tap the microphone to add a task or journal text, your phone's built-in speech recognition turns your voice into text. Where your phone supports it, this happens on the device. Otherwise Apple or Google processes the audio under their own terms. BloomDay does not record or store your voice. If you export tasks to your calendar, BloomDay asks for calendar access and only writes the tasks you export.</p>
         </div>
       </div>
     </div>
 
-    <div class="highlight" data-t="collect_highlight">We do not collect your precise location, contacts, photos, microphone, or any other sensitive data. The only device identifier that may be used for advertising is your advertising ID, and only if you explicitly grant permission through the iOS tracking prompt (see Advertising below).</div>
+    <div class="highlight" data-t="collect_highlight">We do not collect your precise location, contacts or photos. Your daily mood stays on your phone and is never sent anywhere. The only device identifier that may be used for advertising is your advertising ID, and only if you explicitly grant permission through the iOS tracking prompt (see Advertising below).</div>
   </div>
 
   <!-- ═══ HOW WE USE IT ═══ -->
@@ -221,8 +228,8 @@ footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:cente
       <div class="list-card">
         <div class="list-icon">&#8635;</div>
         <div class="list-body">
-          <h4 data-t="use_2_title">Local persistence</h4>
-          <p data-t="use_2_body">Your tasks, plants, achievements, and progress are saved to your device's local storage so your garden persists between sessions. Data does not sync across devices or to the cloud.</p>
+          <h4 data-t="use_2_title">Storage and backup</h4>
+          <p data-t="use_2_body">Your data is saved on your device so your garden persists between sessions. While you are signed in, a backup copy is sent to your account every few minutes and restored only when a device has nothing saved, for example after a reinstall or on a new phone.</p>
         </div>
       </div>
       <div class="list-card">
@@ -255,7 +262,7 @@ footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:cente
 
     <div class="card">
       <h4 data-t="analytics_control_title">Your control</h4>
-      <p data-t="analytics_control_body">Analytics are enabled by default to help us improve the app. You can turn them off anytime in Settings → Privacy → Analytics. When disabled, PostHog stops collecting data immediately, and no events are sent from your device.</p>
+      <p data-t="analytics_control_body">Analytics are enabled by default to help us improve the app. You can turn them off anytime in Settings → Help → Privacy → Share Usage Data. When disabled, PostHog stops collecting data immediately, and no events are sent from your device.</p>
     </div>
 
     <div class="card">
@@ -290,7 +297,7 @@ footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:cente
     <div class="third-party-grid">
       <div class="tp-card">
         <h4>Supabase</h4>
-        <p data-t="tp_supabase_body">Account authentication only. Stores your email and hashed password. No garden or task data is sent to Supabase.</p>
+        <p data-t="tp_supabase_body">Account authentication and your private app backup. Stores your email, hashed password, the backup copy of your app data and, if you connect Notion, your Notion connection. Each account can only reach its own rows.</p>
         <span class="tp-tag" data-t="tp_supabase_tag">GDPR compliant · SOC 2</span>
       </div>
       <div class="tp-card">
@@ -308,6 +315,16 @@ footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:cente
         <p data-t="tp_admob_body">Ads on the free plan. With your consent (via iOS App Tracking Transparency), uses your advertising identifier to show relevant ads. Without consent, shows non-personalised ads only.</p>
         <span class="tp-tag" data-t="tp_admob_tag">Free plan · Consent-based</span>
       </div>
+      <div class="tp-card">
+        <h4>Notion</h4>
+        <p data-t="tp_notion_body">Only if you connect it. BloomDay stores a Notion access token and the name and ID of the database you choose, reads tasks from that database and marks them done when you complete them in BloomDay. Disconnecting deletes the stored token.</p>
+        <span class="tp-tag" data-t="tp_notion_tag">Optional · You choose the database</span>
+      </div>
+      <div class="tp-card">
+        <h4>Resend</h4>
+        <p data-t="tp_resend_body">If the app runs into an error, a short technical report (the error message, app screen and device model) is emailed to the developer through Resend so the bug can be fixed. It does not include your tasks, journal or email address.</p>
+        <span class="tp-tag" data-t="tp_resend_tag">Error reports only</span>
+      </div>
     </div>
 
     <div class="highlight" data-t="sharing_highlight">No other third parties have access to your data. We do not use Facebook SDK, Amplitude, Mixpanel, Firebase Analytics, or any other tracking service beyond what is listed above.</div>
@@ -322,22 +339,22 @@ footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:cente
       <div class="list-card">
         <div class="list-icon">&#9679;</div>
         <div class="list-body">
-          <h4 data-t="storage_1_title">Local storage</h4>
-          <p data-t="storage_1_body">Your tasks, plants, streaks, achievements, journal entries, and all garden data are stored locally on your device. We do not store this data on our servers. Your email address is the only personal data we hold.</p>
+          <h4 data-t="storage_1_title">On your device, backed up to your account</h4>
+          <p data-t="storage_1_body">Your tasks, plants, streaks, achievements, journal pages and garden live on your device, with a private backup tied to your account while you are signed in. Bloom Board pins, journal folders and your mood choice stay on the device only.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9679;</div>
         <div class="list-body">
           <h4 data-t="storage_2_title">Deleting the app</h4>
-          <p data-t="storage_2_body">Removing the app from your device deletes all local data permanently, including your garden, tasks, and progress. This cannot be recovered.</p>
+          <p data-t="storage_2_body">Removing the app deletes the data on that device. Your backup stays with your account, so signing in again on a new install brings your garden back. To remove the backup as well, delete your account.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">&#9679;</div>
         <div class="list-body">
           <h4 data-t="storage_3_title">Account deletion</h4>
-          <p data-t-html="storage_3_body">Settings &rarr; Delete Account removes your email from our authentication system and erases all local data. After deletion, we retain nothing.</p>
+          <p data-t-html="storage_3_body">Settings &rarr; Delete Account deletes your cloud backup, removes your account and erases the data on this device. If you connected Notion, disconnect it first or email us and we will remove the stored connection.</p>
         </div>
       </div>
     </div>
@@ -354,28 +371,28 @@ footer .bottom{max-width:1200px;margin:48px auto 0;padding:24px;text-align:cente
         <div class="list-icon">1</div>
         <div class="list-body">
           <h4 data-t="rights_1_title">Access</h4>
-          <p data-t="rights_1_body">Request confirmation of what personal data we hold. The only personal data on our servers is your email address.</p>
+          <p data-t="rights_1_body">Ask us what personal data we hold. On our servers that means your email address, your app backup and, if you connected it, your Notion connection.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">2</div>
         <div class="list-body">
           <h4 data-t="rights_2_title">Deletion</h4>
-          <p data-t-html="rights_2_body">Delete your account in-app (Settings &rarr; Delete Account) or by emailing us. This removes your email from our authentication system. All garden and task data is stored locally on your device and is deleted when you remove the app.</p>
+          <p data-t-html="rights_2_body">Delete your account in the app (Settings &rarr; Delete Account) or by emailing us. This removes your account and your backup. Data on your device is erased at the same time.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">3</div>
         <div class="list-body">
-          <h4 data-t="rights_3_title">Export</h4>
-          <p data-t-html="rights_3_body">Export your task data anytime from Settings &rarr; Export Data. Downloads as a CSV file directly to your device. Since all data is local, you always have full control.</p>
+          <h4 data-t="rights_3_title">Export and copies</h4>
+          <p data-t-html="rights_3_body">Export your tasks to your phone's calendar from Settings &rarr; Export Data, and export journal pages as a PDF. For a copy of your full backup, email us and we will send it.</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">4</div>
         <div class="list-body">
           <h4 data-t="rights_4_title">Opt-out of analytics</h4>
-          <p data-t-html="rights_4_body">Turn off analytics collection anytime in Settings &rarr; Privacy &rarr; Analytics. This takes effect immediately.</p>
+          <p data-t-html="rights_4_body">Turn off analytics anytime in Settings &rarr; Help &rarr; Privacy &rarr; Share Usage Data. This takes effect immediately.</p>
         </div>
       </div>
     </div>
@@ -431,7 +448,7 @@ const TRANSLATIONS = {
     hero_badge: "Legal",
     hero_title: 'Privacy <em>Policy</em>',
     hero_desc: "Your data belongs to you. Here is exactly what we collect, why, and how it is protected.",
-    hero_updated: "Last updated: April 2026",
+    hero_updated: "Last updated: November 2026",
     toc_overview: "Overview",
     toc_collect: "Data We Collect",
     toc_use: "How We Use It",
@@ -449,18 +466,20 @@ const TRANSLATIONS = {
     collect_badge: "02 — Data We Collect",
     collect_title: 'What we <em>know about you</em>',
     collect_1_title: "Account information",
-    collect_1_body: "When you create an account, we collect your email address and a securely hashed password. This is used solely to authenticate your identity. We do not collect your name, phone number, or any other personal identifier.",
-    collect_2_title: "App data (local only)",
-    collect_2_body: "Your tasks, garden progress, plant inventory, streak history, achievements, journal entries, time capsules, and preferences are stored locally on your device using on-device storage. None of this data is sent to or stored on our servers.",
+    collect_1_body: "When you create an account, we collect your email address and a securely hashed password, or the identifier Apple gives us if you use Sign in with Apple. This is used to authenticate you and to keep your backup tied to your account. We do not collect your phone number or any other personal identifier.",
+    collect_2_title: "App data and backup",
+    collect_2_body: "Your tasks, garden, plants, streaks, achievements, journal pages, time capsules and preferences live on your device. While you are signed in, BloomDay also keeps a private backup copy of this data on our servers, tied to your account, so you can get your garden back on a new phone. Only your account can read it. Your daily mood mascot is never part of this backup.",
     collect_3_title: "Usage analytics",
-    collect_3_body: "To improve the app, we collect anonymous usage patterns such as which screens you visit, which features you use, session duration, and general device information (model, operating system, app version). This data is not linked to your email or personal identity. You can disable this in Settings → Privacy → Analytics.",
-    collect_highlight: "We do not collect your precise location, contacts, photos, microphone, weather, or any other sensitive data. The only device identifier that may be used for advertising is your advertising ID, and only if you explicitly grant permission through the iOS tracking prompt (see Advertising below).",
+    collect_3_body: "To improve the app, we collect anonymous usage patterns such as which screens you visit, which features you use, session duration, and general device information (model, operating system, app version). This data is not linked to your email or personal identity, and it never includes your mood. You can turn it off in Settings → Help → Privacy → Share Usage Data.",
+    collect_4_title: "Microphone and calendar, only when you ask",
+    collect_4_body: "When you tap the microphone to add a task or journal text, your phone's built-in speech recognition turns your voice into text. Where your phone supports it, this happens on the device. Otherwise Apple or Google processes the audio under their own terms. BloomDay does not record or store your voice. If you export tasks to your calendar, BloomDay asks for calendar access and only writes the tasks you export.",
+    collect_highlight: "We do not collect your precise location, contacts or photos. Your daily mood stays on your phone and is never sent anywhere. The only device identifier that may be used for advertising is your advertising ID, and only if you explicitly grant permission through the iOS tracking prompt (see Advertising below).",
     use_badge: "03 — How We Use It",
     use_title: 'Only what <em>runs the app</em>',
     use_1_title: "Authentication",
     use_1_body: "Your email and credentials are used to create and protect your account via Supabase. We support email/password and Apple Sign In.",
-    use_2_title: "Local persistence",
-    use_2_body: "Your tasks, plants, achievements, and progress are saved to your device's local storage so your garden persists between sessions. Data does not sync across devices or to the cloud.",
+    use_2_title: "Storage and backup",
+    use_2_body: "Your data is saved on your device so your garden persists between sessions. While you are signed in, a backup copy is sent to your account every few minutes and restored only when a device has nothing saved, for example after a reinstall or on a new phone.",
     use_3_title: "Notifications",
     use_3_body: "If you enable task reminders, the app schedules local notifications on your device. Notifications are never routed through a server. Daily and weekly recurring reminders fire locally.",
     use_4_title: "Account communications",
@@ -471,7 +490,7 @@ const TRANSLATIONS = {
     analytics_what_title: "What PostHog receives",
     analytics_what_body: 'Screen views, feature interactions (e.g. "completed a task", "opened garden"), session duration, app version, device model, operating system version, and a randomly generated anonymous ID. PostHog does not receive your email, name, tasks, journal entries, or any content you create in the app.',
     analytics_control_title: "Your control",
-    analytics_control_body: "Analytics are enabled by default to help us improve the app. You can turn them off anytime in Settings → Privacy → Analytics. When disabled, PostHog stops collecting data immediately, and no events are sent from your device.",
+    analytics_control_body: "Analytics are enabled by default to help us improve the app. You can turn them off anytime in Settings → Help → Privacy → Share Usage Data. When disabled, PostHog stops collecting data immediately, and no events are sent from your device.",
     analytics_storage_title: "Storage and retention",
     analytics_storage_body: "PostHog stores aggregated usage data on its EU-hosted servers (GDPR-compliant, ISO 27001 certified). Event data is retained for 12 months, after which it is automatically deleted. We do not export this data or combine it with any other source.",
     analytics_link: 'Learn more about PostHog\'s privacy practices at <a href="https://posthog.com/privacy" target="_blank" style="color:var(--green-600);font-weight:500">posthog.com/privacy</a>.',
@@ -485,7 +504,7 @@ const TRANSLATIONS = {
     ads_upgrade: "Upgrading to any paid plan (Bloom, Forest, or Eden) removes all ads permanently.",
     sharing_badge: "06 — Third Parties",
     sharing_title: 'Who else <em>touches your data</em>',
-    tp_supabase_body: "Account authentication only. Stores your email and hashed password. No garden or task data is sent to Supabase.",
+    tp_supabase_body: "Account authentication and your private app backup. Stores your email, hashed password, the backup copy of your app data and, if you connect Notion, your Notion connection. Each account can only reach its own rows.",
     tp_supabase_tag: "GDPR compliant · SOC 2",
     tp_posthog_body: "Anonymous product analytics to help us improve the app. EU-hosted, no behavioural profiling. Opt-out available in Settings.",
     tp_posthog_tag: "EU-hosted · Opt-out available",
@@ -493,26 +512,30 @@ const TRANSLATIONS = {
     tp_rc_tag: "No payment data shared",
     tp_admob_body: "Ads on the free plan. With your consent (via iOS App Tracking Transparency), uses your advertising identifier to show relevant ads. Without consent, shows non-personalised ads only.",
     tp_admob_tag: "Free plan · Consent-based",
+    tp_notion_body: "Only if you connect it. BloomDay stores a Notion access token and the name and ID of the database you choose, reads tasks from that database and marks them done when you complete them in BloomDay. Disconnecting deletes the stored token.",
+    tp_notion_tag: "Optional · You choose the database",
+    tp_resend_body: "If the app runs into an error, a short technical report (the error message, app screen and device model) is emailed to the developer through Resend so the bug can be fixed. It does not include your tasks, journal or email address.",
+    tp_resend_tag: "Error reports only",
     sharing_highlight: "No other third parties have access to your data. We do not use Facebook SDK, Amplitude, Mixpanel, Firebase Analytics, or any other tracking service beyond what is listed above.",
     storage_badge: "07 — Storage & Retention",
     storage_title: 'Where your data <em>lives</em>',
-    storage_1_title: "Local storage",
-    storage_1_body: "Your tasks, plants, streaks, achievements, journal entries, and all garden data are stored locally on your device. We do not store this data on our servers. Your email address is the only personal data we hold.",
+    storage_1_title: "On your device, backed up to your account",
+    storage_1_body: "Your tasks, plants, streaks, achievements, journal pages and garden live on your device, with a private backup tied to your account while you are signed in. Bloom Board pins, journal folders and your mood choice stay on the device only.",
     storage_2_title: "Deleting the app",
-    storage_2_body: "Removing the app from your device deletes all local data permanently, including your garden, tasks, and progress. This cannot be recovered.",
+    storage_2_body: "Removing the app deletes the data on that device. Your backup stays with your account, so signing in again on a new install brings your garden back. To remove the backup as well, delete your account.",
     storage_3_title: "Account deletion",
-    storage_3_body: 'Settings &rarr; Delete Account removes your email from our authentication system and erases all local data. After deletion, we retain nothing.',
+    storage_3_body: "Settings &rarr; Delete Account deletes your cloud backup, removes your account and erases the data on this device. If you connected Notion, disconnect it first or email us and we will remove the stored connection.",
     rights_badge: "08 — Your Rights",
     rights_title: 'What you can <em>ask of us</em>',
     rights_intro: "Under GDPR (EU), KVKK (Turkey), CCPA (California), and similar regulations, you have the following rights regarding your personal data:",
     rights_1_title: "Access",
-    rights_1_body: "Request confirmation of what personal data we hold. The only personal data on our servers is your email address.",
+    rights_1_body: "Ask us what personal data we hold. On our servers that means your email address, your app backup and, if you connected it, your Notion connection.",
     rights_2_title: "Deletion",
-    rights_2_body: 'Delete your account in-app (Settings &rarr; Delete Account) or by emailing us. This removes your email from our authentication system. All garden and task data is stored locally on your device and is deleted when you remove the app.',
-    rights_3_title: "Export",
-    rights_3_body: 'Export your task data anytime from Settings &rarr; Export Data. Downloads as a CSV file directly to your device. Since all data is local, you always have full control.',
+    rights_2_body: "Delete your account in the app (Settings &rarr; Delete Account) or by emailing us. This removes your account and your backup. Data on your device is erased at the same time.",
+    rights_3_title: "Export and copies",
+    rights_3_body: "Export your tasks to your phone's calendar from Settings &rarr; Export Data, and export journal pages as a PDF. For a copy of your full backup, email us and we will send it.",
     rights_4_title: "Opt-out of analytics",
-    rights_4_body: 'Turn off analytics collection anytime in Settings &rarr; Privacy &rarr; Analytics. This takes effect immediately.',
+    rights_4_body: "Turn off analytics anytime in Settings &rarr; Help &rarr; Privacy &rarr; Share Usage Data. This takes effect immediately.",
     children_badge: "09 — Children",
     children_title: 'Not for children <em>under 13</em>',
     children_body: "BloomDay is not directed at children under 13. We do not knowingly collect personal information from anyone under 13. If you believe a child under 13 has created an account, please contact us and we will delete it promptly.",
@@ -535,7 +558,7 @@ const TRANSLATIONS = {
     hero_badge: "Yasal",
     hero_title: 'Gizlilik <em>Politikası</em>',
     hero_desc: "Verileriniz size ait. Topladığımız her şeyi, neden topladığımızı ve nasıl koruduğumuzu burada bulabilirsiniz.",
-    hero_updated: "Son güncelleme: Nisan 2026",
+    hero_updated: "Son güncelleme: Kasım 2026",
     toc_overview: "Genel Bakış",
     toc_collect: "Topladığımız Veriler",
     toc_use: "Nasıl Kullanıyoruz",
@@ -553,18 +576,20 @@ const TRANSLATIONS = {
     collect_badge: "02 — Topladığımız Veriler",
     collect_title: 'Sizin <em>hakkınızda bildiklerimiz</em>',
     collect_1_title: "Hesap bilgileri",
-    collect_1_body: "Hesap oluşturduğunuzda e-posta adresinizi ve güvenli şekilde hashlenmiş şifrenizi topluyoruz. Bu yalnızca kimliğinizi doğrulamak için kullanılır. Adınızı, telefon numaranızı veya başka bir kişisel tanımlayıcı toplamıyoruz.",
-    collect_2_title: "Uygulama verileri (sadece yerel)",
-    collect_2_body: "Görevleriniz, bahçe ilerlemeniz, bitki envanteriniz, seri geçmişiniz, başarılarınız, günlük girdileriniz, zaman kapsülleriniz ve tercihleriniz cihaz üstü depolama kullanılarak cihazınızda yerel olarak saklanır. Bu verilerin hiçbiri sunucularımıza gönderilmez veya orada saklanmaz.",
+    collect_1_body: "Hesap oluşturduğunuzda e-posta adresinizi ve güvenli biçimde şifrelenmiş parolanızı, Apple ile giriş yapıyorsanız Apple'ın bize verdiği kimliği alırız. Bu bilgiler kimliğinizi doğrulamak ve yedeğinizi hesabınıza bağlamak için kullanılır. Telefon numaranızı ya da başka bir kişisel tanımlayıcıyı toplamayız.",
+    collect_2_title: "Uygulama verileri ve yedek",
+    collect_2_body: "Görevleriniz, bahçeniz, bitkileriniz, serileriniz, başarımlarınız, günlük sayfalarınız, zaman kapsülleriniz ve tercihleriniz cihazınızda durur. Oturumunuz açıkken BloomDay bu verilerin hesabınıza bağlı özel bir yedeğini sunucularımızda da tutar, böylece yeni bir telefonda bahçenize geri dönebilirsiniz. Bu yedeği yalnızca sizin hesabınız okuyabilir. Günlük ruh hali maskotunuz bu yedeğe hiçbir zaman dahil edilmez.",
     collect_3_title: "Kullanım analitiği",
-    collect_3_body: "Uygulamayı geliştirmek için hangi ekranları ziyaret ettiğiniz, hangi özellikleri kullandığınız, oturum süresi ve genel cihaz bilgileri (model, işletim sistemi, uygulama sürümü) gibi anonim kullanım örüntülerini topluyoruz. Bu veriler e-postanıza veya kişisel kimliğinize bağlanmaz. Ayarlar → Gizlilik → Analitik bölümünden kapatabilirsiniz.",
-    collect_highlight: "Kesin konumunuzu, kişilerinizi, fotoğraflarınızı, mikrofonunuzu, hava durumunuzu veya başka hiçbir hassas veriyi toplamıyoruz. Reklamcılık için kullanılabilecek tek cihaz tanımlayıcısı reklam kimliğinizdir ve yalnızca iOS takip istemi aracılığıyla açıkça izin verirseniz (aşağıdaki Reklamlar bölümüne bakın).",
+    collect_3_body: "Uygulamayı geliştirmek için hangi ekranları ziyaret ettiğiniz, hangi özellikleri kullandığınız, oturum süresi ve genel cihaz bilgileri (model, işletim sistemi, uygulama sürümü) gibi anonim kullanım verileri toplarız. Bu veriler e-postanıza ya da kimliğinize bağlanmaz ve ruh halinizi hiçbir zaman içermez. Ayarlar → Yardım → Gizlilik → Kullanım Verilerini Paylaş bölümünden kapatabilirsiniz.",
+    collect_4_title: "Mikrofon ve takvim, yalnızca siz istediğinizde",
+    collect_4_body: "Görev ya da günlük metni eklemek için mikrofona dokunduğunuzda telefonunuzun kendi konuşma tanıma özelliği sesinizi yazıya çevirir. Telefonunuz destekliyorsa bu işlem cihazın içinde yapılır, desteklemiyorsa ses Apple ya da Google tarafından kendi koşullarına göre işlenir. BloomDay sesinizi kaydetmez ve saklamaz. Görevlerinizi takvime aktarırsanız BloomDay takvim izni ister ve yalnızca aktardığınız görevleri yazar.",
+    collect_highlight: "Kesin konumunuzu, rehberinizi ya da fotoğraflarınızı toplamayız. Günlük ruh haliniz telefonunuzda kalır ve hiçbir yere gönderilmez. Reklam için kullanılabilecek tek cihaz tanımlayıcısı reklam kimliğinizdir ve yalnızca iOS izleme isteğinde açıkça izin verirseniz kullanılır (aşağıda Reklamlar bölümüne bakın).",
     use_badge: "03 — Nasıl Kullanıyoruz",
     use_title: 'Yalnızca <em>uygulamayı çalıştıran</em>',
     use_1_title: "Kimlik doğrulama",
     use_1_body: "E-posta ve kimlik bilgileriniz, Supabase aracılığıyla hesabınızı oluşturmak ve korumak için kullanılır. E-posta/şifre ve Apple ile Giriş destekliyoruz.",
-    use_2_title: "Yerel saklama",
-    use_2_body: "Görevleriniz, bitkileriniz, başarılarınız ve ilerlemeniz, bahçeniz oturumlar arasında kalıcı olsun diye cihazınızın yerel depolamasına kaydedilir. Veriler cihazlar arasında veya buluta senkronize edilmez.",
+    use_2_title: "Saklama ve yedekleme",
+    use_2_body: "Bahçeniz oturumlar arasında kaybolmasın diye verileriniz cihazınıza kaydedilir. Oturumunuz açıkken birkaç dakikada bir hesabınıza bir yedek gönderilir. Bu yedek yalnızca cihazda kayıtlı hiçbir şey olmadığında, örneğin uygulamayı yeniden yüklediğinizde ya da yeni bir telefona geçtiğinizde geri yüklenir.",
     use_3_title: "Bildirimler",
     use_3_body: "Görev hatırlatıcılarını etkinleştirirseniz uygulama, cihazınızda yerel bildirimler zamanlar. Bildirimler asla bir sunucu üzerinden yönlendirilmez. Günlük ve haftalık tekrar eden hatırlatıcılar yerel olarak tetiklenir.",
     use_4_title: "Hesap iletişimleri",
@@ -575,7 +600,7 @@ const TRANSLATIONS = {
     analytics_what_title: "PostHog ne alıyor",
     analytics_what_body: 'Ekran görüntülemeleri, özellik etkileşimleri (örn. "görev tamamlandı", "bahçe açıldı"), oturum süresi, uygulama sürümü, cihaz modeli, işletim sistemi sürümü ve rastgele oluşturulmuş anonim bir kimlik. PostHog e-postanızı, adınızı, görevlerinizi, günlük girdilerinizi veya uygulamada oluşturduğunuz herhangi bir içeriği almaz.',
     analytics_control_title: "Sizin kontrolünüz",
-    analytics_control_body: "Analitik, uygulamayı geliştirmemize yardımcı olmak için varsayılan olarak açıktır. İstediğiniz zaman Ayarlar → Gizlilik → Analitik bölümünden kapatabilirsiniz. Kapatıldığında PostHog hemen veri toplamayı durdurur ve cihazınızdan olay gönderilmez.",
+    analytics_control_body: "Analitik, uygulamayı geliştirmemize yardımcı olmak için varsayılan olarak açıktır. İstediğiniz zaman Ayarlar → Yardım → Gizlilik → Kullanım Verilerini Paylaş bölümünden kapatabilirsiniz. Kapatıldığında PostHog hemen veri toplamayı durdurur ve cihazınızdan olay gönderilmez.",
     analytics_storage_title: "Depolama ve saklama",
     analytics_storage_body: "PostHog, toplu kullanım verilerini AB'de barındırılan sunucularında (GDPR uyumlu, ISO 27001 sertifikalı) saklar. Olay verileri 12 ay saklanır, ardından otomatik olarak silinir. Bu veriyi dışa aktarmıyor veya başka bir kaynakla birleştirmiyoruz.",
     analytics_link: 'PostHog\'un gizlilik uygulamaları hakkında daha fazla bilgi için <a href="https://posthog.com/privacy" target="_blank" style="color:var(--green-600);font-weight:500">posthog.com/privacy</a> adresini ziyaret edin.',
@@ -589,7 +614,7 @@ const TRANSLATIONS = {
     ads_upgrade: "Herhangi bir ücretli plana (Bloom, Forest veya Eden) yükseltmek tüm reklamları kalıcı olarak kaldırır.",
     sharing_badge: "06 — Üçüncü Taraflar",
     sharing_title: '<em>Verilerinize</em> kim daha dokunuyor',
-    tp_supabase_body: "Yalnızca hesap kimlik doğrulaması. E-posta ve hashlenmiş şifrenizi saklar. Bahçe veya görev verisi Supabase'e gönderilmez.",
+    tp_supabase_body: "Hesap doğrulama ve özel uygulama yedeğiniz. E-postanızı, şifrelenmiş parolanızı, uygulama verilerinizin yedeğini ve Notion'ı bağladıysanız Notion bağlantınızı saklar. Her hesap yalnızca kendi kayıtlarına erişebilir.",
     tp_supabase_tag: "GDPR uyumlu · SOC 2",
     tp_posthog_body: "Uygulamayı geliştirmemize yardımcı olan anonim ürün analitiği. AB'de barındırılır, davranışsal profilleme yok. Ayarlarda kapatılabilir.",
     tp_posthog_tag: "AB'de barındırılır · Kapatılabilir",
@@ -597,26 +622,30 @@ const TRANSLATIONS = {
     tp_rc_tag: "Ödeme verisi paylaşılmaz",
     tp_admob_body: "Ücretsiz planda reklamlar. İzninizle (iOS App Tracking Transparency aracılığıyla), alakalı reklamlar göstermek için reklam tanımlayıcınızı kullanır. İzin olmadan yalnızca kişiselleştirilmemiş reklamlar gösterir.",
     tp_admob_tag: "Ücretsiz plan · İzin bazlı",
+    tp_notion_body: "Yalnızca siz bağlarsanız. BloomDay bir Notion erişim anahtarını ve seçtiğiniz veritabanının adını ve kimliğini saklar, o veritabanındaki görevleri okur ve BloomDay'de tamamladığınız görevleri orada tamamlandı olarak işaretler. Bağlantıyı kestiğinizde saklanan anahtar silinir.",
+    tp_notion_tag: "İsteğe bağlı · Veritabanını siz seçersiniz",
+    tp_resend_body: "Uygulama bir hatayla karşılaşırsa kısa bir teknik rapor (hata mesajı, ekran ve cihaz modeli) hatanın düzeltilebilmesi için Resend aracılığıyla geliştiriciye e-postayla gönderilir. Rapor görevlerinizi, günlüğünüzü ya da e-posta adresinizi içermez.",
+    tp_resend_tag: "Yalnızca hata raporları",
     sharing_highlight: "Başka hiçbir üçüncü tarafın verilerinize erişimi yoktur. Yukarıda listelenenlerin dışında Facebook SDK, Amplitude, Mixpanel, Firebase Analytics veya başka herhangi bir takip hizmeti kullanmıyoruz.",
     storage_badge: "07 — Depolama ve Saklama",
     storage_title: 'Verileriniz <em>nerede yaşar</em>',
-    storage_1_title: "Yerel depolama",
-    storage_1_body: "Görevleriniz, bitkileriniz, serileriniz, başarılarınız, günlük girdileriniz ve tüm bahçe verileriniz cihazınızda yerel olarak saklanır. Bu veriyi sunucularımızda saklamıyoruz. Tuttuğumuz tek kişisel veri e-posta adresinizdir.",
+    storage_1_title: "Cihazınızda, hesabınıza yedekli",
+    storage_1_body: "Görevleriniz, bitkileriniz, serileriniz, başarımlarınız, günlük sayfalarınız ve bahçeniz cihazınızda durur, oturumunuz açıkken de hesabınıza bağlı özel bir yedeği tutulur. Bloom Board iğneleri, günlük klasörleri ve ruh hali seçiminiz yalnızca cihazda kalır.",
     storage_2_title: "Uygulamayı silmek",
-    storage_2_body: "Uygulamayı cihazınızdan kaldırmak bahçeniz, görevleriniz ve ilerlemeniz dahil tüm yerel verileri kalıcı olarak siler. Bu geri alınamaz.",
+    storage_2_body: "Uygulamayı silmek o cihazdaki verileri siler. Yedeğiniz hesabınızda kalır, bu yüzden yeniden yükleyip giriş yaptığınızda bahçeniz geri gelir. Yedeği de kaldırmak için hesabınızı silin.",
     storage_3_title: "Hesap silme",
-    storage_3_body: 'Ayarlar &rarr; Hesabı Sil, e-postanızı kimlik doğrulama sistemimizden kaldırır ve tüm yerel verileri siler. Silme sonrası hiçbir şey tutmuyoruz.',
+    storage_3_body: "Ayarlar &rarr; Hesabı Sil, bulut yedeğinizi siler, hesabınızı kaldırır ve bu cihazdaki verileri temizler. Notion'ı bağladıysanız önce bağlantıyı kesin ya da bize yazın, saklanan bağlantıyı biz kaldıralım.",
     rights_badge: "08 — Haklarınız",
     rights_title: 'Bizden <em>isteyebilecekleriniz</em>',
     rights_intro: "GDPR (AB), KVKK (Türkiye), CCPA (Kaliforniya) ve benzeri düzenlemeler kapsamında kişisel verileriniz hakkında aşağıdaki haklara sahipsiniz:",
     rights_1_title: "Erişim",
-    rights_1_body: "Elimizde hangi kişisel veriyi tuttuğumuzun onayını talep edin. Sunucularımızdaki tek kişisel veri e-posta adresinizdir.",
+    rights_1_body: "Hakkınızda hangi kişisel verileri tuttuğumuzu sorabilirsiniz. Sunucularımızda bu; e-posta adresiniz, uygulama yedeğiniz ve bağladıysanız Notion bağlantınızdır.",
     rights_2_title: "Silme",
-    rights_2_body: 'Hesabınızı uygulama içinde (Ayarlar &rarr; Hesabı Sil) veya bize e-posta atarak silin. Bu, e-postanızı kimlik doğrulama sistemimizden kaldırır. Tüm bahçe ve görev verisi cihazınızda yerel olarak saklanır ve uygulamayı kaldırdığınızda silinir.',
-    rights_3_title: "Dışa aktarma",
-    rights_3_body: 'Görev verilerinizi istediğiniz zaman Ayarlar &rarr; Veriyi Dışa Aktar bölümünden dışa aktarın. CSV dosyası olarak doğrudan cihazınıza indirilir. Tüm veriler yerel olduğundan her zaman tam kontrole sahipsiniz.',
+    rights_2_body: "Hesabınızı uygulamadan (Ayarlar &rarr; Hesabı Sil) ya da bize e-posta göndererek silebilirsiniz. Bu işlem hesabınızı ve yedeğinizi kaldırır, cihazınızdaki veriler de aynı anda silinir.",
+    rights_3_title: "Dışa aktarma ve kopya",
+    rights_3_body: "Görevlerinizi Ayarlar &rarr; Veriyi dışa aktar bölümünden telefonunuzun takvimine, günlük sayfalarınızı PDF olarak dışa aktarabilirsiniz. Yedeğinizin tam bir kopyası için bize yazmanız yeterli.",
     rights_4_title: "Analitikten çıkış",
-    rights_4_body: 'Analitik toplamayı istediğiniz zaman Ayarlar &rarr; Gizlilik &rarr; Analitik bölümünden kapatın. Hemen etkili olur.',
+    rights_4_body: "Analitiği istediğiniz zaman Ayarlar &rarr; Yardım &rarr; Gizlilik &rarr; Kullanım Verilerini Paylaş bölümünden kapatabilirsiniz. Değişiklik hemen geçerli olur.",
     children_badge: "09 — Çocuklar",
     children_title: '<em>13 yaş altı</em> çocuklar için değil',
     children_body: "BloomDay, 13 yaş altı çocuklara yönelik değildir. 13 yaş altındaki kimseden bilerek kişisel bilgi toplamıyoruz. 13 yaş altı bir çocuğun hesap oluşturduğunu düşünüyorsanız lütfen bize ulaşın, hemen sileriz.",
@@ -639,7 +668,7 @@ const TRANSLATIONS = {
     hero_badge: "Legal",
     hero_title: 'Política de <em>Privacidad</em>',
     hero_desc: "Tus datos son tuyos. Aquí tienes exactamente qué recopilamos, por qué y cómo los protegemos.",
-    hero_updated: "Última actualización: Abril 2026",
+    hero_updated: "Última actualización: noviembre de 2026",
     toc_overview: "Resumen",
     toc_collect: "Datos que Recopilamos",
     toc_use: "Cómo los Usamos",
@@ -657,18 +686,20 @@ const TRANSLATIONS = {
     collect_badge: "02 — Datos que Recopilamos",
     collect_title: 'Lo que <em>sabemos de ti</em>',
     collect_1_title: "Información de la cuenta",
-    collect_1_body: "Al crear una cuenta, recopilamos tu dirección de correo y una contraseña cifrada de forma segura. Esto se usa únicamente para autenticar tu identidad. No recopilamos tu nombre, número de teléfono ni ningún otro identificador personal.",
-    collect_2_title: "Datos de la app (solo locales)",
-    collect_2_body: "Tus tareas, progreso del jardín, inventario de plantas, historial de rachas, logros, entradas de diario, cápsulas del tiempo y preferencias se almacenan localmente en tu dispositivo. Nada de esto se envía ni almacena en nuestros servidores.",
+    collect_1_body: "Cuando creas una cuenta, recopilamos tu correo electrónico y una contraseña cifrada de forma segura, o el identificador que nos da Apple si usas Iniciar sesión con Apple. Lo usamos para autenticarte y para vincular tu copia de seguridad a tu cuenta. No recopilamos tu número de teléfono ni ningún otro identificador personal.",
+    collect_2_title: "Datos de la app y copia de seguridad",
+    collect_2_body: "Tus tareas, jardín, plantas, rachas, logros, páginas del diario, cápsulas del tiempo y preferencias viven en tu dispositivo. Mientras tienes la sesión iniciada, BloomDay también guarda en nuestros servidores una copia de seguridad privada de estos datos, vinculada a tu cuenta, para que recuperes tu jardín en un teléfono nuevo. Solo tu cuenta puede leerla. Tu mascota de ánimo del día nunca forma parte de esta copia.",
     collect_3_title: "Analítica de uso",
-    collect_3_body: "Para mejorar la app, recopilamos patrones de uso anónimos como qué pantallas visitas, qué funciones usas, duración de sesión e información general del dispositivo (modelo, sistema operativo, versión de la app). Estos datos no se vinculan a tu correo ni identidad personal. Puedes desactivarlo en Ajustes → Privacidad → Analítica.",
-    collect_highlight: "No recopilamos tu ubicación precisa, contactos, fotos, micrófono, datos meteorológicos ni ningún otro dato sensible. El único identificador de dispositivo que puede usarse para publicidad es tu ID de publicidad, y solo si lo autorizas explícitamente a través del aviso de seguimiento de iOS (ver Publicidad abajo).",
+    collect_3_body: "Para mejorar la app, recopilamos patrones de uso anónimos como qué pantallas visitas, qué funciones usas, duración de sesión e información general del dispositivo (modelo, sistema operativo, versión de la app). Estos datos no se vinculan a tu correo ni a tu identidad y nunca incluyen tu estado de ánimo. Puedes desactivarlo en Ajustes → Ayuda → Privacidad → Compartir Datos de Uso.",
+    collect_4_title: "Micrófono y calendario, solo cuando lo pides",
+    collect_4_body: "Cuando tocas el micrófono para añadir una tarea o texto en el diario, el reconocimiento de voz de tu teléfono convierte tu voz en texto. Si tu teléfono lo permite, esto ocurre en el dispositivo. Si no, Apple o Google procesan el audio según sus propias condiciones. BloomDay no graba ni guarda tu voz. Si exportas tareas a tu calendario, BloomDay pide acceso al calendario y solo escribe las tareas que exportas.",
+    collect_highlight: "No recopilamos tu ubicación precisa, contactos ni fotos. Tu estado de ánimo diario se queda en tu teléfono y nunca se envía a ningún sitio. El único identificador del dispositivo que puede usarse para publicidad es tu ID de publicidad, y solo si das permiso expreso en el aviso de seguimiento de iOS (consulta Publicidad más abajo).",
     use_badge: "03 — Cómo los Usamos",
     use_title: 'Solo lo que <em>hace funcionar la app</em>',
     use_1_title: "Autenticación",
     use_1_body: "Tu correo y credenciales se usan para crear y proteger tu cuenta a través de Supabase. Soportamos correo/contraseña e Inicio de Sesión con Apple.",
-    use_2_title: "Persistencia local",
-    use_2_body: "Tus tareas, plantas, logros y progreso se guardan en el almacenamiento local de tu dispositivo para que tu jardín persista entre sesiones. Los datos no se sincronizan entre dispositivos ni en la nube.",
+    use_2_title: "Almacenamiento y copia de seguridad",
+    use_2_body: "Tus datos se guardan en tu dispositivo para que tu jardín se mantenga entre sesiones. Mientras tienes la sesión iniciada, se envía una copia a tu cuenta cada pocos minutos, y solo se restaura cuando un dispositivo no tiene nada guardado, por ejemplo tras reinstalar o en un teléfono nuevo.",
     use_3_title: "Notificaciones",
     use_3_body: "Si activas los recordatorios de tareas, la app programa notificaciones locales en tu dispositivo. Las notificaciones nunca pasan por un servidor. Los recordatorios recurrentes diarios y semanales se disparan localmente.",
     use_4_title: "Comunicaciones de cuenta",
@@ -679,7 +710,7 @@ const TRANSLATIONS = {
     analytics_what_title: "Qué recibe PostHog",
     analytics_what_body: 'Vistas de pantalla, interacciones con funciones (p. ej. "tarea completada", "jardín abierto"), duración de sesión, versión de la app, modelo del dispositivo, versión del sistema operativo y un ID anónimo generado aleatoriamente. PostHog no recibe tu correo, nombre, tareas, entradas de diario ni ningún contenido que crees en la app.',
     analytics_control_title: "Tu control",
-    analytics_control_body: "La analítica está activada por defecto para ayudarnos a mejorar la app. Puedes desactivarla en cualquier momento en Ajustes → Privacidad → Analítica. Cuando se desactiva, PostHog deja de recopilar datos inmediatamente y no se envían eventos desde tu dispositivo.",
+    analytics_control_body: "La analítica está activada por defecto para ayudarnos a mejorar la app. Puedes desactivarla en cualquier momento en Ajustes → Ayuda → Privacidad → Compartir Datos de Uso. Cuando se desactiva, PostHog deja de recopilar datos inmediatamente y no se envían eventos desde tu dispositivo.",
     analytics_storage_title: "Almacenamiento y retención",
     analytics_storage_body: "PostHog almacena datos agregados de uso en sus servidores alojados en la UE (cumplimiento RGPD, certificación ISO 27001). Los datos de eventos se conservan 12 meses, tras lo cual se eliminan automáticamente. No exportamos estos datos ni los combinamos con ninguna otra fuente.",
     analytics_link: 'Conoce más sobre las prácticas de privacidad de PostHog en <a href="https://posthog.com/privacy" target="_blank" style="color:var(--green-600);font-weight:500">posthog.com/privacy</a>.',
@@ -693,7 +724,7 @@ const TRANSLATIONS = {
     ads_upgrade: "Actualizar a cualquier plan de pago (Bloom, Forest o Eden) elimina todos los anuncios permanentemente.",
     sharing_badge: "06 — Terceros",
     sharing_title: 'Quién más <em>toca tus datos</em>',
-    tp_supabase_body: "Solo autenticación de cuenta. Almacena tu correo y contraseña cifrada. No se envían datos de jardín o tareas a Supabase.",
+    tp_supabase_body: "Autenticación de la cuenta y tu copia de seguridad privada. Guarda tu correo, la contraseña cifrada, la copia de tus datos de la app y, si conectas Notion, tu conexión con Notion. Cada cuenta solo puede acceder a sus propios datos.",
     tp_supabase_tag: "Conforme RGPD · SOC 2",
     tp_posthog_body: "Analítica de producto anónima para ayudarnos a mejorar la app. Alojado en la UE, sin perfilado de comportamiento. Desactivable en Ajustes.",
     tp_posthog_tag: "Alojado en UE · Desactivable",
@@ -701,26 +732,30 @@ const TRANSLATIONS = {
     tp_rc_tag: "Sin datos de pago compartidos",
     tp_admob_body: "Anuncios en el plan gratuito. Con tu consentimiento (vía Transparencia de Seguimiento de iOS), usa tu identificador de publicidad para mostrar anuncios relevantes. Sin consentimiento, muestra solo anuncios no personalizados.",
     tp_admob_tag: "Plan gratuito · Basado en consentimiento",
+    tp_notion_body: "Solo si la conectas. BloomDay guarda un token de acceso de Notion y el nombre y el ID de la base de datos que elijas, lee las tareas de esa base y las marca como hechas cuando las completas en BloomDay. Al desconectar, el token guardado se borra.",
+    tp_notion_tag: "Opcional · Tú eliges la base de datos",
+    tp_resend_body: "Si la app sufre un error, se envía al desarrollador por correo, a través de Resend, un breve informe técnico (mensaje de error, pantalla y modelo de dispositivo) para poder corregirlo. No incluye tus tareas, tu diario ni tu correo.",
+    tp_resend_tag: "Solo informes de errores",
     sharing_highlight: "Ningún otro tercero tiene acceso a tus datos. No usamos Facebook SDK, Amplitude, Mixpanel, Firebase Analytics ni ningún otro servicio de seguimiento más allá de lo listado arriba.",
     storage_badge: "07 — Almacenamiento y Retención",
     storage_title: 'Dónde <em>viven tus datos</em>',
-    storage_1_title: "Almacenamiento local",
-    storage_1_body: "Tus tareas, plantas, rachas, logros, entradas de diario y todos los datos del jardín se almacenan localmente en tu dispositivo. No almacenamos estos datos en nuestros servidores. Tu correo es el único dato personal que guardamos.",
+    storage_1_title: "En tu dispositivo, con copia en tu cuenta",
+    storage_1_body: "Tus tareas, plantas, rachas, logros, páginas del diario y jardín viven en tu dispositivo, con una copia privada vinculada a tu cuenta mientras tienes la sesión iniciada. Los pines del Bloom Board, las carpetas del diario y tu estado de ánimo se quedan solo en el dispositivo.",
     storage_2_title: "Eliminar la app",
-    storage_2_body: "Eliminar la app de tu dispositivo borra permanentemente todos los datos locales, incluyendo tu jardín, tareas y progreso. Esto no se puede recuperar.",
+    storage_2_body: "Al borrar la app se eliminan los datos de ese dispositivo. Tu copia de seguridad sigue en tu cuenta, así que al volver a iniciar sesión tras reinstalar recuperas tu jardín. Para borrar también la copia, elimina tu cuenta.",
     storage_3_title: "Eliminación de cuenta",
-    storage_3_body: 'Ajustes &rarr; Eliminar Cuenta elimina tu correo de nuestro sistema de autenticación y borra todos los datos locales. Tras la eliminación, no conservamos nada.',
+    storage_3_body: "Ajustes &rarr; Eliminar cuenta borra tu copia en la nube, elimina tu cuenta y borra los datos de este dispositivo. Si conectaste Notion, desconéctalo antes o escríbenos y eliminaremos la conexión guardada.",
     rights_badge: "08 — Tus Derechos",
     rights_title: 'Lo que puedes <em>pedirnos</em>',
     rights_intro: "Bajo el RGPD (UE), KVKK (Turquía), CCPA (California) y regulaciones similares, tienes los siguientes derechos sobre tus datos personales:",
     rights_1_title: "Acceso",
-    rights_1_body: "Solicita confirmación de qué datos personales tenemos. El único dato personal en nuestros servidores es tu correo electrónico.",
+    rights_1_body: "Pregúntanos qué datos personales guardamos. En nuestros servidores son tu correo, tu copia de seguridad de la app y, si la conectaste, tu conexión con Notion.",
     rights_2_title: "Eliminación",
-    rights_2_body: 'Elimina tu cuenta dentro de la app (Ajustes &rarr; Eliminar Cuenta) o escribiéndonos. Esto elimina tu correo de nuestro sistema de autenticación. Todos los datos de jardín y tareas se almacenan localmente en tu dispositivo y se eliminan cuando quitas la app.',
-    rights_3_title: "Exportación",
-    rights_3_body: 'Exporta tus datos de tareas en cualquier momento desde Ajustes &rarr; Exportar Datos. Se descarga como un archivo CSV directamente a tu dispositivo. Como todos los datos son locales, siempre tienes control total.',
+    rights_2_body: "Elimina tu cuenta en la app (Ajustes &rarr; Eliminar cuenta) o escribiéndonos. Así se borran tu cuenta y tu copia de seguridad, y los datos de tu dispositivo se eliminan a la vez.",
+    rights_3_title: "Exportación y copia",
+    rights_3_body: "Exporta tus tareas al calendario del teléfono desde Ajustes &rarr; Exportar datos, y tus páginas del diario como PDF. Si quieres una copia completa de tu copia de seguridad, escríbenos y te la enviamos.",
     rights_4_title: "Desactivar analítica",
-    rights_4_body: 'Desactiva la recopilación de analítica en cualquier momento en Ajustes &rarr; Privacidad &rarr; Analítica. Surte efecto inmediatamente.',
+    rights_4_body: "Desactiva la analítica cuando quieras en Ajustes &rarr; Ayuda &rarr; Privacidad &rarr; Compartir Datos de Uso. El cambio se aplica al instante.",
     children_badge: "09 — Niños",
     children_title: 'No para niños <em>menores de 13</em>',
     children_body: "BloomDay no está dirigida a niños menores de 13 años. No recopilamos conscientemente información personal de nadie menor de 13. Si crees que un niño menor de 13 ha creado una cuenta, contáctanos y la eliminaremos pronto.",
