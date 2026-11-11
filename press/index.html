@@ -583,6 +583,16 @@ h1, h2, h3 {
   .footer-inner { flex-direction: column; text-align: center; }
 }
 </style>
+<style id="mobile-fix">
+@media(max-width:768px){
+  .nav{padding:0 1rem}
+  .nav-logo{font-size:1.05rem;gap:.4rem;white-space:nowrap;flex-shrink:0}
+  .nav-logo img{width:28px;height:28px}
+  .nav-links{gap:.8rem;flex-shrink:0}
+  .nav-links a:not(.nav-home){display:none}
+  .nav-home{white-space:nowrap;padding:.45rem 1rem;font-size:.75rem!important;line-height:1.3}
+}
+</style>
 </head>
 <body>
 <nav class="nav">
