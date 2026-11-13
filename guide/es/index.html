@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Guía de BloomDay: cómo funciona BloomDay</title>
+<meta content="Cada sistema de BloomDay explicado: tareas, semillas, plantas, temas de jardín, modo enfoque, diario, Bloom Board, cápsulas del tiempo, Notion, Obsidian, correo, relojes, sincronización y planes." name="description"/>
+<link href="https://bloomdayapp.com/guide/" hreflang="en" rel="alternate"/><link href="https://bloomdayapp.com/guide/tr/" hreflang="tr" rel="alternate"/><link href="https://bloomdayapp.com/guide/es/" hreflang="es" rel="alternate"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--primary:#4A5D3A;--accent:#2B4A3F;--bg:#F7F4EE;--bg-card:#FFFFFF;--text:#2D3A2E;--text-muted:#6B7D6C;--sage:#8FA882;--sage-light:#C5D4B8;--cream:#FAF8F4;--border:#D6CFBF;--green-deep:#1A2E1A;--shadow:rgba(45,58,46,0.08);--mint:#D4E8C2;--sky:#B8D4E3;--pink:#F5C6D0;--peach:#FDE8D8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Lora',serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.02em}
+img{max-width:100%}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,244,238,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(214,207,191,0.5);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:var(--primary);display:flex;align-items:center;gap:0.5rem;text-decoration:none}
+.nav-logo img{width:32px;height:32px;border-radius:8px}
+.nav-links{display:flex;gap:1.8rem;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text-muted);font-size:0.85rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-cta{background:var(--primary);color:white!important;padding:0.5rem 1.2rem;border-radius:100px;font-size:0.8rem!important;font-weight:600!important}
+
+/* HERO */
+.guide-hero{padding:120px 2rem 50px;text-align:center;position:relative;overflow:hidden}
+.guide-hero::before{content:'';position:absolute;top:-10%;left:-10%;width:40%;height:60%;background:radial-gradient(ellipse,rgba(197,212,184,0.3) 0%,transparent 70%);pointer-events:none}
+.guide-hero .badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--sage-light);border-radius:100px;padding:0.35rem 1rem;font-size:0.75rem;font-weight:600;color:var(--primary);margin-bottom:1.5rem}
+.guide-hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.1;max-width:600px;margin:0 auto 1rem}
+.guide-hero h1 em{font-style:normal;color:var(--primary)}
+.guide-hero p{font-size:0.95rem;color:var(--text-muted);max-width:540px;margin:0 auto}
+
+/* TOC */
+.toc{display:flex;justify-content:center;gap:0.4rem;flex-wrap:wrap;padding:2rem 2rem 3rem;max-width:900px;margin:0 auto}
+.toc a{background:var(--bg-card);border:1px solid var(--border);border-radius:100px;padding:0.45rem 1rem;font-size:0.75rem;font-weight:500;color:var(--text-muted);text-decoration:none;transition:all 0.2s}
+.toc a:hover{background:var(--sage-light);color:var(--primary);border-color:var(--sage)}
+
+/* SECTION */
+.gs{padding:4.5rem 2rem;max-width:960px;margin:0 auto}
+.gs-num{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;color:var(--sage);margin-bottom:0.4rem}
+.gs h2{font-size:clamp(1.5rem,2.8vw,2rem);line-height:1.15;margin-bottom:0.4rem}
+.gs h2 em{font-style:normal;color:var(--primary)}
+.gs>.desc{font-size:0.88rem;color:var(--text-muted);max-width:600px;margin-bottom:2rem;line-height:1.7}
+.divider{max-width:960px;margin:0 auto;border:none;border-top:1px solid var(--border);opacity:0.4}
+
+/* NUMBERED STEPS */
+.num-steps{display:grid;gap:1rem;margin-top:1rem}
+.num-step{display:flex;gap:1rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem}
+.num-step .n{width:28px;height:28px;border-radius:50%;background:var(--sage-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0}
+.num-step h4{font-size:0.9rem;margin-bottom:0.15rem}
+.num-step p{font-size:0.8rem;color:var(--text-muted);line-height:1.5}
+.note-box{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-top:1rem;font-size:0.8rem;color:var(--text-muted);line-height:1.6}
+
+/* TABLE */
+.seed-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.82rem}
+.seed-table th{text-align:left;padding:0.6rem 1rem;background:var(--primary);color:white;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em}
+.seed-table th:first-child{border-radius:8px 0 0 0}
+.seed-table th:last-child{border-radius:0 8px 0 0}
+.seed-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text)}
+.seed-table tr:nth-child(even){background:var(--cream)}
+.seed-table .seeds{font-weight:600;color:var(--primary)}
+
+/* MOOD INDICATORS */
+.mood-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin:1rem 0}
+.mood{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:0.75rem 1rem;text-align:center;flex:1;min-width:100px}
+.mood h5{font-size:0.78rem;margin-bottom:0.15rem}
+.mood p{font-size:0.68rem;color:var(--text-muted)}
+
+/* TIER CARDS */
+.tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0}
+.tier{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem}
+.tier .tag{display:inline-block;font-size:0.65rem;font-weight:700;padding:0.15rem 0.6rem;border-radius:100px;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.06em}
+.tier .tag.free{background:var(--sage-light);color:var(--primary)}
+.tier .tag.bloom{background:var(--peach);color:#8B5E3C}
+.tier .tag.forest{background:#E0D4F5;color:#5B3A8C}
+.tier p{font-size:0.8rem;color:var(--text-muted);line-height:1.5}
+
+/* GARDEN THEMES */
+.themes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.5rem}
+.theme-card{border-radius:16px;overflow:hidden;box-shadow:0 8px 24px var(--shadow);transition:transform 0.3s}
+.theme-card:hover{transform:translateY(-6px)}
+.theme-card img{width:100%;height:220px;object-fit:cover;display:block}
+.theme-card-body{background:var(--bg-card);padding:1.25rem}
+.theme-card-body h4{font-size:0.95rem;margin-bottom:0.25rem}
+.theme-card-body p{font-size:0.78rem;color:var(--text-muted);line-height:1.5}
+
+/* FOCUS */
+.focus-row{display:grid;grid-template-columns:1.2fr 0.8fr;gap:2rem;align-items:center;margin-top:1.5rem}
+.focus-list{display:flex;flex-direction:column;gap:0.6rem}
+.focus-item{display:flex;align-items:flex-start;gap:0.75rem}
+.focus-dot{width:8px;height:8px;background:var(--sage);border-radius:50%;margin-top:6px;flex-shrink:0}
+.focus-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.55}
+.timer-box{background:var(--green-deep);border-radius:20px;padding:3rem;display:flex;align-items:center;justify-content:center}
+.timer-num{font-family:'Fraunces',serif;font-size:4rem;color:white;font-weight:300;letter-spacing:0.05em}
+
+/* CHALLENGE TABLE */
+.challenge-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.82rem}
+.challenge-table th{text-align:left;padding:0.6rem 1rem;background:var(--sage-light);color:var(--primary);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em}
+.challenge-table th:first-child{border-radius:8px 0 0 0}
+.challenge-table th:last-child{border-radius:0 8px 0 0}
+.challenge-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border)}
+
+/* ACHIEVEMENT TABS */
+.ach-tabs{display:flex;gap:0.4rem;flex-wrap:wrap;margin:1rem 0}
+.ach-tab{background:var(--bg-card);border:1px solid var(--border);border-radius:100px;padding:0.4rem 1rem;font-size:0.75rem;font-weight:500;color:var(--text-muted)}
+
+/* TOKEN TABLE */
+.token-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.82rem}
+.token-table th{text-align:left;padding:0.6rem 1rem;background:var(--accent);color:white;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em}
+.token-table th:first-child{border-radius:8px 0 0 0}
+.token-table th:last-child{border-radius:0 8px 0 0}
+.token-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border)}
+.token-table .tok{font-weight:600;color:var(--accent)}
+
+/* JOURNAL DUO */
+.duo-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+.duo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform 0.2s}
+.duo-card:hover{transform:translateY(-4px)}
+.duo-card img{width:100%;height:260px;object-fit:cover;object-position:top;display:block}
+.duo-card-body{padding:1.5rem}
+.duo-card-body .tag{display:inline-block;background:var(--sage-light);color:var(--primary);font-size:0.65rem;font-weight:600;padding:0.15rem 0.6rem;border-radius:100px;margin-bottom:0.5rem}
+.duo-card-body h4{font-size:1rem;margin-bottom:0.35rem}
+.duo-card-body p{font-size:0.8rem;color:var(--text-muted);line-height:1.6}
+
+/* WEEKLY REPORT */
+.report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem}
+.report-stat{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
+.report-num{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;color:var(--primary);margin-bottom:0.1rem}
+.report-label{font-size:0.72rem;color:var(--text-muted)}
+
+/* TIPS */
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem}
+.tip{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;transition:transform 0.2s}
+.tip:hover{transform:translateY(-3px)}
+.tip h4{font-size:0.9rem;margin-bottom:0.25rem}
+.tip p{font-size:0.8rem;color:var(--text-muted);line-height:1.55}
+
+/* PHILOSOPHY */
+.philosophy{background:var(--green-deep);border-radius:16px;padding:3rem;text-align:center;margin-top:3rem}
+.philosophy p{font-family:'Fraunces',serif;font-size:1.1rem;color:rgba(255,255,255,0.85);line-height:1.7;max-width:600px;margin:0 auto;font-style:italic}
+
+/* FOOTER */
+.footer{background:var(--accent);color:rgba(255,255,255,0.7);padding:3rem 2rem;margin-top:3rem}
+.footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;color:white;display:flex;align-items:center;gap:0.5rem}
+.footer-logo img{width:28px;height:28px;border-radius:6px}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.8rem;font-weight:500;transition:color 0.2s}
+.footer-links a:hover{color:white}
+.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.35)}
+
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .themes-grid,.tier-row,.tips-grid{grid-template-columns:1fr}
+  .duo-row,.focus-row{grid-template-columns:1fr}
+  .report-grid{grid-template-columns:repeat(2,1fr)}
+  .mood-row{flex-direction:column}
+  .nav-links{gap:0.8rem}
+  .footer-inner{flex-direction:column;text-align:center}
+}
+/* Nov 2026 additions */
+.new-tag{display:inline-block;background:var(--primary);color:#fff;font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:100px;margin-left:0.5rem;vertical-align:middle}
+.toc a.new{border-color:var(--sage);color:var(--primary)}
+.sticker-strip{display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;justify-content:center;background:var(--cream);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin:1.5rem 0}
+.sticker-strip img{height:64px;width:auto;filter:drop-shadow(0 4px 6px rgba(45,58,46,0.12))}
+.mood-mascots{display:grid;grid-template-columns:repeat(8,1fr);gap:0.75rem;margin:1.5rem 0}
+.mood-mascots div{text-align:center;font-size:0.72rem;font-weight:600;color:var(--text-muted)}
+.mood-mascots img{width:100%;max-width:84px;display:block;margin:0 auto 0.35rem}
+.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem}
+.plan{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem}
+.plan h4{font-size:1rem;margin-bottom:0.35rem}
+.plan p{font-size:0.78rem;color:var(--text-muted);line-height:1.55}
+.plan.hl{border-color:var(--sage);box-shadow:0 8px 24px var(--shadow)}
+.one-off{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+@media(max-width:768px){.plan-grid,.one-off,.three-col{grid-template-columns:1fr}.mood-mascots{grid-template-columns:repeat(4,1fr)}}
+
+code{font-family:ui-monospace,Menlo,monospace;font-size:0.85em;background:var(--cream);border:1px solid var(--border);border-radius:5px;padding:0.05rem 0.35rem}
+.app-shot{display:block;width:min(320px,80%);margin:1.75rem auto;border-radius:40px;border:8px solid #2B2118;box-shadow:0 30px 60px rgba(45,58,46,0.18)}
+
+@media(max-width:768px){.nav-links>a:not(.nav-cta){display:none!important}.lang{margin-left:0!important}.lang a{display:inline-block!important}}.lang{display:flex;gap:0.15rem;margin-left:0.5rem}.lang a{font-size:0.72rem!important;padding:0.2rem 0.45rem;border-radius:6px;font-weight:600!important;letter-spacing:0.04em}.lang a.on{background:var(--sage-light);color:var(--primary)!important}
+</style>
+<style id="mobile-fix">
+@media(max-width:768px){
+  .nav{padding:0 1rem}
+  .nav-logo{font-size:1.05rem;gap:.4rem;white-space:nowrap;flex-shrink:0}
+  .nav-logo img{width:28px;height:28px}
+  .nav-links{gap:.8rem;flex-shrink:0}
+  .nav-links a{white-space:nowrap;font-size:.8rem}
+  .nav-links a:not(.nav-cta):first-child{display:none}
+  .nav-cta{padding:.45rem .95rem;font-size:.75rem!important;line-height:1.3}
+  .footer-inner{justify-content:center;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:.6rem 1.2rem}
+  footer{padding:2.5rem 1.25rem}
+}
+@media(max-width:360px){
+  .nav-links a[href$="/support"]{display:none}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+<a class="nav-logo" href="https://bloomdayapp.com">
+<img alt="BloomDay" src="../images/guide-01.png"/>BloomDay
+  </a>
+<div class="nav-links">
+<a href="https://bloomdayapp.com">Inicio</a>
+<a href="https://bloomdayapp.com/support">Soporte</a>
+<a href="https://bloomdayapp.com/press">Prensa</a>
+<a class="nav-cta" href="https://apps.apple.com/tr/app/bloomday-tasks-garden/id6760038056">Descarga gratis</a>
+<span class="lang"><a href="https://bloomdayapp.com/guide/" hreflang="en">EN</a><a href="https://bloomdayapp.com/guide/tr/" hreflang="tr">TR</a><a class="on" href="https://bloomdayapp.com/guide/es/" hreflang="es">ES</a></span>
+</div>
+</nav>
+<section class="guide-hero">
+<div class="badge">Guía completa</div>
+<h1>Cómo funciona <em>BloomDay</em></h1>
+<p>Planifica tu día, gana semillas, cuida tu jardín y lleva un diario. Cada sistema, regla y recompensa de la app, en un solo lugar.</p>
+</section>
+<div class="toc">
+<a href="#s1">Tareas</a>
+<a href="#s2">Semillas</a>
+<a href="#s3">Plantas</a>
+<a href="#s4">Jardín</a>
+<a href="#s5">Modo Enfoque</a>
+<a href="#s6">Retos</a>
+<a href="#s7">Logros</a>
+<a href="#s8">Fichas</a>
+<a class="new" href="#s9">Diario</a>
+<a href="#s10">Cápsula del tiempo</a>
+<a class="new" href="#s11">Bloom Board</a>
+<a href="#s12">Viaje de crecimiento</a>
+<a class="new" href="#s13">Ánimos y widgets</a>
+<a class="new" href="#s14">Notion</a>
+<a class="new" href="#s15">Obsidian</a>
+<a class="new" href="#s16">Añadir por correo</a>
+<a class="new" href="#s17">Relojes</a>
+<a class="new" href="#s18">Mac y sincronización</a>
+<a href="#s19">Planes</a>
+<a href="#s20">Consejos</a>
+</div>
+<!-- 01 TASKS -->
+<section class="gs" id="s1">
+<div class="gs-num">01 · Tareas</div>
+<h2>La raíz de <em>todo</em></h2>
+<p class="desc">Cada semilla que ganas, cada planta que compras y cada racha que construyes empieza por terminar una tarea.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Añade una tarea</h4><p>Escríbela o toca el micrófono y dila en voz alta. BloomDay escucha con el reconocimiento de voz de tu teléfono y entiende fechas y horas en la frase, en español, inglés y turco. Dale una categoría: Trabajo, Salud, Hogar, Aprender, Social o Personal.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Fija una franja horaria</h4><p>Dale a la tarea una hora de inicio y una duración. Si la terminas dentro de esa franja, ganas una semilla extra.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Añade un recordatorio</h4><p>Elige cuántos minutos antes de la tarea debe llegar el aviso.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Añade una nota</h4><p>Adjunta una nota breve como contexto. Aparece en cursiva bajo el título de la tarea.</p></div></div>
+<div class="num-step"><div class="n">5</div><div><h4>Complétala</h4><p>Toca el círculo para terminar la tarea y ganar 2 semillas. Desliza a la izquierda para posponerla o borrarla.</p></div></div>
+</div>
+<div class="note-box">El calendario llega 180 días atrás y 365 días adelante. Toca cualquier día para ver sus tareas o planificar. Si terminas todas las tareas del día, BloomDay lo celebra con una breve nota de cierre. Si añades quince tareas o más en un día, una mascota se acerca a preguntarte cómo estás.</div>
+</section>
+<hr class="divider"/>
+<!-- 02 SEEDS -->
+<section class="gs" id="s2">
+<div class="gs-num">02 · Semillas y economía</div>
+<h2>La <em>moneda</em> de tu jardín</h2>
+<p class="desc">Las semillas salen del trabajo constante y se gastan en plantas y decoración. Están pensadas para sentirse merecidas.</p>
+<table class="seed-table fade-in">
+<tr><th>Acción</th><th>Semillas</th><th>Notas</th></tr>
+<tr><td>Completar una tarea</td><td class="seeds">+2</td><td>Tarifa base. Una vez por tarea al día.</td></tr>
+<tr><td>Completar dentro de la franja horaria</td><td class="seeds">+1</td><td>Extra sobre las 2 de base.</td></tr>
+<tr><td>Completar durante el Modo Enfoque</td><td class="seeds">+1</td><td>Se suma al extra de la franja horaria.</td></tr>
+<tr><td>Reto diario</td><td class="seeds">De +3 a +10</td><td>Un reto al día. La recompensa depende del reto.</td></tr>
+<tr><td>Sesión de enfoque completada</td><td class="seeds">+3</td><td>Cuando el temporizador llega al final.</td></tr>
+<tr><td>Logro desbloqueado</td><td class="seeds">+5</td><td>Por cada logro.</td></tr>
+<tr><td>Una planta alcanza la plena floración</td><td class="seeds">+20</td><td>Viene con una ficha de resiliencia.</td></tr>
+<tr><td>Colección de plantas completada</td><td class="seeds">Variable</td><td>Además de una insignia y un objeto decorativo.</td></tr>
+<tr><td>Trivia de plantas</td><td class="seeds">Variable</td><td>Responde preguntas sobre tus plantas.</td></tr>
+</table>
+<div class="note-box">Las semillas nunca caducan. Algunas plantas raras de Eden cuestan entre 300 y 400 semillas y los árboles más grandes cuestan 500, así que ahorrar para ellas lleva días de trabajo constante. Esa tensión es intencionada.</div>
+</section>
+<hr class="divider"/>
+<!-- 03 PLANTS -->
+<section class="gs" id="s3">
+<div class="gs-num">03 · Plantas</div>
+<h2>Especies, crecimiento y <em>plena floración</em></h2>
+<p class="desc">Más de 200 especies ilustradas en tres ambientes. Las plantas crecen con el riego: terminar tareas te permite comprarlas y regarlas las hace crecer.</p>
+<img alt="Línea de crecimiento" class="fade-in" src="../images/guide-02.png" style="width:100%;border-radius:12px;margin-bottom:2rem"/>
+<h3 style="font-size:1.1rem;margin-bottom:0.75rem">Estados de riego</h3>
+<div class="mood-row fade-in">
+<div class="mood"><h5>Radiante</h5><p>Regada hoy</p></div>
+<div class="mood"><h5>Feliz</h5><p>1 día sin regar</p></div>
+<div class="mood"><h5>Sedienta</h5><p>2 días sin regar</p></div>
+<div class="mood"><h5>Marchita</h5><p>3 días sin regar</p></div>
+<div class="mood"><h5>Crítica</h5><p>4 días o más sin regar</p></div>
+</div>
+<div class="note-box">En BloomDay las plantas nunca mueren. Incluso una planta en estado crítico se recupera en cuanto vuelves a regarla. Las cuentas gratuitas tienen un límite diario de riego, y los planes de pago riegan sin límite.</div>
+<h3 style="font-size:1.1rem;margin:1.5rem 0 0.75rem">Niveles de plantas</h3>
+<div class="tier-row fade-in">
+<div class="tier"><span class="tag free">Gratis</span><p>Especies iniciales como la monstera, la sansevieria, el cactus barril y el potus.</p></div>
+<div class="tier"><span class="tag bloom">Bloom</span><p>Variedades premium como la calathea, el ficus elástica, el espatifilo y las orquídeas.</p></div>
+<div class="tier"><span class="tag forest">Forest y Eden</span><p>Ejemplares raros, frutales enanos, hortalizas tradicionales y árboles gigantes.</p></div>
+</div>
+<div class="note-box">Cada planta trae datos botánicos reales en español, inglés y turco. Las plantas de temporada aparecen por tiempo limitado, y las Colecciones temáticas añaden más especies como compras únicas.</div>
+</section>
+<hr class="divider"/>
+<!-- 04 GARDEN -->
+<section class="gs" id="s4">
+<div class="gs-num">04 · Jardín</div>
+<h2>Tres mundos, <em>19 temas</em></h2>
+<p class="desc">Tu jardín refleja el trabajo que hay detrás. Coloca plantas, añade decoración y cambia de tema.</p>
+<div class="themes-grid fade-in">
+<div class="theme-card"><img alt="Tema interior de BloomDay" src="../images/guide-03.webp"/><div class="theme-card-body"><h4>Interior</h4><p>Cosy Cottage, Zen Studio, Nordic Loft, Grand Manor, Moroccan Terrace, Mediterranean, Attic Hideaway.</p></div></div>
+<div class="theme-card"><img alt="Jardín" src="../images/guide-04.jpg"/><div class="theme-card-body"><h4>Jardín</h4><p>English Garden, Japanese Garden, Tropical Garden, Winter Garden, Treehouse, Picnic Lawn.</p></div></div>
+<div class="theme-card"><img alt="Huerto" src="../images/guide-05.jpg"/><div class="theme-card-body"><h4>Huerto</h4><p>Allotment, Greenhouse, Rooftop Farm, Night Garden, Village House, Tuscan Vineyard.</p></div></div>
+</div>
+<div class="num-steps fade-in" style="margin-top:2rem">
+<div class="num-step"><div class="n">1</div><div><h4>Cambia de ambiente</h4><p>Interior para plantas de casa, Jardín para flores y árboles de exterior, Huerto para hortalizas y hierbas. Cada uno tiene su propio catálogo.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Elige un tema</h4><p>Cosy Cottage, English Garden y Allotment son gratis. El resto se abre con Bloom, Forest o Eden.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Compra en el vivero</h4><p>Toca una planta para ver su precio, nivel, nombre en latín y curiosidades, y gasta semillas para añadirla.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Organiza tu espacio</h4><p>Arrastra plantas y más de 100 piezas decorativas a donde quieras, cambia su tamaño y mantén pulsado para quitarlas.</p></div></div>
+<div class="num-step"><div class="n">5</div><div><h4>Comparte tu jardín</h4><p>Captura tu jardín con tus estadísticas y comparte la imagen donde quieras.</p></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 05 FOCUS MODE -->
+<section class="gs" id="s5">
+<div class="gs-num">05 · Modo Enfoque</div>
+<h2>Un rincón tranquilo para <em>el trabajo profundo</em></h2>
+<p class="desc">Un temporizador a pantalla completa con sonido ambiente, una planta que respira y una pequeña recompensa al final.</p>
+<div class="focus-row fade-in">
+<div class="focus-list">
+<div class="focus-item"><span class="focus-dot"></span><p>Elige 25, 45, 60 o 90 minutos. Una planta que respira te ayuda a mantener la calma.</p></div>
+<div class="focus-item"><span class="focus-dot"></span><p>Elige uno de 18 sonidos ambientales: lofi, lluvia, pájaros, piano, tabla, downbeat, cumbia, afrobeat, vinilo, un gato que ronronea y más.</p></div>
+<div class="focus-item"><span class="focus-dot"></span><p>Las tareas que terminas durante una sesión ganan una semilla extra, y una sesión completa suma +3. Si terminas antes, no hay recompensa.</p></div>
+<div class="focus-item"><span class="focus-dot"></span><p>Si intentas salir, BloomDay te pregunta antes. Cancelar te devuelve al temporizador.</p></div>
+</div>
+<div class="timer-box"><span class="timer-num">25:00</span></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 06 CHALLENGES -->
+<section class="gs" id="s6">
+<div class="gs-num">06 · Retos diarios</div>
+<h2>Un objetivo nuevo <em>cada día</em></h2>
+<p class="desc">Cada mañana BloomDay elige un reto para el día. Cuando lo cumples, la tarjeta se vuelve verde y las semillas llegan al momento.</p>
+<table class="challenge-table fade-in">
+<tr><th>Reto</th><th>Requisito</th></tr>
+<tr><td>Por partida doble</td><td>Completa 2 tareas.</td></tr>
+<tr><td>Triple crecimiento</td><td>Completa 3 tareas.</td></tr>
+<tr><td>Día productivo</td><td>Completa 5 tareas.</td></tr>
+<tr><td>Borrón y cuenta nueva</td><td>Completa todas las tareas previstas para hoy.</td></tr>
+<tr><td>Madrugador</td><td>Completa una tarea antes del mediodía.</td></tr>
+<tr><td>Ritual matutino</td><td>Completa una tarea antes de las 10.</td></tr>
+<tr><td>Puntual</td><td>Completa una tarea que tenga hora.</td></tr>
+<tr><td>Planifica</td><td>Ponle hora a una de las tareas de hoy.</td></tr>
+<tr><td>Día de riego y Mano verde</td><td>Riega una planta.</td></tr>
+<tr><td>Jardinero atento</td><td>Completa una tarea y riega una planta.</td></tr>
+<tr><td>Sigue encendido</td><td>Llega a una racha de 3 días.</td></tr>
+</table>
+</section>
+<hr class="divider"/>
+<!-- 07 ACHIEVEMENTS -->
+<section class="gs" id="s7">
+<div class="gs-num">07 · Logros</div>
+<h2>Logros que <em>te celebran</em></h2>
+<p class="desc">58 insignias en total: 48 logros en seis categorías y 10 colecciones de plantas. Cada logro suma +5 semillas en cuanto se desbloquea.</p>
+<div class="ach-tabs fade-in">
+<span class="ach-tab">Tareas</span><span class="ach-tab">Rachas</span><span class="ach-tab">Jardín</span><span class="ach-tab">Riego</span><span class="ach-tab">Semillas</span><span class="ach-tab">Especiales</span><span class="ach-tab">Colecciones</span>
+</div>
+<div class="note-box">Los logros cubren momentos como tu primera tarea, una racha de 30 días, diez plantas reunidas o tu primera sesión de enfoque. Las colecciones te piden cultivar un grupo temático de plantas, y completar una te da semillas, una insignia y una pieza decorativa para tu jardín.</div>
+</section>
+<hr class="divider"/>
+<!-- 08 TOKENS -->
+<section class="gs" id="s8">
+<div class="gs-num">08 · Fichas de resiliencia</div>
+<h2>Se ganan, <em>nunca se compran</em></h2>
+<p class="desc">Las fichas de resiliencia son lo más raro de BloomDay. No se pueden comprar con dinero. Puedes tener hasta 10 a la vez.</p>
+<table class="token-table fade-in">
+<tr><th>Hito</th><th>Fichas</th></tr>
+<tr><td>Racha de 7 días</td><td class="tok">+1</td></tr>
+<tr><td>Racha de 14 días</td><td class="tok">+1</td></tr>
+<tr><td>Racha de 30 días</td><td class="tok">+1</td></tr>
+<tr><td>Racha de 100 días</td><td class="tok">+1</td></tr>
+<tr><td>Una planta alcanza la plena floración</td><td class="tok">+1</td></tr>
+</table>
+<div class="note-box">Cuando se rompe una racha, BloomDay te ofrece recuperarla con una ficha. Las plantas no necesitan fichas, porque un poco de agua siempre basta para recuperarlas.</div>
+</section>
+<hr class="divider"/>
+<!-- 09 JOURNAL -->
+<section class="gs" id="s9">
+<div class="gs-num">09 · Diario <span class="new-tag">Nuevo</span></div>
+<h2>Páginas que <em>decoras tú</em></h2>
+<p class="desc">Tu jardín tiene un cuaderno. Escribe sobre tu día en una página en blanco o una plantilla, y decórala con pegatinas de arcilla, washi tape y texto de rotulador.</p>
+<div class="sticker-strip fade-in"><img alt="" src="../images/guide-06.webp"/><img alt="" src="../images/guide-07.webp"/><img alt="" src="../images/guide-08.webp"/><img alt="" src="../images/guide-09.webp"/><img alt="" src="../images/guide-10.webp"/><img alt="" src="../images/guide-11.webp"/><img alt="" src="../images/guide-12.webp"/><img alt="" src="../images/guide-13.webp"/><img alt="" src="../images/guide-14.webp"/><img alt="" src="../images/guide-15.webp"/></div>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Empieza una página</h4><p>Elige una página en blanco o una plantilla diaria, semanal, mensual o de hábitos. Toca la pregunta del día para abrir una página con esa pregunta como título.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Escribe</h4><p>Añade títulos, notas y texto tipo sello. Si quieres, habla en lugar de escribir. Vincula la página a una planta y elige tu papel.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Decora</h4><p>Más de 250 pegatinas de arcilla en 18 sets: washi tapes, encabezados de días y meses, fechas, números, bocadillos, clima, bichitos, dulces, pestañas, hábitos y garabatos. Los sellos y las insignias se desbloquean mientras creces, y la mascota del ánimo de hoy siempre está lista para pegarla en la página.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Guarda y comparte</h4><p>Las páginas guardadas se vuelven a abrir en el mismo editor para hacer cambios. Fija tus favoritas en tu Bloom Board o exporta las páginas en PDF.</p></div></div>
+</div>
+<img alt="Elegir una página de diario en BloomDay" class="app-shot fade-in" src="../images/guide-16.webp"/>
+<div class="note-box">Las cuentas gratuitas pueden guardar 3 páginas de diario y usar 15 pegatinas. Bloom, Forest y Eden abren más sets de pegatinas y páginas ilimitadas. El Journal Kit es una compra única que desbloquea todas las pegatinas para siempre. Los sets de plantillas listas vienen con los planes.</div>
+</section>
+<hr class="divider"/>
+<!-- 10 TIME CAPSULE -->
+<section class="gs" id="s10">
+<div class="gs-num">10 · Cápsula del tiempo</div>
+<h2>Cartas a <em>tu yo del futuro</em></h2>
+<p class="desc">Elige una planta y escribe una carta a la persona que serás cuando florezca.</p>
+<div class="duo-row fade-in">
+<div class="duo-card"><img alt="Cápsula del tiempo" src="../images/guide-17.jpg"/><div class="duo-card-body"><span class="tag">Cápsula del tiempo</span><h4>Sellada hasta la plena floración</h4><p>La cápsula se queda cerrada mientras la planta crece. Cuando alcanza la plena floración, la carta se abre sola.</p></div></div>
+<div class="duo-card"><img alt="Cápsula del tiempo sellada" src="../images/guide-18.webp"/><div class="duo-card-body"><span class="tag">Paciencia</span><h4>Nada puede apresurarla</h4><p>Una cápsula no se puede comprar, saltar ni abrir antes. Sella una para una planta de crecimiento lento y, cuando florezca, ya habrás olvidado lo que escribiste.</p></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 11 BLOOM BOARD -->
+<section class="gs" id="s11">
+<div class="gs-num">11 · Bloom Board <span class="new-tag">Nuevo</span></div>
+<h2>Fija la vida <em>que estás creando</em></h2>
+<p class="desc">Un tablero de visión hecho de pines de arcilla: metas, lugares, rutinas y pequeños placeres. Colócalos en el tablero y compártelo como imagen.</p>
+<div class="sticker-strip fade-in"><img alt="" src="../images/guide-19.webp" style="height:84px"/><img alt="" src="../images/guide-20.webp" style="height:84px"/><img alt="" src="../images/guide-21.webp" style="height:84px"/><img alt="" src="../images/guide-22.webp" style="height:84px"/><img alt="" src="../images/guide-23.webp" style="height:84px"/><img alt="" src="../images/guide-24.webp" style="height:84px"/><img alt="" src="../images/guide-25.webp" style="height:84px"/><img alt="" src="../images/guide-26.webp" style="height:84px"/></div>
+<img alt="Un Bloom Board en BloomDay" class="app-shot fade-in" src="../images/guide-27.webp"/>
+<div class="note-box">Las cuentas gratuitas reciben un tablero real con un set inicial de pines, uno por cada tema cotidiano. Los planes desbloquean la colección completa. Tu tablero también puede vivir en tu pantalla de inicio como widget.</div>
+</section>
+<hr class="divider"/>
+<!-- 12 GROWTH JOURNEY -->
+<section class="gs" id="s12">
+<div class="gs-num">12 · Viaje de crecimiento</div>
+<h2>Siete días, <em>a la vista</em></h2>
+<p class="desc">Cada semana BloomDay resume tu progreso, y el titular cambia según tu tasa real de tareas completadas. Cada mes tiene su propia tarjeta para guardar, y el año tiene su propio resumen.</p>
+<div class="report-grid fade-in">
+<div class="report-stat"><div class="report-num">10/11</div><div class="report-label">Tareas completadas</div></div>
+<div class="report-stat"><div class="report-num">7</div><div class="report-label">Días de racha</div></div>
+<div class="report-stat"><div class="report-num">+45</div><div class="report-label">Semillas ganadas</div></div>
+<div class="report-stat"><div class="report-num">2</div><div class="report-label">Plantas cultivadas</div></div>
+</div>
+<div class="note-box">La línea del tiempo muestra en orden tus días perfectos, plantas nuevas y temas desbloqueados. Las tarjetas de semana y de mes se pueden compartir como imagen.</div>
+</section>
+<hr class="divider"/>
+<!-- 13 MOODS & WIDGETS -->
+<section class="gs" id="s13">
+<div class="gs-num">13 · Mascotas del ánimo y widgets <span class="new-tag">Nuevo</span></div>
+<h2>¿Cómo estás <em>hoy?</em></h2>
+<p class="desc">Toca tu tarjeta de perfil y elige la mascota que va con tu día. Será tu foto de perfil hasta mañana y aparecerá como pegatina en el diario.</p>
+<div class="mood-mascots fade-in"><div><img alt="En pánico" src="../images/guide-28.webp"/>En pánico</div><div><img alt="Agobiado" src="../images/guide-29.webp"/>Agobiado</div><div><img alt="Aturdido" src="../images/guide-30.webp"/>Aturdido</div><div><img alt="Tranquilo" src="../images/guide-31.webp"/>Tranquilo</div><div><img alt="Alerta" src="../images/guide-32.webp"/>Alerta</div><div><img alt="Neutral" src="../images/guide-33.webp"/>Neutral</div><div><img alt="Feliz" src="../images/guide-34.webp"/>Feliz</div><div><img alt="Triste" src="../images/guide-35.webp"/>Triste</div></div>
+<div class="note-box">Tu ánimo se queda en tu teléfono. Nunca se envía a analíticas, nunca se respalda y nunca se sincroniza. Todas las mascotas son gratis.</div>
+<h3 style="font-size:1.1rem;margin:1.75rem 0 0.75rem">Widgets de pantalla de inicio</h3>
+<div class="three-col fade-in">
+<div class="tip"><h4>Racha</h4><p>Tu racha actual y tu mejor racha de un vistazo.</p></div>
+<div class="tip"><h4>Jardín</h4><p>Tus plantas y lo que has reunido.</p></div>
+<div class="tip"><h4>Bloom Board</h4><p>Los pines que elegiste, directamente en tu pantalla de inicio.</p></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 14 NOTION & REPEATS -->
+<section class="gs" id="s14">
+<div class="gs-num">14 · Notion y tareas recurrentes <span class="new-tag">Nuevo</span></div>
+<h2>Trae tu <em>propio sistema</em></h2>
+<p class="desc">BloomDay se conecta con Notion y Obsidian. Con Notion, eliges una base de datos de tareas y esas tareas aparecen en BloomDay. Si terminas una aquí, también se marca en Notion, y tu jardín crece con ella.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Conecta Notion</h4><p>Abre Ajustes, busca Notion en Integraciones, inicia sesión y elige la base de datos que quieres sincronizar.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Trabaja donde quieras</h4><p>Las tareas completadas fluyen en ambos sentidos. Puedes desconectar cuando quieras desde la misma pantalla.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Fija una repetición</h4><p>Una vez, A diario, Entre semana, Cada semana, Cada 2 semanas, Cada mes, o fechas exactas que eliges en un calendario. Cada día guarda su propio estado.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Deja de repetir</h4><p>Desliza a la izquierda una tarea recurrente y toca Detener. Se convierte en una tarea única y su recordatorio se cancela.</p></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 15 OBSIDIAN -->
+<section class="gs" id="s15">
+<div class="gs-num">15 · Obsidian <span class="new-tag">Nuevo</span></div>
+<h2>Tu bóveda, <em>en el jardín</em></h2>
+<p class="desc">BloomDay lee las casillas de tu bóveda de Obsidian y las convierte en tareas. No hay nada que configurar en línea, y tus notas se quedan donde están.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Elige tu bóveda</h4><p>Abre Ajustes, busca Obsidian en Integraciones y toca para elegir la carpeta de tu bóveda. Si tu bóveda está en iCloud Drive, búscala dentro de la carpeta Obsidian.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Escribe tareas como siempre</h4><p>Cualquier línea escrita como <code>- [ ] tarea</code> en tus notas aparece en la lista de hoy.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Termínala donde quieras</h4><p>Completa la tarea en BloomDay y la casilla también se marca en tu nota, mientras tu jardín crece.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Las tareas nuevas encuentran su sitio</h4><p>Las tareas que añades en BloomDay se escriben en una nota llamada BloomDay en la parte superior de tu bóveda.</p></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 16 EMAIL & EXTENSIONS -->
+<section class="gs" id="s16">
+<div class="gs-num">16 · Añadir tareas por correo y compartir <span class="new-tag">Nuevo</span></div>
+<h2>Envíalo a <em>tu jardín</em></h2>
+<p class="desc">Las tareas no tienen por qué empezar en la app. Envíalas por correo, compártelas desde otra app o guarda una página desde el navegador, y llegan a BloomDay.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Encuentra tu dirección</h4><p>Abre Ajustes, luego Integraciones y luego Añadir tareas por correo. Tendrás una dirección personal que termina en @bloomdayapp.com. Guárdala para ti, porque todo lo que llegue a ella se convierte en una tarea.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Escribe o reenvía un correo</h4><p>El asunto se convierte en la tarea y la primera línea del correo, en su nota. Escribe un día o una hora en el asunto, como “Llamar al dentista mañana a las 10”, y BloomDay lo programa por ti, en español, inglés o turco.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Comparte desde cualquier app</h4><p>En iPhone, iPad y Mac, toca Compartir y elige BloomDay. Un enlace compartido se convierte en una tarea que empieza por “Revisar:”, y el enlace se guarda como nota. En Mac, actívalo una vez en Ajustes del Sistema, en Extensiones y luego Compartir.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Guarda desde Safari</h4><p>Activa la extensión de BloomDay en Safari y toca su icono en cualquier página. Edita la tarea y la nota, y toca Enviar a mi jardín. La extensión de Chrome está en camino.</p></div></div>
+</div>
+<div class="note-box">Las tareas enviadas con la app cerrada te esperan la próxima vez que abras BloomDay.</div>
+</section>
+<hr class="divider"/>
+<!-- 17 WATCHES -->
+<section class="gs" id="s17">
+<div class="gs-num">17 · Apple Watch y Wear OS <span class="new-tag">Nuevo</span></div>
+<h2>Hoy, <em>en tu muñeca</em></h2>
+<p class="desc">Un pequeño BloomDay para tu reloj. Muestra lo importante de hoy y te deja añadir una tarea sin sacar el teléfono.</p>
+<div class="three-col fade-in">
+<div class="tip"><h4>Hoy</h4><p>Tus tareas del día con un anillo de progreso. Toca una tarea para terminarla.</p></div>
+<div class="tip"><h4>Mañana</h4><p>Un vistazo tranquilo a lo que viene.</p></div>
+<div class="tip"><h4>Racha</h4><p>Tu racha actual y los días de esta semana.</p></div>
+</div>
+<div class="num-steps fade-in" style="margin-top:1.5rem">
+<div class="num-step"><div class="n">1</div><div><h4>Añade con la voz</h4><p>Toca el botón de más y habla, o escribe. Di un día o una hora y tu teléfono lo programa.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Apple Watch</h4><p>Instala BloomDay en tu iPhone y la app del reloj estará lista en la app Watch. Añade la complicación de BloomDay a tu esfera para ver tu día de un vistazo.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Wear OS</h4><p>Las mismas pantallas en relojes Android. Instala BloomDay en tu teléfono Android y la app del reloj llega con ella desde Google Play.</p></div></div>
+</div>
+<div class="note-box">Tu reloj recibe las tareas desde tu teléfono, así que abre BloomDay en el teléfono al menos una vez después de instalarla. Las tareas añadidas desde el reloj se guardan la próxima vez que BloomDay se abra en tu teléfono.</div>
+</section>
+<hr class="divider"/>
+<!-- 18 MAC & SYNC -->
+<section class="gs" id="s18">
+<div class="gs-num">18 · Mac, iPad y sincronización <span class="new-tag">Nuevo</span></div>
+<h2>Un jardín, <em>en cada pantalla</em></h2>
+<p class="desc">BloomDay funciona en iPhone, iPad, Mac y Android. Inicia sesión con la misma cuenta y todo te acompaña.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Inicia sesión</h4><p>Usa Apple, Google o tu correo. Tus tareas, páginas del diario, jardín y progreso se sincronizan entre tus dispositivos.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Sincroniza ahora</h4><p>BloomDay se sincroniza solo. Abre Ajustes y luego Sincronización para ver cuándo se hizo la última o para sincronizar al momento.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Trabaja en tu Mac</h4><p>Planifica tareas y edita tu diario en pantallas amplias y cómodas. La app de Mac no tiene anuncios.</p></div></div>
+</div>
+<div class="note-box">Por ahora, las fotos que añades a las páginas del diario se quedan en el dispositivo donde las añadiste. El modo invitado guarda todo en un solo dispositivo hasta que inicias sesión.</div>
+</section>
+<hr class="divider"/>
+<!-- 19 PLANS -->
+<section class="gs" id="s19">
+<div class="gs-num">19 · Planes</div>
+<h2>Gratis para empezar, <em>tuyo para crecer</em></h2>
+<p class="desc">BloomDay es gratis, con algún anuncio. Los planes de pago quitan los anuncios y abren más del jardín y del diario.</p>
+<div class="plan-grid fade-in">
+<div class="plan"><h4>Gratis</h4><p>Tareas, semillas, plantas iniciales, tres temas gratis, Modo Enfoque, 3 páginas de diario, pegatinas iniciales y pines de Bloom Board.</p></div>
+<div class="plan"><h4>Bloom</h4><p>Sin anuncios, riego ilimitado, plantas y temas premium, más sets de pegatinas y páginas de diario ilimitadas.</p></div>
+<div class="plan"><h4>Forest</h4><p>Todo lo de Bloom, más plantas raras, más temas y más sets de pegatinas.</p></div>
+<div class="plan hl"><h4>Eden</h4><p>Todo lo que ofrece BloomDay. También disponible como compra única de por vida.</p></div>
+</div>
+<h3 style="font-size:1.1rem;margin:1.75rem 0 0.75rem">Compras únicas</h3>
+<div class="one-off fade-in">
+<div class="tip"><h4>Colecciones</h4><p>Paquetes temáticos como Rare Houseplants, Japanese Garden, Orchard, Heirloom Vegetables, Herb Garden, Winter, Autumn y Terrarium. Cada uno abre escenas, plantas o decoración nuevas para tus semillas.</p></div>
+<div class="tip"><h4>Todas las colecciones</h4><p>Todas las colecciones en una sola compra, por menos que comprarlas una a una.</p></div>
+<div class="tip"><h4>Journal Kit</h4><p>Todas las pegatinas del diario, las actuales y las de futuros sets regulares, para siempre.</p></div>
+</div>
+<div class="note-box">Quienes tienen Eden o la compra de por vida ya cuentan con todas las colecciones y el Journal Kit. Las compras se pueden restaurar en un teléfono nuevo desde la pantalla de planes.</div>
+</section>
+<hr class="divider"/>
+<!-- 20 TIPS -->
+<section class="gs" id="s20">
+<div class="gs-num">20 · Consejos</div>
+<h2>Sácale el máximo partido a <em>tu jardín</em></h2>
+<p class="desc">Ideas prácticas para crear hábitos y hacer crecer tu jardín a un ritmo que puedas mantener.</p>
+<div class="tips-grid fade-in">
+<div class="tip"><h4>Riega cada día</h4><p>El crecimiento viene del riego. Abre la app, riega una planta y deja que lo demás llegue solo.</p></div>
+<div class="tip"><h4>Usa el Modo Enfoque para lo difícil</h4><p>Las tareas terminadas durante una sesión ganan una semilla extra, y la sesión en sí suma tres más.</p></div>
+<div class="tip"><h4>Ahorra para las plantas raras</h4><p>Las plantas de Forest y Eden cuestan cientos de semillas. Ahorrar para ellas debería sentirse merecido.</p></div>
+<div class="tip"><h4>Cuida tu racha</h4><p>Una sola tarea terminada mantiene viva la racha. En los días lentos, haz la más pequeña.</p></div>
+<div class="tip"><h4>Di tus tareas</h4><p>Di “llamar a mamá mañana a las 6” y BloomDay rellena el día y la hora por ti. También funciona desde el reloj.</p></div>
+<div class="tip"><h4>Cierra el día en papel</h4><p>Una página corta de diario por la noche es suficiente. Una pegatina y tres líneas también cuentan.</p></div>
+</div>
+<div class="philosophy fade-in">
+<p>Cada recompensa debería ser fruto de un trabajo real, no un atajo para evitarlo. El crecimiento es silencioso. Llega tarea a tarea, día a día, hoja a hoja.</p>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-inner">
+<div><div class="footer-logo"><img alt="BloomDay" src="../images/guide-01.png"/>BloomDay</div></div>
+<div class="footer-links">
+<a href="https://bloomdayapp.com">Inicio</a>
+<a href="https://bloomdayapp.com/privacy">Privacidad</a>
+<a href="https://bloomdayapp.com/support">Soporte</a>
+<a href="https://bloomdayapp.com/press">Prensa</a>
+<a href="https://instagram.com/bloomday.app">Instagram</a>
+<a href="mailto:bloomday.app@icloud.com">Contacto</a>
+</div>
+<div class="footer-copy">2026 BloomDay. Todos los derechos reservados.</div>
+</div>
+</footer>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

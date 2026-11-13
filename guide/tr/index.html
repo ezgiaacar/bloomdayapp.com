@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BloomDay Rehberi: BloomDay nasıl çalışır</title>
+<meta content="BloomDay'deki her sistem tek yerde: görevler, tohumlar, bitkiler, bahçe temaları, odak modu, günlük, Bloom Board, zaman kapsülleri, Notion, Obsidian, e-posta, saatler, senkronizasyon ve planlar." name="description"/>
+<link href="https://bloomdayapp.com/guide/" hreflang="en" rel="alternate"/><link href="https://bloomdayapp.com/guide/tr/" hreflang="tr" rel="alternate"/><link href="https://bloomdayapp.com/guide/es/" hreflang="es" rel="alternate"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--primary:#4A5D3A;--accent:#2B4A3F;--bg:#F7F4EE;--bg-card:#FFFFFF;--text:#2D3A2E;--text-muted:#6B7D6C;--sage:#8FA882;--sage-light:#C5D4B8;--cream:#FAF8F4;--border:#D6CFBF;--green-deep:#1A2E1A;--shadow:rgba(45,58,46,0.08);--mint:#D4E8C2;--sky:#B8D4E3;--pink:#F5C6D0;--peach:#FDE8D8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Lora',serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.02em}
+img{max-width:100%}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,244,238,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(214,207,191,0.5);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:var(--primary);display:flex;align-items:center;gap:0.5rem;text-decoration:none}
+.nav-logo img{width:32px;height:32px;border-radius:8px}
+.nav-links{display:flex;gap:1.8rem;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text-muted);font-size:0.85rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-cta{background:var(--primary);color:white!important;padding:0.5rem 1.2rem;border-radius:100px;font-size:0.8rem!important;font-weight:600!important}
+
+/* HERO */
+.guide-hero{padding:120px 2rem 50px;text-align:center;position:relative;overflow:hidden}
+.guide-hero::before{content:'';position:absolute;top:-10%;left:-10%;width:40%;height:60%;background:radial-gradient(ellipse,rgba(197,212,184,0.3) 0%,transparent 70%);pointer-events:none}
+.guide-hero .badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--sage-light);border-radius:100px;padding:0.35rem 1rem;font-size:0.75rem;font-weight:600;color:var(--primary);margin-bottom:1.5rem}
+.guide-hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.1;max-width:600px;margin:0 auto 1rem}
+.guide-hero h1 em{font-style:normal;color:var(--primary)}
+.guide-hero p{font-size:0.95rem;color:var(--text-muted);max-width:540px;margin:0 auto}
+
+/* TOC */
+.toc{display:flex;justify-content:center;gap:0.4rem;flex-wrap:wrap;padding:2rem 2rem 3rem;max-width:900px;margin:0 auto}
+.toc a{background:var(--bg-card);border:1px solid var(--border);border-radius:100px;padding:0.45rem 1rem;font-size:0.75rem;font-weight:500;color:var(--text-muted);text-decoration:none;transition:all 0.2s}
+.toc a:hover{background:var(--sage-light);color:var(--primary);border-color:var(--sage)}
+
+/* SECTION */
+.gs{padding:4.5rem 2rem;max-width:960px;margin:0 auto}
+.gs-num{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;color:var(--sage);margin-bottom:0.4rem}
+.gs h2{font-size:clamp(1.5rem,2.8vw,2rem);line-height:1.15;margin-bottom:0.4rem}
+.gs h2 em{font-style:normal;color:var(--primary)}
+.gs>.desc{font-size:0.88rem;color:var(--text-muted);max-width:600px;margin-bottom:2rem;line-height:1.7}
+.divider{max-width:960px;margin:0 auto;border:none;border-top:1px solid var(--border);opacity:0.4}
+
+/* NUMBERED STEPS */
+.num-steps{display:grid;gap:1rem;margin-top:1rem}
+.num-step{display:flex;gap:1rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem}
+.num-step .n{width:28px;height:28px;border-radius:50%;background:var(--sage-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0}
+.num-step h4{font-size:0.9rem;margin-bottom:0.15rem}
+.num-step p{font-size:0.8rem;color:var(--text-muted);line-height:1.5}
+.note-box{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-top:1rem;font-size:0.8rem;color:var(--text-muted);line-height:1.6}
+
+/* TABLE */
+.seed-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.82rem}
+.seed-table th{text-align:left;padding:0.6rem 1rem;background:var(--primary);color:white;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em}
+.seed-table th:first-child{border-radius:8px 0 0 0}
+.seed-table th:last-child{border-radius:0 8px 0 0}
+.seed-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text)}
+.seed-table tr:nth-child(even){background:var(--cream)}
+.seed-table .seeds{font-weight:600;color:var(--primary)}
+
+/* MOOD INDICATORS */
+.mood-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin:1rem 0}
+.mood{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:0.75rem 1rem;text-align:center;flex:1;min-width:100px}
+.mood h5{font-size:0.78rem;margin-bottom:0.15rem}
+.mood p{font-size:0.68rem;color:var(--text-muted)}
+
+/* TIER CARDS */
+.tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0}
+.tier{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem}
+.tier .tag{display:inline-block;font-size:0.65rem;font-weight:700;padding:0.15rem 0.6rem;border-radius:100px;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.06em}
+.tier .tag.free{background:var(--sage-light);color:var(--primary)}
+.tier .tag.bloom{background:var(--peach);color:#8B5E3C}
+.tier .tag.forest{background:#E0D4F5;color:#5B3A8C}
+.tier p{font-size:0.8rem;color:var(--text-muted);line-height:1.5}
+
+/* GARDEN THEMES */
+.themes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.5rem}
+.theme-card{border-radius:16px;overflow:hidden;box-shadow:0 8px 24px var(--shadow);transition:transform 0.3s}
+.theme-card:hover{transform:translateY(-6px)}
+.theme-card img{width:100%;height:220px;object-fit:cover;display:block}
+.theme-card-body{background:var(--bg-card);padding:1.25rem}
+.theme-card-body h4{font-size:0.95rem;margin-bottom:0.25rem}
+.theme-card-body p{font-size:0.78rem;color:var(--text-muted);line-height:1.5}
+
+/* FOCUS */
+.focus-row{display:grid;grid-template-columns:1.2fr 0.8fr;gap:2rem;align-items:center;margin-top:1.5rem}
+.focus-list{display:flex;flex-direction:column;gap:0.6rem}
+.focus-item{display:flex;align-items:flex-start;gap:0.75rem}
+.focus-dot{width:8px;height:8px;background:var(--sage);border-radius:50%;margin-top:6px;flex-shrink:0}
+.focus-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.55}
+.timer-box{background:var(--green-deep);border-radius:20px;padding:3rem;display:flex;align-items:center;justify-content:center}
+.timer-num{font-family:'Fraunces',serif;font-size:4rem;color:white;font-weight:300;letter-spacing:0.05em}
+
+/* CHALLENGE TABLE */
+.challenge-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.82rem}
+.challenge-table th{text-align:left;padding:0.6rem 1rem;background:var(--sage-light);color:var(--primary);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em}
+.challenge-table th:first-child{border-radius:8px 0 0 0}
+.challenge-table th:last-child{border-radius:0 8px 0 0}
+.challenge-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border)}
+
+/* ACHIEVEMENT TABS */
+.ach-tabs{display:flex;gap:0.4rem;flex-wrap:wrap;margin:1rem 0}
+.ach-tab{background:var(--bg-card);border:1px solid var(--border);border-radius:100px;padding:0.4rem 1rem;font-size:0.75rem;font-weight:500;color:var(--text-muted)}
+
+/* TOKEN TABLE */
+.token-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.82rem}
+.token-table th{text-align:left;padding:0.6rem 1rem;background:var(--accent);color:white;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em}
+.token-table th:first-child{border-radius:8px 0 0 0}
+.token-table th:last-child{border-radius:0 8px 0 0}
+.token-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border)}
+.token-table .tok{font-weight:600;color:var(--accent)}
+
+/* JOURNAL DUO */
+.duo-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+.duo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform 0.2s}
+.duo-card:hover{transform:translateY(-4px)}
+.duo-card img{width:100%;height:260px;object-fit:cover;object-position:top;display:block}
+.duo-card-body{padding:1.5rem}
+.duo-card-body .tag{display:inline-block;background:var(--sage-light);color:var(--primary);font-size:0.65rem;font-weight:600;padding:0.15rem 0.6rem;border-radius:100px;margin-bottom:0.5rem}
+.duo-card-body h4{font-size:1rem;margin-bottom:0.35rem}
+.duo-card-body p{font-size:0.8rem;color:var(--text-muted);line-height:1.6}
+
+/* WEEKLY REPORT */
+.report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem}
+.report-stat{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
+.report-num{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;color:var(--primary);margin-bottom:0.1rem}
+.report-label{font-size:0.72rem;color:var(--text-muted)}
+
+/* TIPS */
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem}
+.tip{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;transition:transform 0.2s}
+.tip:hover{transform:translateY(-3px)}
+.tip h4{font-size:0.9rem;margin-bottom:0.25rem}
+.tip p{font-size:0.8rem;color:var(--text-muted);line-height:1.55}
+
+/* PHILOSOPHY */
+.philosophy{background:var(--green-deep);border-radius:16px;padding:3rem;text-align:center;margin-top:3rem}
+.philosophy p{font-family:'Fraunces',serif;font-size:1.1rem;color:rgba(255,255,255,0.85);line-height:1.7;max-width:600px;margin:0 auto;font-style:italic}
+
+/* FOOTER */
+.footer{background:var(--accent);color:rgba(255,255,255,0.7);padding:3rem 2rem;margin-top:3rem}
+.footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;color:white;display:flex;align-items:center;gap:0.5rem}
+.footer-logo img{width:28px;height:28px;border-radius:6px}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.8rem;font-weight:500;transition:color 0.2s}
+.footer-links a:hover{color:white}
+.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.35)}
+
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .themes-grid,.tier-row,.tips-grid{grid-template-columns:1fr}
+  .duo-row,.focus-row{grid-template-columns:1fr}
+  .report-grid{grid-template-columns:repeat(2,1fr)}
+  .mood-row{flex-direction:column}
+  .nav-links{gap:0.8rem}
+  .footer-inner{flex-direction:column;text-align:center}
+}
+/* Nov 2026 additions */
+.new-tag{display:inline-block;background:var(--primary);color:#fff;font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:100px;margin-left:0.5rem;vertical-align:middle}
+.toc a.new{border-color:var(--sage);color:var(--primary)}
+.sticker-strip{display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;justify-content:center;background:var(--cream);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin:1.5rem 0}
+.sticker-strip img{height:64px;width:auto;filter:drop-shadow(0 4px 6px rgba(45,58,46,0.12))}
+.mood-mascots{display:grid;grid-template-columns:repeat(8,1fr);gap:0.75rem;margin:1.5rem 0}
+.mood-mascots div{text-align:center;font-size:0.72rem;font-weight:600;color:var(--text-muted)}
+.mood-mascots img{width:100%;max-width:84px;display:block;margin:0 auto 0.35rem}
+.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem}
+.plan{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem}
+.plan h4{font-size:1rem;margin-bottom:0.35rem}
+.plan p{font-size:0.78rem;color:var(--text-muted);line-height:1.55}
+.plan.hl{border-color:var(--sage);box-shadow:0 8px 24px var(--shadow)}
+.one-off{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+@media(max-width:768px){.plan-grid,.one-off,.three-col{grid-template-columns:1fr}.mood-mascots{grid-template-columns:repeat(4,1fr)}}
+
+code{font-family:ui-monospace,Menlo,monospace;font-size:0.85em;background:var(--cream);border:1px solid var(--border);border-radius:5px;padding:0.05rem 0.35rem}
+.app-shot{display:block;width:min(320px,80%);margin:1.75rem auto;border-radius:40px;border:8px solid #2B2118;box-shadow:0 30px 60px rgba(45,58,46,0.18)}
+
+@media(max-width:768px){.nav-links>a:not(.nav-cta){display:none!important}.lang{margin-left:0!important}.lang a{display:inline-block!important}}.lang{display:flex;gap:0.15rem;margin-left:0.5rem}.lang a{font-size:0.72rem!important;padding:0.2rem 0.45rem;border-radius:6px;font-weight:600!important;letter-spacing:0.04em}.lang a.on{background:var(--sage-light);color:var(--primary)!important}
+</style>
+<style id="mobile-fix">
+@media(max-width:768px){
+  .nav{padding:0 1rem}
+  .nav-logo{font-size:1.05rem;gap:.4rem;white-space:nowrap;flex-shrink:0}
+  .nav-logo img{width:28px;height:28px}
+  .nav-links{gap:.8rem;flex-shrink:0}
+  .nav-links a{white-space:nowrap;font-size:.8rem}
+  .nav-links a:not(.nav-cta):first-child{display:none}
+  .nav-cta{padding:.45rem .95rem;font-size:.75rem!important;line-height:1.3}
+  .footer-inner{justify-content:center;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:.6rem 1.2rem}
+  footer{padding:2.5rem 1.25rem}
+}
+@media(max-width:360px){
+  .nav-links a[href$="/support"]{display:none}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+<a class="nav-logo" href="https://bloomdayapp.com">
+<img alt="BloomDay" src="../images/guide-01.png"/>BloomDay
+  </a>
+<div class="nav-links">
+<a href="https://bloomdayapp.com">Ana sayfa</a>
+<a href="https://bloomdayapp.com/support">Destek</a>
+<a href="https://bloomdayapp.com/press">Basın</a>
+<a class="nav-cta" href="https://apps.apple.com/tr/app/bloomday-tasks-garden/id6760038056">Ücretsiz indir</a>
+<span class="lang"><a href="https://bloomdayapp.com/guide/" hreflang="en">EN</a><a class="on" href="https://bloomdayapp.com/guide/tr/" hreflang="tr">TR</a><a href="https://bloomdayapp.com/guide/es/" hreflang="es">ES</a></span>
+</div>
+</nav>
+<section class="guide-hero">
+<div class="badge">Eksiksiz rehber</div>
+<h1><em>BloomDay</em> nasıl çalışır</h1>
+<p>Gününü planla, tohum kazan, bahçene bak ve günlük tut. Uygulamadaki her sistem, kural ve ödül tek bir yerde.</p>
+</section>
+<div class="toc">
+<a href="#s1">Görevler</a>
+<a href="#s2">Tohumlar</a>
+<a href="#s3">Bitkiler</a>
+<a href="#s4">Bahçe</a>
+<a href="#s5">Odak Modu</a>
+<a href="#s6">Meydan okumalar</a>
+<a href="#s7">Başarılar</a>
+<a href="#s8">Jetonlar</a>
+<a class="new" href="#s9">Günlük</a>
+<a href="#s10">Zaman Kapsülü</a>
+<a class="new" href="#s11">Bloom Board</a>
+<a href="#s12">Büyüme Yolculuğu</a>
+<a class="new" href="#s13">Ruh halleri ve widget'lar</a>
+<a class="new" href="#s14">Notion</a>
+<a class="new" href="#s15">Obsidian</a>
+<a class="new" href="#s16">E-postayla ekle</a>
+<a class="new" href="#s17">Saatler</a>
+<a class="new" href="#s18">Mac ve senkron</a>
+<a href="#s19">Planlar</a>
+<a href="#s20">İpuçları</a>
+</div>
+<!-- 01 TASKS -->
+<section class="gs" id="s1">
+<div class="gs-num">01 · Görevler</div>
+<h2>Her şeyin <em>kökü</em></h2>
+<p class="desc">Kazandığın her tohum, aldığın her bitki ve kurduğun her seri bir görevi bitirmekle başlar.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Görev ekle</h4><p>Yaz ya da mikrofona dokunup söyle. BloomDay telefonunun kendi konuşma tanıma özelliğiyle dinler, cümledeki tarih ve saati Türkçe, İngilizce ve İspanyolca anlar. Göreve bir kategori ver: İş, Sağlık, Ev, Öğrenme, Sosyal ya da Kendin.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Zaman aralığı belirle</h4><p>Göreve bir başlangıç saati ve süre ver. O aralıkta bitirirsen bir tohum daha kazanırsın.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Hatırlatıcı ekle</h4><p>Bildirimin görevden kaç dakika önce gelmesini istediğini seç.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Not ekle</h4><p>Hatırlaman için kısa bir not iliştir. Not, görev adının altında italik görünür.</p></div></div>
+<div class="num-step"><div class="n">5</div><div><h4>Tamamla</h4><p>Görevi bitirmek için daireye dokun ve 2 tohum kazan. Ertelemek ya da silmek için sola kaydır.</p></div></div>
+</div>
+<div class="note-box">Takvim 180 gün geriye ve 365 gün ileriye gider. Bir güne dokunup o günün görevlerini görebilir ya da ileriyi planlayabilirsin. Günün bütün görevlerini bitirdiğinde BloomDay o anı kısa bir kapanış notuyla kutlar. Bir günde on beş ya da daha fazla görev eklersen bir maskot gelip nasıl olduğunu sorar.</div>
+</section>
+<hr class="divider"/>
+<!-- 02 SEEDS -->
+<section class="gs" id="s2">
+<div class="gs-num">02 · Tohumlar ve ekonomi</div>
+<h2>Bahçenin <em>para birimi</em></h2>
+<p class="desc">Tohumlar düzenli emekten gelir, bitkilere ve dekora gider. Hak edilmiş hissettirmeleri için tasarlandı.</p>
+<table class="seed-table fade-in">
+<tr><th>Eylem</th><th>Tohumlar</th><th>Notlar</th></tr>
+<tr><td>Görev tamamla</td><td class="seeds">+2</td><td>Temel kazanç. Her görev için günde bir kez.</td></tr>
+<tr><td>Zaman aralığında tamamla</td><td class="seeds">+1</td><td>Temel 2 tohuma ek.</td></tr>
+<tr><td>Odak Modu sırasında tamamla</td><td class="seeds">+1</td><td>Zaman aralığı ödülüyle birleşir.</td></tr>
+<tr><td>Günlük meydan okuma</td><td class="seeds">+3 ile +10 arası</td><td>Günde bir meydan okuma. Ödül meydan okumaya göre değişir.</td></tr>
+<tr><td>Odak oturumu tamamlandı</td><td class="seeds">+3</td><td>Sayaç sonuna kadar çalışınca.</td></tr>
+<tr><td>Başarı açıldı</td><td class="seeds">+5</td><td>Her başarı için.</td></tr>
+<tr><td>Bitki tam çiçek açtı</td><td class="seeds">+20</td><td>Yanında bir dayanıklılık jetonu gelir.</td></tr>
+<tr><td>Bitki koleksiyonu tamamlandı</td><td class="seeds">Değişir</td><td>Bir rozet ve bir dekor parçası da gelir.</td></tr>
+<tr><td>Bitki bilgi yarışması</td><td class="seeds">Değişir</td><td>Bitkilerinle ilgili soruları cevapla.</td></tr>
+</table>
+<div class="note-box">Tohumların süresi dolmaz. Bazı nadir Eden bitkileri 300 ile 400 tohum, en büyük ağaçlar 500 tohum tutar. Onlar için biriktirmek günlerce emek ister ve bu gerilim bilerek konuldu.</div>
+</section>
+<hr class="divider"/>
+<!-- 03 PLANTS -->
+<section class="gs" id="s3">
+<div class="gs-num">03 · Bitkiler</div>
+<h2>Türler, büyüme ve <em>tam çiçek</em></h2>
+<p class="desc">Üç ortamda 200'den fazla resimli tür var. Bitkiler sulandıkça büyür: görevleri bitirerek onları alırsın, sulayarak büyütürsün.</p>
+<img alt="Büyüme zaman çizelgesi" class="fade-in" src="../images/guide-02.png" style="width:100%;border-radius:12px;margin-bottom:2rem"/>
+<h3 style="font-size:1.1rem;margin-bottom:0.75rem">Sulama ruh halleri</h3>
+<div class="mood-row fade-in">
+<div class="mood"><h5>Gürbüz</h5><p>Bugün sulandı</p></div>
+<div class="mood"><h5>Mutlu</h5><p>1 gün atlandı</p></div>
+<div class="mood"><h5>Susamış</h5><p>2 gün atlandı</p></div>
+<div class="mood"><h5>Solgun</h5><p>3 gün atlandı</p></div>
+<div class="mood"><h5>Kritik</h5><p>4 gün ya da daha fazla atlandı</p></div>
+</div>
+<div class="note-box">BloomDay'de bitkiler ölmez. Kritik durumdaki bir bitki bile yeniden sulandığı anda toparlanır. Ücretsiz hesapların günlük bir sulama hakkı vardır, ücretli planlarda sulama sınırsızdır.</div>
+<h3 style="font-size:1.1rem;margin:1.5rem 0 0.75rem">Bitki seviyeleri</h3>
+<div class="tier-row fade-in">
+<div class="tier"><span class="tag free">Ücretsiz</span><p>Monstera, paşa kılıcı, fıçı kaktüsü ve salon sarmaşığı gibi başlangıç türleri.</p></div>
+<div class="tier"><span class="tag bloom">Bloom</span><p>Kalatya, kauçuk, barış çiçeği ve orkideler gibi seçkin türler.</p></div>
+<div class="tier"><span class="tag forest">Forest ve Eden</span><p>Nadir türler, cüce meyve ağaçları, ata tohumu sebzeler ve dev ağaçlar.</p></div>
+</div>
+<div class="note-box">Her bitki Türkçe, İngilizce ve İspanyolca gerçek botanik bilgilerle gelir. Mevsimlik bitkiler sınırlı bir süre görünür, temalı Koleksiyonlar da tek seferlik satın alımlarla yeni türler ekler.</div>
+</section>
+<hr class="divider"/>
+<!-- 04 GARDEN -->
+<section class="gs" id="s4">
+<div class="gs-num">04 · Bahçe</div>
+<h2>Üç dünya, <em>19 tema</em></h2>
+<p class="desc">Bahçen arkasındaki emeği yansıtır. Bitkileri yerleştir, dekor ekle, temalar arasında geçiş yap.</p>
+<div class="themes-grid fade-in">
+<div class="theme-card"><img alt="BloomDay iç mekân teması" src="../images/guide-03.webp"/><div class="theme-card-body"><h4>İç mekân</h4><p>Cosy Cottage, Zen Studio, Nordic Loft, Grand Manor, Moroccan Terrace, Mediterranean, Attic Hideaway.</p></div></div>
+<div class="theme-card"><img alt="Bahçe" src="../images/guide-04.jpg"/><div class="theme-card-body"><h4>Bahçe</h4><p>English Garden, Japanese Garden, Tropical Garden, Winter Garden, Treehouse, Picnic Lawn.</p></div></div>
+<div class="theme-card"><img alt="Hobi bahçesi" src="../images/guide-05.jpg"/><div class="theme-card-body"><h4>Hobi bahçesi</h4><p>Allotment, Greenhouse, Rooftop Farm, Night Garden, Village House, Tuscan Vineyard.</p></div></div>
+</div>
+<div class="num-steps fade-in" style="margin-top:2rem">
+<div class="num-step"><div class="n">1</div><div><h4>Ortam değiştir</h4><p>İç mekân saksı bitkileri, Bahçe dış mekândaki çiçekler ve ağaçlar, Hobi bahçesi sebze ve otlar için. Her birinin kendi kataloğu var.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Tema seç</h4><p>Cosy Cottage, English Garden ve Allotment ücretsiz. Diğerleri Bloom, Forest ya da Eden ile açılır.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Fidanlıktan al</h4><p>Bir bitkiye dokunup fiyatını, seviyesini, Latince adını ve ilginç bilgilerini gör, sonra tohum harcayıp bahçene ekle.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Alanını düzenle</h4><p>Bitkileri ve 100'den fazla dekor parçasını istediğin yere sürükle, boyutlarını değiştir, kaldırmak için basılı tut.</p></div></div>
+<div class="num-step"><div class="n">5</div><div><h4>Bahçeni paylaş</h4><p>Bahçeni istatistiklerinle birlikte kaydet ve görseli istediğin yerde paylaş.</p></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 05 FOCUS MODE -->
+<section class="gs" id="s5">
+<div class="gs-num">05 · Odak Modu</div>
+<h2>Derin çalışma için <em>sessiz bir oda</em></h2>
+<p class="desc">Ortam sesleri, nefes alan bir bitki ve sonunda küçük bir ödülle tam ekran bir sayaç.</p>
+<div class="focus-row fade-in">
+<div class="focus-list">
+<div class="focus-item"><span class="focus-dot"></span><p>25, 45, 60 ya da 90 dakika seç. Nefes alan bir bitki animasyonu seni sakin tutar.</p></div>
+<div class="focus-item"><span class="focus-dot"></span><p>18 ortam sesinden birini seç: lofi, yağmur, kuşlar, piyano, tabla, downbeat, cumbia, afrobeat, plak, mırlayan bir kedi ve daha fazlası.</p></div>
+<div class="focus-item"><span class="focus-dot"></span><p>Oturum sırasında bitirdiğin görevler bir tohum fazla kazandırır, tamamlanan oturum da +3 tohum verir. Erken bitirirsen ödül gelmez.</p></div>
+<div class="focus-item"><span class="focus-dot"></span><p>Çıkmak istersen BloomDay önce sorar. Vazgeç dersen sayaca dönersin.</p></div>
+</div>
+<div class="timer-box"><span class="timer-num">25:00</span></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 06 CHALLENGES -->
+<section class="gs" id="s6">
+<div class="gs-num">06 · Günlük meydan okumalar</div>
+<h2>Her gün <em>yeni bir hedef</em></h2>
+<p class="desc">BloomDay her sabah gün için bir meydan okuma seçer. Hedefe ulaştığında kart yeşile döner ve tohumlar hemen gelir.</p>
+<table class="challenge-table fade-in">
+<tr><th>Meydan okuma</th><th>Koşul</th></tr>
+<tr><td>İkiye Katla</td><td>2 görev tamamla.</td></tr>
+<tr><td>Üçlü Büyüme</td><td>3 görev tamamla.</td></tr>
+<tr><td>Verimli Gün</td><td>5 görev tamamla.</td></tr>
+<tr><td>Temiz Sayfa</td><td>Bugün için planlanan bütün görevleri tamamla.</td></tr>
+<tr><td>Erkenci Kuş</td><td>Öğleden önce bir görev tamamla.</td></tr>
+<tr><td>Sabah Ritüeli</td><td>Saat 10'dan önce bir görev tamamla.</td></tr>
+<tr><td>Tam Vaktinde</td><td>Saati olan bir görevi tamamla.</td></tr>
+<tr><td>Önceden Planla</td><td>Bugünkü görevlerinden birine saat ver.</td></tr>
+<tr><td>Sulama Günü ve Yeşil Parmak</td><td>Bir bitkiyi sula.</td></tr>
+<tr><td>Özenli Bahçıvan</td><td>Bir görev tamamla ve bir bitkiyi sula.</td></tr>
+<tr><td>Ateşi Söndürme</td><td>3 günlük seriye ulaş.</td></tr>
+</table>
+</section>
+<hr class="divider"/>
+<!-- 07 ACHIEVEMENTS -->
+<section class="gs" id="s7">
+<div class="gs-num">07 · Başarılar</div>
+<h2>Seni kutlayan <em>dönüm noktaları</em></h2>
+<p class="desc">Toplam 58 rozet var: altı kategoride 48 başarı ve 10 bitki koleksiyonu. Her başarı açıldığı anda +5 tohum kazandırır.</p>
+<div class="ach-tabs fade-in">
+<span class="ach-tab">Görevler</span><span class="ach-tab">Seriler</span><span class="ach-tab">Bahçe</span><span class="ach-tab">Sulama</span><span class="ach-tab">Tohumlar</span><span class="ach-tab">Özel</span><span class="ach-tab">Koleksiyonlar</span>
+</div>
+<div class="note-box">Başarılar ilk görevin, 30 günlük seri, on bitki toplamak ya da ilk odak oturumun gibi anları kapsar. Koleksiyonlar temalı bir bitki grubunu büyütmeni ister. Birini tamamladığında tohum, bir rozet ve bahçen için bir dekor parçası kazanırsın.</div>
+</section>
+<hr class="divider"/>
+<!-- 08 TOKENS -->
+<section class="gs" id="s8">
+<div class="gs-num">08 · Dayanıklılık jetonları</div>
+<h2>Kazanılır, <em>asla satın alınmaz</em></h2>
+<p class="desc">Dayanıklılık jetonları BloomDay'in en nadir şeyidir. Parayla alınamazlar. Aynı anda en fazla 10 tane tutabilirsin.</p>
+<table class="token-table fade-in">
+<tr><th>Dönüm noktası</th><th>Jetonlar</th></tr>
+<tr><td>7 günlük seri</td><td class="tok">+1</td></tr>
+<tr><td>14 günlük seri</td><td class="tok">+1</td></tr>
+<tr><td>30 günlük seri</td><td class="tok">+1</td></tr>
+<tr><td>100 günlük seri</td><td class="tok">+1</td></tr>
+<tr><td>Bir bitki tam çiçek açar</td><td class="tok">+1</td></tr>
+</table>
+<div class="note-box">Seri bozulduğunda BloomDay bir jetonla onu geri getirmeyi teklif eder. Bitkilerin jetona ihtiyacı yoktur, onları geri getirmek için biraz su her zaman yeter.</div>
+</section>
+<hr class="divider"/>
+<!-- 09 JOURNAL -->
+<section class="gs" id="s9">
+<div class="gs-num">09 · Günlük <span class="new-tag">Yeni</span></div>
+<h2>Kendin süslediğin <em>sayfalar</em></h2>
+<p class="desc">Bahçenin bir defteri var. Gününü boş bir sayfaya ya da bir şablona yaz, sonra kil çıkartmalar, washi bant ve kalem yazılarıyla süsle.</p>
+<div class="sticker-strip fade-in"><img alt="" src="../images/guide-06.webp"/><img alt="" src="../images/guide-07.webp"/><img alt="" src="../images/guide-08.webp"/><img alt="" src="../images/guide-09.webp"/><img alt="" src="../images/guide-10.webp"/><img alt="" src="../images/guide-11.webp"/><img alt="" src="../images/guide-12.webp"/><img alt="" src="../images/guide-13.webp"/><img alt="" src="../images/guide-14.webp"/><img alt="" src="../images/guide-15.webp"/></div>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Bir sayfa aç</h4><p>Boş bir sayfa ya da hazır günlük, haftalık, aylık veya alışkanlık şablonu seç. Günün sorusuna dokunursan o soru başlık olarak yazılmış bir sayfa açılır.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Yaz</h4><p>Başlık, not ve mühür tarzı yazı ekle. İstersen yazmak yerine konuş. Sayfayı bir bitkiye bağla ve kağıdını seç.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Süsle</h4><p>18 sette 250'den fazla kil çıkartma var: washi bantlar, gün ve ay başlıkları, tarihler, sayılar, konuşma balonları, hava durumu, minik canlılar, tatlılar, sekmeler, alışkanlıklar ve karalamalar. Büyüdükçe mühürler ve rozetler açılır, günün ruh hali maskotu da sayfaya yapıştırman için hep orada.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Sakla ve paylaş</h4><p>Kaydedilen sayfalar değişiklik için aynı düzenleyicide yeniden açılır. Sevdiklerini Bloom Board'una iliştir ya da sayfaları PDF olarak dışa aktar.</p></div></div>
+</div>
+<img alt="BloomDay'de günlük sayfası seçmek" class="app-shot fade-in" src="../images/guide-16.webp"/>
+<div class="note-box">Ücretsiz hesaplar 3 günlük sayfası tutabilir ve 15 çıkartma kullanabilir. Bloom, Forest ve Eden daha fazla çıkartma seti ve sınırsız sayfa açar. Journal Kit, bütün çıkartmaları kalıcı olarak açan tek seferlik bir satın alımdır. Hazır şablon setleri planlarla birlikte gelir.</div>
+</section>
+<hr class="divider"/>
+<!-- 10 TIME CAPSULE -->
+<section class="gs" id="s10">
+<div class="gs-num">10 · Zaman Kapsülü</div>
+<h2>Gelecekteki <em>kendine mektuplar</em></h2>
+<p class="desc">Bir bitki seç ve o çiçek açtığında olacağın kişiye bir mektup yaz.</p>
+<div class="duo-row fade-in">
+<div class="duo-card"><img alt="Zaman Kapsülü" src="../images/guide-17.jpg"/><div class="duo-card-body"><span class="tag">Zaman Kapsülü</span><h4>Tam çiçek açana dek mühürlü</h4><p>Bitki büyürken kapsül kapalı kalır. Bitki tam çiçek açtığında mektup kendiliğinden açılır.</p></div></div>
+<div class="duo-card"><img alt="Mühürlü zaman kapsülü" src="../images/guide-18.webp"/><div class="duo-card-body"><span class="tag">Sabır</span><h4>Hiçbir şey onu hızlandıramaz</h4><p>Kapsül satın alınamaz, atlanamaz, erken açılamaz. Yavaş büyüyen bir bitki için bir tane mühürlersen o çiçek açtığında ne yazdığını çoktan unutmuş olursun.</p></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 11 BLOOM BOARD -->
+<section class="gs" id="s11">
+<div class="gs-num">11 · Bloom Board <span class="new-tag">Yeni</span></div>
+<h2>Kurduğun hayatı <em>panoya iliştir</em></h2>
+<p class="desc">Kil iğnelerden yapılmış bir hayal panosu: hedefler, yerler, rutinler ve küçük keyifler. Onları panoya yerleştir, sonra görsel olarak paylaş.</p>
+<div class="sticker-strip fade-in"><img alt="" src="../images/guide-19.webp" style="height:84px"/><img alt="" src="../images/guide-20.webp" style="height:84px"/><img alt="" src="../images/guide-21.webp" style="height:84px"/><img alt="" src="../images/guide-22.webp" style="height:84px"/><img alt="" src="../images/guide-23.webp" style="height:84px"/><img alt="" src="../images/guide-24.webp" style="height:84px"/><img alt="" src="../images/guide-25.webp" style="height:84px"/><img alt="" src="../images/guide-26.webp" style="height:84px"/></div>
+<img alt="BloomDay'de bir Bloom Board" class="app-shot fade-in" src="../images/guide-27.webp"/>
+<div class="note-box">Ücretsiz hesaplara her gündelik tema için bir tane olmak üzere başlangıç iğneleriyle gerçek bir pano verilir. Planlar koleksiyonun tamamını açar. Panon ana ekranında widget olarak da durabilir.</div>
+</section>
+<hr class="divider"/>
+<!-- 12 GROWTH JOURNEY -->
+<section class="gs" id="s12">
+<div class="gs-num">12 · Büyüme Yolculuğu</div>
+<h2>Yedi gün, <em>apaçık</em></h2>
+<p class="desc">BloomDay her hafta ilerlemeni özetler, başlık da gerçek tamamlama oranına göre değişir. Her ayın saklanacak kendi kartı, yılın da kendi değerlendirmesi olur.</p>
+<div class="report-grid fade-in">
+<div class="report-stat"><div class="report-num">10/11</div><div class="report-label">Tamamlanan görev</div></div>
+<div class="report-stat"><div class="report-num">7</div><div class="report-label">Günlük seri</div></div>
+<div class="report-stat"><div class="report-num">+45</div><div class="report-label">Kazanılan tohum</div></div>
+<div class="report-stat"><div class="report-num">2</div><div class="report-label">Büyüyen bitki</div></div>
+</div>
+<div class="note-box">Yolculuk zaman çizelgesi kusursuz günlerini, yeni bitkilerini ve açtığın temaları sırayla gösterir. Hafta ve ay kartları görsel olarak paylaşılabilir.</div>
+</section>
+<hr class="divider"/>
+<!-- 13 MOODS & WIDGETS -->
+<section class="gs" id="s13">
+<div class="gs-num">13 · Ruh hali maskotları ve widget'lar <span class="new-tag">Yeni</span></div>
+<h2>Bugün <em>nasılsın?</em></h2>
+<p class="desc">Profil kartına dokun ve gününe uyan maskotu seç. Maskot yarına kadar profil resmin olur ve günlükte çıkartma olarak görünür.</p>
+<div class="mood-mascots fade-in"><div><img alt="Panik" src="../images/guide-28.webp"/>Panik</div><div><img alt="Bunalmış" src="../images/guide-29.webp"/>Bunalmış</div><div><img alt="Şaşkın" src="../images/guide-30.webp"/>Şaşkın</div><div><img alt="Sakin" src="../images/guide-31.webp"/>Sakin</div><div><img alt="Tetikte" src="../images/guide-32.webp"/>Tetikte</div><div><img alt="Nötr" src="../images/guide-33.webp"/>Nötr</div><div><img alt="Mutlu" src="../images/guide-34.webp"/>Mutlu</div><div><img alt="Üzgün" src="../images/guide-35.webp"/>Üzgün</div></div>
+<div class="note-box">Ruh halin telefonunda kalır. Asla analize gönderilmez, yedeklenmez ve senkronlanmaz. Bütün maskotlar ücretsiz.</div>
+<h3 style="font-size:1.1rem;margin:1.75rem 0 0.75rem">Ana ekran widget'ları</h3>
+<div class="three-col fade-in">
+<div class="tip"><h4>Seri</h4><p>Şu anki ve en iyi serin tek bakışta.</p></div>
+<div class="tip"><h4>Bahçe</h4><p>Bitkilerin ve topladıkların.</p></div>
+<div class="tip"><h4>Bloom Board</h4><p>Seçtiğin iğneler, doğrudan ana ekranında.</p></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 14 NOTION & REPEATS -->
+<section class="gs" id="s14">
+<div class="gs-num">14 · Notion ve tekrarlayan görevler <span class="new-tag">Yeni</span></div>
+<h2>Kendi <em>sistemini getir</em></h2>
+<p class="desc">BloomDay, Notion ve Obsidian'a bağlanır. Notion'da bir görev veritabanı seçersin, oradaki görevler BloomDay'de görünür. Birini burada bitirdiğinde Notion'da da işaretlenir, bahçen de büyür.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Notion'ı bağla</h4><p>Ayarlar'ı aç, Entegrasyonlar altında Notion'ı bul, giriş yap ve senkronlanacak veritabanını seç.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>İstediğin yerde çalış</h4><p>Tamamlananlar iki yöne de akar. Bağlantıyı aynı ekrandan istediğin zaman kesebilirsin.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Tekrar belirle</h4><p>Bir kez, Her gün, Hafta içi, Her hafta, 2 haftada bir, Her ay ya da takvimden seçtiğin tarihler. Her gün kendi tamamlanma durumunu ayrı tutar.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Tekrarı durdur</h4><p>Tekrarlayan bir görevi sola kaydır ve Durdur'a dokun. Görev tek seferliğe döner ve hatırlatıcısı iptal edilir.</p></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 15 OBSIDIAN -->
+<section class="gs" id="s15">
+<div class="gs-num">15 · Obsidian <span class="new-tag">Yeni</span></div>
+<h2>Kasan <em>bahçede</em></h2>
+<p class="desc">BloomDay, Obsidian kasandaki onay kutularını okur ve görevlere çevirir. İnternette ayarlanacak bir şey yok, notların da olduğu yerde kalır.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Kasanı seç</h4><p>Ayarlar'ı aç, Entegrasyonlar altında Obsidian'ı bul ve kasa klasörünü seçmek için dokun. Kasan iCloud Drive'daysa oradaki Obsidian klasörünün içine bak.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Görevleri her zamanki gibi yaz</h4><p>Notlarında <code>- [ ] görev</code> diye yazdığın her satır bugünün listesine düşer.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>İstediğin yerde bitir</h4><p>Görevi BloomDay'de tamamla, notundaki kutu da işaretlensin, bahçen de büyüsün.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Yeni görevler bir yuva bulur</h4><p>BloomDay'de eklediğin görevler kasanın en üstündeki BloomDay adlı nota yazılır.</p></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- 16 EMAIL & EXTENSIONS -->
+<section class="gs" id="s16">
+<div class="gs-num">16 · E-postayla ve Paylaş menüsüyle ekleme <span class="new-tag">Yeni</span></div>
+<h2>Bahçene <em>gönder</em></h2>
+<p class="desc">Görevlerin uygulamada başlaması gerekmiyor. E-postayla gönder, başka bir uygulamadan paylaş ya da tarayıcıdan bir sayfayı kaydet, hepsi BloomDay'e düşer.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Adresini bul</h4><p>Ayarlar'ı aç, sonra Entegrasyonlar, sonra E-postayla görev ekle. @bloomdayapp.com ile biten kişisel bir adresin olur. Bu adrese gelen her şey göreve dönüştüğü için onu kimseyle paylaşma.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Mail yaz ya da ilet</h4><p>Konu satırı görev olur, mailin ilk satırı da notu. Konuya “Yarın 10'da dişçiyi ara” gibi bir gün ya da saat yazarsan BloomDay onu Türkçe, İngilizce ya da İspanyolca anlayıp ayarlar.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Her uygulamadan paylaş</h4><p>iPhone, iPad ve Mac'te Paylaş'a dokun ve BloomDay'i seç. Paylaşılan bir bağlantı “Bak:” ile başlayan bir görev olur, bağlantı da notunda saklanır. Mac'te bunu bir kez Sistem Ayarları'nda, Uzantılar altında Paylaşım bölümünden aç.</p></div></div>
+<div class="num-step"><div class="n">4</div><div><h4>Safari'den kaydet</h4><p>Safari'de BloomDay uzantısını aç, sonra herhangi bir sayfada simgesine dokun. Görevi ve notu düzenle, Bahçeme gönder'e dokun. Chrome uzantısı da yolda.</p></div></div>
+</div>
+<div class="note-box">Uygulama kapalıyken gönderilen görevler, BloomDay'i bir sonraki açışında seni bekliyor olur.</div>
+</section>
+<hr class="divider"/>
+<!-- 17 WATCHES -->
+<section class="gs" id="s17">
+<div class="gs-num">17 · Apple Watch ve Wear OS <span class="new-tag">Yeni</span></div>
+<h2>Bugün, <em>bileğinde</em></h2>
+<p class="desc">Saatin için küçük bir BloomDay. Bugün önemli olanı gösterir, telefona uzanmadan görev eklemeni sağlar.</p>
+<div class="three-col fade-in">
+<div class="tip"><h4>Bugün</h4><p>İlerleme halkasıyla günün görevleri. Bitirmek için bir göreve dokun.</p></div>
+<div class="tip"><h4>Yarın</h4><p>Sırada ne olduğuna sakin bir bakış.</p></div>
+<div class="tip"><h4>Seri</h4><p>Şu anki serin ve bu haftanın günleri.</p></div>
+</div>
+<div class="num-steps fade-in" style="margin-top:1.5rem">
+<div class="num-step"><div class="n">1</div><div><h4>Sesle ekle</h4><p>Artı düğmesine dokun ve konuş ya da yaz. Bir gün ya da saat söylersen telefonun onu ayarlar.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Apple Watch</h4><p>BloomDay'i iPhone'una yükle, saat uygulaması Watch uygulamasında hazır olur. Günü tek bakışta görmek için BloomDay komplikasyonunu saat yüzüne ekle.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Wear OS</h4><p>Aynı ekranlar Android saatlerde de var. BloomDay'i Android telefonuna yüklediğinde saat uygulaması Google Play'den birlikte gelir.</p></div></div>
+</div>
+<div class="note-box">Saatin görevlerini telefonundan alır, bu yüzden yükledikten sonra BloomDay'i telefonunda en az bir kez aç. Saatten eklenen görevler, BloomDay telefonunda bir sonraki açıldığında kaydedilir.</div>
+</section>
+<hr class="divider"/>
+<!-- 18 MAC & SYNC -->
+<section class="gs" id="s18">
+<div class="gs-num">18 · Mac, iPad ve senkronizasyon <span class="new-tag">Yeni</span></div>
+<h2>Tek bahçe, <em>her ekranda</em></h2>
+<p class="desc">BloomDay iPhone, iPad, Mac ve Android'de çalışır. Aynı hesapla giriş yap, her şey peşinden gelsin.</p>
+<div class="num-steps fade-in">
+<div class="num-step"><div class="n">1</div><div><h4>Giriş yap</h4><p>Apple, Google ya da e-postayla giriş yap. Görevlerin, günlük sayfaların, bahçen ve ilerlemen cihazların arasında senkronlanır.</p></div></div>
+<div class="num-step"><div class="n">2</div><div><h4>Şimdi senkronla</h4><p>BloomDay kendiliğinden senkronlanır. Son senkronun ne zaman yapıldığını görmek ya da hemen senkronlamak için Ayarlar'da Senkronizasyon'u aç.</p></div></div>
+<div class="num-step"><div class="n">3</div><div><h4>Mac'te çalış</h4><p>Görevlerini planla ve günlüğünü geniş, rahat ekranlarda düzenle. Mac uygulamasında reklam yok.</p></div></div>
+</div>
+<div class="note-box">Günlük sayfalarına eklediğin fotoğraflar şimdilik eklendikleri cihazda kalır. Misafir modunda her şey sen giriş yapana dek tek cihazda durur.</div>
+</section>
+<hr class="divider"/>
+<!-- 19 PLANS -->
+<section class="gs" id="s19">
+<div class="gs-num">19 · Planlar</div>
+<h2>Başlamak ücretsiz, <em>büyütmek senin elinde</em></h2>
+<p class="desc">BloomDay ücretsizdir, arada reklam gösterir. Ücretli planlar reklamları kaldırır, bahçenin ve günlüğün daha fazlasını açar.</p>
+<div class="plan-grid fade-in">
+<div class="plan"><h4>Ücretsiz</h4><p>Görevler, tohumlar, başlangıç bitkileri, üç ücretsiz tema, Odak Modu, 3 günlük sayfası, başlangıç çıkartmaları ve Bloom Board iğneleri.</p></div>
+<div class="plan"><h4>Bloom</h4><p>Reklamsız, sınırsız sulama, seçkin bitkiler ve temalar, daha fazla çıkartma seti ve sınırsız günlük sayfası.</p></div>
+<div class="plan"><h4>Forest</h4><p>Bloom'daki her şey, artı nadir bitkiler, daha fazla tema ve daha fazla çıkartma seti.</p></div>
+<div class="plan hl"><h4>Eden</h4><p>BloomDay'in sunduğu her şey. Tek seferlik ömür boyu satın alım olarak da var.</p></div>
+</div>
+<h3 style="font-size:1.1rem;margin:1.75rem 0 0.75rem">Tek seferlik satın alımlar</h3>
+<div class="one-off fade-in">
+<div class="tip"><h4>Koleksiyonlar</h4><p>Rare Houseplants, Japanese Garden, Orchard, Heirloom Vegetables, Herb Garden, Winter, Autumn ve Terrarium gibi temalı paketler. Her biri tohumların için yeni sahneler, bitkiler ya da dekorlar açar.</p></div>
+<div class="tip"><h4>Bütün Koleksiyonlar</h4><p>Bütün koleksiyonlar tek satın alımda, tek tek almaktan daha uygun.</p></div>
+<div class="tip"><h4>Journal Kit</h4><p>Şimdiki ve gelecekteki düzenli setlerle bütün günlük çıkartmaları, kalıcı olarak.</p></div>
+</div>
+<div class="note-box">Eden ve ömür boyu üyelerde bütün koleksiyonlar ve Journal Kit zaten var. Satın alımlar yeni bir telefonda planlar ekranından geri yüklenebilir.</div>
+</section>
+<hr class="divider"/>
+<!-- 20 TIPS -->
+<section class="gs" id="s20">
+<div class="gs-num">20 · İpuçları</div>
+<h2>Bahçenden <em>en iyi şekilde yararlan</em></h2>
+<p class="desc">Alışkanlık kurmak ve bahçeni sürdürebileceğin bir hızda büyütmek için pratik öneriler.</p>
+<div class="tips-grid fade-in">
+<div class="tip"><h4>Her gün sula</h4><p>Büyüme sulamadan gelir. Uygulamayı aç, bir bitkiyi sula, gerisi kendiliğinden gelir.</p></div>
+<div class="tip"><h4>Zor işler için Odak Modu'nu kullan</h4><p>Oturum sırasında bitirilen görevler bir tohum fazla kazandırır, oturumun kendisi de üç tohum daha ekler.</p></div>
+<div class="tip"><h4>Nadir bitkiler için biriktir</h4><p>Forest ve Eden bitkileri yüzlerce tohum tutar. Onlar için biriktirmek hak edilmiş hissettirmeli.</p></div>
+<div class="tip"><h4>Serini koru</h4><p>Seriyi tek bir bitmiş görev ayakta tutar. Ağır günlerde en küçüğünü yap.</p></div>
+<div class="tip"><h4>Görevlerini söyle</h4><p>“Yarın 6'da annemi ara” de, BloomDay günü ve saati senin yerine doldursun. Saatinden de çalışır.</p></div>
+<div class="tip"><h4>Günü kağıtta kapat</h4><p>Gece kısa bir günlük sayfası yeter. Bir çıkartma ve üç satır da sayılır.</p></div>
+</div>
+<div class="philosophy fade-in">
+<p>Her ödül gerçek emeğin sonucu olmalı, onun etrafından dolanan bir kısayol değil. Büyüme sessizdir. Bir görev, bir gün, bir yaprak, adım adım olur.</p>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-inner">
+<div><div class="footer-logo"><img alt="BloomDay" src="../images/guide-01.png"/>BloomDay</div></div>
+<div class="footer-links">
+<a href="https://bloomdayapp.com">Ana sayfa</a>
+<a href="https://bloomdayapp.com/privacy">Gizlilik</a>
+<a href="https://bloomdayapp.com/support">Destek</a>
+<a href="https://bloomdayapp.com/press">Basın</a>
+<a href="https://instagram.com/bloomday.app">Instagram</a>
+<a href="mailto:bloomday.app@icloud.com">İletişim</a>
+</div>
+<div class="footer-copy">2026 BloomDay. Tüm hakları saklıdır.</div>
+</div>
+</footer>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
