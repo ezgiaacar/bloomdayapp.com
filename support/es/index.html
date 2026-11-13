@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BloomDay · Soporte</title><meta content="Preguntas frecuentes y soporte de BloomDay." name="description"/>
+<link href="https://bloomdayapp.com/support/" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--green-900:#1a2e1a;--green-800:#2d4a2d;--green-700:#3d6b3d;--green-600:#4a8c4a;
+--green-500:#5ba65b;--green-400:#7bc47b;--green-300:#a3d9a3;--green-200:#c8eac8;
+--green-100:#e8f5e8;--green-50:#f4faf4;
+--sand-100:#faf7f2;--sand-200:#f0ebe2;--sand-300:#e5ddd0;
+--text-primary:#1a2e1a;--text-secondary:#4a5e4a;--text-muted:#7a8e7a;
+--radius:16px;--radius-lg:24px;--radius-xl:32px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Lora',serif;color:var(--text-primary);background:var(--sand-100);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400}
+a{text-decoration:none;color:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(250,247,242,.85);border-bottom:1px solid rgba(0,0,0,.06)}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+nav .logo{font-family:'Fraunces',serif;font-size:1.35rem;color:var(--green-800)}
+nav .nav-links{display:flex;gap:32px;align-items:center}
+nav .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-secondary);transition:.2s}
+nav .nav-links a:hover{color:var(--green-600)}
+nav .back-btn{font-size:.85rem;font-weight:600;color:var(--green-800);background:var(--green-50);border:1px solid var(--green-200);padding:8px 20px;border-radius:100px;transition:.2s}
+nav .back-btn:hover{background:var(--green-100);border-color:var(--green-400)}
+
+.hero{padding:140px 0 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,var(--green-100) 0%,transparent 70%);pointer-events:none}
+.hero .badge{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:6px 16px;border-radius:100px;margin-bottom:20px;position:relative}
+.hero h1{font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.1;color:var(--green-900);max-width:800px;margin:0 auto 24px;position:relative}
+.hero h1 em{font-style:normal;color:var(--green-600)}
+.hero p{font-size:1.1rem;color:var(--text-secondary);max-width:500px;margin:0 auto;line-height:1.7;position:relative}
+
+.content{max-width:800px;margin:0 auto;padding:72px 24px 120px}
+
+.faq-section{margin-bottom:72px}
+.faq-label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-600);background:var(--green-100);padding:5px 14px;border-radius:100px;margin-bottom:28px}
+
+.faq-group{margin-bottom:48px}
+.faq-group-title{font-family:'Lora',serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;padding-left:4px}
+
+.faq-item{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;transition:.3s}
+.faq-item:hover{box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.faq-item.open{box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:18px 24px;font-family:'Lora',serif;font-size:.95rem;font-weight:600;color:var(--text-primary);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s}
+.faq-q:hover{color:var(--green-700)}
+.faq-arrow{width:28px;height:28px;border-radius:50%;background:var(--green-50);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s;font-size:.75rem;color:var(--green-700)}
+.faq-item.open .faq-arrow{transform:rotate(180deg);background:var(--green-100)}
+.faq-a{font-size:.9rem;color:var(--text-secondary);line-height:1.75;padding:0 24px 20px;display:none}
+.faq-item.open .faq-a{display:block}
+
+.quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:72px}
+.quick-link{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:24px;text-align:center;transition:.3s;cursor:pointer;text-decoration:none;color:inherit}
+.quick-link:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.06)}
+.quick-link .ql-icon{width:44px;height:44px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.1rem;color:var(--green-700)}
+.quick-link h4{font-family:'Lora',serif;font-size:.9rem;font-weight:600;margin-bottom:4px}
+.quick-link p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
+
+.contact-card{background:var(--green-900);border-radius:var(--radius-xl);padding:64px 48px;text-align:center;position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(91,166,91,.12),transparent 60%);pointer-events:none}
+.contact-card h2{font-size:clamp(1.8rem,3vw,2.5rem);color:#fff;margin-bottom:12px;position:relative}
+.contact-card p{font-size:1rem;color:rgba(255,255,255,.55);max-width:420px;margin:0 auto 36px;line-height:1.7;position:relative}
+.contact-btn{display:inline-block;background:var(--green-400);color:var(--green-900);padding:16px 36px;border-radius:100px;font-weight:600;font-size:1rem;transition:.2s;position:relative}
+.contact-btn:hover{background:var(--green-300);transform:translateY(-2px)}
+.contact-sub{margin-top:20px;font-size:.8rem;color:rgba(255,255,255,.35);position:relative}
+
+footer{border-top:1px solid rgba(0,0,0,.06);padding:64px 0 40px;color:var(--text-secondary)}
+footer .inner{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+footer h5{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--text-primary);margin-bottom:8px}
+footer p{font-size:.85rem;line-height:1.6;max-width:280px}
+footer .col h6{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:16px}
+footer .col a{display:block;font-size:.9rem;padding:4px 0;transition:.2s}
+footer .col a:hover{color:var(--green-600)}
+footer .bottom{max-width:1200px;margin:40px auto 0;padding:24px 24px 0;border-top:1px solid rgba(0,0,0,.06);font-size:.8rem;color:var(--text-muted);text-align:center}
+
+@media(max-width:900px){
+  .quick-links{grid-template-columns:1fr}
+  footer .inner{grid-template-columns:1fr 1fr}
+  nav .nav-links{display:none}
+}
+@media(max-width:600px){
+  .content{padding:56px 16px 80px}
+  footer .inner{grid-template-columns:1fr}
+  .contact-card{padding:40px 24px}
+}
+</style>
+<style id="lang-css">.lang{display:flex;gap:2px;align-items:center}.lang a{font-size:.72rem!important;padding:.2rem .45rem;border-radius:6px;font-weight:600!important;letter-spacing:.04em;text-decoration:none;line-height:1.4}.lang a.on{background:#E3ECE2;color:#3D6B4F!important}@media(max-width:700px){.lang{gap:0}.lang a{padding:.18rem .3rem;font-size:.66rem!important}.links{gap:.55rem!important}nav .back-btn{padding:6px 12px!important;font-size:.8rem!important}.nav-home{padding:.4rem .8rem!important}}@media(max-width:900px){nav .nav-links{display:flex!important;gap:10px}nav .nav-links>a:not(.back-btn){display:none}}</style><link href="https://bloomdayapp.com/support/" hreflang="en" rel="alternate"/><link href="https://bloomdayapp.com/support/tr/" hreflang="tr" rel="alternate"/><link href="https://bloomdayapp.com/support/es/" hreflang="es" rel="alternate"/><link href="https://bloomdayapp.com/support/" hreflang="x-default" rel="alternate"/></head>
+<body>
+<nav>
+<div class="inner">
+<a class="logo" href="/es/">BloomDay</a>
+<div class="nav-links">
+<a href="/guide/es/">Guía de uso</a>
+<a href="/privacy/">Privacidad</a>
+<span class="lang"><a href="/support/" hreflang="en">EN</a><a href="/support/tr/" hreflang="tr">TR</a><a class="on" href="/support/es/" hreflang="es">ES</a></span><a class="back-btn" href="/es/">Volver al inicio</a>
+</div>
+</div>
+</nav>
+<div class="hero">
+<span class="badge">Soporte</span>
+<h1>Estamos aquí para que tu jardín <em>florezca</em></h1>
+<p>Echa un vistazo a las preguntas frecuentes o escríbenos directamente. Leemos todos los mensajes.</p>
+</div>
+<div class="content">
+<!-- Quick links -->
+<!-- FAQ -->
+<div class="faq-section">
+<span class="faq-label">Preguntas frecuentes</span>
+<!-- Tasks & Seeds -->
+<div class="faq-group">
+<div class="faq-group-title">Tareas y semillas</div>
+<div class="faq-item">
+<button class="faq-q">¿Cómo gano semillas? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Cada tarea completada te da 2 semillas, +1 si la terminas dentro de su franja horaria y otro +1 durante el Modo Enfoque. Una sesión de enfoque terminada suma +3, el reto diario suma de +3 a +10, cada logro suma +5 y una planta que llega a plena floración suma +20.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Cómo funcionan las rachas? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Termina al menos una tarea al día para mantener tu racha. Si te saltas un día se reinicia, y si tienes una ficha de resiliencia BloomDay te ofrece recuperarla. Las fichas llegan con las rachas de 7, 14, 30 y 100 días y cada vez que una planta llega a plena floración.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué son los retos diarios? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Cada mañana aparece un reto en la parte superior de tu lista de tareas, como terminar 2, 3 o 5 tareas, terminar una tarea antes del mediodía, regar una planta o completar todas las tareas del día. Cuando lo cumples, la tarjeta se vuelve verde y las semillas llegan al momento.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Puedo crear tareas recurrentes? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Sí. Al añadir una tarea, elige Diario, Días laborables, Semanal, Cada 2 semanas, Mensual o marca fechas exactas en un calendario. Cada día lleva su propio registro. Desliza a la izquierda una tarea recurrente y toca Detener para convertirla en una tarea única.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Puedo recuperar una tarea eliminada? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Las tareas eliminadas no se pueden recuperar. En lugar de borrar las que quizá quieras retomar, pospónlas. Desliza una tarea a la izquierda y toca Más tarde para pasarla a otra fecha.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Puedo añadir tareas con la voz? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Sí. Toca el micrófono en Añadir tarea o en el diario y habla. BloomDay usa el reconocimiento de voz de tu teléfono y entiende fechas y horas en lo que dices, en español, inglés y turco. La entrada por voz es gratis para todos.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Cómo funciona la sincronización con Notion? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Abre Ajustes, busca Notion en Integraciones, inicia sesión y elige una base de datos de tareas. Sus tareas aparecen en BloomDay, y cuando completas una en BloomDay también se marca en Notion. Puedes desconectarla cuando quieras desde la misma pantalla.</div>
+</div>
+</div>
+<!-- Plants & Garden -->
+<div class="faq-group">
+<div class="faq-group-title">Plantas y jardín</div>
+<div class="faq-item">
+<button class="faq-q">¿Cómo crecen las plantas? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Las plantas crecen con el riego. Las tareas te dan las semillas para comprar plantas, y regarlas las hace crecer. Cada especie crece a su ritmo. Cuando una planta llega a plena floración ganas +20 semillas y una ficha de resiliencia.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué son los estados de las plantas? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Tu planta muestra cuándo la regaste por última vez: Floreciendo (hoy), Feliz (1 día sin regar), Sedienta (2 días), Marchitando (3 días) y Crítico (4 días o más). Las plantas nunca mueren. Una planta crítica se recupera en cuanto la riegas.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Cuántas plantas hay? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Más de 200 especies ilustradas en tres entornos: Interior (plantas de casa), Jardín (flores y árboles) y Huerto (verduras y hierbas). Las cuentas gratuitas empiezan con las especies iniciales. Los planes y las colecciones añaden cultivares premium, ejemplares raros, frutales enanos y verduras tradicionales.</div>
+</div>
+</div>
+<!-- Focus & Features -->
+<div class="faq-group">
+<div class="faq-group-title">Enfoque y funciones</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué es el Modo Enfoque? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Una sesión a pantalla completa con temporizador. Elige 25, 45, 60 o 90 minutos y uno de los 18 sonidos ambientales. Una planta que respira te acompaña. Terminar la sesión te da +3 semillas, y BloomDay te pregunta antes de dejarte salir antes de tiempo.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué son las Cápsulas del tiempo? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Escribe una carta a tu yo del futuro y séllala en una planta. Queda bloqueada hasta que la planta llega a plena floración y luego se abre sola. Las cuentas gratuitas pueden guardar hasta 3 cápsulas, y con los planes son ilimitadas.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué es el Diario BloomDay? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Un cuaderno para tus días. Empieza con una página en blanco o con una plantilla diaria, semanal, mensual o de hábitos, escribe y decora la página con pegatinas de arcilla, cinta washi, sellos que ganas y la mascota de tu ánimo del día. Las páginas se pueden exportar en PDF. Las cuentas gratuitas guardan 3 páginas y usan 15 pegatinas.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué es el Kit de diario? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Una compra única que desbloquea para siempre todas las pegatinas del diario, tengas el plan que tengas. Los sets de plantillas listas siguen en los planes Bloom, Forest y Eden. Quienes tienen Eden o la opción de por vida ya tienen el kit.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué es el Bloom Board? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Un tablero de visión hecho con pines de arcilla. Coloca metas, lugares y pequeños caprichos en el tablero y compártelo como imagen. Las cuentas gratuitas reciben un set inicial de pines, y el tablero también puede estar en tu pantalla de inicio como widget.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Quién ve mi mascota del ánimo? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Solo tú. La mascota que eliges se queda en tu teléfono. Nunca se envía a analíticas, nunca se respalda ni se sincroniza, y al día siguiente vuelve a neutral.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué son los logros? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Hay 58 insignias: 48 logros de tareas, rachas, jardín, riego, semillas y momentos especiales, más 10 colecciones de plantas. Cada logro suma +5 semillas al desbloquearse, y una colección completa da semillas, una insignia y una pieza de decoración. Míralos todos en Logros.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué son las fichas de resiliencia? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Lo más raro de BloomDay, y no se puede comprar con dinero. Ganas una con las rachas de 7, 14, 30 y 100 días y cada vez que una planta llega a plena floración, y puedes tener hasta 10. Una ficha recupera una racha rota.</div>
+</div>
+</div>
+<!-- Account & Billing -->
+<div class="faq-group">
+<div class="faq-group-title">Cuenta y facturación</div>
+<div class="faq-item">
+<button class="faq-q">¿Cómo cancelo mi suscripción? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Las suscripciones las gestiona la tienda donde compraste. En iPhone, abre Ajustes, toca tu nombre, luego Suscripciones, elige BloomDay y toca Cancelar suscripción. En Android, abre Google Play, toca tu perfil, luego Pagos y suscripciones y después Suscripciones. Tu plan sigue activo hasta el final del periodo actual.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Hay una opción de pago único? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Sí. Eden también se vende como compra única de por vida. Las colecciones temáticas, el paquete Todas las colecciones y el Kit de diario también son compras únicas. Si cambias de teléfono, toca Restaurar compras en la pantalla de planes.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué pasa si borro la app? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Tus datos viven en tu teléfono y, mientras tengas la sesión iniciada, BloomDay también guarda una copia de seguridad privada vinculada a tu cuenta. Si reinstalas e inicias sesión con la misma cuenta, tu jardín y tu progreso vuelven. Tus elecciones de ánimo nunca forman parte de esa copia.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Cómo elimino mi cuenta? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Ve a Ajustes, baja hasta el final y toca Eliminar cuenta. Esto borra tu copia en la nube, elimina tu cuenta y borra los datos de este teléfono. No se puede deshacer. También puedes escribirnos y la eliminamos por ti.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Mi jardín pasará a un teléfono nuevo? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">Sí. Inicia sesión con la misma cuenta en el teléfono nuevo y tu jardín, tus tareas, tu diario y tu progreso vuelven. La misma cuenta mantiene BloomDay sincronizado entre iPhone, iPad, Mac y Android, y puedes tocar Sincronizar ahora en Ajustes cuando quieras.</div>
+</div>
+<div class="faq-item">
+<button class="faq-q">¿Qué idiomas admite BloomDay? <span class="faq-arrow">↓</span></button>
+<div class="faq-a">BloomDay está disponible por completo en inglés, turco y español, incluidos los nombres de las plantas, los datos botánicos, los logros, el diario y las notificaciones. Puedes cambiar de idioma cuando quieras desde Ajustes.</div>
+</div>
+</div>
+</div>
+<!-- Contact card -->
+<div class="contact-card">
+<h2>¿Aún necesitas ayuda?</h2>
+<p>Leemos cada mensaje y solemos responder en 24 horas. Ninguna pregunta es demasiado pequeña.</p>
+<a class="contact-btn" href="mailto:bloomday.app@icloud.com">Escríbenos</a>
+<div class="contact-sub">bloomday.app@icloud.com</div>
+</div>
+</div>
+<footer>
+<div class="inner">
+<div>
+<h5>BloomDay</h5>
+<p>Productividad que crece contigo. Convierte cada tarea completada en una planta viva.</p>
+</div>
+<div class="col">
+<h6>Producto</h6>
+<a href="/es/#features">Funciones</a>
+<a href="/es/#download">Descargar</a>
+</div>
+<div class="col">
+<h6>Recursos</h6>
+<a href="/guide/es/">Guía de uso</a>
+<a href="/support/es/">Soporte</a>
+<a href="/press/es/">Prensa</a>
+<a href="/privacy/">Política de privacidad</a>
+</div>
+<div class="col">
+<h6>Conecta</h6>
+<a href="https://instagram.com/bloomday.app" target="_blank">Instagram</a>
+<a href="mailto:bloomday.app@icloud.com">Contáctanos</a>
+</div>
+</div>
+<div class="bottom">© 2026 BloomDay. Todos los derechos reservados.</div>
+</footer>
+<script>
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
